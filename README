@@ -1,0 +1,10 @@
+# Warbo's Nix Packages #
+
+A hodge podge of packages for [Nix](https://nixos.org/nix) which either aren't
+yet in the official nixpkgs repository, or are otherwise hacked/overridden.
+
+These aren't expected to remain stable, so if you're going to use them it's
+recommended to pin a specific git revision.
+
+Some of these definitions rely on functions from the overlay defined in
+http://chriswarbo.net/git/nix-helpers which we'll complain about if not found.
