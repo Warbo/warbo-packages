@@ -1,5 +1,11 @@
-{ hasBinary, nixpkgs1603, withArgs, withDeps }:
+{ die, hasBinary, nixpkgs1603, withArgs, withDeps }:
 
+assert nixpkgs1603 ? kde4 || die {
+  error = "nixpkgs1603 should contain kde4 attribute, but didn't";
+};
+assert nixpkgs1603.callPackage ({ kde4 ? null }: kde4 != null) {} || die {
+  error = "nixpkgs1603.callPackage should populate 'kde4' argument";
+};
 with rec {
   # Shamelessly taken from https://github.com/NixOS/nixpkgs/pull/10219
   # FIXME: This is using FAR too many dependencies; many are taken verbatim from
