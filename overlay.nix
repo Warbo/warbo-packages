@@ -5,11 +5,7 @@ with super.lib;
 with rec {
   # We make heavy use of things from nix-helpers. If it doesn't exist in self
   # then we fall back to this version
-  helpers = import (super.fetchgit {
-    url    = http://chriswarbo.net/git/nix-helpers.git;
-    rev    = "46348ac";
-    sha256 = "13wjrli7wv9da4rhcnqh1g8z0nc2x0mq6wli1fmazw9759lky53m";
-  });
+  helpers = import ./helpers.nix { nixpkgs = super; };
 
   # A map from 'base name' (e.g. "foo") to full path (e.g. ./packages/foo.nix)
   pkgFiles  = (self.nixFilesIn or helpers.nixFilesIn) ./packages;

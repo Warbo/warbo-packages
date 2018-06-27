@@ -11,7 +11,7 @@ done
 
 echo "Checking we can evaluate all test derivations" 1>&2
 nix-instantiate --show-trace \
-                -E 'with import ./.; allDrvsIn nix-helpers-tests' || {
+    -E '(import ./helpers.nix {}).allDrvsIn (import ./.).warbo-packages-tests' || {
     echo "Couldn't evaluate all test derivations" 1>&2
     exit 1
 }
