@@ -6,5 +6,11 @@ yet in the official nixpkgs repository, or are otherwise hacked/overridden.
 These aren't expected to remain stable, so if you're going to use them it's
 recommended to pin a specific git revision.
 
-Some of these definitions rely on functions from the overlay defined in
-http://chriswarbo.net/git/nix-helpers which we'll complain about if not found.
+This repository forms part of an unholy trinity of useful nixpkgs overlays:
+
+ - `http://chriswarbo.net/git/warbo-packages` (this) packages useful software
+ - `http://chriswarbo.net/git/nix-helpers` provides useful Nix expressions
+ - `http://chriswarbo.net/git/warbo-utilities` provides useful scripts
+
+There's also `http://chriswarbo.net/git/warbo-utilities` which ties them all
+together for a NixOS system.
