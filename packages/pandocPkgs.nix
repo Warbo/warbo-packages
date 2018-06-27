@@ -66,5 +66,5 @@ rec {
         ln -s "$wanted/bin/$P" "$out/bin/$P"
       done
     '');
-  tests = hasBinary pkg "pandoc";
+  tests = {};#hasBinary pkg "pandoc";
 }
