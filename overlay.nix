@@ -7,8 +7,8 @@ with rec {
   # then we fall back to this version
   helpers = import (super.fetchgit {
     url    = http://chriswarbo.net/git/nix-helpers.git;
-    rev    = "0fe63a2";
-    sha256 = "07lhjh8h7wmin2bsc8583whsz3kppavrflxfjal6d6wansi8x42b";
+    rev    = "46348ac";
+    sha256 = "13wjrli7wv9da4rhcnqh1g8z0nc2x0mq6wli1fmazw9759lky53m";
   });
 
   # A map from 'base name' (e.g. "foo") to full path (e.g. ./packages/foo.nix)
