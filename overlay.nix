@@ -25,6 +25,9 @@ with fold (name: previous:
               # Allow args to be drawn from helpers, as a fallback if the
               # nix-helpers overlay isn't being used
               extraArgs = (if self ? nix-helpers then {} else helpers) // {
+                # Useful for overriding things
+                inherit super;
+
                 # Many of our definitions use git repos from this URL. As a
                 # convenience, we provide a layer of indirection: definitions
                 # look for a 'repoSource' parameter, falling back to this if not
