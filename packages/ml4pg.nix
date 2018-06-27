@@ -1,4 +1,4 @@
-{ latestGit, repoSource }:
+{ defaultRepo, latestGit, repoSource ? defaultRepo }:
 
 import (latestGit {
           url    = "${repoSource}/ml4pg.git";

@@ -1,4 +1,4 @@
-{ latestGit, repoSource, stdenv }:
+{ defaultRepo, latestGit, repoSource ? defaultRepo, stdenv }:
 
 stdenv.mkDerivation {
   name = "md2pdf";

@@ -1,4 +1,5 @@
-{ git2html-real, hasBinary, latestGit, repoSource, stdenv, withDeps }:
+{ defaultRepo, git2html-real, hasBinary, latestGit, repoSource ? defaultRepo,
+  stdenv, withDeps }:
 
 with rec {
   pkg = stdenv.lib.overrideDerivation git2html-real (old: {

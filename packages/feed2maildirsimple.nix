@@ -1,4 +1,4 @@
-{ latestGit, repoSource, pkgs }:
+{ defaultRepo, latestGit, repoSource ? defaultRepo, pkgs }:
 
 with rec {
   src = latestGit {

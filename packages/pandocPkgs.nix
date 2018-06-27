@@ -1,6 +1,6 @@
 # Fixed versions of pandoc, panpipe, panhandle, pandoc-citeproc and dependencies
-{ hasBinary, haskell, haskellPkgsDeps, latestGit, lib, repoSource, runCommand,
-  withDeps }:
+{ defaultRepo, hasBinary, haskell, haskellPkgsDeps, latestGit, lib,
+  repoSource ? defaultRepo, runCommand, withDeps }:
 
 with lib;
 with haskellPkgsDeps {

@@ -1,4 +1,5 @@
-{ callPackage, die, hasBinary, latestGit, lib, nix, repoSource, withDeps }:
+{ callPackage, defaultRepo, die, hasBinary, latestGit, lib, nix,
+  repoSource ? defaultRepo, withDeps }:
 
 with builtins;
 with rec {
