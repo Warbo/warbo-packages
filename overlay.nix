@@ -3,31 +3,53 @@ self: super:
 with builtins;
 with super.lib;
 with rec {
-  # Whilst the values in our result set can depend on self, the names must not
-  # since that would cause an infinite recursion. Hence we can't just use
-  # 'attrNames pkgFiles' since that would depend on self.
+  # We make heavy use of things from nix-helpers. If it doesn't exist in self
+  # then we fall back to this version
+  helpers = import (super.fetchgit {
+    url    = http://chriswarbo.net/git/nix-helpers.git;
+    rev    = "dc68891";
+    sha256 = "0c4zh9cz1db5y5c1kmnwgj0f3s5528xahhs509gprlhvgyqyp1mc";
+  });
+
+  # A map from 'base name' (e.g. "foo") to full path (e.g. ./packages/foo.nix)
+  pkgFiles  = (self.nixFilesIn or helpers.nixFilesIn) ./packages;
+
+  # We can't use 'self' when calculating what names we'll provide, since looking
+  # up anything in 'self' would cause an infinite recursion if we don't know
+  # what our own overrides are called yet. In particular we can't use
+  # 'self.nixFilesIn', and hence 'attrNames pkgFiles', so we use 'readDir'.
   fileNames = map (removeSuffix ".nix") (attrNames (readDir ./packages));
-  pkgFiles  = self.nixFilesIn ./packages;
 };
 with fold (name: previous:
             with rec {
-              defs  = self.callPackage (getAttr name pkgFiles) {};
+              # Allow args to be drawn from helpers, as a fallback if the
+              # nix-helpers overlay isn't being used
+              extraArgs = (if self ? nix-helpers then {} else helpers) // {
+                # Many of our definitions use git repos from this URL. As a
+                # convenience, we provide a layer of indirection: definitions
+                # look for a 'repoSource' parameter, falling back to this if not
+                # found. Hence we can use a faster mirror (e.g. local clones) by
+                # defining it as a 'repoSource' parameter, if we want to.
+                defaultRepo = http://chriswarbo.net/git;
+              };
 
-              pkg   = { "${name}" = defs.pkg or defs; };
-
-              tests = if defs ? tests
-                         then { "${name}" = defs.tests; }
-                         else {};
+              # Like callPackage, but allows args to come from extraArgs
+              defs = self.newScope extraArgs (getAttr name pkgFiles) {};
             };
             {
-              pkgs  = previous.pkgs  // pkg;
-              tests = previous.tests // tests;
+              # Each file can either define { pkg = ...; tests = ...; } or else
+              # we assume the result is the package and there are no tests.
+              pkgs  = previous.pkgs  // { "${name}" = defs.pkg or defs; };
+              tests = previous.tests // (if defs ? tests
+                                            then { "${name}" = defs.tests; }
+                                            else {});
             })
           { pkgs = {}; tests = {}; }
           fileNames;
-pkgs // {
-  warbo-packages-tests = assert self ? nixFilesIn || abort ''
-    Overlay from http://chriswarbo.net/git/warbo-packages relies on overlay from
-    http://chriswarbo.net/git/nix-helpers being loaded first.'';
-    tests;
-}
+with rec {
+  warbo-packages = pkgs // {
+    inherit warbo-packages;
+    warbo-packages-tests = tests;
+  };
+};
+warbo-packages
