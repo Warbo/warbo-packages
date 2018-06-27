@@ -1,4 +1,4 @@
-{ hasBinary, haskellPackages, latestGit, withDeps }:
+{ forceLatest ? false, hasBinary, haskellPackages, latestGit, withDeps }:
 
 with rec {
   src = latestGit {
@@ -6,6 +6,7 @@ with rec {
     stable = {
       rev    = "aeb6c4a";
       sha256 = "0qb83jkb495vgh912sdiqcph7zrppm4rch9j25m5988d9y1ykgja";
+      unsafeSkip = forceLatest;
     };
   };
 

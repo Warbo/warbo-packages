@@ -1,8 +1,10 @@
 # Fixed versions of pandoc, panpipe, panhandle, pandoc-citeproc and dependencies
-{ defaultRepo, hasBinary, haskell, haskellPkgsDeps, latestGit, lib,
-  repoSource ? defaultRepo, runCommand, withDeps }:
+{ defaultRepo, forceLatest ? false, hasBinary, haskellPkgsDeps, latestGit,
+  nixpkgs1709, repoSource ? defaultRepo, runCommand, withDeps }:
 
-with lib;
+# Runs Cabal's dependency solver to find non-conflicting versions of all the
+# required packages, runs cabal2nix on all of them and passes them as overrides
+# to the given hsPkgs set.
 with haskellPkgsDeps {
   deps = [
     "base >= 4.8"
@@ -17,22 +19,33 @@ with haskellPkgsDeps {
   ];
 
   extra-sources = [
-    haskell.packages.ghc7103.lazysmallcheck2012.src
+    (latestGit {
+      url    = "${repoSource}/lazy-smallcheck-2012.git";
+      stable = {
+        rev        = "dbd6fba";
+        sha256     = "1i3by7mp7wqy9anzphpxfw30rmbsk73sb2vg02nf1mfpjd303jj7";
+        unsafeSkip = forceLatest;
+      };
+    })
     (latestGit {
       url    = "${repoSource}/panhandle.git";
       stable = {
-        rev    = "7e44d75";
-        sha256 = "1cgk5wslbr507fmh1fyggvk15lipa8x815392j9qf4f922iifdzn";
+        rev        = "7e44d75";
+        sha256     = "1cgk5wslbr507fmh1fyggvk15lipa8x815392j9qf4f922iifdzn";
+        unsafeSkip = forceLatest;
       };
     })
   ];
 
-  hsPkgs = haskell.packages.ghc7103;
+  # This is an end-user package, not a library, so we don't care about plumbing
+  # it up for all of the various nixpkgs and Haskell versions. Just pick one and
+  # stick with it, rather than building things over and over.
+  hsPkgs = nixpkgs1709.haskell.packages.ghc7103;
 
   useOldZlib = true;
 };
-with rec {
-  # Add the "gcRoots" as dependencies; these are derivations we imported in order
+rec {
+  # Add the "gcRoots" as dependencies; these are derivations we imported in
   # order to generate the required Haskell packages, but which aren't actually
   # included in the dependencies of anything. Notably this includes hackageDb.
   # By adding these as dependencies here, we ensure the GC sees them as live.
@@ -53,10 +66,5 @@ with rec {
         ln -s "$wanted/bin/$P" "$out/bin/$P"
       done
     '');
-
-  tested = withDeps [ (hasBinary pkg "pandoc") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "pandoc";
 }
