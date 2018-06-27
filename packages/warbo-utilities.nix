@@ -1,4 +1,5 @@
-{ pkgHasBinary, repoSource, self, withLatestGit, forceLatest ? false }:
+{ pkgHasBinary, repoSource ? http://chriswarbo.net/git, self, withLatestGit,
+  forceLatest ? false }:
 
 with {
   pkg = withLatestGit {
