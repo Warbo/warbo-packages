@@ -1,7 +1,7 @@
-{ coq, hasBinary, latestGit, nixpkgs1609, stable, stdenv, withDeps }:
+{ hasBinary, latestGit, nixpkgs1609, stdenv, withDeps }:
 
 with rec {
-  pkg = if stable then nixpkgs1609.coq else coq;
+  pkg = nixpkgs1609.coq;
 
   patched = stdenv.lib.overrideDerivation pkg (oldAttrs : {
     name  = "coq-mtac";

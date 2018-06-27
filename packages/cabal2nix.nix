@@ -1,12 +1,11 @@
-{ hasBinary, nixpkgs1603, stable, super, withDeps }:
+# Pin cabal2nix since it's useful during evaluation, but is prone to building
+# over and over for different combinations of nixpkgs, haskellPackages, etc.
+# (including some quite hefty dependencies!). It also changed its calling
+# convention reasonably recently, so pinning avoids the need to support both.
+{ hasBinary, nixpkgs1603, withDeps }:
 
 with rec {
-  # We use cabal2nix in our Haskell overrides, so we need to use super instead
-  # of self, to prevent infinite recursion
-  pkg = if stable
-           then nixpkgs1603.haskellPackages.cabal2nix
-           else super.haskellPackages.cabal2nix;
-
+  pkg    = nixpkgs1603.haskellPackages.cabal2nix;
   tested = withDeps [ (hasBinary pkg "cabal2nix") ] pkg;
 };
 {
