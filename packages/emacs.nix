@@ -1,8 +1,12 @@
-{ emacs25 ? null, emacsPackagesNgGen, hasBinary, super, withDeps }:
+{ emacs25 ? null, emacsPackagesNgGen, hasBinary, super }:
 
+with builtins;
 with rec {
   version = if emacs25 == null
-               then super.emacs
+               then trace (toJSON {
+                      warning      = "No 'emacs25' provided, so using 'emacs'";
+                      emacsVersion = super.emacs.version;
+                    }) super.emacs
                else emacs25;
 
   # GTK crashes if X restarts, plus GTK3 is horrible and it's slow
@@ -15,10 +19,8 @@ with rec {
     [
       agda2-mode
     ]);
-
-  tested = withDeps [ (hasBinary pkg "emacs") ] pkg;
 };
 {
-  pkg   = tested;
-  tests = tested;
+  inherit pkg;
+  tests = hasBinary pkg "emacs";
 }
