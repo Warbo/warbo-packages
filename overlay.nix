@@ -18,7 +18,9 @@ with rec {
   # up anything in 'self' would cause an infinite recursion if we don't know
   # what our own overrides are called yet. In particular we can't use
   # 'self.nixFilesIn', and hence 'attrNames pkgFiles', so we use 'readDir'.
-  fileNames = map (removeSuffix ".nix") (attrNames (readDir ./packages));
+  fileNames = map (removeSuffix ".nix")
+                  (filter (hasSuffix ".nix")
+                          (attrNames (readDir ./packages)));
 };
 with fold (name: previous:
             with rec {
@@ -32,7 +34,7 @@ with fold (name: previous:
                 # convenience, we provide a layer of indirection: definitions
                 # look for a 'repoSource' parameter, falling back to this if not
                 # found. Hence we can use a faster mirror (e.g. local clones) by
-                # defining it as a 'repoSource' parameter, if we want to.
+                # defining a 'repoSource' parameter in our config, if we want.
                 defaultRepo = http://chriswarbo.net/git;
               };
 
