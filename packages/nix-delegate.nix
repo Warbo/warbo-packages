@@ -4,8 +4,8 @@ with rec {
   src = latestGit {
     url    = https://github.com/awakesecurity/nix-delegate.git;
     stable = {
-      rev    = "aeb6c4a";
-      sha256 = "0qb83jkb495vgh912sdiqcph7zrppm4rch9j25m5988d9y1ykgja";
+      rev        = "aeb6c4a";
+      sha256     = "0qb83jkb495vgh912sdiqcph7zrppm4rch9j25m5988d9y1ykgja";
       unsafeSkip = forceLatest;
     };
   };
