@@ -1,6 +1,10 @@
-{ callPackage, nothing, repo, runCommand }:
+{ callPackage, lib, nixpkgsRelease, nothing, pinnedNixpkgs, runCommand }:
 
+with builtins;
+with lib;
 with rec {
+  repo = getAttr "repo${removePrefix "nixpkgs" nixpkgsRelease}" pinnedNixpkgs;
+
   suffix = "pkgs/misc/themes/e17gtk";
 
   havePath = import (runCommand "have-e17gtk.nix" { inherit repo suffix; } ''

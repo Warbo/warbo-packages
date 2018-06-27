@@ -1,6 +1,10 @@
-{ callPackage, nothing, repo, runCommand }:
+{ callPackage, lib, nixpkgsRelease, nothing, pinnedNixpkgs, runCommand }:
 
+with builtins;
+with lib;
 with rec {
+  repo = getAttr "repo${removePrefix "nixpkgs" nixpkgsRelease}" pinnedNixpkgs;
+
   suffix = "pkgs/misc/themes/clearlooks-phenix";
 
   havePath = import (runCommand "have-clearlooks-phenix.nix"
