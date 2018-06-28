@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, options ? [], stdenv }:
+{ callPackage, fetchFromGitHub, lib, options ? [], stdenv }:
 
 with builtins;
 with lib;
@@ -14,7 +14,7 @@ with rec {
     "MKDEXT_LAX_SPACING"
   ];
 
-  go = options:
+  go = { options }:
     with rec {
       whitelistedOptions = filter (o: elem o allowedOptions) options;
       sentinel = "sd_markdown_new(";
@@ -44,6 +44,6 @@ with rec {
     };
 };
 {
-  def   = go options;
-  tests = genAttrs allowedOptions (o: go [ o ]);
+  pkg   = callPackage go { inherit options; };
+  tests = genAttrs allowedOptions (o: go { options = [ o ]; });
 }
