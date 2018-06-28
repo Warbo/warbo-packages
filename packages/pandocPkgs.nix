@@ -1,70 +1,61 @@
 # Fixed versions of pandoc, panpipe, panhandle, pandoc-citeproc and dependencies
-{ defaultRepo, forceLatest ? false, hasBinary, haskellPkgsDeps, latestGit,
-  nixpkgs1709, repoSource ? defaultRepo, runCommand, withDeps }:
+{ buildEnv, hasBinary, lib, nixpkgs1609, panhandle, panpipe, runCommand,
+  writeScript }:
 
-# Runs Cabal's dependency solver to find non-conflicting versions of all the
-# required packages, runs cabal2nix on all of them and passes them as overrides
-# to the given hsPkgs set.
-with haskellPkgsDeps {
-  deps = [
-    "base >= 4.8"
-    "pandoc-citeproc == 0.10.4"
-    "panpipe == 0.2.0.0"
-    "panhandle == 0.3.0.0"
-    #"aeson == 0.11.3.0"
-    "attoparsec == 0.13.0.2"
-    "tasty == 0.11.2.1"
-    "lazysmallcheck2012"
-    "pandoc"
-  ];
-
-  extra-sources = [
-    (latestGit {
-      url    = "${repoSource}/lazy-smallcheck-2012.git";
-      stable = {
-        rev        = "dbd6fba";
-        sha256     = "1i3by7mp7wqy9anzphpxfw30rmbsk73sb2vg02nf1mfpjd303jj7";
-        unsafeSkip = forceLatest;
-      };
-    })
-    (latestGit {
-      url    = "${repoSource}/panhandle.git";
-      stable = {
-        rev        = "7e44d75";
-        sha256     = "1cgk5wslbr507fmh1fyggvk15lipa8x815392j9qf4f922iifdzn";
-        unsafeSkip = forceLatest;
-      };
-    })
-  ];
-
-  # This is an end-user package, not a library, so we don't care about plumbing
-  # it up for all of the various nixpkgs and Haskell versions. Just pick one and
-  # stick with it, rather than building things over and over.
-  hsPkgs = nixpkgs1709.haskell.packages.ghc7103;
-
-  useOldZlib = true;
-};
+with builtins;
+with lib;
 rec {
-  # Add the "gcRoots" as dependencies; these are derivations we imported in
-  # order to generate the required Haskell packages, but which aren't actually
-  # included in the dependencies of anything. Notably this includes hackageDb.
-  # By adding these as dependencies here, we ensure the GC sees them as live.
-  pkg = withDeps gcRoots (runCommand "pandocPkgs"
-    {
-      wanted = hsPkgs.ghcWithPackages (h: [
-        h.pandoc
-        h.panpipe
-        h.pandoc-citeproc
-        h.panhandle
-      ]);
-    }
-    ''
-      # Pluck out the binaries we want, ignore those we don't (e.g. ghc)
-      mkdir -p "$out/bin"
-      for P in pandoc pandoc-citeproc panhandle panpipe
-      do
-        ln -s "$wanted/bin/$P" "$out/bin/$P"
-      done
-    '');
-  tests = {};#hasBinary pkg "pandoc";
+  pkg = buildEnv {
+    name  = "pandocPkgs";
+    paths = with nixpkgs1609; [
+      haskellPackages.pandoc-citeproc pandoc panhandle panpipe
+    ];
+  };
+
+  tests = genAttrs [ "pandoc" "pandoc-citeproc" "panpipe" "panhandle" ]
+                   (hasBinary pkg) // {
+    canPipe = runCommand "pandocPkgs-can-pipe"
+      {
+        buildInputs = [ pkg ];
+        input       = ''
+          foo
+
+          ```{pipe="sh"}
+          printf "hello"
+          printf "world"
+          ```
+
+          bar
+        '';
+      }
+      ''
+        echo -e "Running simple panpipe on:\n$input" 1>&2
+        GOT=$(echo "$input" | pandoc --filter panpipe -f markdown -t html)
+        echo -e "Generated:\n$GOT\n" 1>&2
+        echo "$GOT" | grep 'helloworld' > /dev/null ||
+          fail "Didn't find 'helloworld' in:\n$GOT"
+        echo "Found 'helloworld' in output, test passed" 1>&2
+        mkdir "$out"
+      '';
+
+    canUnwrap = runCommand "pandocPkgs-can-unwrap"
+      {
+        buildInputs = [ pkg ];
+        input       = "*foo* _bar_";
+      }
+      ''
+        JSON=$(echo "$input" | pandoc -f markdown -t json)
+
+        DATA=$(echo -e 'pre\n\n```unwrap\n'"$JSON"'\n```\n\npost')
+
+        echo -e "Attempting to unwrap the following:\n$DATA" 1>&2
+        GOT=$(echo "$DATA" | pandoc --filter panhandle -f markdown -t html)
+        echo -e "Generated:\n$GOT" 1>&2
+
+        echo "$GOT" | grep '<em>foo</em>' > /dev/null ||
+          fail "Failed to find emphasis markup in:\n$GOT"
+        echo "Found emphasis markup in output, test passed" 1>&2
+        mkdir "$out"
+      '';
+  };
 }
