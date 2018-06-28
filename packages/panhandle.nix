@@ -43,6 +43,6 @@ with rec {
     inherit stdenv;
     inherit (oldHs) callPackage;
     pkgs = super;
-  } (hsPkgs // { panhandleSrc = rawSrc; });
+  } (hsPkgs // { inherit panhandleSrc; });
 };
 hsPkgs.panhandle
