@@ -1,4 +1,4 @@
-{fetchFromGitHub, stdenv, pythonPackages }:
+{ fetchFromGitHub, stdenv, pythonPackages }:
 
 stdenv.mkDerivation {
   name = "scholar.py";
@@ -13,7 +13,7 @@ stdenv.mkDerivation {
 
   propagatedBuildInputs = [
     pythonPackages.python
-    pythonPackages.beautifulsoup
+    pythonPackages.beautifulsoup4
   ];
 
   installPhase = ''
