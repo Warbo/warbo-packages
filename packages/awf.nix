@@ -1,6 +1,7 @@
 { autoconf, automake, fetchFromGitHub, gcc, gtk2, gtk3, hasBinary, pkgconfig,
-  runCommand, stdenv, widgetThemes, withDeps }:
+  runCommand, stdenv, stripOverrides, widgetThemes, withDeps }:
 
+with builtins;
 with rec {
   pkg = stdenv.mkDerivation {
     name = "awf";
@@ -10,7 +11,8 @@ with rec {
       rev    = "c937f1b";
       sha256 = "0jl2kxwpvf2n8974zzyp69mqhsbjnjcqm39y0jvijvjb1iy8iman";
     };
-    buildInputs  = [ autoconf automake gcc gtk2 gtk3 pkgconfig ] ++ widgetThemes;
+    buildInputs  = [ autoconf automake gcc gtk2 gtk3 pkgconfig ] ++
+                   attrValues (stripOverrides widgetThemes);
     preConfigure = "bash autogen.sh";
   };
 
