@@ -9,9 +9,8 @@ do
     nix-instantiate --parse "$F" > /dev/null
 done
 
-echo "Checking we can evaluate all test derivations" 1>&2
-nix-instantiate --show-trace \
-    -E '(import ./helpers.nix {}).allDrvsIn (import ./.).warbo-packages-tests' || {
+echo "Evaluating release.nix" 1>&2
+nix-instantiate --show-trace release.nix || {
     echo "Couldn't evaluate all test derivations" 1>&2
     exit 1
 }
