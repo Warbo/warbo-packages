@@ -12,8 +12,7 @@ with rec {
     };
   }) {};
 
-  inheritNix = lib.overrideDerivation raw (old: {
-    name    = "asv-nix-fixme";
+  pkg = lib.overrideDerivation raw (old: {
     example = lib.overrideDerivation old.example (old:
       with {
         withoutNix = filter (p: !(lib.hasPrefix "nix" p.name))
@@ -27,17 +26,8 @@ with rec {
       { buildInputs = withoutNix ++ [ nix ]; }
     );
   });
-
-  untested = trace
-    ''
-      FIXME: Overriding the nix dependency in asv-nix's example test. This is to
-      ensure our libuv override (with flaky tests disabled) gets used.
-    ''
-    inheritNix;
-
-  pkg = withDeps [ (hasBinary untested "asv") ] untested;
 };
 {
   inherit pkg;
-  tests = pkg;
+  tests = hasBinary pkg "asv";
 }
