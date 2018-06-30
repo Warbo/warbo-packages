@@ -1,0 +1,21 @@
+From: Chris Warburton
+Date: Fri, 29 Jun 2018 18:16:34 +0100
+State: new
+Subject: Laminar NixOS module
+Message-Id: <84ebb899b309e85f-0-artemis@nixos>
+
+Laminar looks like a much simpler and less flaky system than Hydra. We
+should package it as a NixOS module.
+
+Some thoughts:
+
+ - There are a few options, read from environment variables. This is
+   easy to set in a systemd service. Hence we don't need a config file.
+ - Most of the "real" configuration is via scripts in the cfg subdir of
+   Laminar's "home" (/var/run/laminar?). I don't think it's rebuilding
+   the service each time these are changed; hence they should live
+   somewhere outside of Nix's control. I propose that the options should
+   include a path to use for this cfg directory, and that we symlink
+   that path into the Laminar home dir. That way the config can be kept
+   in version control, or "deployed" from git, or just live in a home
+   dir.

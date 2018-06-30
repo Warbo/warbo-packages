@@ -7,8 +7,12 @@ with rec {
   # then we fall back to this version
   helpers = import ./helpers.nix { nixpkgs = super; };
 
+  nixFilesIn = self.nixFilesIn or helpers.nixFilesIn;
+
+  util = mapAttrs (_: call) (nixFilesIn ./util);
+
   # A map from 'base name' (e.g. "foo") to full path (e.g. ./packages/foo.nix)
-  pkgFiles  = (self.nixFilesIn or helpers.nixFilesIn) ./packages;
+  pkgFiles = nixFilesIn ./packages;
 
   # We can't use 'self' when calculating what names we'll provide, since looking
   # up anything in 'self' would cause an infinite recursion if we don't know
@@ -17,36 +21,37 @@ with rec {
   fileNames = map (removeSuffix ".nix")
                   (filter (hasSuffix ".nix")
                           (attrNames (readDir ./packages)));
+
+  # Like callPackage, but allows args to come from extraArgs
+  call = x: self.newScope extraArgs x {};
+
+  # Allow args to be drawn from helpers, as a fallback if the nix-helpers
+  # overlay isn't being used
+  extraArgs = (if self ? nix-helpers then {} else helpers) // util // {
+    # Useful for overriding things
+    inherit super;
+
+    # Many of our definitions use git repos from this URL. As a convenience,
+    # we provide a layer of indirection: definitions look for a 'repoSource'
+    # parameter, falling back to this if not found. Hence we can use a
+    # faster mirror (e.g. local clones) by defining a 'repoSource' parameter
+    # in our config, if we want.
+    defaultRepo = http://chriswarbo.net/git;
+  };
+
+  mkPkg = name: previous:
+    # Like callPackage, but allows args to come from extraArgs
+    with { defs = call (getAttr name pkgFiles); };
+    {
+      # Each file can either define { pkg = ...; tests = ...; } or else
+      # we assume the result is the package and there are no tests.
+      pkgs  = previous.pkgs  // { "${name}" = defs.pkg or defs; };
+      tests = previous.tests // (if defs ? tests
+                                    then { "${name}" = defs.tests; }
+                                    else {});
+    };
 };
-with fold (name: previous:
-            with rec {
-              # Allow args to be drawn from helpers, as a fallback if the
-              # nix-helpers overlay isn't being used
-              extraArgs = (if self ? nix-helpers then {} else helpers) // {
-                # Useful for overriding things
-                inherit super;
-
-                # Many of our definitions use git repos from this URL. As a
-                # convenience, we provide a layer of indirection: definitions
-                # look for a 'repoSource' parameter, falling back to this if not
-                # found. Hence we can use a faster mirror (e.g. local clones) by
-                # defining a 'repoSource' parameter in our config, if we want.
-                defaultRepo = http://chriswarbo.net/git;
-              };
-
-              # Like callPackage, but allows args to come from extraArgs
-              defs = self.newScope extraArgs (getAttr name pkgFiles) {};
-            };
-            {
-              # Each file can either define { pkg = ...; tests = ...; } or else
-              # we assume the result is the package and there are no tests.
-              pkgs  = previous.pkgs  // { "${name}" = defs.pkg or defs; };
-              tests = previous.tests // (if defs ? tests
-                                            then { "${name}" = defs.tests; }
-                                            else {});
-            })
-          { pkgs = {}; tests = {}; }
-          fileNames;
+with fold mkPkg { pkgs = {}; tests = {}; } fileNames;
 with rec {
   warbo-packages = pkgs // {
     inherit warbo-packages;
