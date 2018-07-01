@@ -1,6 +1,6 @@
-{ hasBinary, fetchurl, jre, stdenv, unzip, withDeps }:
+{ hasBinary, fetchurl, jre, stdenv, unzip }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation rec {
     name = "ditaaeps-0.2";
 
@@ -46,9 +46,5 @@ with rec {
     };
   };
 
-  tested = withDeps [ (hasBinary pkg "ditaaeps") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "ditaaeps";
 }

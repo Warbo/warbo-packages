@@ -1,12 +1,8 @@
-{ callPackage, hasBinary, repo1609, withDeps }:
+{ callPackage, hasBinary, repo1609 }:
 
-with rec {
+rec {
   pkg = callPackage "${repo1609}/pkgs/applications/networking/browsers/conkeror"
                     {};
 
-  tested = withDeps [ (hasBinary pkg "conkeror") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "conkeror";
 }

@@ -1,4 +1,4 @@
-{ die, hasBinary, nixpkgs1603, withArgs, withDeps }:
+{ die, hasBinary, nixpkgs1603, withArgs }:
 
 assert nixpkgs1603 ? kde4 || die {
   error = "nixpkgs1603 should contain kde4 attribute, but didn't";
@@ -170,12 +170,8 @@ with rec {
 
       ${replaceExeListWithWrapped [ "kbibtex" ]}
     '');
-
-  untested = nixpkgs1603.callPackage makePkg {};
-
-  tested = withDeps [ (hasBinary untested "kbibtex") ] untested;
 };
-{
-  pkg   = tested;
-  tests = tested;
+rec {
+  pkg   = nixpkgs1603.callPackage makePkg {};
+  tests = hasBinary untested "kbibtex";
 }

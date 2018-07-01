@@ -1,7 +1,6 @@
-{ autoconf, automake, hasBinary, fetchFromGitHub, flex, libtool, stdenv,
-  withDeps }:
+{ autoconf, automake, hasBinary, fetchFromGitHub, flex, libtool, stdenv }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name        = "miller";
     buildInputs = [ autoconf automake flex libtool ];
@@ -16,9 +15,5 @@ with rec {
     };
   };
 
-  tested = withDeps [ (hasBinary pkg "mlr") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "mlr";
 }

@@ -1,7 +1,7 @@
 { defaultRepo, forceLatest ? false, git2html-real, hasBinary, latestGit,
-  repoSource ? defaultRepo, stdenv, withDeps }:
+  repoSource ? defaultRepo, stdenv }:
 
-with rec {
+rec {
   pkg = stdenv.lib.overrideDerivation git2html-real (old: {
     src = latestGit {
       url    = "${repoSource}/git2html.git";
@@ -13,9 +13,5 @@ with rec {
     };
   });
 
-  tested = withDeps [ (hasBinary pkg "git2html") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "git2html";
 }

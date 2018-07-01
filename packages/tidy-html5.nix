@@ -1,6 +1,6 @@
-{ cmake, fetchFromGitHub, hasBinary, libxslt, stdenv, withDeps }:
+{ cmake, fetchFromGitHub, hasBinary, libxslt, stdenv }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "tidy-html5";
     src = fetchFromGitHub {
@@ -12,9 +12,5 @@ with rec {
     buildInputs = [ cmake libxslt ];
   };
 
-  tested = withDeps [ (hasBinary pkg "tidy") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "tidy";
 }

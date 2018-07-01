@@ -1,5 +1,5 @@
 { autoconf, automake, fetchFromGitHub, gcc, gtk2, gtk3, hasBinary, pkgconfig,
-  runCommand, stdenv, stripOverrides, widgetThemes, withDeps }:
+  runCommand, stdenv, stripOverrides, widgetThemes }:
 
 with builtins;
 with rec {
@@ -26,6 +26,10 @@ with rec {
   '';
 };
 
-withDeps [ (hasBinary bins "awf-gtk2")
-           (hasBinary bins "awf-gtk3") ]
-         bins
+{
+  pkg   = bins;
+  tests = {
+    gtk2 = hasBinary bins "awf-gtk2";
+    gtk3 = hasBinary bins "awf-gtk3";
+  };
+}

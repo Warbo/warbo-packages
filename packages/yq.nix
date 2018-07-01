@@ -1,6 +1,6 @@
-{ fetchurl, hasBinary, jq, pythonPackages, withDeps }:
+{ fetchurl, hasBinary, jq, pythonPackages }:
 
-with rec {
+rec {
   pkg = pythonPackages.buildPythonPackage {
     name = "yq";
     src  = fetchurl {
@@ -13,9 +13,5 @@ with rec {
     ];
   };
 
-  tested = withDeps [ (hasBinary pkg "yq") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "yq";
 }

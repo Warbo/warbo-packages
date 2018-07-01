@@ -1,6 +1,6 @@
-{ fetchurl, hasBinary, pythonPackages, google-api-python-client, withDeps }:
+{ fetchurl, hasBinary, pythonPackages, google-api-python-client }:
 
-with rec {
+rec {
   pkg = pythonPackages.buildPythonPackage {
     name = "gcalcli";
     version = "3.3.2";
@@ -22,9 +22,5 @@ with rec {
     ];
   };
 
-  tested = withDeps [ (hasBinary pkg "gcalcli") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "gcalcli";
 }

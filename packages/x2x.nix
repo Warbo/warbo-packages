@@ -1,7 +1,7 @@
 { autoconf, automake, fetchFromGitHub, hasBinary, libXtst, libX11, libXi,
-  libXext, libXinerama, pkgconfig, stdenv, withDeps, xextproto, xlibsWrapper }:
+  libXext, libXinerama, pkgconfig, stdenv, xextproto, xlibsWrapper }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "x2x";
     src  = fetchFromGitHub {
@@ -20,9 +20,5 @@ with rec {
     '';
   };
 
-  tested = withDeps [ (hasBinary pkg "x2x") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "x2x";
 }

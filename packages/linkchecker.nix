@@ -1,6 +1,6 @@
-{ fetchFromGitHub, hasBinary, pythonPackages, runCommand, withDeps }:
+{ fetchFromGitHub, hasBinary, pythonPackages, runCommand }:
 
-with rec {
+rec {
   pkg = pythonPackages.buildPythonPackage {
     name = "linkchecker";
     version = "2014-11-28";
@@ -37,9 +37,5 @@ with rec {
     };
   };
 
-  tested = withDeps [ (hasBinary pkg "linkchecker") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "linkchecker";
 }

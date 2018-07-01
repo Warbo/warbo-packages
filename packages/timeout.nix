@@ -1,7 +1,7 @@
 { coreutils, fetchFromGitHub, hasBinary, makeWrapper, perl, procps, stdenv,
-  withDeps, writeScript }:
+  writeScript }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation rec {
     name = "timeout";
     src  = fetchFromGitHub {
@@ -36,9 +36,5 @@ with rec {
     '';
   };
 
-  tested = withDeps [ (hasBinary pkg "withTimeout") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "withTimeout";
 }

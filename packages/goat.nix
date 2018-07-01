@@ -1,6 +1,6 @@
-{ cacert, git, go, hasBinary, runCommand, withDeps }:
+{ cacert, git, go, hasBinary, runCommand }:
 
-with rec {
+rec {
   pkg = runCommand "goat"
     {
       buildInputs    = [ git go ];
@@ -14,9 +14,5 @@ with rec {
       go get github.com/blampe/goat
     '';
 
-  tested = withDeps [ (hasBinary pkg "goat") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "goat";
 }

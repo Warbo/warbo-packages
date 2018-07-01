@@ -1,7 +1,7 @@
 { fetchurl, fluidsynth, hasBinary, libpng, lua, pkgconfig, SDL, SDL_mixer,
-  SDL_ttf, stdenv, withDeps, zlib }:
+  SDL_ttf, stdenv, zlib }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "pushover";
     src  = fetchurl {
@@ -11,9 +11,5 @@ with rec {
     buildInputs = [ fluidsynth libpng lua pkgconfig SDL SDL_mixer SDL_ttf zlib ];
   };
 
-  tested = withDeps [ (hasBinary pkg "pushover") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "pushover";
 }

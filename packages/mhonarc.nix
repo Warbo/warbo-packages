@@ -1,6 +1,6 @@
-{ hasBinary, perlPackages, stdenv, withDeps, writeScript }:
+{ hasBinary, perlPackages, stdenv, writeScript }:
 
-with rec {
+rec {
   pkg = stdenv.lib.overrideDerivation perlPackages.MHonArc (x: {
 
     # Fixes https://bugzilla.redhat.com/show_bug.cgi?id=1298904
@@ -16,9 +16,5 @@ with rec {
     outputs = [ "out" ];
   });
 
-  tested = withDeps [ (hasBinary pkg "mhonarc") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "mhonarc";
 }

@@ -1,4 +1,4 @@
-{ forceLatest ? false, hasBinary, latestGit, nixpkgs1609, stdenv, withDeps }:
+{ forceLatest ? false, hasBinary, latestGit, nixpkgs1609, stdenv }:
 
 with rec {
   pkg = nixpkgs1609.coq;
@@ -15,10 +15,8 @@ with rec {
       };
     };
   });
-
-  tested = withDeps [ (hasBinary patched "coqc") ] patched;
 };
 {
-  pkg   = tested;
-  tests = tested;
+  pkg   = patched;
+  tests = hasBinary patched "coqc";
 }

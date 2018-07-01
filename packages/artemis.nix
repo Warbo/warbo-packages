@@ -1,6 +1,6 @@
-{ fetchFromGitHub, fetchurl, hasBinary, pythonPackages, withDeps }:
+{ fetchFromGitHub, fetchurl, hasBinary, pythonPackages }:
 
-with rec {
+with {
   mercurial = pythonPackages.buildPythonPackage {
     name = "mercurial";
     src  = fetchurl {
@@ -8,8 +8,9 @@ with rec {
       sha256 = "182qh6d0srps2n5sydzy8n3gi78la6m0wi3846zpyyd0b8pmgmfp";
     };
   };
-
-  untested = pythonPackages.buildPythonPackage {
+};
+rec {
+  pkg = pythonPackages.buildPythonPackage {
     name = "artemis";
     src  = fetchFromGitHub {
       owner  = "mrzv";
@@ -20,9 +21,5 @@ with rec {
     propagatedBuildInputs = [ mercurial ];
   };
 
-  pkg = withDeps [ (hasBinary untested "git-artemis") ] untested;
-};
-{
-  inherit pkg;
-  tests = pkg;
+  tests = hasBinary untested "git-artemis";
 }

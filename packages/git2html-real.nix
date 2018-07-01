@@ -1,6 +1,6 @@
-{ forceLatest ? false, hasBinary, latestGit, stdenv, withDeps }:
+{ forceLatest ? false, hasBinary, latestGit, stdenv }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "git2html";
 
@@ -19,9 +19,5 @@ with rec {
     '';
   };
 
-  tested = withDeps [ (hasBinary pkg "git2html") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "git2html";
 }

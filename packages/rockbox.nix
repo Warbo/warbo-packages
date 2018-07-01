@@ -1,5 +1,5 @@
 { buildEnv, fetchurl, hasBinary, libusb1, patchelf, rockbox_utility, stdenv,
-  withDeps, writeScript }:
+  writeScript }:
 
 with rec {
   firmware = fetchurl {
@@ -64,15 +64,12 @@ with rec {
       cp "$scan_script"     "$out/bin/rockbox_6thgen_scan"
     '';
   };
-
+};
+rec {
   pkg = buildEnv {
     name  = "rockbox-utils";
     paths = [ flasher rockbox_utility ];
   };
 
-  tested = withDeps [ (hasBinary pkg "mks5lboot") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "mks5lboot";
 }

@@ -1,6 +1,6 @@
-{ forceLatest ? false, hasBinary, haskellPackages, latestGit, withDeps }:
+{ forceLatest ? false, hasBinary, haskellPackages, latestGit }:
 
-with rec {
+with {
   src = latestGit {
     url    = https://github.com/awakesecurity/nix-delegate.git;
     stable = {
@@ -9,7 +9,8 @@ with rec {
       unsafeSkip = forceLatest;
     };
   };
-
-  pkg = haskellPackages.callPackage src {};
 };
-withDeps [ (hasBinary pkg "nix-delegate") ] pkg
+rec {
+  pkg   = haskellPackages.callPackage src {};
+  tests = hasBinary pkg "nix-delegate";
+}

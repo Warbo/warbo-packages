@@ -1,7 +1,6 @@
-{ autoconf, automake, forceLatest ? false, hasBinary, latestGit, stdenv,
-  withDeps }:
+{ autoconf, automake, forceLatest ? false, hasBinary, latestGit, stdenv }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "sta";
     src  = latestGit {
@@ -17,9 +16,5 @@ with rec {
     preConfigure = "./autogen.sh";
   };
 
-  tested = withDeps [ (hasBinary pkg "sta") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "sta";
 }

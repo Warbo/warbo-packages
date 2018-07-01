@@ -1,6 +1,6 @@
-{ stdenv, fetchurl, hasBinary, lhasa, gnumake, withDeps }:
+{ stdenv, fetchurl, hasBinary, lhasa, gnumake }:
 
-with rec {
+rec {
   pkg = stdenv.mkDerivation {
     name = "xdms";
 
@@ -28,9 +28,5 @@ with rec {
     '';
   };
 
-  tested = withDeps [ (hasBinary pkg "xdms") ] pkg;
-};
-{
-  pkg   = tested;
-  tests = tested;
+  tests = hasBinary pkg "xdms";
 }
