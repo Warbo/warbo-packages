@@ -1,33 +1,17 @@
-{ callPackage, defaultRepo, die, forceLatest ? false, hasBinary, latestGit, lib,
-  nix, repoSource ? defaultRepo, withDeps }:
+{ defaultRepo, forceLatest ? false, hasBinary, latestGit, newScope,
+  nix-helpers, repoSource ? defaultRepo  }:
 
-with builtins;
-with rec {
-  raw = callPackage (latestGit {
+with {
+  src = latestGit {
     url    = "${repoSource}/asv-nix.git";
     stable = {
-      rev        = "d5af74d";
-      sha256     = "1jp5a8p5dzh2vb2s9k2wf3j2l9fcm7l47ydqy8wlrjiyqlc4jw7a";
+      rev        = "cd2ee1c";
+      sha256     = "0lpnwshyz47bmbyh1ribivh8997m582p6izg1la2ca8n6yki4bxc";
       unsafeSkip = forceLatest;
     };
-  }) {};
-
-  pkg = lib.overrideDerivation raw (old: {
-    example = lib.overrideDerivation old.example (old:
-      with {
-        withoutNix = filter (p: !(lib.hasPrefix "nix" p.name))
-                            old.buildInputs;
-      };
-      assert (1 + length withoutNix) == length old.buildInputs || die {
-        error      = "Removing Nix from buildInputs didn't remove anything";
-        withNix    = map (x: x.name) old.buildInputs;
-        withoutNix = map (x: x.name) withoutNix;
-      };
-      { buildInputs = withoutNix ++ [ nix ]; }
-    );
-  });
+  };
 };
-{
-  inherit pkg;
+rec {
+  pkg   = newScope nix-helpers "${src}/derivation.nix" {};
   tests = hasBinary pkg "asv";
 }
