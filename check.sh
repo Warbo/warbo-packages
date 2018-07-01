@@ -10,7 +10,7 @@ do
 done
 
 echo "Evaluating release.nix" 1>&2
-nix-instantiate --show-trace release.nix || {
+nix-instantiate -v --show-trace release.nix || {
     echo "Couldn't evaluate all test derivations" 1>&2
     exit 1
 }
