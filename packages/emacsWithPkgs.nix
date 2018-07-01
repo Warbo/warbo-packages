@@ -16,9 +16,7 @@ with rec {
     with epkgs;
     with elpaPackages;
     with melpaPackages;
-    [
-      agda2-mode
-    ]);
+    []);
 };
 {
   inherit pkg;
