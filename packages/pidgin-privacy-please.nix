@@ -1,8 +1,8 @@
-{ autoconf, automake, fetchFromGitHub, glib, intltool, libtool, pidgin,
+{ autoconf, automake, fetchFromGitHub, glib, intltool, libtool, nothing, pidgin,
   pkgconfig, stdenv }:
 
-rec {
-  pkg = stdenv.mkDerivation {
+with {
+  real = stdenv.mkDerivation {
     name         = "pidgin-privacy-please";
     buildInputs  = [ autoconf automake glib intltool libtool pidgin pkgconfig ];
     preConfigure = "./autogen.sh";
@@ -20,6 +20,10 @@ rec {
       popd
     '';
   };
-
-  tests = pkg;
+};
+{
+  pkg   = builtins.trace
+            "FIXME: pidgin-privacy-please seems to be deleted upstream"
+            nothing;
+  tests = {};
 }
