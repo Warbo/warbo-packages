@@ -1,5 +1,5 @@
 { autoconf, automake, fetchFromGitHub, gcc, gtk2, gtk3, hasBinary, pkgconfig,
-  runCommand, stdenv, stripOverrides, widgetThemes }:
+  runCommand, stdenv, stripOverrides, widgetThemes ? {} }:
 
 with builtins;
 with rec {
