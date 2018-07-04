@@ -1,4 +1,5 @@
-self: super: with self;
+self: super: helf: huper:
+with self;
 
 let thfSrc = self.stdenv.mkDerivation {
                name = "thf-src";

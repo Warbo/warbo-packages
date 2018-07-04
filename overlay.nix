@@ -40,7 +40,6 @@ with rec {
   };
 
   mkPkg = name: previous:
-    # Like callPackage, but allows args to come from extraArgs
     with { defs = call (getAttr name pkgFiles); };
     {
       # Each file can either define { pkg = ...; tests = ...; } or else
@@ -50,11 +49,27 @@ with rec {
                                     then { "${name}" = defs.tests; }
                                     else {});
     };
+
+  # Override haskellPackages and haskell.packages.* in an extensible way, so
+  # that other overlays can do the same. 'helf' and 'huper' are Haskell package
+  # sets, in the same way that 'self' and 'super' are nixpkgs sets.
+  haskellOverride = hsPkgs: hsPkgs.override (old: {
+    overrides = super.lib.composeExtensions
+      (old.overrides or (_: _: {}))
+      (helf: huper:
+        mapAttrs (_: f: import f (self // extraArgs) super helf huper)
+                 (nixFilesIn ./haskell));
+  });
+
+  haskellPackages = haskellOverride super.haskellPackages;
+  haskell         = super.haskell // {
+    packages = mapAttrs (_: haskellOverride) super.haskell.packages;
+  };
 };
 with fold mkPkg { pkgs = {}; tests = {}; } fileNames;
 with rec {
   warbo-packages = pkgs // {
-    inherit warbo-packages;
+    inherit haskell haskellPackages warbo-packages;
     warbo-packages-tests = tests;
   };
 };

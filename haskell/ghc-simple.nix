@@ -1,4 +1,5 @@
-self: super: with self;
+self: super: helf: huper:
+with self;
 
 with { ref = "e3ca283"; };
 haskellGit {
