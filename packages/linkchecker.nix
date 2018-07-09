@@ -1,6 +1,6 @@
-{ fetchFromGitHub, hasBinary, pythonPackages, runCommand }:
+{ fetchFromGitHub, hasBinary, isBroken, pythonPackages, runCommand, withDeps }:
 
-rec {
+with rec {
   pkg = pythonPackages.buildPythonPackage {
     name = "linkchecker";
     version = "2014-11-28";
@@ -37,5 +37,11 @@ rec {
     };
   };
 
-  tests = hasBinary pkg "linkchecker";
+  notests = withDeps [ (isBroken pkg) ] (pkg.overrideAttrs (old: {
+                                          doInstallCheck = false;
+                                        }));
+};
+{
+  pkg   = notests;
+  tests = hasBinary notests "linkchecker";
 }
