@@ -30,7 +30,7 @@ with {
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
 {
-  qt4 = stdenv.mkDerivation {
+  skulpture-qt4 = stdenv.mkDerivation {
     name    = "skulpture-qt4";
     version = "0.2.4";
     src     = fetchurl {
@@ -56,7 +56,7 @@ with {
     '';
   };
 
-  qt5 = stdenv.mkDerivation rec {
+  skulpture-qt5 = stdenv.mkDerivation rec {
     name = "skulpture-qt5";
     src = fetchFromGitHub {
       owner  = "cfeck";
