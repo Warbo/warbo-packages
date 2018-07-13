@@ -2,16 +2,18 @@ self: super: helf: huper:
 
 with builtins;
 with rec {
-  haveAgda = super.haskellPackages ? Agda;
+  haveAgda = huper ? Agda;
 
-  agdaWorks = haveAgda && (tryEval super.haskellPackages.Agda).success;
+  agdaWorks = haveAgda && (tryEval huper.Agda).success;
 
   warning = ''
-    WARNING: haskellPackages.Agda seems to work upstream; our override might not
+    WARNING: Haskell Agda package seems to work upstream; our override might not
     be needed anymore.
   '';
 
   warner = if agdaWorks then trace warning else (x: x);
 };
 
-warner self.nixpkgs1609.haskellPackages.Agda.override
+warner helf.callPackage (self.runCabal2nix {
+  url = self.unpack self.nixpkgs1609.haskellPackages.Agda.src;
+}) {}

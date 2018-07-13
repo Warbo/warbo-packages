@@ -1,8 +1,7 @@
 self: super: helf: huper:
-with self;
 
 with { ref = "e3ca283"; };
-haskellGit {
+helf.callPackage (self.haskellGit {
   inherit ref;
   url      = https://github.com/valderman/ghc-simple.git;
   refIsRev = true;
@@ -10,4 +9,4 @@ haskellGit {
     rev    = ref;
     sha256 = "16fjgq4y4cv0fq7p8cs53ifwyvn8fxnzwrq7zysi9pvpisy3k060";
   };
-}
+}) {}

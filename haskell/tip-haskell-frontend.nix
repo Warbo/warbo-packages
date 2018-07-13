@@ -1,3 +1,3 @@
 self: super: helf: huper:
 
-{}: self.haskell.lib.doJailbreak self.haskellPackages.tip-haskell-frontend-main
+self.haskell.lib.doJailbreak helf.tip-haskell-frontend-main

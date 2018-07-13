@@ -42,4 +42,4 @@ with rec {
     '';
   };
 };
-nixFromCabal parserSrc null
+helf.callPackage (nixFromCabal parserSrc null) {}

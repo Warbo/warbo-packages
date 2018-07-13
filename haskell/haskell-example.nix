@@ -18,4 +18,4 @@ with {
     '';
   };
 };
-nixFromCabal example null
+helf.callPackage (nixFromCabal example null) {}

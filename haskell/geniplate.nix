@@ -21,4 +21,4 @@ with rec {
   '';
 };
 
-nixFromCabal patched null
+helf.callPackage (nixFromCabal patched null) {}

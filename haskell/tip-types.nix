@@ -9,4 +9,4 @@ with rec {
   '';
 };
 
-nixFromCabal typesSrc null
+helf.callPackage (nixFromCabal typesSrc null) {}

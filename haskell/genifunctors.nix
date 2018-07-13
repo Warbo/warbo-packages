@@ -10,4 +10,4 @@ with rec {
   };
 };
 
-nixFromCabal src null
+helf.callPackage (nixFromCabal src null) {}
