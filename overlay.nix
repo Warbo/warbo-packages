@@ -70,7 +70,8 @@ with fold mkPkg { pkgs = {}; tests = {}; } fileNames;
 with rec {
   warbo-packages = pkgs // {
     inherit haskell haskellPackages warbo-packages;
-    warbo-packages-tests = tests;
+    warbo-packages-haskell-names = attrNames (nixFilesIn ./haskell);
+    warbo-packages-tests         = tests;
   };
 };
 warbo-packages

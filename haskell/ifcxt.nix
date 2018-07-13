@@ -1,8 +1,7 @@
 self: super: helf: huper:
-with self;
 
-haskellGit {
-  url    = "${repoSource}/ifcxt.git";
+self.haskellGit {
+  url    = "${self.repoSource or self.defaultRepo}/ifcxt.git";
   ref    = "constraints";
   stable = {
     rev    = "b4620ba";
