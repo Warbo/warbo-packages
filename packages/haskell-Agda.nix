@@ -1,3 +1,3 @@
-{ haskellPackages }:
+{ haskell }:
 
-haskellPackages.Agda
+haskell.packages.ghc802.Agda
