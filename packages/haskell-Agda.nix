@@ -1,0 +1,3 @@
+{ haskellPackages }:
+
+haskellPackages.Agda
