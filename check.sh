@@ -9,6 +9,19 @@ do
     nix-instantiate --parse "$F" > /dev/null
 done
 
+# Allow failure to get HEAD (e.g. in case we're offline)
+echo "Checking nix-helpers version" 1>&2
+if REV=$(git ls-remote "http://chriswarbo.net/git/nix-helpers.git" |
+         grep HEAD | cut -d ' ' -f1 | cut -c1-7)
+then
+    grep "$REV" < helpers.nix || {
+        echo "Didn't find nix-helpers rev '$REV' in helpers.nix" 1>&2
+        exit 1
+    }
+    echo "Checking helpers.nix builds (e.g. that SHA256 is correct)" 1>&2
+    nix-build --no-out-link helpers.nix || exit 1
+fi
+
 echo "Evaluating release.nix" 1>&2
 nix-instantiate --show-trace release.nix || {
     echo "Couldn't evaluate all test derivations" 1>&2
