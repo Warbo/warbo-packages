@@ -21,9 +21,3 @@ then
     echo "Checking helpers.nix builds (e.g. that SHA256 is correct)" 1>&2
     nix-build --no-out-link helpers.nix || exit 1
 fi
-
-echo "Evaluating release.nix" 1>&2
-nix-instantiate --show-trace release.nix || {
-    echo "Couldn't evaluate all test derivations" 1>&2
-    exit 1
-}
