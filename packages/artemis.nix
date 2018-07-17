@@ -21,5 +21,5 @@ rec {
     propagatedBuildInputs = [ mercurial ];
   };
 
-  tests = hasBinary untested "git-artemis";
+  tests = hasBinary pkg "git-artemis";
 }
