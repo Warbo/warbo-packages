@@ -9,7 +9,7 @@ with {
           url = "cabal://haskell-src-exts-1.17.1";
         }) {};
         semigroups = self.callPackage (runCabal2nix {
-          url = "cabal://semigroups-0.11";
+          url = "cabal://semigroups-0.14";
         }) {};
       });
   });
