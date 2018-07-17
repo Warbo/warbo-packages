@@ -173,5 +173,5 @@ with rec {
 };
 rec {
   pkg   = nixpkgs1603.callPackage makePkg {};
-  tests = hasBinary untested "kbibtex";
+  tests = hasBinary pkg "kbibtex";
 }
