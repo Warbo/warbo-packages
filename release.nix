@@ -1,3 +1,8 @@
 with builtins;
+with import (import ./helpers.nix {});
 with import ./.;
-removeAttrs warbo-packages [ "haskell" "haskellPackages" "warbo-packages" ]
+collapseAttrs (removeAttrs warbo-packages [
+  "haskell"
+  "haskellPackages"
+  "warbo-packages"
+])
