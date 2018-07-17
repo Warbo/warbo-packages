@@ -1,6 +1,6 @@
 { nixpkgs ? import <nixpkgs> { config = {}; overlays = []; } }:
 nixpkgs.fetchgit {
   url    = http://chriswarbo.net/git/nix-helpers.git;
-  rev    = "6227a40";
-  sha256 = "077kcal167ixwjj41sqrndd5pwvyavs20h826qx3ijl2i02wmwxs";
+  rev    = "847cade";
+  sha256 = "0cfx6f4mfh1w42rpzy9swly0n5173pvz7q24s36sfsc7yxpax3r9";
 }
