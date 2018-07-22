@@ -10,4 +10,7 @@ with {
     };
   };
 };
-helf.callPackage (self.runCabal2nix { url = src; }) {}
+helf.callPackage (self.runCabal2nix {
+  name = "lazysmallcheck2012";
+  url  = src;
+}) {}
