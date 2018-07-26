@@ -13,4 +13,7 @@ with {
 helf.callPackage (self.runCabal2nix {
   name = "lazysmallcheck2012";
   url  = src;
-}) {}
+}) {
+  mkDerivation = args: helf.mkDerivation
+    (removeAttrs args [ "benchmarkHaskellDepends" ]);
+}
