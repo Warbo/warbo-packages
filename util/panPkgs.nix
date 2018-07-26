@@ -3,13 +3,14 @@
 # here instead of generating them at eval time (e.g. with hackage2nix) since
 # that may require building cabal2nix, cabal-install and potentially even GHC at
 # eval time, which is a bad idea (despite the results being cached).
-#
+
 # Note that these have only been tested as overrides for the package set
 # nixpkgs1609.haskell.packages.ghc7103.
 { defaultRepo, latestGit, repoSource ? defaultRepo }:
 
-self: super: {
-  attoparsec = self.callPackage
+helf: huper: {
+  # Force dependency version
+  attoparsec = helf.callPackage
     ({ mkDerivation, array, base, bytestring, containers, deepseq
      , QuickCheck, quickcheck-unicode, scientific, stdenv, tasty
      , tasty-quickcheck, text, transformers, vector
@@ -32,7 +33,8 @@ self: super: {
      })
     {};
 
-  lazysmallcheck2012 = self.callPackage
+  # This package isn't on Hackage, but is needed by panhandle
+  lazysmallcheck2012 = helf.callPackage
     ({ mkDerivation, base, deepseq, ghc, stdenv, syb, template-haskell
      , uniplate
      }:
@@ -55,6 +57,72 @@ self: super: {
        ];
        homepage = "https://github.com/UoYCS-plasma/LazySmallCheck2012";
        description = "Lazy SmallCheck with functional values and existentials!";
+       license = stdenv.lib.licenses.bsd3;
+       doCheck = false;
+       doHaddock = false;
+     }) {};
+
+  # We use Pandoc 0.17 since its JSON format changed in 1.18
+  pandoc = helf.callPackage
+    ({ mkDerivation, aeson, ansi-terminal, array, base
+     , base64-bytestring, binary, blaze-html, blaze-markup, bytestring
+     , cmark, containers, data-default, deepseq, Diff, directory
+     , executable-path, extensible-exceptions, filemanip, filepath
+     , ghc-prim, haddock-library, highlighting-kate, hslua, HTTP
+     , http-client, http-client-tls, http-types, HUnit, JuicyPixels, mtl
+     , network, network-uri, old-time, pandoc-types, parsec, process
+     , QuickCheck, random, scientific, SHA, stdenv, syb, tagsoup
+     , temporary, test-framework, test-framework-hunit
+     , test-framework-quickcheck2, texmath, text, time
+     , unordered-containers, vector, xml, yaml, zip-archive, zlib
+     }:
+     mkDerivation {
+       pname = "pandoc";
+       version = "1.17.2";
+       sha256 = "1v78zq12p71gq0pc24h08inxcq5gxd0xb7m5ds0xw9pv9l2pswl1";
+       isLibrary = true;
+       isExecutable = true;
+       libraryHaskellDepends = [
+         aeson array base base64-bytestring binary blaze-html blaze-markup
+         bytestring cmark containers data-default deepseq directory
+         extensible-exceptions filemanip filepath ghc-prim haddock-library
+         highlighting-kate hslua HTTP http-client http-client-tls http-types
+         JuicyPixels mtl network network-uri old-time pandoc-types parsec
+         process random scientific SHA syb tagsoup temporary texmath text
+         time unordered-containers vector xml yaml zip-archive zlib
+       ];
+       executableHaskellDepends = [
+         aeson base bytestring containers directory extensible-exceptions
+         filepath highlighting-kate HTTP network network-uri pandoc-types
+         text yaml
+       ];
+       testHaskellDepends = [
+         ansi-terminal base bytestring containers Diff directory
+         executable-path filepath highlighting-kate HUnit pandoc-types
+         process QuickCheck syb test-framework test-framework-hunit
+         test-framework-quickcheck2 text zip-archive
+       ];
+       homepage = "http://pandoc.org";
+       description = "Conversion between markup formats";
+       license = "GPL";
+       doCheck = false;
+       doHaddock = false;
+     }) {};
+
+  # Confusingly, pandoc-types 1.16 corresponds to the JSON format of pandoc 1.17
+  pandoc-types = helf.callPackage
+    ({ mkDerivation, aeson, base, bytestring, containers, deepseq, ghc-prim
+     , stdenv, syb
+     }:
+     mkDerivation {
+       pname = "pandoc-types";
+       version = "1.16.1.1";
+       sha256 = "094mzgdxva84kcpjf9m8b5n3chm1wm44bzflh5x6xhddz6pb7zpq";
+       libraryHaskellDepends = [
+         aeson base bytestring containers deepseq ghc-prim syb
+       ];
+       homepage = "http://johnmacfarlane.net/pandoc";
+       description = "Types for representing a structured document";
        license = stdenv.lib.licenses.bsd3;
        doCheck = false;
        doHaddock = false;
