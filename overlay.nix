@@ -29,7 +29,7 @@ with rec {
   # overlay isn't being used
   extraArgs = (if self ? nix-helpers then {} else helpers) // util // {
     # Useful for overriding things
-    inherit super;
+    inherit extraArgs self super;
 
     # Many of our definitions use git repos from this URL. As a convenience,
     # we provide a layer of indirection: definitions look for a 'repoSource'
@@ -51,14 +51,11 @@ with rec {
     };
 
   # Override haskellPackages and haskell.packages.* in an extensible way, so
-  # that other overlays can do the same. 'helf' and 'huper' are Haskell package
-  # sets, in the same way that 'self' and 'super' are nixpkgs sets.
+  # that other overlays can do the same.
   haskellOverride = hsPkgs: hsPkgs.override (old: {
     overrides = super.lib.composeExtensions
       (old.overrides or (_: _: {}))
-      (helf: huper:
-        mapAttrs (_: f: import f (self // extraArgs) super helf huper)
-                 (nixFilesIn ./haskell));
+      util.haskellOverride;
   });
 
   haskellPackages = haskellOverride super.haskellPackages;
