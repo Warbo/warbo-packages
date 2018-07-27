@@ -12,5 +12,5 @@ This repository forms part of an unholy trinity of useful nixpkgs overlays:
  - `http://chriswarbo.net/git/nix-helpers` provides useful Nix expressions
  - `http://chriswarbo.net/git/warbo-utilities` provides useful scripts
 
-There's also `http://chriswarbo.net/git/warbo-utilities` which ties them all
-together for a NixOS system.
+There's also `http://chriswarbo.net/git/nix-config` which defines a NixOS system
+configuration which makes use of these.
