@@ -1,6 +1,5 @@
 # Fixed versions of pandoc, panpipe, panhandle, pandoc-citeproc and dependencies
-{ buildEnv, composeAll, hasBinary, haskellOverride, lib, nixpkgs1609,
-  panPkgs, runCommand }:
+{ buildEnv, hasBinary, haskellOverride, lib, nixpkgs1609, runCommand }:
 
 with builtins;
 with lib;

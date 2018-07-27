@@ -1,15 +1,19 @@
-# Defines an override function which can be used with haskellPackages.override
-# to append the contents of the ../haskell directory.
+# Defines an function for overriding haskellPackages, appending the contents of
+# the ../haskell directory (among other things)
 
 # Naming convention:
 #  - self : nixpkgs with our overrides applied (watch out for infinite loops!)
 #  - super: nixpkgs without our overrides applied (useful for breaking loops)
 #  - helf : haskell set with our overrides applied (watch out for loops!)
 #  - huper: haskell set without our overrides applied (for breaking loops)
-{ composeAll, extraArgs, filepathFix, lib, nixFilesIn, panPkgs }:
+{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803, panPkgs }:
 
 with lib;
 with {
+  composeAll = fold nixpkgs1803.lib.composeExtensions (_: _: {});
+
+  dummy = _: _: {};
+
   generalOverrides = helf: huper:
     mapAttrs (_: f: import f (extraArgs.self // extraArgs)
                              extraArgs.super
@@ -26,15 +30,15 @@ with {
   existing ? true,
   general  ? true,
   panPkgs  ? false,
-  filepath ? false
+  filepath ? false,
+  extra    ? dummy
 }:
   haskellPackages.override (old: {
-    overrides = composeAll (if existing && old ? overrides
-                               then old.overrides
-                               else (_: _: {}))
-                           (concatLists [
-                             (if general  then [ generalOverrides ] else [])
-                             (if panPkgs  then [ panPkgsOverrides ] else [])
-                             (if filepath then [ filepathFix      ] else [])
-                           ]);
+    overrides = composeAll (concatLists [
+      (if existing then [ (old.overrides or dummy) ] else [])
+      (if general  then [ generalOverrides ] else [])
+      (if panPkgs  then [ panPkgsOverrides ] else [])
+      (if filepath then [ filepathFix      ] else [])
+      [ extra ]
+    ]);
   })
