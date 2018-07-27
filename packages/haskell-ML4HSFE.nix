@@ -1,3 +1,6 @@
-{ haskell }:
+{ haskell, haskellOverride }:
 
-haskell.packages.ghc7103.ML4HSFE
+(haskellOverride {
+  haskellPackages = haskell.packages.ghc7103;
+  filepath        = true;
+}).ML4HSFE
