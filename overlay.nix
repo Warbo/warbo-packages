@@ -52,11 +52,7 @@ with rec {
 
   # Override haskellPackages and haskell.packages.* in an extensible way, so
   # that other overlays can do the same.
-  haskellOverride = hsPkgs: hsPkgs.override (old: {
-    overrides = super.lib.composeExtensions
-      (old.overrides or (_: _: {}))
-      util.haskellOverride;
-  });
+  haskellOverride = hsPkgs: util.haskellOverride { haskellPackages = hsPkgs; };
 
   haskellPackages = haskellOverride super.haskellPackages;
   haskell         = super.haskell // {

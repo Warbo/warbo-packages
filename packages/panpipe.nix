@@ -1,8 +1,6 @@
-{ composeAll, haskellOverride, nixpkgs1609, panPkgs }:
+{ haskellOverride, nixpkgs1609 }:
 
-(nixpkgs1609.haskellPackages.override (old: {
-  overrides = composeAll (old.overrides or (_: _: {})) [
-    panPkgs
-    haskellOverride
-  ];
-})).panpipe
+(haskellOverride {
+  haskellPackages = nixpkgs1609.haskellPackages;
+  panPkgs         = true;
+}).panpipe

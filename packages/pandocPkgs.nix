@@ -5,12 +5,10 @@
 with builtins;
 with lib;
 with rec {
-  haskellPackages = nixpkgs1609.haskell.packages.ghc7103.override (old: {
-    overrides = composeAll (old.overrides or (_: _: {})) [
-      panPkgs
-      haskellOverride
-    ];
-  });
+  haskellPackages = haskellOverride {
+    haskellPackages = nixpkgs1609.haskell.packages.ghc7103;
+    panPkgs         = true;
+  };
 };
 rec {
   pkg = buildEnv {
