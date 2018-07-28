@@ -1,3 +1,11 @@
-{ haskell }:
+{ haskell, haskellOverride, lib }:
 
-haskell.packages.ghc7103.runtime-arbitrary-tests
+with lib;
+(haskellOverride {
+  haskellPackages = haskell.packages.ghc7103;
+  extra           = [
+    (self: super: mapAttrs (n: v: self.callHackage n v {}) {
+      haskell-src-exts = "1.16.0.1";
+    })
+  ];
+}).runtime-arbitrary-tests
