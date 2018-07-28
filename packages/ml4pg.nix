@@ -1,6 +1,7 @@
-{ callPackage, defaultRepo, forceLatest ? false, latestGit,
+{ callPackage, defaultRepo, forceLatest ? false, latestGit, nothing,
   repoSource ? defaultRepo }:
 
+builtins.trace "ML4PG disabled" nothing/*
 callPackage
   (latestGit {
     url    = "${repoSource}/ml4pg.git";
@@ -12,3 +13,4 @@ callPackage
     };
   })
   {}
+*/
