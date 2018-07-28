@@ -23,5 +23,4 @@ with {
     ];
   };
 };
-with builtins; trace (toJSON haskellPackages.runtime-arbitrary-tests.buildInputs)
 haskellPackages.runtime-arbitrary-tests
