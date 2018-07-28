@@ -1,17 +1,28 @@
 { autoconf, automake, fetchFromGitHub, glib, intltool, libtool, nothing, pidgin,
-  pkgconfig, stdenv }:
+  pkgconfig, stdenv, unpack', useLocal ? true }:
 
-with {
-  real = stdenv.mkDerivation {
+with rec {
+  local = unpack' "pidgin-privacy-please"
+                  ../util/pidgin-privacy-please_0.7.1.orig.tar.gz;
+
+  upstream = fetchFromGitHub {
+    owner  = "cockroach";
+    repo   = "pidgin-privacy-please";
+    rev    = "8c63bcf";
+    sha256 = "1v175x73zhv0xmc202i10kvm0h1cpy55n94wja9dk77g05vhy84y";
+  };
+
+  env = if useLocal
+           then { src = local; }
+           else {
+             preConfigure = "./autogen.sh";
+             src          = upstream;
+           };
+};
+{
+  pkg = stdenv.mkDerivation (env // {
     name         = "pidgin-privacy-please";
     buildInputs  = [ autoconf automake glib intltool libtool pidgin pkgconfig ];
-    preConfigure = "./autogen.sh";
-    src          = fetchFromGitHub {
-      owner  = "cockroach";
-      repo   = "pidgin-privacy-please";
-      rev    = "8c63bcf";
-      sha256 = "1v175x73zhv0xmc202i10kvm0h1cpy55n94wja9dk77g05vhy84y";
-    };
     installPhase = ''
       mkdir -p "$out/lib/pidgin"
       pushd src
@@ -19,11 +30,8 @@ with {
           "$out/lib/pidgin"
       popd
     '';
+  });
+  tests = {
+    localStillNeeded = isBroken upstream;
   };
-};
-{
-  pkg   = builtins.trace
-            "FIXME: pidgin-privacy-please seems to be deleted upstream"
-            nothing;
-  tests = {};
 }
