@@ -1,3 +1,6 @@
-{ haskell }:
+{ haskell, haskellOverride }:
 
-haskell.packages.ghc7103.mlspec-helper
+(haskellOverride {
+  haskellPackages = haskell.packages.ghc7103;
+  filepath        = true;
+}).mlspec-helper
