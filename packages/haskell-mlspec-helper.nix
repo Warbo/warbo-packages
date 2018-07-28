@@ -6,6 +6,9 @@ with lib;
   filepath        = true;
   extra           = [
     (self: super: mapAttrs (n: v: self.callHackage n v {}) {
+      # QuickCheck 2.10+ breaks quickspec 1.x
+      QuickCheck = "2.9.2";
+
       # Force version 1 of quickspec, since nixpkgs may be using 2.x
       quickspec = "0.9.6";
     })
