@@ -31,7 +31,7 @@ with {
   general  ? true,
   panPkgs  ? false,
   filepath ? false,
-  extra    ? dummy
+  extra    ? []
 }:
   haskellPackages.override (old: {
     overrides = composeAll (concatLists [
@@ -39,6 +39,6 @@ with {
       (if general  then [ generalOverrides ] else [])
       (if panPkgs  then [ panPkgsOverrides ] else [])
       (if filepath then [ filepathFix      ] else [])
-      [ extra ]
+      extra
     ]);
   })
