@@ -1,5 +1,5 @@
-{ autoconf, automake, fetchFromGitHub, glib, intltool, libtool, nothing, pidgin,
-  pkgconfig, stdenv, unpack', useLocal ? true }:
+{ autoconf, automake, fetchFromGitHub, glib, intltool, isBroken, libtool,
+  pidgin, pkgconfig, stdenv, unpack', useLocal ? true }:
 
 with rec {
   local = unpack' "pidgin-privacy-please"
