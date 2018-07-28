@@ -6,6 +6,9 @@ with lib;
   filepath        = true;
   extra           = [
     (self: super: mapAttrs (n: v: self.callHackage n v {}) {
+      # Default is missing semigroups dependency
+      haskell-src-exts = "1.16.0.1";
+
       # Force version 1 of quickspec, since nixpkgs may be using 2.x
       quickspec = "0.9.6";
     })
