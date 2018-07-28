@@ -1,9 +1,10 @@
-{ nothing, haskellPackages, haskellRelease, unpack }:
+{ nothing, haskellPackages, haskellRelease, unpack' }:
 
 with {
   all = haskellRelease rec {
     name         = "ArbitraryHaskell";
-    dir          = unpack haskellPackages.ArbitraryHaskell.src;
+    dir          = unpack' "ArbitraryHaskell"
+                           haskellPackages.ArbitraryHaskell.src;
     extraSources = { ArbitraryHaskell = dir; };
     hackageSets  = { nixpkgs1709 = [ "ghc7103" ]; };
   };
