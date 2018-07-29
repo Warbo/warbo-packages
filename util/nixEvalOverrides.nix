@@ -3,7 +3,7 @@
 with lib;
 [
   (self: super: mapAttrs (n: v: self.callHackage n v {}) {
-    haskell-src-exts = "1.16.0.1";
+    haskell-src-exts = "1.20.2";
 
     # QuickCheck 2.10+ breaks quickspec 1.x
     QuickCheck = "2.9.2";
