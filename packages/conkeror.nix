@@ -1,9 +1,8 @@
-{ bash, callPackage, coreutils, hasBinary, procps, repo1609, runCommand, wrap,
-  xvfb_run }:
+{ bash, callPackage, coreutils, hasBinary, procps, nixpkgs1609, runCommand,
+  wrap, xvfb_run }:
 
 rec {
-  pkg = callPackage "${repo1609}/pkgs/applications/networking/browsers/conkeror"
-                    {};
+  pkg = nixpkgs1609.conkeror;
 
   tests = {
     haveBinary   = hasBinary pkg "conkeror";
@@ -23,7 +22,7 @@ rec {
             sleep 20
 
             WORKS=0
-            if pgrep ".*conkeror.*"
+            if ps -p "$PID"
             then
               echo "works" > "$out"
             else
