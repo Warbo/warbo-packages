@@ -10,4 +10,4 @@ with rec {
   };
 };
 
-helf.callPackage (nixFromCabal src null) {}
+helf.callPackage (runCabal2nix { url = src; }) {}

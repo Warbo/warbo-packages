@@ -42,4 +42,4 @@ with rec {
     '';
   };
 };
-helf.callPackage (nixFromCabal parserSrc null) {}
+helf.callPackage (runCabal2nix { url = parserSrc; }) {}

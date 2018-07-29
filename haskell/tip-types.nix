@@ -9,4 +9,4 @@ with rec {
   '';
 };
 
-helf.callPackage (nixFromCabal typesSrc null) {}
+helf.callPackage (runCabal2nix { url = typesSrc; }) {}

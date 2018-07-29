@@ -21,4 +21,4 @@ with rec {
   '';
 };
 
-helf.callPackage (nixFromCabal patched null) {}
+helf.callPackage (runCabal2nix { url = patched; }) {}
