@@ -1,10 +1,6 @@
-{ die, haskell, haskellOverride, lib }:
+{ haskell, haskellOverride, nixEvalOverrides }:
 
-with lib;
-with {
-  haskellPackages = haskellOverride {
+(haskellOverride {
   haskellPackages = haskell.packages.ghc7103;
-    extra           = nixEvalOverrides;
-  };
-};
-haskellPackages.nix-eval
+  extra           = nixEvalOverrides;
+}).nix-eval
