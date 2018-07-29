@@ -1,4 +1,4 @@
-{ lib }:
+{ haskell, lib }:
 
 with lib;
 [
@@ -24,7 +24,9 @@ with lib;
     # Nixpkgs version is missing semigroups dependency
     transformers-compat = "0.5.1.4";
   })
-    (self: super: {
+  (self: super: {
+    aeson    = haskell.lib.dontCheck super.aeson;
+
     hindent  = super.hindent.override {
       inherit (self) haskell-src-exts;
     };
