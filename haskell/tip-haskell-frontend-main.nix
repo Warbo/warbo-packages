@@ -12,4 +12,4 @@ with {
     cp -ar "$D" "$out"
   '';
 };
-helf.callPackage (self.nixFromCabal thfSrc null) {}
+helf.callPackage (self.runCabal2nix { url = thfSrc; }) {}
