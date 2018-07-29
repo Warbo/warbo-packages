@@ -1,3 +1,3 @@
 { haskell }:
 
-haskell.packages.ghc802.tip-haskell-frontend
+haskell.packages.ghc7103.tip-haskell-frontend
