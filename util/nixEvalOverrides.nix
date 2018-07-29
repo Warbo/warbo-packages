@@ -3,7 +3,11 @@
 with lib;
 [
   (self: super: mapAttrs (n: v: self.callHackage n v {}) {
-    haskell-src-exts = "1.20.2";
+    # Required by mlspec
+    haskell-src-exts = "1.17.1";
+
+    # Required by nix-eval, newer versions conflict with haskell-src-exts 1.17
+    hindent = "4.6.4";
 
     # QuickCheck 2.10+ breaks quickspec 1.x
     QuickCheck = "2.9.2";
@@ -26,10 +30,6 @@ with lib;
   })
   (self: super: {
     aeson    = haskell.lib.dontCheck super.aeson;
-
-    hindent  = super.hindent.override {
-      inherit (self) haskell-src-exts;
-    };
 
     nix-eval = super.nix-eval.override {
       inherit (self) hindent;
