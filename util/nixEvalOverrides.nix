@@ -29,10 +29,13 @@ with lib;
     transformers-compat = "0.5.1.4";
   })
   (self: super: {
-    aeson    = haskell.lib.dontCheck super.aeson;
+    # Missing Arbitrary instances
+    aeson = haskell.lib.dontCheck super.aeson;
 
-    nix-eval = super.nix-eval.override {
-      inherit (self) hindent;
-    };
+    # Archive is missing files needed for tests
+    hindent = haskell.lib.dontCheck super.hindent;
+
+    # This seems to be needed for nix-eval to use our overrides
+    nix-eval = super.nix-eval.override { inherit (self) hindent; };
   })
 ]
