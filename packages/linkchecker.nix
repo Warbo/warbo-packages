@@ -27,6 +27,7 @@ with rec {
       '';
 
     propagatedBuildInputs = [
+      pythonPackages.pytest
       pythonPackages.python
       pythonPackages.requests
     ];
