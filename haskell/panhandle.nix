@@ -14,7 +14,7 @@ with {
     };
   };
 };
-helf.callPackage (self.runCabal2nix {
+helf.callPackage (self.hs2nix helf {
   name = "panhandle";
-  url = panhandleSrc;
+  src  = panhandleSrc;
 }) {}
