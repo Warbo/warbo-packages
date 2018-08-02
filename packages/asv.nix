@@ -6,8 +6,8 @@ with rec {
     src  = fetchFromGitHub {
       owner  = "spacetelescope";
       repo   = "asv";
-      rev    = "13559be";
-      sha256 = "1d4s1j08ky37wpa26r50cdkkw6k4szmfza7adwxi7r70rb3m3yk2";
+      rev    = "0e0ca65";
+      sha256 = "1lzdk4f2xd77jmf8048kzam7ad7b05az4zh6mgq16snymrdifqij";
     };
 
     # For tests
