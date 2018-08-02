@@ -14,6 +14,10 @@ with rec {
     buildInputs  = [ autoconf automake gcc gtk2 gtk3 pkgconfig ] ++
                    attrValues (stripOverrides widgetThemes);
     preConfigure = "bash autogen.sh";
+
+    meta = {
+      priority = 10;  # Avoid icon conflicts
+    };
   };
 };
 
