@@ -1,17 +1,17 @@
-{ defaultRepo, forceLatest ? false, hasBinary, latestGit, newScope,
-  nix-helpers, repoSource ? defaultRepo  }:
+{ defaultRepo, forceLatest ? false, hasBinary, latestGit,
+  repoSource ? defaultRepo }:
 
 with {
   src = latestGit {
     url    = "${repoSource}/asv-nix.git";
     stable = {
-      rev        = "d3789cc";
-      sha256     = "1b9l2kmbxwaqxh9nfsz48kjdqfgmbk5z232zc683zazjdlzypbw1";
+      rev        = "249f560";
+      sha256     = "0b9l2kmbxwaqxh9nfsz48kjdqfgmbk5z232zc683zazjdlzypbw1";
       unsafeSkip = forceLatest;
     };
   };
 };
 rec {
-  pkg   = newScope nix-helpers "${src}/derivation.nix" {};
+  pkg   = import src { inherit path; };
   tests = hasBinary pkg "asv";
 }
