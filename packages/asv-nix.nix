@@ -5,8 +5,8 @@ with {
   src = latestGit {
     url    = "${repoSource}/asv-nix.git";
     stable = {
-      rev        = "249f560";
-      sha256     = "0b9l2kmbxwaqxh9nfsz48kjdqfgmbk5z232zc683zazjdlzypbw1";
+      rev        = "54d2a89";
+      sha256     = "0hh56xk8z1bzv2v1j2vxmmap8bww8wkjkfqx4cf43jgigalw5miz";
       unsafeSkip = forceLatest;
     };
   };
