@@ -12,6 +12,6 @@ with {
   };
 };
 rec {
-  pkg   = import src { inherit path; };
+  pkg   = import "${src}" { inherit path; };
   tests = hasBinary pkg "asv";
 }
