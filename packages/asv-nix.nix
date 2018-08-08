@@ -1,4 +1,4 @@
-{ defaultRepo, forceLatest ? false, hasBinary, latestGit,
+{ defaultRepo, forceLatest ? false, hasBinary, latestGit, path,
   repoSource ? defaultRepo }:
 
 with {
