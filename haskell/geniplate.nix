@@ -21,4 +21,7 @@ with rec {
   '';
 };
 
-helf.callPackage (runCabal2nix { url = patched; }) {}
+helf.callPackage (helf.haskellSrc2nix {
+                   name = "geniplate";
+                   src  = patched;
+                 }) {}

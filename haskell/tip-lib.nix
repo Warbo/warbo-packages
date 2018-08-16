@@ -42,4 +42,7 @@ with rec {
     '';
   };
 };
-helf.callPackage (runCabal2nix { url = parserSrc; }) {}
+helf.callPackage (helf.haskellSrc2nix {
+                   name = "tip-lib";
+                   src  = parserSrc;
+                 }) {}

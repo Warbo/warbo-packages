@@ -10,9 +10,9 @@ with {
     };
   };
 };
-helf.callPackage (self.runCabal2nix {
+helf.callPackage (helf.haskellSrc2nix {
+  inherit src;
   name = "lazysmallcheck2012";
-  url  = src;
 }) {
   mkDerivation = args: helf.mkDerivation
     (removeAttrs args [ "benchmarkHaskellDepends" ]);

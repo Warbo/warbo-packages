@@ -27,6 +27,9 @@ with rec {
           -i "$out/tip-haskell-frontend.cabal"
   '';
 
-  thf = helf.callPackage (self.runCabal2nix { url = thfSrc; }) {};
+  thf = helf.callPackage (helf.haskellSrc2nix {
+                           name = "tip-haskell-frontend";
+                           src  = thfSrc;
+                         }) {};
 };
 self.haskell.lib.doJailbreak thf

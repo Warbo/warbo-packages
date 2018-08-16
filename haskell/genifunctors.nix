@@ -10,4 +10,5 @@ with rec {
   };
 };
 
-helf.callPackage (runCabal2nix { url = src; }) {}
+helf.callPackage (helf.haskellSrc2nix { inherit src; name = "genifunctors"; })
+                 {}

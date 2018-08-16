@@ -9,4 +9,7 @@ with rec {
   '';
 };
 
-helf.callPackage (runCabal2nix { url = typesSrc; }) {}
+helf.callPackage (helf.haskellSrc2nix {
+                   name = "tip-types";
+                   src  = typesSrc;
+                 }) {}
