@@ -10,5 +10,4 @@ with rec {
   };
 };
 
-helf.callPackage (helf.haskellSrc2nix { inherit src; name = "genifunctors"; })
-                 {}
+helf.callPackage (hs2nix helf { inherit src; name = "genifunctors"; }) {}

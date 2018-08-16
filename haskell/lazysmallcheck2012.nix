@@ -10,7 +10,7 @@ with {
     };
   };
 };
-helf.callPackage (helf.haskellSrc2nix {
+helf.callPackage (self.hs2nix helf {
   inherit src;
   name = "lazysmallcheck2012";
 }) {

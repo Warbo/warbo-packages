@@ -42,7 +42,7 @@ with rec {
     '';
   };
 };
-helf.callPackage (helf.haskellSrc2nix {
+helf.callPackage (hs2nix helf {
                    name = "tip-lib";
                    src  = parserSrc;
                  }) {}
