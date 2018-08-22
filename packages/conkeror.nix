@@ -1,8 +1,15 @@
-{ bash, callPackage, coreutils, hasBinary, procps, nixpkgs1609, runCommand,
-  wrap, xvfb_run }:
+{ backportOverlays, bash, callPackage, coreutils, pinGL, hasBinary, procps,
+  nixpkgs1609, repo1609, runCommand, wrap, xvfb_run }:
 
 rec {
-  pkg = nixpkgs1609.conkeror;
+  pkg = pinGL {
+    binaries    = [ "conkeror" ];
+    nixpkgsRepo = backportOverlays {
+      name = "conkeror-1609";
+      repo = repo1609;
+    };
+    pkg = nixpkgs1609.conkeror;
+  };
 
   tests = {
     haveBinary   = hasBinary pkg "conkeror";
