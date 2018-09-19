@@ -1,8 +1,9 @@
 From: Chris Warburton
 Date: Fri, 29 Jun 2018 18:16:34 +0100
-State: new
+State: resolved
 Subject: Laminar NixOS module
 Message-Id: <84ebb899b309e85f-0-artemis@nixos>
+resolution: fixed
 
 Laminar looks like a much simpler and less flaky system than Hydra. We
 should package it as a NixOS module.
