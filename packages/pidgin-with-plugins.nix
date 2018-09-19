@@ -1,5 +1,5 @@
-{ pidgin, pidgin-privacy-please }:
+{ pidgin, pidgin-otr, pidgin-privacy-please }:
 
 pidgin.override {
-  plugins = [ pidgin-privacy-please ];
+  plugins = [ pidgin-privacy-please pidgin-otr ];
 }
