@@ -5,7 +5,9 @@ with super.lib;
 with rec {
   # We make heavy use of things from nix-helpers. If it doesn't exist in self
   # then we fall back to this version
-  helpers = import (import ./helpers.nix { inherit (super) fetchgit; });
+  helpers = import (import ./helpers.nix {
+                     inherit (super) fetchgit;
+                   }).nix-helpers;
 
   nixFilesIn = self.nixFilesIn or helpers.nixFilesIn;
 
