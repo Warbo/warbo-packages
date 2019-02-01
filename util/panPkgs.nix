@@ -16,9 +16,9 @@ helf: huper: {
      , tasty-quickcheck, text, transformers, vector
      }:
      mkDerivation {
-       pname = "attoparsec";
+       pname   = "attoparsec";
        version = "0.13.0.2";
-       sha256 = "0spcybahmqxnmngfa9cf5rh7n2r8njrgkgwb6iplmfj4ys0z7xv9";
+       sha256  = "0spcybahmqxnmngfa9cf5rh7n2r8njrgkgwb6iplmfj4ys0z7xv9";
        libraryHaskellDepends = [
          array base bytestring containers deepseq scientific text
          transformers
@@ -27,9 +27,9 @@ helf: huper: {
          array base bytestring deepseq QuickCheck quickcheck-unicode
          scientific tasty tasty-quickcheck text transformers vector
        ];
-       homepage = "https://github.com/bos/attoparsec";
+       homepage    = "https://github.com/bos/attoparsec";
        description = "Fast combinator parsing for bytestrings and text";
-       license = stdenv.lib.licenses.bsd3;
+       license     = stdenv.lib.licenses.bsd3;
      })
     {};
 
@@ -39,13 +39,13 @@ helf: huper: {
      , uniplate
      }:
      mkDerivation {
-       pname = "lazysmallcheck2012";
+       pname   = "lazysmallcheck2012";
        version = "1.0.0";
-       src = latestGit {
+       src     = latestGit {
          url    = "${repoSource}/lazy-smallcheck-2012.git";
          stable = {
-           rev    = "dbd6fba";
-           sha256 = "1i3by7mp7wqy9anzphpxfw30rmbsk73sb2vg02nf1mfpjd303jj7";
+           rev        = "dbd6fba";
+           sha256     = "1i3by7mp7wqy9anzphpxfw30rmbsk73sb2vg02nf1mfpjd303jj7";
            unsafeSkip = false;
         };
        };
@@ -55,14 +55,14 @@ helf: huper: {
        testHaskellDepends = [
          base deepseq ghc syb template-haskell uniplate
        ];
-       homepage = "https://github.com/UoYCS-plasma/LazySmallCheck2012";
+       homepage    = "https://github.com/UoYCS-plasma/LazySmallCheck2012";
        description = "Lazy SmallCheck with functional values and existentials!";
-       license = stdenv.lib.licenses.bsd3;
-       doCheck = false;
-       doHaddock = false;
+       license     = stdenv.lib.licenses.bsd3;
+       doCheck     = false;
+       doHaddock   = false;
      }) {};
 
-  # We use Pandoc 0.17 since its JSON format changed in 1.18
+  # We use Pandoc 1.17 since its JSON format changed in 1.18
   pandoc = helf.callPackage
     ({ mkDerivation, aeson, ansi-terminal, array, base
      , base64-bytestring, binary, blaze-html, blaze-markup, bytestring
@@ -77,10 +77,10 @@ helf: huper: {
      , unordered-containers, vector, xml, yaml, zip-archive, zlib
      }:
      mkDerivation {
-       pname = "pandoc";
-       version = "1.17.2";
-       sha256 = "1v78zq12p71gq0pc24h08inxcq5gxd0xb7m5ds0xw9pv9l2pswl1";
-       isLibrary = true;
+       pname        = "pandoc";
+       version      = "1.17.2";
+       sha256       = "1v78zq12p71gq0pc24h08inxcq5gxd0xb7m5ds0xw9pv9l2pswl1";
+       isLibrary    = true;
        isExecutable = true;
        libraryHaskellDepends = [
          aeson array base base64-bytestring binary blaze-html blaze-markup
@@ -102,11 +102,11 @@ helf: huper: {
          process QuickCheck syb test-framework test-framework-hunit
          test-framework-quickcheck2 text zip-archive
        ];
-       homepage = "http://pandoc.org";
+       homepage    = "http://pandoc.org";
        description = "Conversion between markup formats";
-       license = "GPL";
-       doCheck = false;
-       doHaddock = false;
+       license     = "GPL";
+       doCheck     = false;
+       doHaddock   = false;
      }) {};
 
   # Confusingly, pandoc-types 1.16 corresponds to the JSON format of pandoc 1.17
@@ -115,16 +115,16 @@ helf: huper: {
      , stdenv, syb
      }:
      mkDerivation {
-       pname = "pandoc-types";
+       pname   = "pandoc-types";
        version = "1.16.1.1";
-       sha256 = "094mzgdxva84kcpjf9m8b5n3chm1wm44bzflh5x6xhddz6pb7zpq";
+       sha256  = "094mzgdxva84kcpjf9m8b5n3chm1wm44bzflh5x6xhddz6pb7zpq";
        libraryHaskellDepends = [
          aeson base bytestring containers deepseq ghc-prim syb
        ];
-       homepage = "http://johnmacfarlane.net/pandoc";
+       homepage    = "http://johnmacfarlane.net/pandoc";
        description = "Types for representing a structured document";
-       license = stdenv.lib.licenses.bsd3;
-       doCheck = false;
-       doHaddock = false;
+       license     = stdenv.lib.licenses.bsd3;
+       doCheck     = false;
+       doHaddock   = false;
      }) {};
 }
