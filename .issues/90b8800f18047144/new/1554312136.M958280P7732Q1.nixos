@@ -1,0 +1,11 @@
+From: Chris Warburton
+Date: Wed, 03 Apr 2019 18:19:44 +0100
+State: new
+Subject: Package kics2/curry package manager packages
+Message-Id: <90b8800f18047144-0-artemis@nixos>
+
+Write helper functions for generating Nix derivations from the kics2
+package manager.
+
+The resulting functions could go into nix-helpers when they're working,
+but that's a problem for another day.

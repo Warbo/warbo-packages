@@ -1,0 +1,7 @@
+From: Chris Warburton
+Date: Wed, 03 Apr 2019 18:18:37 +0100
+State: new
+Subject: kics2 manual
+Message-Id: <a200e351ba6e4f35-0-artemis@nixos>
+
+It's in the Makefile, we should build it.

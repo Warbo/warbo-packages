@@ -1,0 +1,8 @@
+From: Chris Warburton
+Date: Wed, 03 Apr 2019 18:16:25 +0100
+State: new
+Subject: kics2 tools
+Message-Id: <819d22c529a7d951-0-artemis@nixos>
+
+We have some of the Haskell packages from kics2, but there are some left
+which we should package.
