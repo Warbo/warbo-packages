@@ -2,7 +2,7 @@
 
 with builtins;
 with lib;
-/*with*/ rec {
+with rec {
   name    = "kics2-${version}";
   version = "2.0.0";
   src     = unpack (fetchurl {
@@ -111,9 +111,9 @@ with lib;
       }/*''cd src && make
          cd currytools/optimize && make''*/;
 
-	    kernellibs = "make kernellibs";
-	    # compile code optimization tools:
-	    optimize = "@cd currytools/optimize && $(MAKE)";
+      kernellibs = "make kernellibs";
+      # compile code optimization tools:
+      optimize = "@cd currytools/optimize && $(MAKE)";
     };
 
     tools  = "make tools";
@@ -121,28 +121,31 @@ with lib;
   };
 
   result = runCommand name { inherit patched; buildInputs = [ ghc which ]; } ''
-  mkdir -p "$out/home"
-  export HOME="$out/home"
+    mkdir -p "$out/home"
+    export HOME="$out/home"
 
-  cp -r "$patched" ./src
-  chmod -R +w ./src
-  cd ./src
+    cp -r "$patched" ./src
+    chmod -R +w ./src
+    cd ./src
 
-  echo "Starting build" 1>&2
-  make "KICS2INSTALLDIR=$out/kics2"
+    echo "Starting build" 1>&2
+    make "KICS2INSTALLDIR=$out/kics2"
 
-  echo "Installing binaries" 1>&2
-  mkdir -p "$out/kics2"
-  for D in bin pkg
-  do
-    cp -r "$D" "$out/kics2"
-  done
+    echo "Installing binaries" 1>&2
+    mkdir -p "$out/kics2"
+    for D in bin pkg
+    do
+      cp -r "$D" "$out/kics2"
+    done
 
-  mkdir "$out/bin"
-  for F in "$out/kics2/bin"/*
-  do
-    NAME=$(basename "$F")
-    makeWrapper "$F" "$out/bin/$NAME" --prefix PATH : "${ghc}/bin"
-  done
-'';
+    mkdir "$out/bin"
+    for F in "$out/kics2/bin"/*
+    do
+      NAME=$(basename "$F")
+      makeWrapper "$F" "$out/bin/$NAME" --prefix PATH : "${ghc}/bin"
+    done
+  '';
+};
+trace "TODO: Tease out some more packages from the kics2 Makefiles" {
+  inherit curry-base curry-frontend kics2-frontend;
 }
