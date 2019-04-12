@@ -2,7 +2,7 @@
   writeScript }:
 
 rec {
-  pkg = stdenv.mkDerivation rec {
+  pkg = builtins.trace "TODO: Use wrap and attrsToDirs" stdenv.mkDerivation rec {
     name = "timeout";
     src  = fetchFromGitHub {
       owner  = "pshved";
