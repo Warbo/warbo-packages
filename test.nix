@@ -70,7 +70,7 @@ rec {
     pkgTests;
 
   tests = {
-    inherit hackagePackageNamesDrv warbo-packages-tests;
+    inherit warbo-packages-tests;
 
     haskell     = withDeps (attrValues haskellTests)
                            (runCommand "haskell-tests" {} ''

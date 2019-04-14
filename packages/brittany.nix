@@ -1,4 +1,4 @@
-{ fetchFromGitHub, hasBinary, haskellNewBuild }:
+{ fetchFromGitHub, hasBinary, haskellPackages }:
 
 with {
   src = fetchFromGitHub {
@@ -9,7 +9,12 @@ with {
   };
 };
 rec {
-  pkg = haskellNewBuild { dir = src; name = "brittany"; };
+  pkg = with haskellPackages;
+        callPackage (haskellSrc2nix {
+                      inherit src;
+                      name = "brittany";
+                    })
+                    {};
 
   tests = hasBinary pkg "brittany";
 }
