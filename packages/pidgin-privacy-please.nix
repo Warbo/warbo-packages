@@ -1,5 +1,5 @@
 { autoconf, automake, fetchFromGitHub, glib, intltool, isBroken, libtool,
-  pidgin, pkgconfig, stdenv, unpack', useLocal ? true }:
+  pidgin, pkgconfig, stdenv, unfix, unpack', useLocal ? true }:
 
 with rec {
   local = unpack' "pidgin-privacy-please"
@@ -32,6 +32,8 @@ with rec {
     '';
   });
   tests = {
-    localStillNeeded = isBroken upstream;
+    # Check that upstream is still missing (otherwise we'd prefer to use it).
+    # We need 'unfix' to strip the hashes, since 'isBroken' changes them.
+    localStillNeeded = unfix (isBroken upstream);
   };
 }
