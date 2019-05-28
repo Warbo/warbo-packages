@@ -1,8 +1,8 @@
-{ haskell, haskellOverride, nixEvalOverrides }:
+{ haskellOverride, nixEvalOverrides, nixpkgs1809 }:
 
 with {
   haskellPackages = haskellOverride {
-    haskellPackages = haskell.packages.ghc7103;
+    haskellPackages = nixpkgs1809.haskell.packages.ghc7103;
     extra           = nixEvalOverrides;
   };
 };

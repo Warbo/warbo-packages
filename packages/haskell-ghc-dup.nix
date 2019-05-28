@@ -1,3 +1,3 @@
-{ haskell }:
+{ nixpkgs1809 }:
 
-haskell.packages.ghc7103.ghc-dup
+nixpkgs1809.haskell.packages.ghc7103.ghc-dup

@@ -1,7 +1,7 @@
-{ haskell, haskellOverride }:
+{ nixpkgs1809, haskellOverride }:
 
 (haskellOverride {
-  haskellPackages = haskell.packages.ghc7103;
+  haskellPackages = nixpkgs1809.haskell.packages.ghc7103;
   extra           = [
     (self: super: {
       syb = self.callHackage "syb" "0.6" {};
