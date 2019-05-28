@@ -1,6 +1,6 @@
-{ hasBinary, haskellPackages }:
+{ hasBinary, nixpkgs1803 }:
 
 rec {
-  pkg   = haskellPackages.brittany;
+  pkg   = nixpkgs1803.haskellPackages.brittany;
   tests = hasBinary pkg "brittany";
 }
