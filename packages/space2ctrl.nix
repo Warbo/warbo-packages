@@ -8,8 +8,15 @@ stdenv.mkDerivation {
     rev    = "8f7c97a";
     sha256 = "1kkbrxdqrmrpynnb18xnjm6gbr1mw2851abcjlv0c15d5calfcw7";
   };
-  buildInputs = with xorg; [
-    inputproto libX11 libXext libXi libXtst recordproto replace xinput
+  buildInputs = [
+    replace
+    (xorg.inputproto  or xorg.xorgproto)
+    (xorg.recordproto or xorg.xorgproto)
+    xorg.libX11
+    xorg.libXext
+    xorg.libXi
+    xorg.libXtst
+    xorg.xinput
   ];
 
   # Force 'make install' to use $out
