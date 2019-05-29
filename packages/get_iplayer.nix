@@ -5,8 +5,8 @@
 with lib;
 with rec {
   # Update this as needed
-  tag    = "v3.18";
-  sha256 = "1mqwwwnspk1cjpb7ccwg6g97rja1nl0c18ggvzfn6qmkdnyx6vp2";
+  tag    = "v3.20";
+  sha256 = "0p9mxg79qq0x4fn32brh5iam217751mgvpx3bk3dhdzjsrmiqv99";
 
   src    = fetchurl {
     inherit sha256;
