@@ -1,6 +1,6 @@
-{ haskellOverride, nixEvalOverrides, nixpkgs1809 }:
+{ haskellOverride, nixEvalOverrides, nixpkgs1803 }:
 
 (haskellOverride {
-  haskellPackages = nixpkgs1809.haskell.packages.ghc7103;
+  haskellPackages = nixpkgs1803.haskell.packages.ghc7103;
   extra           = nixEvalOverrides;
 }).nix-eval
