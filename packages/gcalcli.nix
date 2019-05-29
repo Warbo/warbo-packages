@@ -1,8 +1,17 @@
-{ fetchurl, hasBinary, lib, pythonPackages, google-api-python-client }:
+{ die, fetchurl, hasBinary, lib, pythonPackages, google-api-python-client }:
 
+with builtins;
 rec {
   pkg = lib.makeOverridable
     ({ google-api-python-client, pythonPackages  }:
+      with {
+        got  = pythonPackages.oauth2client.version;
+        want = "1.4.12";
+      };
+      assert compareVersions got want < 1 || die {
+        inherit got want;
+        error = "oauth2client version should be <= ${want}";
+      };
       pythonPackages.buildPythonPackage {
         name = "gcalcli";
         version = "3.3.2";
