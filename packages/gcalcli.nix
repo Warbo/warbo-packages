@@ -1,26 +1,29 @@
-{ fetchurl, hasBinary, pythonPackages, google-api-python-client }:
+{ fetchurl, hasBinary, lib, pythonPackages, google-api-python-client }:
 
 rec {
-  pkg = pythonPackages.buildPythonPackage {
-    name = "gcalcli";
-    version = "3.3.2";
+  pkg = lib.makeOverridable
+    ({ google-api-python-client, pythonPackages  }:
+      pythonPackages.buildPythonPackage {
+        name = "gcalcli";
+        version = "3.3.2";
 
-    src = fetchurl {
-      url = https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz;
-      sha256 = "0yw60zgh2ski46mxsyncwx4bb6zzrfp5bn91hg0xyvmz71339mkj";
-    };
+        src = fetchurl {
+          url = https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz;
+          sha256 = "0yw60zgh2ski46mxsyncwx4bb6zzrfp5bn91hg0xyvmz71339mkj";
+        };
 
-    propagatedBuildInputs = [
-      pythonPackages.python
-      pythonPackages.gflags
-      pythonPackages.dateutil
-      pythonPackages.vobject
-      pythonPackages.parsedatetime
-      pythonPackages.httplib2
-      pythonPackages.oauth2client
-      google-api-python-client
-    ];
-  };
+        propagatedBuildInputs = [
+          pythonPackages.python
+          pythonPackages.gflags
+          pythonPackages.dateutil
+          pythonPackages.vobject
+          pythonPackages.parsedatetime
+          pythonPackages.httplib2
+          pythonPackages.oauth2client
+          google-api-python-client
+        ];
+      })
+      { inherit google-api-python-client pythonPackages; };
 
   tests = hasBinary pkg "gcalcli";
 }
