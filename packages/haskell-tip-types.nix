@@ -1,3 +1,5 @@
-{ nixpkgs1809 }:
+{ haskellOverride, nixpkgs1809 }:
 
-nixpkgs1809.haskell.packages.ghc7103.tip-types
+(haskellOverride {
+  haskellPackages = nixpkgs1809.haskell.packages.ghc7103;
+}).tip-types
