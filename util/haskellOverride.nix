@@ -24,6 +24,8 @@ with {
   panPkgsOverrides = panPkgs;
 
   semigroupsOverrides = ghc7SemigroupsFix;
+
+  sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" {}; };
 };
 {
   haskellPackages,
@@ -31,14 +33,16 @@ with {
   general  ? true,
   panPkgs  ? false,
   filepath ? false,
+  syb      ? false,
   extra    ? []
 }:
   haskellPackages.override (old: {
     overrides = composeAll (concatLists [
       (if existing then [ (old.overrides or dummy) ] else [])
-      (if general  then [ generalOverrides ] else [])
-      (if panPkgs  then [ panPkgsOverrides ] else [])
-      (if filepath then [ filepathFix      ] else [])
+      (if general  then [ generalOverrides         ] else [])
+      (if panPkgs  then [ panPkgsOverrides         ] else [])
+      (if filepath then [ filepathFix              ] else [])
+      (if syb      then [ sybOverrides             ] else [])
       extra
     ]);
   })
