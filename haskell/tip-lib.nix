@@ -6,7 +6,7 @@ with rec {
   mkParser = runCommand "mk-parser"
     {
       inherit tipSrc;
-      buildInputs = [ haskellPackages.BNFC gcc ];
+      buildInputs = [ helf.BNFC gcc ];
     }
     ''
       cp -r "$tipSrc" ./tip
