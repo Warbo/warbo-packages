@@ -16,6 +16,7 @@ with {
 };
 {
   haskell = mapAttrs haskellTest {
+    AstPlugin               = hs7103 // pathfix;
     genifunctors            = hs7103;
     geniplate               = hs784;
     getDeps                 = hs7103 // pathfix;
