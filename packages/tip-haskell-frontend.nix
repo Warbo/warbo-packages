@@ -1,3 +1,5 @@
-{ nixpkgs1809 }:
+{ haskellOverride, nixpkgs1709 }:
 
-nixpkgs1809.haskell.packages.ghc7103.tip-haskell-frontend
+(haskellOverride {
+  haskellPackages = nixpkgs1709.haskell.packages.ghc784;
+}).tip-haskell-frontend
