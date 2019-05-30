@@ -19,8 +19,15 @@ with rec {
 
     cp -r ./toPatch "$out"
   '';
+
+  ghcVersion = helf.ghc.version;
+  ghcBelow   = "7.10";
 };
 
+assert builtins.compareVersions ghcVersion ghcBelow == -1 || self.die {
+  inherit ghcVersion;
+  error = "geniplate needs GHC below ${ghcBelow} due to template-haskell bound";
+};
 helf.callPackage (hs2nix helf {
                    name = "geniplate";
                    src  = patched;
