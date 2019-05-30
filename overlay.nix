@@ -61,7 +61,7 @@ with rec {
     packages = mapAttrs (_: haskellOverride) super.haskell.packages;
   };
 };
-with fold mkPkg { pkgs = {}; tests = {}; } fileNames;
+with fold mkPkg { pkgs = {}; tests = call ./tests.nix; } fileNames;
 with rec {
   warbo-packages = pkgs // {
     inherit haskell haskellPackages warbo-packages;
