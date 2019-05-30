@@ -26,9 +26,9 @@ with {
     lazy-lambda-calculus    = hs7103 // sybfix;
     lazysmallcheck2012      = hs7103 // sybfix;
     mlspec-helper           = hs7103 // specFix;
-    nix-eval                = hs7103 // pathfix;
+    nix-eval                = hs7103 // specFix;
     runtime-arbitrary       = hs7103;
-    runtime-arbitrary-tests = hs7103 // pathfix;
+    runtime-arbitrary-tests = hs7103 // specFix;
     structural-induction    = hs784;
     tip-haskell-frontend    = hs784;
     tip-lib                 = hs784;
