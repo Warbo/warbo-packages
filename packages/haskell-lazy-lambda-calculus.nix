@@ -2,9 +2,5 @@
 
 (haskellOverride {
   haskellPackages = nixpkgs1803.haskell.packages.ghc7103;
-  extra           = [
-    (self: super: {
-      syb = self.callHackage "syb" "0.6" {};
-    })
-  ];
+  syb             = true;
 }).lazy-lambda-calculus
