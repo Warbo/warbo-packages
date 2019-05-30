@@ -1,0 +1,9 @@
+From: Chris Warburton
+Date: Thu, 30 May 2019 10:48:07 +0100
+State: new
+Subject: Use lib.makeOverridable
+Message-Id: <8afd46278661310a-0-artemis@nixos>
+
+We should allow packages to be overridden via '.override'; this won't
+work if we define a { pkg = ...; tests = ...; } attrset, unless we use
+makeOverridable. We should probably do that automatically.
