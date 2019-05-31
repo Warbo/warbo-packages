@@ -1,5 +1,6 @@
 { autoconf, automake, fetchFromGitHub, hasBinary, libXtst, libX11, libXi,
-  libXext, libXinerama, pkgconfig, stdenv, xextproto, xlibsWrapper }:
+  libXext, libXinerama, pkgconfig, stdenv, xextproto ? null, xlibsWrapper,
+  xorg }:
 
 rec {
   pkg = stdenv.mkDerivation {
@@ -11,8 +12,13 @@ rec {
       sha256 = "1gcvsfkkf1xhmiv1x9vxgynicw78mvrxiz6a3mgzgyf8b6860d7r";
     };
 
-    buildInputs = [ xlibsWrapper autoconf automake pkgconfig libX11 xextproto
-                    libXtst libXi libXext libXinerama ];
+    buildInputs = [
+      xlibsWrapper autoconf automake pkgconfig libX11 libXtst libXi libXext
+      libXinerama
+      (if xextproto == null
+          then xorg.xorgproto
+          else xextproto)
+    ];
 
     configurePhase = ''
       ./bootstrap.sh
