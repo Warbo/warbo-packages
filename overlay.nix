@@ -46,10 +46,8 @@ with rec {
     {
       # Each file can either define { pkg = ...; tests = ...; } or else
       # we assume the result is the package and there are no tests.
-      pkgs  = previous.pkgs  // { "${name}" = defs.pkg or defs; };
-      tests = previous.tests // (if defs ? tests
-                                    then { "${name}" = defs.tests; }
-                                    else {});
+      pkgs  = previous.pkgs  // { "${name}" = defs.pkg;   };
+      tests = previous.tests // { "${name}" = defs.tests; };
     };
 
   # Override haskellPackages and haskell.packages.* in an extensible way, so
