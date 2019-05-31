@@ -1,3 +1,6 @@
 { haskellPackages }:
 
-haskellPackages.ghcWithPackages (pkgs: [ pkgs.turtle ])
+{
+  pkg   = haskellPackages.ghcWithPackages (pkgs: [ pkgs.turtle ]);
+  tests = {};
+}

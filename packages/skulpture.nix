@@ -30,51 +30,55 @@ with {
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
 {
-  skulpture-qt4 = stdenv.mkDerivation {
-    name    = "skulpture-qt4";
-    version = "0.2.4";
-    src     = fetchurl {
-      url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
-      sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
+  pkg = {
+    skulpture-qt4 = stdenv.mkDerivation {
+      name    = "skulpture-qt4";
+      version = "0.2.4";
+      src     = fetchurl {
+        url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
+        sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
+      };
+
+      buildInputs  = [ cmake fail kdelibs4 findutils qt4 ];
+
+      installPhase = ''
+        cd ..
+
+        mkdir -p "$out/share/doc"
+        for DOC in README AUTHORS COPYING NEWS NOTES BUGS
+        do
+          cp -v "$DOC" "$out/share/doc/"
+        done
+
+        mkdir -p "$out/share/kde4/apps/"
+        cp -rv color-schemes "$out/share/kde4/apps/"
+
+        ${installFiles "qt4"}
+      '';
     };
 
-    buildInputs  = [ cmake fail kdelibs4 findutils qt4 ];
-
-    installPhase = ''
-      cd ..
-
-      mkdir -p "$out/share/doc"
-      for DOC in README AUTHORS COPYING NEWS NOTES BUGS
-      do
-        cp -v "$DOC" "$out/share/doc/"
-      done
-
-      mkdir -p "$out/share/kde4/apps/"
-      cp -rv color-schemes "$out/share/kde4/apps/"
-
-      ${installFiles "qt4"}
-    '';
-  };
-
-  skulpture-qt5 = stdenv.mkDerivation rec {
-    name = "skulpture-qt5";
-    src = fetchFromGitHub {
-      owner  = "cfeck";
-      repo   = "skulpture";
-      rev    = "f4f41ee";
-      sha256 = "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays";
+    skulpture-qt5 = stdenv.mkDerivation rec {
+      name = "skulpture-qt5";
+      src = fetchFromGitHub {
+        owner  = "cfeck";
+        repo   = "skulpture";
+        rev    = "f4f41ee";
+        sha256 = "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays";
+      };
+      preConfigure = "cd src";
+      buildInputs  = [ (trace "FIXME: Using qmake from 17.09 due to https://groups.google.com/forum/#!topic/nix-devel/fAMADzFhcFo"
+                              nixpkgs1709.qt5.qmake) cmake kdelibs4 ];
+      installPhase = ''
+        cd ..
+        ${installFiles "qt5"}
+        echo "Patching libraries to avoid references to build dir" 1>&2
+        while read -r LIB
+        do
+          patchelf --set-rpath "${stdenv.lib.makeLibraryPath buildInputs}" "$LIB"
+        done < <(find "$out" -name "*.so")
+      '';
     };
-    preConfigure = "cd src";
-    buildInputs  = [ (trace "FIXME: Using qmake from 17.09 due to https://groups.google.com/forum/#!topic/nix-devel/fAMADzFhcFo"
-                            nixpkgs1709.qt5.qmake) cmake kdelibs4 ];
-    installPhase = ''
-      cd ..
-      ${installFiles "qt5"}
-      echo "Patching libraries to avoid references to build dir" 1>&2
-      while read -r LIB
-      do
-        patchelf --set-rpath "${stdenv.lib.makeLibraryPath buildInputs}" "$LIB"
-      done < <(find "$out" -name "*.so")
-    '';
   };
+
+  tests = {};
 }

@@ -2,4 +2,7 @@
 # just want the command line tools, we can do without those heavy dependencies.
 { mu }:
 
-mu.override { emacs = null; guile = null; }
+{
+  pkg   = mu.override { emacs = null; guile = null; };
+  tests = {};
+}

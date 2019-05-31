@@ -22,5 +22,9 @@ with {
     };
   };
 };
-withDeps [ (isBroken pkg) ]
-         (pkg.overrideDerivation (old: { doInstallCheck = false; }))
+{
+  pkg = withDeps [ (isBroken pkg) ]
+                 (pkg.overrideDerivation (old: { doInstallCheck = false; }));
+
+  tests = {};
+}

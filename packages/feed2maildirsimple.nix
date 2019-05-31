@@ -11,4 +11,7 @@ with rec {
   };
 };
 
-import "${src}" { inherit pkgs; }
+{
+  pkg   = import "${src}" { inherit pkgs; };
+  tests = {};
+}

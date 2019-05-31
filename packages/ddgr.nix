@@ -1,3 +1,6 @@
 { nixpkgs1803, super }:
 
-super.ddgr or nixpkgs1803.ddgr
+{
+  pkg   = super.ddgr or nixpkgs1803.ddgr;
+  tests = {};
+}

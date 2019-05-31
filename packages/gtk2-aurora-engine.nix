@@ -27,4 +27,7 @@ with rec {
       cp -r "$theme" "$out/share/themes/Aurora"
     '';
 };
-combined
+{
+  pkg   = combined;
+  tests = {};
+}

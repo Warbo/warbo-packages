@@ -25,4 +25,8 @@ e = goGet "github.com/whyrusleeping/elcid" ''
 b = goGet "github.com/whyrusleeping/bases" "";
 
 };
-buildEnv { name = "elcid"; paths = [ e b ]; }
+
+{
+  pkg   = buildEnv { name = "elcid"; paths = [ e b ]; };
+  tests = {};
+}

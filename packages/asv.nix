@@ -28,4 +28,7 @@ with rec {
   });
 };
 
-pkgHasBinary "asv" pkg
+{
+  pkg   = pkgHasBinary "asv" pkg;
+  tests = {};
+}

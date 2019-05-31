@@ -10,5 +10,6 @@ with rec {
   });
 };
 {
-  pkg = addZlib (downgradeQt super.rockbox_utility);
+  pkg   = addZlib (downgradeQt super.rockbox_utility);
+  tests = {};
 }
