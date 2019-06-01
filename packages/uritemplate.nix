@@ -1,7 +1,7 @@
-{ fetchurl, pythonPackages }:
+{ fetchurl, lib, pythonPackages }:
 
-{
-  pkg = pythonPackages.buildPythonPackage {
+with {
+  f = { pythonPackages }: pythonPackages.buildPythonPackage {
     name = "uritemplate";
     version = "0.6";
 
@@ -15,6 +15,8 @@
       pythonPackages.simplejson
     ];
   };
-
+};
+{
+  pkg   = lib.makeOverridable f { inherit pythonPackages; };
   tests = {};
 }

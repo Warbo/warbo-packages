@@ -1,7 +1,7 @@
-{ fetchurl, pythonPackages, uritemplate }:
+{ fetchurl, lib, pythonPackages, uritemplate }:
 
-{
-  pkg = pythonPackages.buildPythonPackage {
+with {
+  f = { pythonPackages, uritemplate }: pythonPackages.buildPythonPackage {
     name = "google-api-python-client";
     version = "1.4.2";
 
@@ -18,6 +18,8 @@
       pythonPackages.oauth2client
     ];
   };
-
+};
+{
+  pkg   = lib.makeOverridable f { inherit pythonPackages uritemplate; };
   tests = {};
 }
