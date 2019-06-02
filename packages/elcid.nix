@@ -4,7 +4,8 @@ with rec {
 
 goGet = name: pre: runCommand "go-get"
   {
-    buildInputs = [ go git ];
+    __noChroot     = true;
+    buildInputs    = [ go git ];
     GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
   }
   ''

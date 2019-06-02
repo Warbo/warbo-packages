@@ -3,6 +3,7 @@
 rec {
   pkg = runCommand "goat"
     {
+      __noChroot     = true;
       buildInputs    = [ git go ];
       GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
     }
