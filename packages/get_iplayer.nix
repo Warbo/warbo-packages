@@ -15,6 +15,7 @@ with rec {
 
   versionTest = runCommand "latest-get_iplayer"
     {
+      __noChroot  = true;
       buildInputs = [ wget xidel ];
       expr        = concatStringsSep "/" [
         ''//a[contains(text(), "Latest release")]''
