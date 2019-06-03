@@ -15,6 +15,7 @@ rec {
     haveBinary   = hasBinary pkg "conkeror";
     doesNotCrash = runCommand "conkeror-does-not-crash"
       {
+        __noChroot = true;  # DBus looks for hard-coded /etc/machine-id path
         checker = wrap {
           name   = "conkeror-works";
           paths  = [ bash coreutils pkg procps xvfb_run ];
