@@ -1,8 +1,10 @@
-{ fetchurl, haskell, haskellPackages, hs2nix, lib, nixpkgs1803, runCommand, unpack, which }:
+{ fetchurl, haskell, hs2nix, lib, nixpkgs1803, runCommand, unpack, which }:
 
 with builtins;
 with lib;
 with rec {
+  inherit (nixpkgs1803) haskellPackages;
+
   name    = "kics2-${version}";
   version = "2.0.0";
   src     = unpack (fetchurl {
