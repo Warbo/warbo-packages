@@ -23,6 +23,7 @@ with rec {
   pkg = pythonPackages.buildPythonPackage {
     name       = "mf2py";
     version    = "1.0.5";
+    __noChroot = true;
     src        = fetchFromGitHub {
       owner  = "tommorris";
       repo   = "mf2py";
