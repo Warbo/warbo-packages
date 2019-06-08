@@ -46,7 +46,7 @@ with rec {
       fi
     '';
 
-  get_iplayer_real = stdenv.lib.overrideDerivation super.get_iplayer
+  get_iplayer_real = get_iplayer: stdenv.lib.overrideDerivation get_iplayer
     (oldAttrs : {
       inherit src versionTest;
       name                  = "get_iplayer-${tag}";
@@ -56,13 +56,19 @@ with rec {
         ffmpeg
       ];
     });
+
+  mkPkg = { get_iplayer }: buildEnv {
+    name  = "get_iplayer";
+    paths = [
+      (get_iplayer_real get_iplayer)
+      ffmpeg
+      perlPackages.XMLSimple
+    ];
+  };
 };
 rec {
   # Some dependencies seem to be missing, so bundle them in with get_iplayer
-  pkg = buildEnv {
-    name  = "get_iplayer";
-    paths = [ get_iplayer_real ffmpeg perlPackages.XMLSimple ];
-  };
+  pkg = makeOverridable mkPkg { inherit (super) get_iplayer; };
 
   tests = hasBinary pkg "get_iplayer";
 }
