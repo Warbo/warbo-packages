@@ -27,7 +27,7 @@ with rec {
           -i "$out/tip-haskell-frontend.cabal"
   '';
 
-  thf = helf.callPackage (self.hs2nix helf {
+  thf = helf.callPackage (self.haskellSrc2nix {
                            name = "tip-haskell-frontend";
                            src  = thfSrc;
                          }) {};

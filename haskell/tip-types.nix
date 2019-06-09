@@ -9,7 +9,7 @@ with rec {
   '';
 };
 
-helf.callPackage (hs2nix helf {
+helf.callPackage (haskellSrc2nix {
                    name = "tip-types";
                    src  = typesSrc;
                  }) {}

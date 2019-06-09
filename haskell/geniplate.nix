@@ -28,7 +28,7 @@ assert builtins.compareVersions ghcVersion ghcBelow == -1 || self.die {
   inherit ghcVersion;
   error = "geniplate needs GHC below ${ghcBelow} due to template-haskell bound";
 };
-helf.callPackage (hs2nix helf {
+helf.callPackage (haskellSrc2nix {
                    name = "geniplate";
                    src  = patched;
                  }) {}

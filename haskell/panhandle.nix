@@ -1,7 +1,7 @@
 self: super: helf: huper:
 
 # We currently use 0.2.x since its dependencies are in older nixpkgs sets
-helf.callPackage (self.hs2nix helf {
+helf.callPackage (self.haskellSrc2nix {
   name = "panhandle";
   src  = self.unpack' "panhandle" (self.fetchurl {
     url    = "https://hackage.haskell.org/package/panhandle-0.2.1.0/panhandle-0.2.1.0.tar.gz";

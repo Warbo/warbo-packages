@@ -1,6 +1,6 @@
 self: super: helf: huper:
 
-helf.callPackage (self.hs2nix helf {
+helf.callPackage (self.haskellSrc2nix {
   name = "panpipe";
   src  = self.unpack' "panpipe" (self.fetchurl {
     url    = "https://hackage.haskell.org/package/panpipe-0.2.0.0/panpipe-0.2.0.0.tar.gz";

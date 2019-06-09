@@ -1,4 +1,4 @@
-{ fetchurl, haskell, hs2nix, lib, nixpkgs1803, runCommand, unpack, which }:
+{ fetchurl, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, unpack, which }:
 
 with builtins;
 with lib;
@@ -80,12 +80,12 @@ with rec {
         -i "$out/frontend/Makefile"
   '';
 
-  curry-base = hs2nix haskellPackages {
+  curry-base = haskellSrc2nix {
     name = "curry-base";
     src  = "${src}/frontend/curry-base";
   };
 
-  curry-frontend = hs2nix haskellPackages {
+  curry-frontend = haskellSrc2nix {
     name = "curry-frontend";
     src  = "${src}/frontend/curry-frontend";
   };
