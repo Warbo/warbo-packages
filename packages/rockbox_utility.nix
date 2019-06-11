@@ -1,15 +1,15 @@
-{ lib, nixpkgs1709, super, zlib }:
+{ lib, qt5, super, zlib }:
 
 with rec {
-  downgradeQt = drv: drv.override (old: {
-    inherit (nixpkgs1709.qt5) qtbase qmake qttools;
-  });
+  propagateQt = drv: builtins.trace
+    "TODO: Stop propagating Qt5 into rockbox_utility when Qt5 is fixed"
+    drv.override (old: { inherit (qt5) qtbase qmake qttools; });
 
   addZlib = drv: lib.overrideDerivation drv (old: {
     buildInputs = old.buildInputs ++ [ zlib ];
   });
 };
 {
-  pkg   = addZlib (downgradeQt super.rockbox_utility);
+  pkg   = addZlib (propagateQt super.rockbox_utility);
   tests = {};
 }
