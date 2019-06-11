@@ -66,8 +66,7 @@ with {
         sha256 = "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays";
       };
       preConfigure = "cd src";
-      buildInputs  = [ (trace "FIXME: Using qmake from 17.09 due to https://groups.google.com/forum/#!topic/nix-devel/fAMADzFhcFo"
-                              nixpkgs1709.qt5.qmake) cmake kdelibs4 ];
+      buildInputs  = [ qt5.qmake cmake kdelibs4 ];
       installPhase = ''
         cd ..
         ${installFiles "qt5"}
