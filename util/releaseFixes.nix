@@ -9,4 +9,10 @@ with {
 };
 {
   inherit (helpers.nixpkgs1709) qt5;
+
+  # TODO: This should be removed once the above qt5 override is no longer needed
+  v4l_utils = self.newScope
+    self.qt5
+    "${helpers.repo1903}/pkgs/os-specific/linux/v4l-utils"
+    {};
 }
