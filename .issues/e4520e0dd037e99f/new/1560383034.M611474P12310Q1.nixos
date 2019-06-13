@@ -1,0 +1,8 @@
+From: Chris Warburton
+Date: Thu, 13 Jun 2019 00:43:26 +0100
+Subject: Re: Override gcc for qtbase
+Message-Id: <e4520e0dd037e99f-c8d46ed53cbed45d-artemis@nixos>
+References: <e4520e0dd037e99f-0-artemis@nixos>
+In-Reply-To: <e4520e0dd037e99f-0-artemis@nixos>
+
+We just pin the qt5 from 17.09

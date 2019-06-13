@@ -1,8 +1,9 @@
 From: Chris Warburton
 Date: Sat, 13 Apr 2019 21:24:50 +0100
-State: new
+State: resolved
 Subject: Override gcc for qtbase
 Message-Id: <e4520e0dd037e99f-0-artemis@nixos>
+resolution: fixed
 
 It's broken on nixpkgs 18.03 (at least), and this causes Qt things like
 rockbox_utilities to break.
