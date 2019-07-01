@@ -8,6 +8,7 @@ with rec {
     {
       __noChroot    = true;
       buildInputs   = [ wget ];
+      cacheBuster   = toString currentTime;
       url           = https://www.mozilla.org/en-US/firefox/releases;
       SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
     }
