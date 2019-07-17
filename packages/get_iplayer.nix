@@ -63,6 +63,7 @@ with rec {
     paths = [
       (get_iplayer_real { inherit ffmpeg get_iplayer perlPackages; })
       ffmpeg
+      perlPackages.LWPProtocolHttps
       perlPackages.XMLSimple
     ];
   };
