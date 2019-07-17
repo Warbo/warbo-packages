@@ -46,21 +46,22 @@ with rec {
       fi
     '';
 
-  get_iplayer_real = get_iplayer: stdenv.lib.overrideDerivation get_iplayer
-    (oldAttrs : {
-      inherit src versionTest;
-      name                  = "get_iplayer-${tag}";
-      propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-        perlPackages.LWPProtocolHttps
-        perlPackages.XMLSimple
-        ffmpeg
-      ];
-    });
+  get_iplayer_real = { ffmpeg, get_iplayer, perlPackages }:
+    stdenv.lib.overrideDerivation get_iplayer
+      (oldAttrs : {
+        inherit src versionTest;
+        name                  = "get_iplayer-${tag}";
+        propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+          perlPackages.LWPProtocolHttps
+          perlPackages.XMLSimple
+          ffmpeg
+        ];
+      });
 
-  mkPkg = { get_iplayer }: buildEnv {
+  mkPkg = { ffmpeg, get_iplayer, perlPackages }: buildEnv {
     name  = "get_iplayer";
     paths = [
-      (get_iplayer_real get_iplayer)
+      (get_iplayer_real { inherit ffmpeg get_iplayer perlPackages; })
       ffmpeg
       perlPackages.XMLSimple
     ];
@@ -68,7 +69,9 @@ with rec {
 };
 rec {
   # Some dependencies seem to be missing, so bundle them in with get_iplayer
-  pkg = makeOverridable mkPkg { inherit (super) get_iplayer; };
+  pkg = makeOverridable mkPkg {
+    inherit (super) ffmpeg get_iplayer perlPackages;
+  };
 
   tests = hasBinary pkg "get_iplayer";
 }
