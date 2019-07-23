@@ -1,5 +1,6 @@
 # Firefox binary downloaded from Mozilla and installed into an FHS environment
-{ buildFHSUserEnv, cacert, fetchurl, lib, runCommand, unpack, wget }:
+{ buildFHSUserEnv, cacert, fetchurl, lib, onlineCheck, runCommand, unpack,
+  wget }:
 
 with builtins;
 with lib;
@@ -19,7 +20,7 @@ with rec {
 
   version = "68.0.1";
 
-  warn = if compareVersions version latest == -1
+  warn = if onlineCheck && compareVersions version latest == -1
             then trace (toJSON {
                    inherit latest version;
                    WARNING = "Newer Firefox is out";
