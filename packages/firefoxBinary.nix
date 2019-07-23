@@ -17,7 +17,7 @@ with rec {
                         grep -o '".*"' > "$out"
     '');
 
-  version = "68.0";
+  version = "68.0.1";
 
   warn = if compareVersions version latest == -1
             then trace (toJSON {
@@ -36,7 +36,7 @@ with rec {
 
   contents = unpack (fetchurl {
     inherit url;
-    sha256 = "0kgjn03m6i1178bigwzfcrlylwh3x7jmb331w0ls1kyb6ily689x";
+    sha256 = "1z61lfdbkrkgcd6mbncvc517fmky7cjq0jc5ccycqahvy6zy8x48";
   });
 
   raw = runCommand "firefoxBinary-${version}" { inherit contents; } ''
