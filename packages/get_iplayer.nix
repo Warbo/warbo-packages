@@ -1,22 +1,24 @@
 # Updated get_iplayer
-{ buildEnv, cacert, fetchurl, ffmpeg, hasBinary, lib, perlPackages, runCommand,
-  stdenv, super, wget, xidel }:
+{ buildEnv, cacert, fetchurl, ffmpeg, hasBinary, lib, onlineCheck,
+  perlPackages, runCommand, stdenv, super, wget, xidel }:
 
+with builtins;
 with lib;
 with rec {
   # Update this as needed
   tag    = "v3.20";
   sha256 = "0p9mxg79qq0x4fn32brh5iam217751mgvpx3bk3dhdzjsrmiqv99";
 
-  src    = fetchurl {
+  src    = versionTest fetchurl {
     inherit sha256;
     url = "https://github.com/get-iplayer/get_iplayer/archive/${tag}.tar.gz";
   };
 
-  versionTest = runCommand "latest-get_iplayer"
+  latestVersion = import (runCommand "latest-get_iplayer.nix"
     {
       __noChroot  = true;
       buildInputs = [ wget xidel ];
+      cacheBuster = toString currentTime;
       expr        = concatStringsSep "/" [
         ''//a[contains(text(), "Latest release")]''
         ".."
@@ -32,24 +34,24 @@ with rec {
     ''
       wget -q -O releases.html "$url" || {
         echo "Couldn't download releases page, skipping test" 1>&2
-        mkdir "$out"
+        echo '"0"' > "$out"
       }
 
       LATEST=$(xidel - -q -e "$expr" < releases.html)
-      if [[ "x$LATEST" = "x${tag}" ]]
-      then
-        echo "Latest get_iplayer is '$LATEST', as expected" 1>&2
-        mkdir "$out"
-      else
-        echo "Update get_iplayer! Have '${tag}', but '$LATEST' is out" 1>&2
-        exit 1
-      fi
-    '';
+      echo "\"$LATEST\"" > "$out"
+    '');
+
+  versionTest = if onlineCheck && compareVersions tag latestVersion == -1
+                   then trace (toJSON {
+                     inherit latestVersion tag;
+                     WARNING = "Newer get_iplayer available";
+                   })
+                   else (x: x);
 
   get_iplayer_real = { ffmpeg, get_iplayer, perlPackages }:
     stdenv.lib.overrideDerivation get_iplayer
       (oldAttrs : {
-        inherit src versionTest;
+        inherit src;
         name                  = "get_iplayer-${tag}";
         propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
           perlPackages.LWPProtocolHttps
