@@ -1,8 +1,9 @@
 From: Chris Warburton
 Date: Thu, 13 Jun 2019 00:09:52 +0100
-State: new
+State: resolved
 Subject: Add Next browser
 Message-Id: <f256dd38e99840b7-0-artemis@nixos>
+resolution: fixed
 
 Conkeror seems to have died because of Mozilla's overhauls of
 XUL/Gecko/Quantum/etc. Looks like "next-browser" is the spiritual
