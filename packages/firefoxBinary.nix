@@ -15,8 +15,8 @@ with rec {
       SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
     }
     ''
-      wget -O- "$url" | grep -o 'data-latest-firefox="[^"]*"' |
-                        grep -o '".*"' > "$out"
+      wget -q -O- "$url" | grep -o 'data-latest-firefox="[^"]*"' |
+                           grep -o '".*"' > "$out"
     '');
 
   version = "68.0.1";
