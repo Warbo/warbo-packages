@@ -19,7 +19,7 @@ with rec {
                            grep -o '".*"' > "$out"
     '');
 
-  version = "68.0.1";
+  version = "68.0.2";
 
   warn = if onlineCheck && compareVersions version latest == -1
             then trace (toJSON {
@@ -38,7 +38,7 @@ with rec {
 
   contents = unpack (fetchurl {
     inherit url;
-    sha256 = "1z61lfdbkrkgcd6mbncvc517fmky7cjq0jc5ccycqahvy6zy8x48";
+    sha256 = "0s6np0q1i4p2m2ikcva1rdfgw69vw4kws0yy4amm1d1g049p9m4k";
   });
 
   raw = mkBin {
