@@ -6,8 +6,8 @@ with builtins;
 with lib;
 with rec {
   # Update this as needed
-  tag    = "v3.21";
-  sha256 = "1w176zzfx9h3bd864i4qncan5796i38p3z243gxgh6grhjv2plg8";
+  tag    = "v3.22";
+  sha256 = "14sm2i910cvy38zdsd1kax7i3f1mp93hcbzjmvi4hj3sdxlf1799";
 
   src    = versionTest fetchurl {
     inherit sha256;
