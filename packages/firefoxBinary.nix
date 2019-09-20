@@ -6,6 +6,9 @@
 with builtins;
 with lib;
 with rec {
+  version = "69.0.1";
+  sha256  = "0a30y1vhwlwjrzv6dhy4z5gkvpviz9mma111ifi5c7q4qqllbr7m";
+
   latest = import (runCommand "latest-firefox-version.nix"
     {
       __noChroot    = true;
@@ -18,8 +21,6 @@ with rec {
       wget -q -O- "$url" | grep -o 'data-latest-firefox="[^"]*"' |
                            grep -o '".*"' > "$out"
     '');
-
-  version = "69.0";
 
   warn = if onlineCheck && compareVersions version latest == -1
             then trace (toJSON {
@@ -37,8 +38,7 @@ with rec {
   ];
 
   contents = unpack (fetchurl {
-    inherit url;
-    sha256 = "17wybrjr9wm8f5yv2q62qik95vfcank5h5nx6dq8cy0di9ismplk";
+    inherit url sha256;
   });
 
   raw = mkBin {
