@@ -37,9 +37,7 @@ with rec {
     ".tar.bz2"
   ];
 
-  contents = unpack (fetchurl {
-    inherit url sha256;
-  });
+  contents = unpack (fetchurl { inherit url sha256; });
 
   raw = mkBin {
     name   = "firefoxWrapper";
@@ -52,9 +50,7 @@ with rec {
       LOCALE = "C";
 
       # Avoid Fontconfig error: Cannot load default config file
-      FONTCONFIG_FILE = makeFontsConf {
-        fontDirectories = [];
-      };
+      FONTCONFIG_FILE = makeFontsConf { fontDirectories = []; };
     };
     script = ''
       #!/usr/bin/env bash
@@ -70,7 +66,8 @@ with rec {
         done
         [[ "$FOUND" -eq 1 ]] || fail "No schemas found for '$1'"
       }
-      addSchemas "${gsettings-desktop-schemas.out}/share/gsettings-schemas/gsettings-desktop-schemas-"
+      addSchemas "${gsettings-desktop-schemas.out
+                  }/share/gsettings-schemas/gsettings-desktop-schemas-"
       addSchemas "${gtk3.out}/share/gsettings-schemas/gtk"
 
       # Make GTK icons, etc. available
