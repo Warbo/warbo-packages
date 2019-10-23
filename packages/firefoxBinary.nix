@@ -6,8 +6,8 @@
 with builtins;
 with lib;
 with rec {
-  version = "69.0.3";
-  sha256  = "0nj8qd170aviqy9s5cqjdfjbc1x6br1pf960dwb8x4iqq99slbl2";
+  version = "70.0";
+  sha256  = "094hgdmagddwgvf4qq0frk46v8idvfpmiz4x1jm8gl7l1znmn0pa";
 
   latest = import (runCommand "latest-firefox-version.nix"
     {
