@@ -53,7 +53,7 @@ with rec {
       FONTCONFIG_FILE = makeFontsConf { fontDirectories = []; };
     };
     script = ''
-      #!/usr/bin/env bash
+      #!${bash}/bin/bash
       set -e
 
       # Make gsettings schemas available, to avoid file dialogues crashing

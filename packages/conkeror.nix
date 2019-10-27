@@ -20,7 +20,7 @@ rec {
           name   = "conkeror-works";
           paths  = [ bash coreutils pkg procps xvfb_run ];
           script = ''
-            #!/usr/bin/env bash
+            #!${bash}/bin/bash
             set -e
 
             echo "Checking conkeror doesn't crash on startup" 1>&2

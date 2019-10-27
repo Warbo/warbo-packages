@@ -29,7 +29,7 @@ rec {
         name   = "withTimeout";
         paths  = [ bash ];
         script = ''
-          #!/usr/bin/env bash
+          #!${bash}/bin/bash
           TIME_OPT=""
           MEM_OPT=""
           [[ -z "$MAX_SECS" ]] || TIME_OPT="-t $MAX_SECS"

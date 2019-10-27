@@ -1,5 +1,5 @@
-{ buildEnv, fetchurl, hasBinary, libusb1, patchelf, rockbox_utility, stdenv,
-  writeScript }:
+{ bash, buildEnv, fetchurl, hasBinary, libusb1, patchelf, rockbox_utility,
+  stdenv, writeScript }:
 
 with rec {
   firmware = fetchurl {
@@ -8,13 +8,13 @@ with rec {
   };
 
   firmware_script = writeScript "rockbox_6thgen_firmware" ''
-    #!/usr/bin/env bash
+    #!${bash}/bin/bash
     set -e
     mks5lboot --bl-inst ${firmware}
   '';
 
     scan_script = writeScript "rockbox_6thgen_scan" ''
-    #!/usr/bin/env bash
+    #!${bash}/bin/bash
     set -e
     echo "Scanning for iPod in firmware update mode (Ctrl-C when found)" 1>&2
     mks5lboot --dfuscan -l
