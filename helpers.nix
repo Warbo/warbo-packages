@@ -2,7 +2,7 @@
 {
   nix-helpers = fetchgit {
     url    = http://chriswarbo.net/git/nix-helpers.git;
-    rev    = "7c3a983";
-    sha256 = "1hhwhwm5nf0d3r4x9rd9hkm5xhmfk43gcwzc4caiglc02m4snhvg";
+    rev    = "39dbfb3";
+    sha256 = "1nvrirqk2x0bqsqdkaavh2629z21ipr68ahyr17a06m4k8sjmp32";
   };
 }
