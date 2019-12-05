@@ -6,6 +6,7 @@
 with builtins;
 with lib;
 with rec {
+  # Update these as needed
   version = "70.0.1";
   sha256  = "06xzb22qa2l04nw6992y648isnhdscpx3v75ba2vqw2b07ghfcam";
 
@@ -37,7 +38,7 @@ with rec {
     ".tar.bz2"
   ];
 
-  contents = unpack (fetchurl { inherit url sha256; });
+  contents = unpack (fetchurl { inherit sha256 url; });
 
   raw = mkBin {
     name   = "firefoxWrapper";
