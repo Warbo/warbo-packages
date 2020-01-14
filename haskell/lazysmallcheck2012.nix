@@ -4,8 +4,8 @@ with {
   src = self.latestGit {
     url    = "${self.repoSource or self.defaultRepo}/lazy-smallcheck-2012.git";
     stable = {
-      rev        = "dbd6fba";
-      sha256     = "1i3by7mp7wqy9anzphpxfw30rmbsk73sb2vg02nf1mfpjd303jj7";
+      rev        = "f138ac3";
+      sha256     = "1m99nha131hqzi6yx6189rvcska4wvz768m1n5kq4mrw9sk50nxc";
       unsafeSkip = false;
     };
   };
