@@ -1,12 +1,15 @@
-{ hasBinary, haskellOverride, nixpkgs1609 }:
+{ defaultRepo, fetchgit, repoSource ? defaultRepo }:
 
-rec {
-  pkg = (haskellOverride {
-    haskellPackages = nixpkgs1609.haskell.packages.ghc7103;
-    panPkgs         = true;
-  }).panhandle;
-
-  tests = {
-    haveBinary = hasBinary pkg "panhandle";
+with rec {
+  src = fetchgit {
+    url    = "${repoSource}/panhandle.git";
+    rev    = "45fd71d";
+    sha256 = "0sg4w5vxn5p9wa5slhybp9hbqqvxg20jrh8qpa98nkx5h1vbn7lr";
   };
+
+  pkgs = import src;
+};
+{
+  pkg   = pkgs.panhandle.components.exes.panhandle;
+  tests = pkgs.panhandle.components.tests;
 }

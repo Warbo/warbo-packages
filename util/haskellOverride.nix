@@ -6,7 +6,7 @@
 #  - super: nixpkgs without our overrides applied (useful for breaking loops)
 #  - helf : haskell set with our overrides applied (watch out for loops!)
 #  - huper: haskell set without our overrides applied (for breaking loops)
-{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803, panPkgs }:
+{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803 }:
 
 with lib;
 with {
@@ -21,8 +21,6 @@ with {
                              huper)
              (nixFilesIn ../haskell);
 
-  panPkgsOverrides = panPkgs;
-
   semigroupsOverrides = ghc7SemigroupsFix;
 
   sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" {}; };
@@ -31,7 +29,6 @@ with {
   haskellPackages,
   existing ? true,
   general  ? true,
-  panPkgs  ? false,
   filepath ? false,
   syb      ? false,
   extra    ? []
@@ -40,7 +37,6 @@ with {
     overrides = composeAll (concatLists [
       (if existing then [ (old.overrides or dummy) ] else [])
       (if general  then [ generalOverrides         ] else [])
-      (if panPkgs  then [ panPkgsOverrides         ] else [])
       (if filepath then [ filepathFix              ] else [])
       (if syb      then [ sybOverrides             ] else [])
       extra
