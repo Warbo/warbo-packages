@@ -3,8 +3,8 @@
 with rec {
   src = fetchgit {
     url    = "${repoSource}/panhandle.git";
-    rev    = "8985641";
-    sha256 = "1db0q1lrfl98hznkvq8lcic0fvd9q585gknnjymkf2m0za9gwd9m";
+    rev    = "bab9580";
+    sha256 = "0c2l7bvkxy7q41r9fyxq9jzpq2b10n1nkwhi0b8rqlr8h41p96ad";
   };
 
   pkgs = import "${src}/release.nix";
