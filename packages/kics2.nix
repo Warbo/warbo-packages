@@ -1,4 +1,4 @@
-{ fetchurl, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, unpack, which }:
+{ haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, which }:
 
 with builtins;
 with lib;
@@ -7,10 +7,10 @@ with rec {
 
   name    = "kics2-${version}";
   version = "2.0.0";
-  src     = unpack (fetchurl {
+  src     = fetchTarball {
     url = "https://www-ps.informatik.uni-kiel.de/kics2/download/${name}.tar.gz";
-    sha256 = "0qfj51cl0qrs64yh8nh3n57cad44gn7n4x04hcvjwql1z76gv9cb";
-  });
+    sha256 = "0lr5fic28m1hkxzc2swgqg6is55qnv91wghhnkkrsci0xx04hd7m";
+  };
 
   deps = [
     "cabal-install"
