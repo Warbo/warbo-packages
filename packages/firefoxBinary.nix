@@ -1,18 +1,17 @@
 # Firefox binary downloaded from Mozilla and installed into an FHS environment
-{ bash, buildFHSUserEnv, cacert, fail, fetchurl, gnome2, gnome3,
-  gsettings-desktop-schemas, gtk3, hicolor-icon-theme, lib, makeFontsConf,
-  mkBin, onlineCheck, runCommand, unpack, wget }:
+{ bash, buildFHSUserEnv, fail, gnome2, gnome3, gsettings-desktop-schemas, gtk3,
+  hicolor-icon-theme, lib, makeFontsConf, mkBin, onlineCheck, runCommand }:
 
 with builtins;
 with lib;
 with rec {
   # Update these as needed
   version = "72.0.2";
-  sha256  = "1iflwg6iw6i8vb7kmwnvggza4fgqvnvahnzz3sdq4w25cygi079j";
+  sha256  = "0bajsbnpxn99x6gn3w9pkg81k6bfpx1ws9nsvl2fqn8q2iwvwzds";
 
   latest = import (runCommand "latest-firefox-version.nix"
     {
-      page = builtins.fetchurl https://www.mozilla.org/en-US/firefox/releases;
+      page = fetchurl https://www.mozilla.org/en-US/firefox/releases;
     }
     ''
       grep -o 'data-latest-firefox="[^"]*"' < "$page" |
@@ -34,7 +33,7 @@ with rec {
     ".tar.bz2"
   ];
 
-  contents = unpack (fetchurl { inherit sha256 url; });
+  contents = fetchTarball { inherit sha256 url; };
 
   raw = mkBin {
     name   = "firefoxWrapper";
