@@ -19,8 +19,13 @@ with rec {
       SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
     }
     ''
-      wget -q -O- "$url" | grep -o 'data-latest-firefox="[^"]*"' |
-                           grep -o '".*"' > "$out"
+      if wget -q -O latest.html "$url"
+      then
+        grep -o 'data-latest-firefox="[^"]*"' < latest.html |
+          grep -o '".*"' > "$out"
+      else
+        echo '"0"' > "$out"
+      fi
     '');
 
   warn = if onlineCheck && compareVersions version latest == -1
