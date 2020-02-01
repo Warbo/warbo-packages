@@ -12,20 +12,11 @@ with rec {
 
   latest = import (runCommand "latest-firefox-version.nix"
     {
-      __noChroot    = true;
-      buildInputs   = [ wget ];
-      cacheBuster   = toString currentTime;
-      url           = https://www.mozilla.org/en-US/firefox/releases;
-      SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
+      page = builtins.fetchurl https://www.mozilla.org/en-US/firefox/releases;
     }
     ''
-      if wget -q -O latest.html "$url"
-      then
-        grep -o 'data-latest-firefox="[^"]*"' < latest.html |
-          grep -o '".*"' > "$out"
-      else
-        echo '"0"' > "$out"
-      fi
+      grep -o 'data-latest-firefox="[^"]*"' < "$page" |
+        grep -o '".*"' > "$out"
     '');
 
   warn = if onlineCheck && compareVersions version latest == -1
