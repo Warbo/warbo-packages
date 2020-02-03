@@ -51,6 +51,10 @@ with rec {
   pandoc-citeproc = getHackage {
     name    = "pandoc-citeproc";
     version = "0.16.4.1";
+
+    # Update these when changing the derivation
+    plan-sha256  = "08s7200sg21z426bshyg58n972srsczskvi7yy393q90rcr9cjz3";
+    materialized = ../caches/pandoc-citeproc-plan-to-nix-pkgs;
   };
 };
 rec {
