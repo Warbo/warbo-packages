@@ -9,9 +9,13 @@ with rec {
     src         = fetchFromGitLab {
       owner  = "tseenshe";
       repo   = "hsinspect";
-      rev    = "406cabe6";
+      rev    = "406cabe6";  # Version "0.0.11"
       sha256 = "0gc5y60bmshrwl1mhrlzzq6jk1pfj82q5qgzvxiwk70qhpjm7x1v";
     };
+
+    # Update these two when the derivation changes
+    plan-sha256  = "00qpq9bmaf8nqzhcyzyj5imm43826v4m8xmzx7q85v48842wjy4q";
+    materialized = ../caches/hsinspect-plan-to-nix-pkgs;
 
     # Avoid 'Neither the Haskell package set or the Nixpkgs package set contain
     # the package: alex (build tool dependency).'
