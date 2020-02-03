@@ -16,6 +16,10 @@ with rec {
     name    = "pandoc";
     version = "2.9.1";
 
+    # Update these two when changing the derivation
+    plan-sha256  = "036zb2pzwmihixm2r56aw6xyx69isx8hjdbqksnvgzma3yi86xy4";
+    materialized = ../caches/pandoc-plan-to-nix-pkgs;
+
     # Nix's restricted evaluation mode can't fetch arbitrary things from the
     # network, like the git repo specified in pandoc's cabal.project file.
     # To work around this, haskell.nix will spot comments specifying a sha256,
