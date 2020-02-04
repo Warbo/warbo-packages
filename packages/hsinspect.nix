@@ -9,7 +9,7 @@ with rec {
     src         = fetchFromGitLab {
       owner  = "tseenshe";
       repo   = "hsinspect";
-      rev    = "406cabe6";  # Version "0.0.11"
+      rev    = "406cabe6";
       sha256 = "0gc5y60bmshrwl1mhrlzzq6jk1pfj82q5qgzvxiwk70qhpjm7x1v";
     };
 
