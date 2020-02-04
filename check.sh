@@ -18,7 +18,7 @@ echo "Checking that haskell-nix derivations are cached" 1>&2
 grep -R -l 'haskell-nix' | grep '\.nix$' | while read -r F
 do
     grep 'plan-sha256' < "$F" > /dev/null || {
-        echo "File '$F' uses haskell-nix without a caching a plan-sha256" 1>&2
+        echo "File '$F' uses haskell-nix without caching a plan-sha256" 1>&2
         fail "Build the package and follow the instructions in 'trace'"
     }
     grep 'materialized' < "$F" > /dev/null || {
@@ -26,9 +26,9 @@ do
         fail "Build the package and follow the instructions in 'trace'"
     }
 
-    GOT=$(grep -o '\.\./caches/[^;]*' < "$F" | head -n1 | sed -e 's@\.\./@@g') ||
+    GOT=$(grep -o '\.\./caches/[^;]*' < "$F") ||
         fail "Couldn't find any '../caches' reference in haskell-nix file '$F'"
-    D="$GOT/.plan.nix"
+    D=$(echo "$GOT"  | head -n1 | sed -e 's@\.\./@@g' -e 's@$@/.plan.nix@g')
     unset GOT
 
     [[ -d "$D" ]] || fail "Couldn't find cache directory '$D' for '$F'"
