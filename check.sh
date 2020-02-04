@@ -63,10 +63,16 @@ do
                    grep -o '"[^"]*"'             ) || fail "No version '$X'"
     unset D
 
-    grep -F "$FOUNDNAME" < "$F" > /dev/null ||
-        fail "Expected name '$FOUNDNAME' in '$F', not found"
-    grep -F "$FOUNDVERSION" < "$F" > /dev/null ||
-        fail "Expected version '$FOUNDVERSION' in '$F', not found"
+    # The 'hackage-package' function accepts a package name and version; other
+    # functions like 'cabalProject' take them from the 'src', which may be a git
+    # repo whose name is nothing like the package's
+    if grep 'hackage-package' < "$F" > /dev/null
+    then
+        grep -F "$FOUNDNAME" < "$F" > /dev/null ||
+            fail "Expected name '$FOUNDNAME' in '$F', not found"
+        grep -F "$FOUNDVERSION" < "$F" > /dev/null ||
+            fail "Expected version '$FOUNDVERSION' in '$F', not found"
+    fi
     unset FOUNDNAME
     unset FOUNDVERSION
 done
