@@ -1,4 +1,4 @@
-{ fetchFromGitHub, haskell, haskellOverride, isBroken, nixpkgs1803, withDeps }:
+{ fetchFromGitHub, haskell, haskellOverride, isBroken, nixpkgs1903, withDeps }:
 
 with builtins;
 with rec {
@@ -8,7 +8,7 @@ with rec {
 };
 {
   pkg = (haskellOverride {
-    inherit (nixpkgs1803) haskellPackages;
+    inherit (nixpkgs1903) haskellPackages;
     extra = [
       (helf: huper: {
         # Taken from cabal.project file in nix-tools repo
