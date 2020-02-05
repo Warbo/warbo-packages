@@ -33,9 +33,11 @@ with rec {
 
     propagatedBuildInputs = [
       beautifulsoup-custom
-      pythonPackages.python
-      pythonPackages.html5lib
       mf2util
+      pythonPackages.html5lib
+      pythonPackages.mock
+      pythonPackages.nose
+      pythonPackages.python
       requests
     ];
   };
