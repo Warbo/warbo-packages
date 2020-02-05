@@ -11,8 +11,7 @@ rec {
       mkdir "$out"
       cd "$out"
 
-      export GOPATH="$PWD"
-      go get github.com/blampe/goat
+      GOPATH="$PWD" HOME="$PWD" go get github.com/blampe/goat
     '';
 
   tests = hasBinary pkg "goat";
