@@ -1,5 +1,6 @@
 { cmake, fail, fetchFromGitHub, fetchurl, findutils,
-  kdelibs4 ? nixpkgs1709.kdelibs4, nixpkgs1709, qt4, qt5, stdenv, writeScript }:
+  kdelibs4 ? nixpkgs1709.kdelibs4, nixpkgs1709, nixpkgs1909, qt4, stdenv,
+  writeScript }:
 
 with builtins;
 with {
@@ -29,7 +30,7 @@ with {
     };
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
-{
+rec {
   pkg = {
     skulpture-qt4 = stdenv.mkDerivation {
       name    = "skulpture-qt4";
@@ -57,7 +58,7 @@ with {
       '';
     };
 
-    skulpture-qt5 = stdenv.mkDerivation rec {
+    mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }: mkDerivation rec {
       name = "skulpture-qt5";
       src = fetchFromGitHub {
         owner  = "cfeck";
@@ -66,7 +67,7 @@ with {
         sha256 = "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays";
       };
       preConfigure = "cd src";
-      buildInputs  = [ qt5.qmake cmake kdelibs4 ];
+      buildInputs  = [ qtbase qmake cmake kdelibs4 ];
       installPhase = ''
         cd ..
         ${installFiles "qt5"}
@@ -79,5 +80,7 @@ with {
     };
   };
 
-  tests = {};
+  tests = {
+    qt5Lib = nixpkgs1909.libsForQt5.callPackage pkg.mkSkulptureQt5 {};
+  };
 }
