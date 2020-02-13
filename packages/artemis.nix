@@ -1,8 +1,17 @@
-{ fetchFromGitHub, fetchurl, hasBinary, pythonPackages }:
+{ darwin, fetchFromGitHub, fetchurl, hasBinary, pythonPackages, stdenv }:
 
 with {
   mercurial = pythonPackages.buildPythonPackage {
-    name = "mercurial";
+    name                  = "mercurial";
+    # Make sure ApplicationServices/ApplicationServices.h is available
+    propagatedBuildInputs =
+      if stdenv.isDarwin
+         then (with darwin.apple_sdk.frameworks; [
+           CoreGraphics
+           ApplicationServices
+           Carbon
+         ])
+         else [];
     src  = fetchurl {
       url    = "https://www.mercurial-scm.org/release/mercurial-4.2.1.tar.gz";
       sha256 = "182qh6d0srps2n5sydzy8n3gi78la6m0wi3846zpyyd0b8pmgmfp";
