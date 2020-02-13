@@ -3,8 +3,8 @@
 with {
   src = fetchgit {
     url    = "${repoSource}/asv-nix.git";
-    rev    = "54d2a89";
-    sha256 = "0hh56xk8z1bzv2v1j2vxmmap8bww8wkjkfqx4cf43jgigalw5miz";
+    rev    = "0d7762b";
+    sha256 = "17kdkzxc9k961shb685dw003rsmxaxyk03byi3sw6j3x4l18qidx";
   };
 };
 rec {
