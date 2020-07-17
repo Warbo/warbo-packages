@@ -1,0 +1,7 @@
+From: Chris Warburton
+Date: Fri, 17 Jul 2020 08:40:36 +0100
+State: new
+Subject: Use niv to fetch helpers
+Message-Id: <fe3c9d7edff4be73-0-artemis@nixos>
+
+Niv can make pinning external git repos easier
