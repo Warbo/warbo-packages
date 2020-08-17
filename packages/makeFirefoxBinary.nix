@@ -1,6 +1,7 @@
 # Firefox binary downloaded from Mozilla and installed into an FHS environment
 { bash, buildFHSUserEnv, fail, gnome2, gnome3, gsettings-desktop-schemas, gtk3,
-  hicolor-icon-theme, lib, makeFontsConf, mkBin, onlineCheck, runCommand }:
+  hicolor-icon-theme, lib, makeFontsConf, mkBin, onlineCheck, runCommand,
+  unpack' }:
 
 with builtins;
 with lib;
@@ -9,7 +10,7 @@ with rec {
     name   = "firefoxWrapper-${source.version}";
     paths  = [ bash fail ];
     vars   = {
-      contents = source.outPath;
+      contents = unpack' "firefox-source-${source.version}" source.outPath;
 
       # Avoid "Locale not supported by C library"
       LANG   = "C";
