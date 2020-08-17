@@ -5,11 +5,11 @@
 with builtins;
 with lib;
 with rec {
-  raw = contents: mkBin {
-    name   = "firefoxWrapper";
+  raw = source: mkBin {
+    name   = "firefoxWrapper-${source.version}";
     paths  = [ bash fail ];
     vars   = {
-      inherit contents;
+      contents = source.outPath;
 
       # Avoid "Locale not supported by C library"
       LANG   = "C";
@@ -48,9 +48,9 @@ with rec {
     '';
   };
 
-  pkg = src: buildFHSUserEnv {
-    name       = "firefox";
-    targetPkgs = pkgs: [ (raw src) ] ++ (with pkgs; with xorg; [
+  pkg = source: buildFHSUserEnv {
+    name       = "firefox-${source.version}";
+    targetPkgs = pkgs: [ (raw source) ] ++ (with pkgs; with xorg; [
       # These are copypasta from the nixpkgs firefox dependencies
       alsaLib
       atk
@@ -97,7 +97,7 @@ with rec {
       gnome2.gnome_icon_theme
       gnome3.adwaita-icon-theme
     ]);
-    runScript = "firefoxWrapper";
+    runScript = "firefoxWrapper-${source.version}";
   };
 };
 {
