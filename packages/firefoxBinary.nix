@@ -4,42 +4,13 @@
 
 with builtins;
 with lib;
+src:
 with rec {
-  # Update these as needed
-  version = "78.0.2";
-  sha256  = "0zh11j6565jgxb4fwl2aph8y7d1sx84z7bvg39sngnfab70scxq0";
-
-  latest = import (runCommand "latest-firefox-version.nix"
-    {
-      page = fetchurl https://www.mozilla.org/en-US/firefox/releases;
-    }
-    ''
-      grep -o 'data-latest-firefox="[^"]*"' < "$page" |
-        grep -o '".*"' > "$out"
-    '');
-
-  warn = if onlineCheck && compareVersions version latest == -1
-            then trace (toJSON {
-                   inherit latest version;
-                   WARNING = "Newer Firefox is out";
-                 })
-            else (x: x);
-
-  url = warn concatStrings [
-    "https://archive.mozilla.org/pub/firefox/releases/"
-    version
-    "/linux-i686/en-GB/firefox-"
-    version
-    ".tar.bz2"
-  ];
-
-  contents = fetchTarball { inherit sha256 url; };
-
   raw = mkBin {
     name   = "firefoxWrapper";
     paths  = [ bash fail ];
     vars   = {
-      inherit contents;
+      contents = src;
 
       # Avoid "Locale not supported by C library"
       LANG   = "C";
