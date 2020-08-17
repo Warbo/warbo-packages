@@ -4,13 +4,12 @@
 
 with builtins;
 with lib;
-src:
 with rec {
-  raw = mkBin {
+  raw = contents: mkBin {
     name   = "firefoxWrapper";
     paths  = [ bash fail ];
     vars   = {
-      contents = src;
+      inherit contents;
 
       # Avoid "Locale not supported by C library"
       LANG   = "C";
@@ -49,9 +48,9 @@ with rec {
     '';
   };
 
-  pkg = buildFHSUserEnv {
+  pkg = src: buildFHSUserEnv {
     name       = "firefox";
-    targetPkgs = pkgs: [ raw ] ++ (with pkgs; with xorg; [
+    targetPkgs = pkgs: [ (raw src) ] ++ (with pkgs; with xorg; [
       # These are copypasta from the nixpkgs firefox dependencies
       alsaLib
       atk
