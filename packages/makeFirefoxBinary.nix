@@ -49,7 +49,7 @@ with rec {
   };
 
   pkg = source: buildFHSUserEnv {
-    name       = "firefox-${source.version}";
+    name       = "firefox";
     targetPkgs = pkgs: [ (raw source) ] ++ (with pkgs; with xorg; [
       # These are copypasta from the nixpkgs firefox dependencies
       alsaLib
