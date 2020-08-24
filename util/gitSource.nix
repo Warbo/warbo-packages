@@ -4,7 +4,7 @@
 
 { name }:
   with rec {
-    inherit (builtins) getAttr;
+    inherit (builtins) elem getAttr;
     source = getAttr name warbo-packages-sources;
   };
   assert elem source.type [ "git" "github" ] || die {
