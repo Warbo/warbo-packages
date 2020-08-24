@@ -1,5 +1,5 @@
 with builtins;
-with import (import ./helpers.nix {}).nix-helpers;
+with import (import ./nix/sources.nix {}).nix-helpers.outPath;
 with import ./.;
 removeAttrs warbo-packages [
   "haskell"

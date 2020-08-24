@@ -14,6 +14,10 @@ do
     nix-instantiate --parse "$F" > /dev/null
 done
 
+echo "Performing Nix checks" 1>&2
+nix-instantiate --eval --read-write-mode \
+    -E '(import ./check.nix) || builtins.abort "Check failed"'
+
 echo "Checking that haskell-nix derivations are cached" 1>&2
 grep -R -l 'haskell-nix' | grep '\.nix$' | while read -r F
 do
@@ -76,16 +80,3 @@ do
     unset FOUNDNAME
     unset FOUNDVERSION
 done
-
-# Allow failure to get HEAD (e.g. in case we're offline)
-echo "Checking nix-helpers version" 1>&2
-if REV=$(git ls-remote "http://chriswarbo.net/git/nix-helpers.git" |
-         grep HEAD | cut -d ' ' -f1 | cut -c1-7)
-then
-    grep "$REV" < helpers.nix || {
-        echo "Didn't find nix-helpers rev '$REV' in helpers.nix" 1>&2
-        exit 1
-    }
-    echo "Checking helpers.nix builds (e.g. that SHA256 is correct)" 1>&2
-    nix-build --no-out-link helpers.nix || exit 1
-fi

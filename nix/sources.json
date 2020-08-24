@@ -1,0 +1,8 @@
+{
+    "nix-helpers": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/nix-helpers.git",
+        "rev": "2c4f80f09203ed402842962a559007a3983a0a2f",
+        "type": "git"
+    }
+}

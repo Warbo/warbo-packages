@@ -1,15 +1,11 @@
 self: super:
 
-with builtins;
-with super.lib;
 with rec {
-  # We make heavy use of things from nix-helpers. If it doesn't exist in self
-  # then we fall back to this version
-  helpers = import (import ./helpers.nix {
-                     inherit (super) fetchgit;
-                   }).nix-helpers;
+  inherit (builtins) attrNames getAttr readDir;
+  inherit (super.lib) filter fold hasSuffix mapAttrs removeSuffix;
+  inherit (helpers) nixFilesIn;
 
-  nixFilesIn = self.nixFilesIn or helpers.nixFilesIn;
+  helpers = import (self.warbo-packages-sources.nix-helpers);
 
   util = mapAttrs (_: call) (nixFilesIn ./util);
 
@@ -29,7 +25,7 @@ with rec {
 
   # Allow args to be drawn from helpers, as a fallback if the nix-helpers
   # overlay isn't being used
-  extraArgs = (if self ? nix-helpers then {} else helpers) // util // {
+  extraArgs = helpers // util // {
     # Useful for overriding things
     inherit extraArgs self super;
 
@@ -66,4 +62,4 @@ with rec {
     warbo-packages-tests = tests;
   };
 };
-warbo-packages
+warbo-packages // { warbo-packages-sources = import ./nix/sources.nix; }
