@@ -1,4 +1,10 @@
 {
+    "nix-eval": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/nix-eval.git",
+        "rev": "ce2c4d039f0f13dc6fddd00881b0ef7cef707b15",
+        "type": "git"
+    },
     "nix-helpers": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
