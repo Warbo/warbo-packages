@@ -27,7 +27,7 @@ with rec {
   # overlay isn't being used
   extraArgs = helpers // util // {
     # Useful for overriding things
-    inherit extraArgs self super;
+    inherit extraArgs super;
 
     # Many of our definitions use git repos from this URL. As a convenience,
     # we provide a layer of indirection: definitions look for a 'repoSource'
