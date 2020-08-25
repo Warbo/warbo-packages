@@ -1,11 +1,8 @@
-{ bash, buildEnv, fetchurl, hasBinary, libusb1, patchelf, rockbox_utility,
-  stdenv, writeScript }:
+{ bash, buildEnv, hasBinary, libusb1, patchelf, rockbox_utility, stdenv,
+  writeScript }:
 
 with rec {
-  firmware = fetchurl {
-    url    = https://files.freemyipod.org/~user890104/bootloader-ipodclassic-v1_0/bootloader-ipod6g.ipod;
-    sha256 = "0xi1f7zp9ziq1iymv7fxnc5gca03j3hgy80p8w4sbj3fnib8x8fm";
-  };
+  firmware = ./rockbox/bootloader-ipod6g.ipod;
 
   firmware_script = writeScript "rockbox_6thgen_firmware" ''
     #!${bash}/bin/bash
@@ -23,11 +20,8 @@ with rec {
   flasher = stdenv.mkDerivation {
     inherit firmware_script libusb1 scan_script;
     inherit (stdenv) glibc;
-    name = "rockbox-6thgen-classic-bootloader-installer";
-    src = fetchurl {
-      url    = "https://files.freemyipod.org/~user890104/bootloader-ipodclassic-v1_0/Linux/mks5lboot.x86";
-      sha256 = "1g7nyqz8gnc1q0hxm3pik2wqpiki457zhcqdm0h6674ns2z35m30";
-    };
+    name        = "rockbox-6thgen-classic-bootloader-installer";
+    src         = ./rockbox/mks5lboot.x86;
     unpackPhase = "true";
     buildInputs = [ patchelf ];
     shellHook   = ''
