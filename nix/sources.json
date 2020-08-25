@@ -1,4 +1,94 @@
 {
+    "AstPlugin": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/ast-plugin.git",
+        "rev": "52c7fa9a7e738b70c1a63fc448fe5636deea78e5",
+        "type": "git"
+    },
+    "HS2AST": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/hs2ast.git",
+        "rev": "a680742d96d2d19220360448af5e2bffc6790259",
+        "type": "git"
+    },
+    "arbitrary-haskell": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/arbitrary-haskell.git",
+        "rev": "a7a48600dd23909bb82200bd16130d469083d0bd",
+        "type": "git"
+    },
+    "asv-nix": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/asv-nix.git",
+        "rev": "0d7762b8115ac1e71459c061ceba1f3b61becd2b",
+        "type": "git"
+    },
+    "feed2maildir": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/feed2maildir.git",
+        "rev": "7b78e0cc453359250684debc50d0badd803924d4",
+        "type": "git"
+    },
+    "get-deps": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/get-deps.git",
+        "rev": "4ce5787d28a82401cee52d67ac20c10ca0f2d57f",
+        "type": "git"
+    },
+    "ghc-dup": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/ghc-dup.git",
+        "rev": "f30658fdbd8f1f83757ca83041f90c13c9bd4434",
+        "type": "git"
+    },
+    "git2html": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/git2html.git",
+        "rev": "01784ddd42fc956505ea6762e11948c898df18ae",
+        "type": "git"
+    },
+    "ifcxt": {
+        "branch": "constraints",
+        "repo": "http://chriswarbo.net/git/ifcxt.git",
+        "rev": "b4620ba5029c41cd51b996b2d9652d81bd86d501",
+        "type": "git"
+    },
+    "lazy-lambda-calculus": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/lazy-lambda-calculus.git",
+        "rev": "d4dfba7bbc7f62ec69812dd64f004a4a721f4e00",
+        "type": "git"
+    },
+    "lazysmallcheck2012": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/lazy-smallcheck-2012.git",
+        "rev": "01b536e6e3c06e30b8d52f9e27b31eed1d3350f3",
+        "type": "git"
+    },
+    "md2pdf": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/md2pdf.git",
+        "rev": "ee981573d8fac4c3137923db7131ed693edb6c54",
+        "type": "git"
+    },
+    "ml4pg": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/ml4pg.git",
+        "rev": "72dadb327355c3d03d1b70cd2f122ec022c8c563",
+        "type": "git"
+    },
+    "mlspec": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/mlspec.git",
+        "rev": "3b3d642f44f5ebf9ad9614dda54b6110c3a625e4",
+        "type": "git"
+    },
+    "mlspec-helper": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/mlspec-helper.git",
+        "rev": "6e208581d039398de44d48fb9b444e9b22f818bc",
+        "type": "git"
+    },
     "nix-eval": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-eval.git",
@@ -9,6 +99,30 @@
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
         "rev": "1569b2327699e0be40ba431b88b1ea5ea713d9df",
+        "type": "git"
+    },
+    "panhandle": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/panhandle.git",
+        "rev": "bab9580ea23441ca27c6b0af9e25903a2001d57b",
+        "type": "git"
+    },
+    "panpipe": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/panpipe.git",
+        "rev": "d0457f28ddde256ee97fe3a8c8053b1e0043f9a3",
+        "type": "git"
+    },
+    "runtime-arbitrary": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/runtime-arbitrary.git",
+        "rev": "5b7ff2f9132d43cffaef8bc232f3b1e08d0d65f9",
+        "type": "git"
+    },
+    "runtime-arbitrary-tests": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/runtime-arbitrary-tests.git",
+        "rev": "e0738c57380c6f4c2f1a08a82ac027dc59c6acdd",
         "type": "git"
     }
 }

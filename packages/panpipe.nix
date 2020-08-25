@@ -1,12 +1,7 @@
-{ defaultRepo, fetchgit, repoSource ? defaultRepo }:
+{ gitSource }:
 
 with rec {
-  src = fetchgit {
-    url    = "${repoSource}/panpipe.git";
-    rev    = "24734f6";
-    sha256 = "178xs0h29ygj3f1vs8p9gb278816zi1gmnks7j7bgdlx7c7ymd3v";
-  };
-
+  src  = gitSource { name = "panpipe"; };
   pkgs = import src;
 };
 {

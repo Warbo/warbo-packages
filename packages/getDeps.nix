@@ -1,14 +1,10 @@
-{ defaultRepo, fetchgit, haskell-nix, repoSource ? defaultRepo }:
+{ gitSource, haskell-nix }:
 
 with rec {
   pkgs = haskell-nix {};
 
   inherit ((pkgs.haskell-nix.cabalProject {
-    src = fetchgit {
-      url    = "${repoSource}/get-deps.git";
-      rev    = "cd6c171";
-      sha256 = "0lxgvbk58dq4hvlh3ld5m29apf2k06ihrkv6is0q4g5fc48k88cz";
-    };
+    src         = gitSource { name = "get-deps"; };
     ghc         = pkgs.buildPackages.pkgs.haskell-nix.compiler.ghc865;
     index-state = "2020-01-11T00:00:00Z";
 

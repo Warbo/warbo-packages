@@ -28,13 +28,6 @@ with rec {
   extraArgs = helpers // util // {
     # Useful for overriding things
     inherit extraArgs self super;
-
-    # Many of our definitions use git repos from this URL. As a convenience,
-    # we provide a layer of indirection: definitions look for a 'repoSource'
-    # parameter, falling back to this if not found. Hence we can use a
-    # faster mirror (e.g. local clones) by defining a 'repoSource' parameter
-    # in our config, if we want.
-    defaultRepo = http://chriswarbo.net/git;
   };
 
   mkPkg = name: previous:
