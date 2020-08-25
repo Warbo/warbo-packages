@@ -1,8 +1,12 @@
-{ die, fetchurl, hasBinary, lib, google-api-python-client, nixpkgs1803,
-  uritemplate }:
+{ die, hasBinary, lib, google-api-python-client, nixpkgs1803,
+  warbo-packages-sources }:
 
 with builtins;
 with lib;
+with rec {
+  name   = "gcalcli";
+  source = builtins.getAttr name warbo-packages-sources;
+};
 rec {
   pkg =
     with rec {
@@ -15,14 +19,9 @@ rec {
       error = "oauth2client version should be <= ${want}";
     };
     pythonPackages.buildPythonPackage {
-      name = "gcalcli";
-      version = "3.3.2";
-
-      src = fetchurl {
-        url = https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz;
-        sha256 = "0yw60zgh2ski46mxsyncwx4bb6zzrfp5bn91hg0xyvmz71339mkj";
-      };
-
+      inherit name;
+      inherit (source) version;
+      src                   = source.outPath;
       propagatedBuildInputs = [
         pythonPackages.python
         pythonPackages.gflags

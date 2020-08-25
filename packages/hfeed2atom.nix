@@ -1,16 +1,9 @@
-{ beautifulsoup-custom, fetchFromGitHub, fetchurl, mf2py, pythonPackages }:
+{ beautifulsoup-custom, getSource, mf2py, pythonPackages }:
 
 {
-  pkg = pythonPackages.buildPythonPackage {
-    name = "hfeed2atom";
-
-    src = fetchFromGitHub {
-      owner  = "kartikprabhu";
-      repo   = "hfeed2atom";
-      rev    = "214b4c6";
-      sha256 = "1p8srrszaj6dxr4xjl0hp71qh1q0irqgkdahynsmilhpylcdqxsr";
-    };
-
+  pkg = pythonPackages.buildPythonPackage rec {
+    name                  = "hfeed2atom";
+    src                   = getSource { inherit name; };
     propagatedBuildInputs = [
       pythonPackages.python
       beautifulsoup-custom

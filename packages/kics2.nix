@@ -1,16 +1,12 @@
-{ haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, which }:
+{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, which }:
 
-with builtins;
-with lib;
 with rec {
+  inherit (builtins) getAttr trace;
+  #inherit (lib) ;
   inherit (nixpkgs1803) haskellPackages;
 
-  name    = "kics2-${version}";
-  version = "2.0.0";
-  src     = fetchTarball {
-    url = "https://www-ps.informatik.uni-kiel.de/kics2/download/${name}.tar.gz";
-    sha256 = "0lr5fic28m1hkxzc2swgqg6is55qnv91wghhnkkrsci0xx04hd7m";
-  };
+  name = "kics2";
+  src  = getSource { inherit name; };
 
   deps = [
     "cabal-install"

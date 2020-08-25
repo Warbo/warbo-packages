@@ -5,11 +5,29 @@
         "rev": "52c7fa9a7e738b70c1a63fc448fe5636deea78e5",
         "type": "git"
     },
+    "Blueshell": {
+        "branch": "master",
+        "repo": "https://gitlab.com/KlipKyle/Blueshell.git",
+        "rev": "d1700b7b043e81edd8d9294dd48e3116b8413252",
+        "type": "git"
+    },
     "HS2AST": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/hs2ast.git",
         "rev": "a680742d96d2d19220360448af5e2bffc6790259",
         "type": "git"
+    },
+    "PyPdf2": {
+        "branch": "master",
+        "description": "A utility to read and write PDFs with Python",
+        "homepage": "https://pythonhosted.org/PyPDF2/",
+        "owner": "mstamy2",
+        "repo": "PyPDF2",
+        "rev": "b9caeed5a81d99ae8f45f4fe75a324d182c6ecd2",
+        "sha256": "0mi1ky1dsg69608pb4n978ddw1l9vrf3ik86lfj7d89iljg2rr4w",
+        "type": "tarball",
+        "url": "https://github.com/mstamy2/PyPDF2/archive/b9caeed5a81d99ae8f45f4fe75a324d182c6ecd2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "arbitrary-haskell": {
         "branch": "master",
@@ -17,17 +35,92 @@
         "rev": "a7a48600dd23909bb82200bd16130d469083d0bd",
         "type": "git"
     },
+    "artemis": {
+        "branch": "master",
+        "description": "lightweight distributed issue tracker",
+        "homepage": "http://mrzv.org/software/artemis/",
+        "owner": "mrzv",
+        "repo": "artemis",
+        "rev": "6a3d496fc5ffc32c04f45856286f450b7ee52df6",
+        "sha256": "1xdd4ayb6jyk4w5hdq2dxbxzzk90lk21rvkhwcih8ydwwg6zrnqh",
+        "type": "tarball",
+        "url": "https://github.com/mrzv/artemis/archive/6a3d496fc5ffc32c04f45856286f450b7ee52df6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "asv-nix": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/asv-nix.git",
         "rev": "0d7762b8115ac1e71459c061ceba1f3b61becd2b",
         "type": "git"
     },
+    "beautiful-soup": {
+        "sha256": "1yxxz5liswxh8v1x07s5vw3ldzn7kjqrnylb0svxx39vggv3vxki",
+        "type": "tarball",
+        "url": "https://www.crummy.com/software/BeautifulSoup/bs4/download/4.5/beautifulsoup4-4.5.1.tar.gz",
+        "url_template": "https://www.crummy.com/software/BeautifulSoup/bs4/download/4.5/beautifulsoup4-4.5.1.tar.gz"
+    },
+    "bibclean": {
+        "sha256": "0xbarljc1qzznawmr0sifzh1mxm19hv61jav6zwijbjc1dk4fh7l",
+        "type": "file",
+        "url": "http://ftp.math.utah.edu/pub/bibclean/bibclean-2.17.tar.bz2",
+        "url_template": "http://ftp.math.utah.edu/pub/bibclean/bibclean-<version>.tar.bz2",
+        "version": "2.17"
+    },
+    "citation-styles": {
+        "branch": "master",
+        "description": "Official repository for Citation Style Language (CSL) citation styles.",
+        "homepage": "https://citationstyles.org/",
+        "owner": "citation-style-language",
+        "repo": "styles",
+        "rev": "fcb341a571a9cb5d379ea97e8a379de07774b35a",
+        "sha256": "1yc0b03g962cgg2paci5z99gws55qv5lk23fgjc80if1gl4falpv",
+        "type": "tarball",
+        "url": "https://github.com/citation-style-language/styles/archive/fcb341a571a9cb5d379ea97e8a379de07774b35a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "coq-mtac": {
+        "branch": "SafeRefs-1.2",
+        "description": "Coq is a formal proof management system. It provides a formal language to write mathematical definitions, executable algorithms and theorems together with an environment for semi-interactive development of machine-checked proofs. ",
+        "homepage": "http://coq.inria.fr/",
+        "owner": "beta-ziliani",
+        "repo": "coq",
+        "rev": "2651fd377ba63c08061d446f7365d59523deac22",
+        "sha256": "0z46k143ppf9mz3jw8wqw91z93gx79jy0gcdfrhl3m6nqw27li08",
+        "type": "tarball",
+        "url": "https://github.com/beta-ziliani/coq/archive/2651fd377ba63c08061d446f7365d59523deac22.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "droid-fonts": {
+        "sha256": "0w7idnjwckyqypxm5ccqj9wg15zjq1z92a98vfvnbyljn95bd9ir",
+        "type": "file",
+        "url": "http://http.debian.net/debian/pool/main/f/fonts-android/fonts-android_4.4.4r2.orig.tar.xz",
+        "url_template": "http://http.debian.net/debian/pool/main/f/fonts-android/fonts-android_<version>.orig.tar.xz",
+        "version": "4.4.4r2"
+    },
     "feed2maildir": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/feed2maildir.git",
         "rev": "7b78e0cc453359250684debc50d0badd803924d4",
         "type": "git"
+    },
+    "font-spacemono": {
+        "branch": "master",
+        "description": "Original monospace display typeface family",
+        "homepage": "https://fonts.google.com/specimen/Space+Mono",
+        "owner": "googlefonts",
+        "repo": "spacemono",
+        "rev": "f5ebc1e1c0eca03079cb830f167695751d3e0353",
+        "sha256": "1xx2xjxb9nfksy0s1md1vxrs86nn83qzkkc5c8b0k4aj5w1bijmk",
+        "type": "tarball",
+        "url": "https://github.com/googlefonts/spacemono/archive/f5ebc1e1c0eca03079cb830f167695751d3e0353.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "gcalcli": {
+        "sha256": "03fim2d7m6ml5y29p551wy3hljzm89amm0yvmj7wvlpk4v5ab6cf",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-<version>.tar.gz",
+        "version": "3.3.2"
     },
     "get-deps": {
         "branch": "master",
@@ -41,17 +134,111 @@
         "rev": "f30658fdbd8f1f83757ca83041f90c13c9bd4434",
         "type": "git"
     },
+    "ghc-simple": {
+        "branch": "master",
+        "description": "Simplified interface to the GHC API",
+        "homepage": "",
+        "owner": "valderman",
+        "repo": "ghc-simple",
+        "rev": "e3ca2838bc44ca775de282cdc0b6f2d469b8a66c",
+        "sha256": "16fjgq4y4cv0fq7p8cs53ifwyvn8fxnzwrq7zysi9pvpisy3k060",
+        "type": "tarball",
+        "url": "https://github.com/valderman/ghc-simple/archive/e3ca2838bc44ca775de282cdc0b6f2d469b8a66c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "git2html": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/git2html.git",
         "rev": "01784ddd42fc956505ea6762e11948c898df18ae",
         "type": "git"
     },
+    "git2html-real": {
+        "branch": "master",
+        "description": "github clone of http://hssl.cs.jhu.edu/~neal/git2html/",
+        "homepage": null,
+        "owner": "Hypercubed",
+        "repo": "git2html",
+        "rev": "b29cc9517980058cce3f550c4befcf73ee8147bc",
+        "sha256": "0aifz2mdkxay40x2mimx6jz964jb16x4nvbyifkgkxb1jx7fr4jb",
+        "type": "tarball",
+        "url": "https://github.com/Hypercubed/git2html/archive/b29cc9517980058cce3f550c4befcf73ee8147bc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "google-api-python-client": {
+        "sha256": "1ddrb1nahrpxd020waxb2djfhvc7hjibmmhjbfy948k6ij5pxp4f",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/g/google-api-python-client/google-api-python-client-1.4.2.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/g/google-api-python-client/google-api-python-client-<version>.tar.gz",
+        "version": "1.4.2"
+    },
+    "gscholar": {
+        "description": "Python library to query Google Scholar.",
+        "homepage": "https://github.com/venthur/gscholar",
+        "sha256": "1fri6q9i39i40qla5vgfw1gky5g9pbib7pyqra4nabizqqpmglvb",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/g/gscholar/gscholar-1.3.0.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/g/gscholar/gscholar-<version>.tar.gz",
+        "version": "1.3.0"
+    },
+    "hackage-db": {
+        "branch": "cabal-file-revisions",
+        "description": "provide access to the Hackage database via Data.Map",
+        "homepage": "http://hackage.haskell.org/package/hackage-db",
+        "owner": "ElvishJerricco",
+        "repo": "hackage-db",
+        "rev": "84ca9fc75ad45a71880e938e0d93ea4bde05f5bd",
+        "sha256": "0y3kw1hrxhsqmyx59sxba8npj4ya8dpgjljc21gkgdvdy9628q4c",
+        "type": "tarball",
+        "url": "https://github.com/ElvishJerricco/hackage-db/archive/84ca9fc75ad45a71880e938e0d93ea4bde05f5bd.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "hfeed2atom": {
+        "branch": "master",
+        "description": "Python functions to convert a h-feed to Atom 1.0",
+        "homepage": null,
+        "owner": "kartikprabhu",
+        "repo": "hfeed2atom",
+        "rev": "214b4c61879d217e0854e87d2a25e3ca8ee7e91a",
+        "sha256": "1p8srrszaj6dxr4xjl0hp71qh1q0irqgkdahynsmilhpylcdqxsr",
+        "type": "tarball",
+        "url": "https://github.com/kartikprabhu/hfeed2atom/archive/214b4c61879d217e0854e87d2a25e3ca8ee7e91a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "hnix": {
+        "sha256": "1kjga8pdwyb046hg7x1v5d5rvd9zccgzz1i656ydw44r4qxh1v0w",
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/hnix-0.6.1/hnix-0.6.1.tar.gz",
+        "url_template": "https://hackage.haskell.org/package/hnix-<version>/hnix-<version>.tar.gz",
+        "version": "0.6.1"
+    },
+    "hnix-store-core": {
+        "sha256": "0ibmqq9i0krjn8mw7h6c38ryyj11f8vyjqqvj72y36ashl9sdiyf",
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/hnix-store-core-0.1.0.0/hnix-store-core-0.1.0.0.tar.gz",
+        "url_template": "https://hackage.haskell.org/package/hnix-store-core-<version>/hnix-store-core-<version>.tar.gz",
+        "version": "0.1.0.0"
+    },
     "ifcxt": {
         "branch": "constraints",
         "repo": "http://chriswarbo.net/git/ifcxt.git",
         "rev": "b4620ba5029c41cd51b996b2d9652d81bd86d501",
         "type": "git"
+    },
+    "jsbeautifier": {
+        "description": "Format and de-obfuscate javascript.",
+        "homepage": "http://jsbeautifier.org",
+        "sha256": "0iw55qy17ibqqv3ag2jn2wqp8f5dj7wpaf79z01jiqfv64qy3vqs",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/j/jsbeautifier/jsbeautifier-1.10.2.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/j/jsbeautifier/jsbeautifier-<version>.tar.gz",
+        "version": "1.10.2"
+    },
+    "kics2": {
+        "sha256": "0lr5fic28m1hkxzc2swgqg6is55qnv91wghhnkkrsci0xx04hd7m",
+        "type": "tarball",
+        "url": "https://www-ps.informatik.uni-kiel.de/kics2/download/kics2-2.0.0.tar.gz",
+        "url_template": "https://www-ps.informatik.uni-kiel.de/kics2/download/kics2-<version>.tar.gz",
+        "version": "2.0.0"
     },
     "lazy-lambda-calculus": {
         "branch": "master",
@@ -71,6 +258,32 @@
         "rev": "ee981573d8fac4c3137923db7131ed693edb6c54",
         "type": "git"
     },
+    "mercurial": {
+        "sha256": "18a83wjn5l2r5wi6r1ka28ddjs8h25h8c16qv7k8qga5c938s31p",
+        "type": "tarball",
+        "url": "https://www.mercurial-scm.org/release/mercurial-4.2.1.tar.gz",
+        "url_template": "https://www.mercurial-scm.org/release/mercurial-<version>.tar.gz",
+        "version": "4.2.1"
+    },
+    "mf2py": {
+        "branch": "master",
+        "description": "Microformats2 parser written in Python",
+        "homepage": "http://microformats.org/wiki/mf2py",
+        "owner": "tommorris",
+        "repo": "mf2py",
+        "rev": "c133581c69a357d97da7445a1fc6aeb15459eb57",
+        "sha256": "1agz7fbpplv719l0hfwflzbsahsyhrx904gf8azy6gxwzay3hf2h",
+        "type": "tarball",
+        "url": "https://github.com/tommorris/mf2py/archive/c133581c69a357d97da7445a1fc6aeb15459eb57.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "mf2util": {
+        "sha256": "1jqxhnmqc2ggqmbq3jzdwp14h3kn9w64gwadjafgcwdjq06iryhk",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/m/mf2util/mf2util-0.4.3.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/m/mf2util/mf2util-<version>.tar.gz",
+        "version": "0.4.3"
+    },
     "ml4pg": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/ml4pg.git",
@@ -88,6 +301,18 @@
         "repo": "http://chriswarbo.net/git/mlspec-helper.git",
         "rev": "6e208581d039398de44d48fb9b444e9b22f818bc",
         "type": "git"
+    },
+    "nix-delegate": {
+        "branch": "master",
+        "description": "Convenient utility for distributed Nix builds",
+        "homepage": null,
+        "owner": "awakesecurity",
+        "repo": "nix-delegate",
+        "rev": "aeb6c4a908555e64e08c8949a69f59bffbf53dea",
+        "sha256": "0qb83jkb495vgh912sdiqcph7zrppm4rch9j25m5988d9y1ykgja",
+        "type": "tarball",
+        "url": "https://github.com/awakesecurity/nix-delegate/archive/aeb6c4a908555e64e08c8949a69f59bffbf53dea.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-eval": {
         "branch": "master",
@@ -113,6 +338,20 @@
         "rev": "d0457f28ddde256ee97fe3a8c8053b1e0043f9a3",
         "type": "git"
     },
+    "python-lhafile": {
+        "sha256": "0hyi42lxw8z2z84h28zc9wjlq3ycib5qxwd7lqklr4qvhf3bcg59",
+        "type": "tarball",
+        "url": "http://fengestad.no/python-lhafile/python-lhafile-0.2.1.tar.gz",
+        "url_template": "http://fengestad.no/python-lhafile/python-lhafile-<version>.tar.gz",
+        "version": "0.2.1"
+    },
+    "requests": {
+        "sha256": "1pkikn9sqny4rldfami4qzd8nalyaqiifh2y4j92c30yf4al4i9k",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/r/requests/requests-2.11.1.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/r/requests/requests-<version>.tar.gz",
+        "version": "2.11.1"
+    },
     "runtime-arbitrary": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/runtime-arbitrary.git",
@@ -124,5 +363,70 @@
         "repo": "http://chriswarbo.net/git/runtime-arbitrary-tests.git",
         "rev": "e0738c57380c6f4c2f1a08a82ac027dc59c6acdd",
         "type": "git"
+    },
+    "searchtobibtex": {
+        "branch": "master",
+        "description": "Performs a search and uses the resulting DOI to create a new bibtex entry. Uses the crossref API.",
+        "homepage": null,
+        "owner": "atisharma",
+        "repo": "searchtobibtex",
+        "rev": "c1d046702aa6b866cce9113061d96f47388349f4",
+        "sha256": "1sml5gzjwnrmv3g12n64v2h5mqh1favg0gq6500qdxpwp0zgnygf",
+        "type": "tarball",
+        "url": "https://github.com/atisharma/searchtobibtex/archive/c1d046702aa6b866cce9113061d96f47388349f4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "skulpture-qt5": {
+        "branch": "five",
+        "description": null,
+        "homepage": null,
+        "owner": "cfeck",
+        "repo": "skulpture",
+        "rev": "f4f41ee3bf8339b4fdbcd183a8a58826a8725560",
+        "sha256": "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays",
+        "type": "tarball",
+        "url": "https://github.com/cfeck/skulpture/archive/f4f41ee3bf8339b4fdbcd183a8a58826a8725560.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sta": {
+        "branch": "master",
+        "description": "Fast(er) statistics from the command line. ",
+        "homepage": "",
+        "owner": "simonccarter",
+        "repo": "sta",
+        "rev": "2aa2a6035dde88b24978b875e4c45e0e296f77ed",
+        "sha256": "05804f106nb89yvdd0csvpd5skwvnr9x4qr3maqzaw0qr055mrsk",
+        "type": "tarball",
+        "url": "https://github.com/simonccarter/sta/archive/2aa2a6035dde88b24978b875e4c45e0e296f77ed.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "translitcodec": {
+        "description": "Unicode to 8-bit charset transliteration codec",
+        "homepage": "https://pypi.python.org/pypi/translitcodec",
+        "sha256": "1my5azq1vqakrnrjgvvghx8434kmv455y76cmznmlbgx08d7f82l",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/t/translitcodec/translitcodec-0.4.0.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/t/translitcodec/translitcodec-<version>.tar.gz",
+        "version": "0.4.0"
+    },
+    "uritemplate": {
+        "sha256": "01rbhf2xx5xsnv16wriwanv7ybzypy9km27xqsx2lfxqsaxfqvc6",
+        "type": "tarball",
+        "url": "https://pypi.python.org/packages/source/u/uritemplate/uritemplate-0.6.tar.gz",
+        "url_template": "https://pypi.python.org/packages/source/u/uritemplate/uritemplate-<version>.tar.gz",
+        "version": "0.6"
+    },
+    "w3c-validator": {
+        "sha256": "01gyrp5fic4n95f8fvlk0b4npx762nj49w42nz3qacl11rq29r57",
+        "type": "file",
+        "url": "https://github.com/validator/validator/releases/download/16.1.1/vnu.jar_16.1.1.zip",
+        "url_template": "https://github.com/validator/validator/releases/download/<version>/vnu.jar_<version>.zip",
+        "version": "16.1.1"
+    },
+    "xdms": {
+        "sha256": "0f1fs9nlcqggix5iziadk5qc2pqxx6wsm0ixd9hdncvrygs67ffq",
+        "type": "file",
+        "url": "http://aminet.net/util/arc/xDMS.lha",
+        "url_template": "http://aminet.net/util/arc/xDMS.lha"
     }
 }

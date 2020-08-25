@@ -1,25 +1,24 @@
-{ fetchurl, lib, pythonPackages, uritemplate }:
+{ lib, pythonPackages, uritemplate, warbo-packages-sources }:
 
-with {
-  f = { pythonPackages, uritemplate }: pythonPackages.buildPythonPackage {
-    name = "google-api-python-client";
-    version = "1.4.2";
-
-    src = fetchurl {
-      url    = https://pypi.python.org/packages/source/g/google-api-python-client/google-api-python-client-1.4.2.tar.gz;
-      sha256 = "1vl8kayxzd66scpx4d7mv9r4jz54kmsby7pafppx3xdhjz3wrmrc";
-    };
-
-    propagatedBuildInputs = [
-      pythonPackages.python
-      pythonPackages.six
-      uritemplate
-      pythonPackages.httplib2
-      pythonPackages.oauth2client
-    ];
-  };
+with rec {
+  name   = "google-api-python-client";
+  source = builtins.getAttr name warbo-packages-sources;
 };
 {
-  pkg   = lib.makeOverridable f { inherit pythonPackages uritemplate; };
+  pkg   = lib.makeOverridable
+    ({ pythonPackages, uritemplate }: pythonPackages.buildPythonPackage {
+      inherit name;
+      inherit (source) version;
+      src                   = source.outPath;
+      propagatedBuildInputs = [
+        pythonPackages.python
+        pythonPackages.six
+        uritemplate
+        pythonPackages.httplib2
+        pythonPackages.oauth2client
+      ];
+    })
+  { inherit pythonPackages uritemplate; };
+
   tests = {};
 }

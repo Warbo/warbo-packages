@@ -1,18 +1,9 @@
-{ forceLatest ? false, latestGit, fetchurl, pythonPackages }:
+{ getSource, pythonPackages }:
 
 {
-  pkg = pythonPackages.buildPythonPackage {
+  pkg = pythonPackages.buildPythonPackage rec {
     name = "PyPdf2";
-
-    src = latestGit {
-      url    = https://github.com/mstamy2/PyPDF2.git;
-      stable = {
-        rev        = "b9caeed";
-        sha256     = "0mi1ky1dsg69608pb4n978ddw1l9vrf3ik86lfj7d89iljg2rr4w";
-        unsafeSkip = forceLatest;
-      };
-    };
-
+    src  = getSource { inherit name; };
     propagatedBuildInputs = [
       pythonPackages.python
     ];

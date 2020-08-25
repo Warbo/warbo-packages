@@ -1,12 +1,9 @@
-{ fetchurl, gnutar, runCommand, utillinux, xz }:
+{ getSource, gnutar, runCommand, utillinux, xz }:
 
 {
   pkg = runCommand "droid-fonts"
     {
-      zipped = fetchurl {
-        url    = "http://http.debian.net/debian/pool/main/f/fonts-android/fonts-android_4.4.4r2.orig.tar.xz";
-        sha256 = "0w7idnjwckyqypxm5ccqj9wg15zjq1z92a98vfvnbyljn95bd9ir";
-      };
+      zipped      = getSource { name = "droid-fonts"; };
       buildInputs = [ xz gnutar utillinux ];
     }
     ''

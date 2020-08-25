@@ -1,31 +1,24 @@
-{ fetchurl, pythonPackages, poppler_utils }:
+{ pythonPackages, poppler_utils, warbo-packages-sources }:
 
+with rec {
+  name   = "gscholar";
+  source = builtins.getAttr name warbo-packages-sources;
+};
 {
-  pkg = pythonPackages.buildPythonPackage {
-    name = "gscholar";
-    version = "2015-10-27";
-
-    src = fetchurl {
-      url = https://pypi.python.org/packages/source/g/gscholar/gscholar-1.3.0.tar.gz;
-      sha256 = "0mq7ibqc28pfsw6abxip530lf4535lz83whqybr6mkf1f2ykdwfw";
-    };
-
+  pkg = pythonPackages.buildPythonPackage rec {
+    inherit name;
+    inherit (source) version;
+    meta = { inherit (source) description homepage; };
+    src  = source.outPath;
+    preInstallPhases      = [ "bins" ];
     propagatedBuildInputs = [
       pythonPackages.python
       poppler_utils
     ];
-
-    preInstallPhases = [ "bins" ];
-
     bins = ''
       mkdir -p "$out/bin"
       cp ./gscholar/gscholar.py "$out/bin"
     '';
-
-    meta = {
-      description = "Python library to query Google Scholar.";
-      homepage =  "https://github.com/venthur/gscholar";
-    };
   };
 
   tests = {};

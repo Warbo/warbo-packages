@@ -1,15 +1,9 @@
-{stdenv, fetchFromGitHub, gnumake, which, bibtool, bibclean, curl, poppler_utils}:
+{ bibtool, bibclean, curl, getSource, gnumake, poppler_utils, stdenv, which }:
 
 {
-  pkg = stdenv.mkDerivation {
+  pkg = stdenv.mkDerivation rec {
     name = "searchtobibtex";
-    version = "2015-10-15";
-    src = fetchFromGitHub {
-      rev = "c1d0467";
-      owner = "atisharma";
-      repo = "searchtobibtex";
-      sha256 = "1sml5gzjwnrmv3g12n64v2h5mqh1favg0gq6500qdxpwp0zgnygf";
-    };
+    src  = getSource { inherit name; };
 
     propagatedBuildInputs = [ which bibtool bibclean curl poppler_utils ];
 

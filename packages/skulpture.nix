@@ -1,6 +1,5 @@
-{ cmake, fail, fetchFromGitHub, fetchurl, findutils,
-  kdelibs4 ? nixpkgs1709.kdelibs4, nixpkgs1709, nixpkgs1909, qt4, stdenv,
-  writeScript }:
+{ cmake, fail, fetchurl, findutils, kdelibs4 ? nixpkgs1709.kdelibs4,
+  nixpkgs1709, nixpkgs1909, qt4, stdenv, writeScript }:
 
 with builtins;
 with {
@@ -35,6 +34,7 @@ rec {
     skulpture-qt4 = stdenv.mkDerivation {
       name    = "skulpture-qt4";
       version = "0.2.4";
+      # TODO: https://github.com/nmattia/niv/issues/274
       src     = fetchurl {
         url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
         sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
@@ -59,13 +59,8 @@ rec {
     };
 
     mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }: mkDerivation rec {
-      name = "skulpture-qt5";
-      src = fetchFromGitHub {
-        owner  = "cfeck";
-        repo   = "skulpture";
-        rev    = "f4f41ee";
-        sha256 = "0r7123qjvkhb5qds7zyi1j1w0w2qcy59wi9zg4gvwg63j4xpiays";
-      };
+      name         = "skulpture-qt5";
+      src          = getSource { inherit name; };
       preConfigure = "cd src";
       buildInputs  = [ qtbase qmake cmake kdelibs4 ];
       installPhase = ''

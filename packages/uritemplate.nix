@@ -1,22 +1,21 @@
-{ fetchurl, lib, pythonPackages }:
+{ lib, pythonPackages, warbo-packages-sources }:
 
-with {
-  f = { pythonPackages }: pythonPackages.buildPythonPackage {
-    name = "uritemplate";
-    version = "0.6";
-
-    src = fetchurl {
-      url    = https://pypi.python.org/packages/source/u/uritemplate/uritemplate-0.6.tar.gz;
-      sha256 = "1zapwg406vkwsirnzc6mwq9fac4az8brm6d9bp5xpgkyxc5263m3";
-    };
-
-    propagatedBuildInputs = [
-      pythonPackages.python
-      pythonPackages.simplejson
-    ];
-  };
+with rec {
+  name   = "uritemplate";
+  source = builtins.getAttr name warbo-packages-sources;
 };
 {
-  pkg   = lib.makeOverridable f { inherit pythonPackages; };
+  pkg   = lib.makeOverridable
+    ({ pythonPackages }: pythonPackages.buildPythonPackage {
+      inherit name;
+      inherit (source) version;
+      src                   = source.outPath;
+      propagatedBuildInputs = [
+        pythonPackages.python
+        pythonPackages.simplejson
+      ];
+    })
+    { inherit pythonPackages; };
+
   tests = {};
 }

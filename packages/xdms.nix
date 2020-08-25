@@ -1,13 +1,10 @@
-{ stdenv, fetchurl, hasBinary, lhasa, gnumake }:
+{ getSource, gnumake, hasBinary, lhasa, stdenv }:
 
 rec {
   pkg = stdenv.mkDerivation {
     name = "xdms";
 
-    src = fetchurl {
-      url    = http://aminet.net/util/arc/xDMS.lha;
-      sha256 = "0f1fs9nlcqggix5iziadk5qc2pqxx6wsm0ixd9hdncvrygs67ffq";
-    };
+    src = getSource { name = "xdms"; };
 
     buildInputs = [ lhasa gnumake ];
 
