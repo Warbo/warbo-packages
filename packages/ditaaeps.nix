@@ -4,6 +4,7 @@ rec {
   pkg = stdenv.mkDerivation rec {
     name = "ditaaeps-0.2";
 
+    # FIXME: Use https://github.com/madeye/ditaa-eps
     src = fetchurl {
       name   = "${name}.zip";
       url    = "mirror://sourceforge/project/ditaa-addons/DitaaEps/0.2/DitaaEps-0_2.zip";

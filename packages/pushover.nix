@@ -2,6 +2,7 @@
   SDL_mixer, SDL_ttf, stdenv, zlib }:
 
 rec {
+  # FIXME: Replace with https://gitlab.com/domino-chain
   pkg = stdenv.mkDerivation {
     name = "pushover";
     src  = fetchurl {

@@ -1,5 +1,6 @@
 { die, hasBinary, nixpkgs1603, withArgs }:
 
+# FIXME: Newer version is out, 0.4 source is gone :(
 assert nixpkgs1603 ? kde4 || die {
   error = "nixpkgs1603 should contain kde4 attribute, but didn't";
 };
