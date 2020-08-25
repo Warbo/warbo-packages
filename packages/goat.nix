@@ -1,5 +1,6 @@
 { cacert, git, go, hasBinary, runCommand }:
 
+# FIXME: Better to use niv instead of go get, somehow
 rec {
   pkg = runCommand "goat"
     {

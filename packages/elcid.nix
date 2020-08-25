@@ -1,5 +1,6 @@
 { buildEnv, cacert, go, git, runCommand }:
 
+# FIXME: We should replace 'go get' with niv somehow
 with rec {
   goGet = name: pre: runCommand "go-get"
     {
