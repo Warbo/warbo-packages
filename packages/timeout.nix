@@ -1,19 +1,14 @@
-{ attrsToDirs', bash, coreutils, fetchFromGitHub, hasBinary, perl, procps,
-  runCommand, wrap }:
+{ attrsToDirs', bash, coreutils, getSource, hasBinary, perl, procps, runCommand,
+  wrap }:
 
-with rec {
-  src = fetchFromGitHub {
-    owner  = "pshved";
-    repo   = "timeout";
-    rev    = "1ce1006";
-    sha256 = "0nsv05kg22l6w0v885nli2hc7r6vi0jrfhb98jyfq38qaad5y78c";
-  };
-
-  patched = runCommand "timeout-patched" { inherit src; } ''
-    cp -r "$src" "$out"
-    chmod -R +w "$out"
-    sed -e 's@/usr/bin/perl@${perl}/bin/perl@g' -i "$out/timeout"
-  '';
+with {
+  patched = runCommand "timeout-patched"
+    { src = getSource { name = "timeout"; }; }
+    ''
+      cp -r "$src" "$out"
+      chmod -R +w "$out"
+      sed -e 's@/usr/bin/perl@${perl}/bin/perl@g' -i "$out/timeout"
+    '';
 };
 rec {
   pkg = attrsToDirs' "timeout" {

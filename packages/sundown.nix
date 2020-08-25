@@ -1,4 +1,4 @@
-{ callPackage, fetchFromGitHub, lib, options ? [], stdenv }:
+{ callPackage, getSource, lib, options ? [], stdenv }:
 
 with builtins;
 with lib;
@@ -25,14 +25,9 @@ with rec {
         sed -e 's/${sentinel}0/${replaced}/g' -i examples/sundown.c
       '';
     };
-    stdenv.mkDerivation {
-      name = "sundown";
-      src  = fetchFromGitHub {
-        owner  = "vmg";
-        repo   = "sundown";
-        rev    = "37728fb";
-        sha256 = "0znnw7dkyir3a78hx8sb29dc4fj3wb3alv5w0iwasfc2ir0kcd8s";
-      };
+    stdenv.mkDerivation rec {
+      name         = "sundown";
+      src          = getSource { inherit name; };
       buildFlags   = [ "sundown" ];
       installPhase = ''
         mkdir -p "$out/bin"

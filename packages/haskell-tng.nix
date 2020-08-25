@@ -1,16 +1,11 @@
-{ buildEnv, fetchFromGitLab, hsinspect, run }:
+{ buildEnv, getSource, hsinspect, run }:
 
 with {
-  code = run {
+  code = run rec {
     name   = "haskell-tng.el";
     vars   = {
       dir  = "share/emacs/site-lisp/haskell-tng.el";
-      repo = fetchFromGitLab {
-        owner  = "tseenshe";
-        repo   = "haskell-tng.el";
-        rev    = "13102763";
-        sha256 = "15xczywy14xyqnm1n8fbqr1cqbbqp44ds3n6smyb01xg4dhnf2wq";
-      };
+      repo = getSource { inherit name; };
     };
     script = ''
       mkdir -p "$(dirname "$out/$dir")"

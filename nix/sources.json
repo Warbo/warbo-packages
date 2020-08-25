@@ -47,11 +47,35 @@
         "url": "https://github.com/mrzv/artemis/archive/6a3d496fc5ffc32c04f45856286f450b7ee52df6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "asv": {
+        "branch": "master",
+        "description": "Airspeed Velocity: A simple Python benchmarking tool with web-based reporting",
+        "homepage": "https://asv.readthedocs.io/",
+        "owner": "spacetelescope",
+        "repo": "asv",
+        "rev": "0e0ca65d243755247f550c018f3843b71a2be363",
+        "sha256": "1lzdk4f2xd77jmf8048kzam7ad7b05az4zh6mgq16snymrdifqij",
+        "type": "tarball",
+        "url": "https://github.com/spacetelescope/asv/archive/0e0ca65d243755247f550c018f3843b71a2be363.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "asv-nix": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/asv-nix.git",
         "rev": "0d7762b8115ac1e71459c061ceba1f3b61becd2b",
         "type": "git"
+    },
+    "awf": {
+        "branch": "master",
+        "description": "AWF - A Widget Factory",
+        "homepage": "",
+        "owner": "valr",
+        "repo": "awf",
+        "rev": "c937f1b628bd1130b0e5149e1268a6f5823c9148",
+        "sha256": "0jl2kxwpvf2n8974zzyp69mqhsbjnjcqm39y0jvijvjb1iy8iman",
+        "type": "tarball",
+        "url": "https://github.com/valr/awf/archive/c937f1b628bd1130b0e5149e1268a6f5823c9148.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "beautiful-soup": {
         "sha256": "1yxxz5liswxh8v1x07s5vw3ldzn7kjqrnylb0svxx39vggv3vxki",
@@ -65,6 +89,18 @@
         "url": "http://ftp.math.utah.edu/pub/bibclean/bibclean-2.17.tar.bz2",
         "url_template": "http://ftp.math.utah.edu/pub/bibclean/bibclean-<version>.tar.bz2",
         "version": "2.17"
+    },
+    "bibtool": {
+        "branch": "master",
+        "description": "BibTool is a tool for manipulating BibTeX data bases. BibTeX provides a mean to integrate citations into LaTeX documents. BibTool allows the manipulation of BibTeX files which goes beyond the possibilities -- and intentions -- of BibTeX.",
+        "homepage": null,
+        "owner": "ge-ne",
+        "repo": "bibtool",
+        "rev": "62c6745856f910af06f1d99bf44c53d7e8595cb8",
+        "sha256": "0a2q1k974swxw6lqvxg8i9jj9jxxsyrrp4vlp8qg7rgkfkdyfnmq",
+        "type": "tarball",
+        "url": "https://github.com/ge-ne/bibtool/archive/62c6745856f910af06f1d99bf44c53d7e8595cb8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "citation-styles": {
         "branch": "master",
@@ -121,6 +157,24 @@
         "url": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz",
         "url_template": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-<version>.tar.gz",
         "version": "3.3.2"
+    },
+    "genifunctors": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/genifunctors.git",
+        "rev": "797482d948a00dd80f6c0236ac1d1f28fca56c68",
+        "type": "git"
+    },
+    "geniplate": {
+        "branch": "master",
+        "description": "Use TH to generate uniplate-like functions.",
+        "homepage": null,
+        "owner": "danr",
+        "repo": "geniplate",
+        "rev": "961a732bcbfb4b2cb6092284f35b0353a2657210",
+        "sha256": "1ws5v1md552amcs7hhg4cla1sbq9lh3imqjiz8byvsp8bgrn4xvf",
+        "type": "tarball",
+        "url": "https://github.com/danr/geniplate/archive/961a732bcbfb4b2cb6092284f35b0353a2657210.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "get-deps": {
         "branch": "master",
@@ -180,6 +234,18 @@
         "url_template": "https://pypi.python.org/packages/source/g/gscholar/gscholar-<version>.tar.gz",
         "version": "1.3.0"
     },
+    "gtk-aurora-engine": {
+        "branch": "master",
+        "description": "Fork to fix a bug in gtk-aurora-engine",
+        "homepage": "",
+        "owner": "ScoreUnder",
+        "repo": "gtk-aurora-engine-fixed",
+        "rev": "b7f93081c138227f6ad4c293f4a74c7866d448ed",
+        "sha256": "115jp3mwax3q9dj5gflnyasllhlv54qwgwipc7ca1h4b3bw1adml",
+        "type": "tarball",
+        "url": "https://github.com/ScoreUnder/gtk-aurora-engine-fixed/archive/b7f93081c138227f6ad4c293f4a74c7866d448ed.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "hackage-db": {
         "branch": "cabal-file-revisions",
         "description": "provide access to the Hackage database via Data.Map",
@@ -191,6 +257,12 @@
         "type": "tarball",
         "url": "https://github.com/ElvishJerricco/hackage-db/archive/84ca9fc75ad45a71880e938e0d93ea4bde05f5bd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "haskell-tng.el": {
+        "branch": "tng",
+        "repo": "https://gitlab.com/tseenshe/haskell-tng.el.git",
+        "rev": "13102763804687b843eb76316f28752837cb72b5",
+        "type": "git"
     },
     "hfeed2atom": {
         "branch": "master",
@@ -217,6 +289,12 @@
         "url": "https://hackage.haskell.org/package/hnix-store-core-0.1.0.0/hnix-store-core-0.1.0.0.tar.gz",
         "url_template": "https://hackage.haskell.org/package/hnix-store-core-<version>/hnix-store-core-<version>.tar.gz",
         "version": "0.1.0.0"
+    },
+    "hsinspect": {
+        "branch": "master",
+        "repo": "https://gitlab.com/tseenshe/hsinspect.git",
+        "rev": "406cabe67a14751ef27953e7df02888e9b0dbe8e",
+        "type": "git"
     },
     "ifcxt": {
         "branch": "constraints",
@@ -252,6 +330,30 @@
         "rev": "01b536e6e3c06e30b8d52f9e27b31eed1d3350f3",
         "type": "git"
     },
+    "lhasa": {
+        "branch": "master",
+        "description": "Free Software LHA implementation",
+        "homepage": "http://fragglet.github.com/lhasa/",
+        "owner": "fragglet",
+        "repo": "lhasa",
+        "rev": "2a6cc7f93cd97521bc46ca8ee286ce1d83feb185",
+        "sha256": "1b6y8rmidzcx6p9j0cn7615nljxn7smaddiqh8sm9a28mhydipsk",
+        "type": "tarball",
+        "url": "https://github.com/fragglet/lhasa/archive/2a6cc7f93cd97521bc46ca8ee286ce1d83feb185.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "linkchecker": {
+        "branch": "master",
+        "description": "check links in web documents or full websites",
+        "homepage": "http://wummel.github.io/linkchecker/",
+        "owner": "wummel",
+        "repo": "linkchecker",
+        "rev": "c2ce810c3fb00b895a841a7be6b2e78c64e7b042",
+        "sha256": "1mbisgk57jdhshzizyh5izpqb537zjq19m5kym6apiwg0z3a8x9k",
+        "type": "tarball",
+        "url": "https://github.com/wummel/linkchecker/archive/c2ce810c3fb00b895a841a7be6b2e78c64e7b042.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "md2pdf": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/md2pdf.git",
@@ -283,6 +385,18 @@
         "url": "https://pypi.python.org/packages/source/m/mf2util/mf2util-0.4.3.tar.gz",
         "url_template": "https://pypi.python.org/packages/source/m/mf2util/mf2util-<version>.tar.gz",
         "version": "0.4.3"
+    },
+    "miller": {
+        "branch": "master",
+        "description": "Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON",
+        "homepage": "http://johnkerl.org/miller/doc",
+        "owner": "johnkerl",
+        "repo": "miller",
+        "rev": "a3a24583bae983c450e29edfbbce9e19362ce6d8",
+        "sha256": "106bzyd564km923y26llxwzgmkys5h47mjp8dwvzc53phksns0wb",
+        "type": "tarball",
+        "url": "https://github.com/johnkerl/miller/archive/a3a24583bae983c450e29edfbbce9e19362ce6d8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ml4pg": {
         "branch": "master",
@@ -326,6 +440,18 @@
         "rev": "1569b2327699e0be40ba431b88b1ea5ea713d9df",
         "type": "git"
     },
+    "nix-tools": {
+        "branch": "master",
+        "description": "Translate Cabals Generic Package Description to a Nix expression",
+        "homepage": null,
+        "owner": "input-output-hk",
+        "repo": "nix-tools",
+        "rev": "bb5700d04f0ff2d1a3a7b3278121c1ec67898793",
+        "sha256": "11q34s5hm76vb6r01h3r5ya9k9f4xqz2xdf958frhn6jb3jjihf6",
+        "type": "tarball",
+        "url": "https://github.com/input-output-hk/nix-tools/archive/bb5700d04f0ff2d1a3a7b3278121c1ec67898793.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "panhandle": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/panhandle.git",
@@ -364,6 +490,18 @@
         "rev": "e0738c57380c6f4c2f1a08a82ac027dc59c6acdd",
         "type": "git"
     },
+    "scholar.py": {
+        "branch": "master",
+        "description": "A parser for Google Scholar, written in Python",
+        "homepage": null,
+        "owner": "ckreibich",
+        "repo": "scholar.py",
+        "rev": "3f889d9c31cda4bd041963c7dd689009f8ae2d42",
+        "sha256": "0haamzjjrz65wzv34lfccwl0vxpwk303q0gz9xif0qmljvp5a716",
+        "type": "tarball",
+        "url": "https://github.com/ckreibich/scholar.py/archive/3f889d9c31cda4bd041963c7dd689009f8ae2d42.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "searchtobibtex": {
         "branch": "master",
         "description": "Performs a search and uses the resulting DOI to create a new bibtex entry. Uses the crossref API.",
@@ -388,6 +526,18 @@
         "url": "https://github.com/cfeck/skulpture/archive/f4f41ee3bf8339b4fdbcd183a8a58826a8725560.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "space2ctrl": {
+        "branch": "master",
+        "description": "Turns the spacebar key to another control key.",
+        "homepage": "",
+        "owner": "r0adrunner",
+        "repo": "Space2Ctrl",
+        "rev": "8f7c97a1f0051dc96c2aa92050a1d240eb7922f0",
+        "sha256": "1kkbrxdqrmrpynnb18xnjm6gbr1mw2851abcjlv0c15d5calfcw7",
+        "type": "tarball",
+        "url": "https://github.com/r0adrunner/Space2Ctrl/archive/8f7c97a1f0051dc96c2aa92050a1d240eb7922f0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "sta": {
         "branch": "master",
         "description": "Fast(er) statistics from the command line. ",
@@ -398,6 +548,60 @@
         "sha256": "05804f106nb89yvdd0csvpd5skwvnr9x4qr3maqzaw0qr055mrsk",
         "type": "tarball",
         "url": "https://github.com/simonccarter/sta/archive/2aa2a6035dde88b24978b875e4c45e0e296f77ed.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sundown": {
+        "branch": "master",
+        "description": "Standards compliant, fast, secure markdown processing library in C",
+        "homepage": "",
+        "owner": "vmg",
+        "repo": "sundown",
+        "rev": "37728fb2d7137ff7c37d0a474cb827a8d6d846d8",
+        "sha256": "0znnw7dkyir3a78hx8sb29dc4fj3wb3alv5w0iwasfc2ir0kcd8s",
+        "type": "tarball",
+        "url": "https://github.com/vmg/sundown/archive/37728fb2d7137ff7c37d0a474cb827a8d6d846d8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tidy-html5": {
+        "branch": "next",
+        "description": "The granddaddy of HTML tools, with support for modern standards",
+        "homepage": "http://www.html-tidy.org",
+        "owner": "htacg",
+        "repo": "tidy-html5",
+        "rev": "fbde392af3b26c44628b1f4365ee9c662d37f9db",
+        "sha256": "1dkr27hr90kszrnzbsyqmkq25l3vaylvh59f8k7llf2mkmd7sg8s",
+        "type": "tarball",
+        "url": "https://github.com/htacg/tidy-html5/archive/fbde392af3b26c44628b1f4365ee9c662d37f9db.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "timeout": {
+        "branch": "master",
+        "description": "A script to measure and limit CPU time and memory consumption of black-box processes in Linux",
+        "homepage": "http://coldattic.info/shvedsky/pro/resourcelimit",
+        "owner": "pshved",
+        "repo": "timeout",
+        "rev": "1ce100651cf3b2e8e0030f18724319ef4ae75fa1",
+        "sha256": "0nsv05kg22l6w0v885nli2hc7r6vi0jrfhb98jyfq38qaad5y78c",
+        "type": "tarball",
+        "url": "https://github.com/pshved/timeout/archive/1ce100651cf3b2e8e0030f18724319ef4ae75fa1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tip-tools": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/tip-tools.git",
+        "rev": "2b8ed14ce0ef91253b48655900abe3e32562dcb7",
+        "type": "git"
+    },
+    "tip-tools-unstable": {
+        "branch": "master",
+        "description": null,
+        "homepage": "http://tip-org.github.io/",
+        "owner": "tip-org",
+        "repo": "tools",
+        "rev": "51a8ddbcdfa505fe0d75d3e5d33afb1ea918879d",
+        "sha256": "09ngg98yd52vygn3v4mcx20lh99qi06k5xgylnbc07bz7immgyy2",
+        "type": "tarball",
+        "url": "https://github.com/tip-org/tools/archive/51a8ddbcdfa505fe0d75d3e5d33afb1ea918879d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "translitcodec": {
@@ -422,6 +626,18 @@
         "url": "https://github.com/validator/validator/releases/download/16.1.1/vnu.jar_16.1.1.zip",
         "url_template": "https://github.com/validator/validator/releases/download/<version>/vnu.jar_<version>.zip",
         "version": "16.1.1"
+    },
+    "x2x": {
+        "branch": "master",
+        "description": "x2x allows the keyboard, mouse on one X display to be used to control another X display.",
+        "homepage": "",
+        "owner": "dottedmag",
+        "repo": "x2x",
+        "rev": "89deb1d7c97121da9b688c2295472271859c2ee1",
+        "sha256": "1gcvsfkkf1xhmiv1x9vxgynicw78mvrxiz6a3mgzgyf8b6860d7r",
+        "type": "tarball",
+        "url": "https://github.com/dottedmag/x2x/archive/89deb1d7c97121da9b688c2295472271859c2ee1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "xdms": {
         "sha256": "0f1fs9nlcqggix5iziadk5qc2pqxx6wsm0ixd9hdncvrygs67ffq",

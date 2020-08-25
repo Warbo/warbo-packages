@@ -1,14 +1,9 @@
-{ fetchFromGitHub, replace, stdenv, xorg }:
+{ getSource, replace, stdenv, xorg }:
 
 {
-  pkg = stdenv.mkDerivation {
-    name = "space2ctrl";
-    src  = fetchFromGitHub {
-      owner  = "r0adrunner";
-      repo   = "Space2Ctrl";
-      rev    = "8f7c97a";
-      sha256 = "1kkbrxdqrmrpynnb18xnjm6gbr1mw2851abcjlv0c15d5calfcw7";
-    };
+  pkg = stdenv.mkDerivation rec {
+    name        = "space2ctrl";
+    src         = getSource { inherit name; };
     buildInputs = [
       replace
       (xorg.inputproto  or xorg.xorgproto)

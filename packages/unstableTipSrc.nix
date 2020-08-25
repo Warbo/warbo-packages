@@ -1,12 +1,6 @@
-{ fetchFromGitHub }:
+{ getSource }:
 
 {
-  pkg = fetchFromGitHub {
-    owner  = "tip-org";
-    repo   = "tools";
-    rev    = "51a8ddb";
-    sha256 = "09ngg98yd52vygn3v4mcx20lh99qi06k5xgylnbc07bz7immgyy2";
-  };
-
+  pkg   = getSource { name = "tip-tools-unstable"; };
   tests = {};
 }

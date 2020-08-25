@@ -1,15 +1,7 @@
 self: super: helf: huper:
 
-with self;
-with rec {
-  gpSrc = fetchFromGitHub {
-    owner  = "danr";
-    repo   = "geniplate";
-    rev    = "961a732";
-    sha256 = "1ws5v1md552amcs7hhg4cla1sbq9lh3imqjiz8byvsp8bgrn4xvf";
-  };
-
-  patched = runCommand "patch-geniplate" { inherit gpSrc; } ''
+with {
+  patch = gpSrc: self.runCommand "patch-geniplate" { inherit gpSrc; } ''
     cp -r "$gpSrc" ./toPatch
     chmod 777 -R ./toPatch
 
@@ -28,7 +20,7 @@ assert builtins.compareVersions ghcVersion ghcBelow == -1 || self.die {
   inherit ghcVersion;
   error = "geniplate needs GHC below ${ghcBelow} due to template-haskell bound";
 };
-helf.callPackage (haskellSrc2nix {
+helf.callPackage (self.haskellSrc2nix rec {
                    name = "geniplate";
-                   src  = patched;
+                   src  = patch (self.getSource { inherit name; });
                  }) {}

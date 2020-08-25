@@ -1,14 +1,9 @@
-{ fetchFromGitHub, git, isBroken, pkgHasBinary, pythonPackages }:
+{ getSource, git, isBroken, pkgHasBinary, pythonPackages }:
 
 with rec {
   plain = pythonPackages.buildPythonPackage {
     name = "airspeed-velocity";
-    src  = fetchFromGitHub {
-      owner  = "spacetelescope";
-      repo   = "asv";
-      rev    = "0e0ca65";
-      sha256 = "1lzdk4f2xd77jmf8048kzam7ad7b05az4zh6mgq16snymrdifqij";
-    };
+    src  = getSource { name = "asv"; };
 
     # For tests
     buildInputs = [

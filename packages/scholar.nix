@@ -1,16 +1,9 @@
-{ fetchFromGitHub, stdenv, pythonPackages }:
+{ getSource, pythonPackages, stdenv }:
 
 {
-  pkg = stdenv.mkDerivation {
+  pkg = stdenv.mkDerivation rec {
     name = "scholar.py";
-    version = "2015-10-15";
-
-    src = fetchFromGitHub {
-      rev    = "3f889d";
-      owner  = "ckreibich";
-      repo   = "scholar.py";
-      sha256 = "0haamzjjrz65wzv34lfccwl0vxpwk303q0gz9xif0qmljvp5a716";
-    };
+    src  = getSource { inherit name; };
 
     propagatedBuildInputs = [
       pythonPackages.python

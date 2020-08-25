@@ -1,18 +1,13 @@
-{ autoconf, automake, hasBinary, fetchFromGitHub, flex, libtool, stdenv }:
+{ autoconf, automake, getSource, hasBinary, flex, libtool, stdenv }:
 
 rec {
-  pkg = stdenv.mkDerivation {
-    name        = "miller";
-    buildInputs = [ autoconf automake flex libtool ];
+  pkg = stdenv.mkDerivation rec {
+    name         = "miller";
+    src          = getSource { inherit name; };
+    buildInputs  = [ autoconf automake flex libtool ];
     preConfigure = ''
       autoreconf -fiv
     '';
-    src         = fetchFromGitHub {
-      owner  = "johnkerl";
-      repo   = "miller";
-      rev    = "a3a2458";
-      sha256 = "106bzyd564km923y26llxwzgmkys5h47mjp8dwvzc53phksns0wb";
-    };
   };
 
   tests = hasBinary pkg "mlr";
