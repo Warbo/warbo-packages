@@ -1,5 +1,5 @@
 { die, hasBinary, lib, google-api-python-client, nixpkgs1803,
-  warbo-packages-sources }:
+  uritemplate, warbo-packages-sources }:
 
 with builtins;
 with lib;
