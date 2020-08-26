@@ -11,12 +11,6 @@
         "rev": "d1700b7b043e81edd8d9294dd48e3116b8413252",
         "type": "git"
     },
-    "HS2AST": {
-        "branch": "master",
-        "repo": "http://chriswarbo.net/git/hs2ast.git",
-        "rev": "a680742d96d2d19220360448af5e2bffc6790259",
-        "type": "git"
-    },
     "PyPdf2": {
         "branch": "master",
         "description": "A utility to read and write PDFs with Python",
@@ -290,6 +284,12 @@
         "url_template": "https://hackage.haskell.org/package/hnix-store-core-<version>/hnix-store-core-<version>.tar.gz",
         "version": "0.1.0.0"
     },
+    "hs2ast": {
+        "branch": "master",
+        "repo": "http://chriswarbo.net/git/hs2ast.git",
+        "rev": "a680742d96d2d19220360448af5e2bffc6790259",
+        "type": "git"
+    },
     "hsinspect": {
         "branch": "master",
         "repo": "https://gitlab.com/tseenshe/hsinspect.git",
@@ -437,7 +437,7 @@
     "nix-helpers": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
-        "rev": "1569b2327699e0be40ba431b88b1ea5ea713d9df",
+        "rev": "631edf9b73d9f3f96ca95d018d3fc4b55d890839",
         "type": "git"
     },
     "nix-tools": {
@@ -587,7 +587,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tip-tools": {
-        "branch": "master",
+        "branch": "tebenchmark-fixes",
         "repo": "http://chriswarbo.net/git/tip-tools.git",
         "rev": "2b8ed14ce0ef91253b48655900abe3e32562dcb7",
         "type": "git"
