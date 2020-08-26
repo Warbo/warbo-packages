@@ -12,7 +12,7 @@ with rec {
 {
   pkg = buildEnv {
     name  = "blueshell-theme";
-    paths = [ gtk-engine-bluecurve pkg ];
+    paths = [ gtk-engine-bluecurve src ];
   };
   tests = {};
 }

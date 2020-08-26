@@ -1,16 +1,12 @@
-{ callPackage, lib, nixpkgsRelease, nothing, pinnedNixpkgs, runCommand }:
+{ callPackage, nothing, repoRelease, runCommand }:
 
-with builtins;
-with lib;
 with rec {
-  repo = getAttr "repo${removePrefix "nixpkgs" nixpkgsRelease}" pinnedNixpkgs;
-
   suffix = "pkgs/misc/themes/clearlooks-phenix";
 
   havePath = import (runCommand "have-clearlooks-phenix.nix"
-    { inherit repo suffix; }
+    { inherit repoRelease suffix; }
     ''
-      if [[ -e "$repo/$suffix" ]]
+      if [[ -e "$repoRelease/$suffix" ]]
       then
         echo true  > "$out"
       else
@@ -18,7 +14,7 @@ with rec {
       fi
     '');
 
-  pkg = callPackage "${repo}/${suffix}" {};
+  pkg = callPackage "${repoRelease}/${suffix}" {};
 };
 
 {
