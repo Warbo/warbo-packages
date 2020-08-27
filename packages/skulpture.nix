@@ -1,8 +1,10 @@
-{ cmake, fail, fetchurl, findutils, kdelibs4 ? nixpkgs1709.kdelibs4,
-  nixpkgs1709, nixpkgs1909, qt4, stdenv, writeScript }:
+{ cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4,
+  lib, nixpkgs1709, nixpkgs1909, qt4, stdenv, writeScript }:
 
-with builtins;
-with {
+with rec {
+  inherit (builtins) attrNames getAttr map;
+  inherit (lib) concatStringsSep;
+
   installFiles = qt:
     with rec {
       toMove = {
