@@ -1,11 +1,11 @@
 self: super:
 
 with rec {
-  inherit (builtins) attrNames getAttr readDir;
+  inherit (builtins) attrNames getAttr readDir removeAttrs;
   inherit (super.lib) filter fold hasSuffix mapAttrs removeSuffix;
-  inherit (helpers) nixFilesIn;
+  inherit (nix-helpers) nixFilesIn;
 
-  helpers = import (self.warbo-packages-sources.nix-helpers);
+  nix-helpers = (import ./packages/nix-helpers.nix {}).pkg;
 
   util = mapAttrs (_: call) (nixFilesIn ./util);
 
@@ -23,11 +23,9 @@ with rec {
   # Like callPackage, but allows args to come from extraArgs
   call = x: self.newScope extraArgs x {};
 
-  # Allow args to be drawn from helpers, as a fallback if the nix-helpers
-  # overlay isn't being used
-  extraArgs = helpers // util // {
+  extraArgs = nix-helpers // util // {
     # Useful for overriding things
-    inherit extraArgs self super;
+    inherit extraArgs nix-helpers self super;
   };
 
   mkPkg = name: previous:
@@ -55,4 +53,4 @@ with rec {
     warbo-packages-tests = tests;
   };
 };
-warbo-packages
+removeAttrs warbo-packages [ "nix-helpers" ]
