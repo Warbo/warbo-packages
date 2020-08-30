@@ -55,4 +55,4 @@ with rec {
     warbo-packages-tests = tests;
   };
 };
-warbo-packages // { warbo-packages-sources = import ./nix/sources.nix; }
+warbo-packages
