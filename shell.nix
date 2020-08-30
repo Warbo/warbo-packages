@@ -1,5 +1,5 @@
 with {
-  inherit (import (import ./nix/sources.nix).nix-helpers.outPath)
+  inherit (import (import ./nix/sources.nix).nix-helpers)
     nixpkgsLatest pinnedNiv;
 };
 nixpkgsLatest.stdenv.mkDerivation {
