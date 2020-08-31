@@ -15,7 +15,7 @@ with rec {
 
     # Update these two when changing the derivation
     plan-sha256  = "036zb2pzwmihixm2r56aw6xyx69isx8hjdbqksnvgzma3yi86xy4";
-    materialized = ../caches/pandoc-plan-to-nix-pkgs;
+    materialized = ../../caches/pandoc-plan-to-nix-pkgs;
 
     # Nix's restricted evaluation mode can't fetch arbitrary things from the
     # network, like the git repo specified in pandoc's cabal.project file.
@@ -51,7 +51,7 @@ with rec {
 
     # Update these when changing the derivation
     plan-sha256  = "08s7200sg21z426bshyg58n972srsczskvi7yy393q90rcr9cjz3";
-    materialized = ../caches/pandoc-citeproc-plan-to-nix-pkgs;
+    materialized = ../../caches/pandoc-citeproc-plan-to-nix-pkgs;
   };
 };
 buildEnv {

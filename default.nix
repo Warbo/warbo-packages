@@ -1,5 +1,7 @@
-with (import ./packages/nix-helpers.nix {}).pkg;
-(import nix-helpers.repoLatest {
+with {
+  helpers = import ./packages/nix-helpers {};
+};
+(import helpers.repoLatest {
   config   = {};
   overlays = [ (import ./overlay.nix) ];
 }).warbo-packages

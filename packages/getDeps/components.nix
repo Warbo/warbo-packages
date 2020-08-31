@@ -10,5 +10,5 @@ with {
 
   # Update these two when the derivation changes
   plan-sha256  = "09d9lja0lzkgscwqm849ixsq4n35lnpa5f6m1krkrqz2r85lgk5s";
-  materialized = ../caches/GetDeps-plan-to-nix-pkgs;
+  materialized = ../../caches/GetDeps-plan-to-nix-pkgs;
 }).GetDeps.components

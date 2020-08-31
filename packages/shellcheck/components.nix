@@ -16,5 +16,5 @@ with {
 
   # Update these two when the derivation changes
   plan-sha256  = "183rh6lljf42qg42xxccvbp3kmhmpl4qzlzmx2h3p755f06lxljs";
-  materialized = ../caches/ShellCheck-plan-to-nix-pkgs;
+  materialized = ../../caches/ShellCheck-plan-to-nix-pkgs;
 }).components

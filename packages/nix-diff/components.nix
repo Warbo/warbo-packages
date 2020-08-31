@@ -11,5 +11,5 @@ with {
 
   # Update these when the changing this derivation
   plan-sha256  = "1j1wb27qbwjhx52n7brnyjsc66nhvfwblfyvvglah1rqwh580pvc";
-  materialized = ../caches/nix-diff-plan-to-nix-pkgs;
+  materialized = ../../caches/nix-diff-plan-to-nix-pkgs;
 }).components

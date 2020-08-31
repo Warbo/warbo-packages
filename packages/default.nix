@@ -1,13 +1,13 @@
-{ haskell, haskellPackages, lib, newScope, super }:
+{ lib, newScope, super }:
 
 with rec {
-  inherit (builtins) attrNames getAttr readDir removeAttrs;
-  inherit (lib) filter fold hasSuffix mapAttrs removeSuffix;
+  inherit (builtins) removeAttrs;
+  inherit (lib) mapAttrs;
   inherit (nix-helpers) nixDirsIn nixFilesIn;
 
-  nix-helpers = import ./packages/nix-helpers.nix {};
+  nix-helpers = import ./nix-helpers {};
 
-  util = mapAttrs (_: call) (nixFilesIn ./util);
+  util = mapAttrs (_: call) (nixFilesIn ../util);
 
   # Like callPackage, but allows args to come from extraArgs
   call = _: f: newScope extraArgs f {};
@@ -25,9 +25,8 @@ with rec {
   packages = load "default.nix";
   tests    = load "tests.nix";
 };
-with fold mkPkg { pkgs = {}; tests = call ./tests.nix; } fileNames;
 with rec {
-  warbo-packages = pkgs // {
+  warbo-packages = packages // {
     inherit warbo-packages;
     warbo-packages-tests = tests;
   };

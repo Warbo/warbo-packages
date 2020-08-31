@@ -12,5 +12,5 @@ with {
 
   # Update these when changing the derivation
   plan-sha256  = "08lzvl34crpxnrqfk4af7khij1g28g5kdjmm8w7vmyk8wxqwgmqn";
-  materialized = ../caches/nix-derivation-plan-to-nix-pkgs;
+  materialized = ../../caches/nix-derivation-plan-to-nix-pkgs;
 }).components
