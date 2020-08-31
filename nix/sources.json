@@ -78,8 +78,8 @@
         "url_template": "https://www.crummy.com/software/BeautifulSoup/bs4/download/4.5/beautifulsoup4-4.5.1.tar.gz"
     },
     "bibclean": {
-        "sha256": "0xbarljc1qzznawmr0sifzh1mxm19hv61jav6zwijbjc1dk4fh7l",
-        "type": "file",
+        "sha256": "0f82dggzddkc5l5crp2cz2w05zd8gd5hgrrfknpk1h2683072win",
+        "type": "tarball",
         "url": "http://ftp.math.utah.edu/pub/bibclean/bibclean-2.17.tar.bz2",
         "url_template": "http://ftp.math.utah.edu/pub/bibclean/bibclean-<version>.tar.bz2",
         "version": "2.17"
