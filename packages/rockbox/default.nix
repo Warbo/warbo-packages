@@ -1,7 +1,7 @@
 { bash, buildEnv, libusb1, patchelf, rockbox_utility, stdenv, writeScript }:
 
 with rec {
-  firmware = ./rockbox/bootloader-ipod6g.ipod;
+  firmware = ./bootloader-ipod6g.ipod;
 
   firmware_script = writeScript "rockbox_6thgen_firmware" ''
     #!${bash}/bin/bash
@@ -20,7 +20,7 @@ with rec {
     inherit firmware_script libusb1 scan_script;
     inherit (stdenv) glibc;
     name        = "rockbox-6thgen-classic-bootloader-installer";
-    src         = ./rockbox/mks5lboot.x86;
+    src         = ./mks5lboot.x86;
     unpackPhase = "true";
     buildInputs = [ patchelf ];
     shellHook   = ''
