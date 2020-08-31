@@ -3,11 +3,9 @@
 { lib, nixEvalOverrides, nixpkgs1709, nixpkgs1803, nixpkgs1903,
   haskellOverride }:
 
-with builtins;
-with lib;
 with {
   haskellTest = name: { extra ? {}, haskellPackages }:
-    getAttr name (haskellOverride ({ inherit haskellPackages; } // extra));
+    builtins.getAttr name (haskellOverride ({ inherit haskellPackages; } // extra));
 
   hs7103  = { haskellPackages = nixpkgs1803.haskell.packages.ghc7103; };
   hs784   = { haskellPackages = nixpkgs1709.haskell.packages.ghc784;  };
@@ -17,7 +15,7 @@ with {
   specFix = { extra = { filepath = true; extra = nixEvalOverrides; }; };
 };
 {
-  haskell = mapAttrs haskellTest {
+  haskell = lib.mapAttrs haskellTest {
     AstPlugin               = hs7103 // pathfix;
     genifunctors            = hs7103;
     geniplate               = hs784;
