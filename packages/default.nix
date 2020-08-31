@@ -1,8 +1,8 @@
-self: super:
+{ haskell, haskellPackages, lib, newScope, super }:
 
 with rec {
   inherit (builtins) attrNames getAttr readDir removeAttrs;
-  inherit (super.lib) filter fold hasSuffix mapAttrs removeSuffix;
+  inherit (lib) filter fold hasSuffix mapAttrs removeSuffix;
   inherit (nix-helpers) nixFilesIn;
 
   nix-helpers = (import ./packages/nix-helpers.nix {}).pkg;
@@ -21,11 +21,11 @@ with rec {
                           (attrNames (readDir ./packages)));
 
   # Like callPackage, but allows args to come from extraArgs
-  call = x: self.newScope extraArgs x {};
+  call = x: newScope extraArgs x {};
 
   extraArgs = nix-helpers // util // {
     # Useful for overriding things
-    inherit extraArgs nix-helpers self super;
+    inherit extraArgs nix-helpers super;
   };
 
   mkPkg = name: previous:
@@ -39,17 +39,18 @@ with rec {
 
   # Override haskellPackages and haskell.packages.* in an extensible way, so
   # that other overlays can do the same.
-  haskellOverride = hsPkgs: util.haskellOverride { haskellPackages = hsPkgs; };
-
-  haskellPackages = haskellOverride super.haskellPackages;
-  haskell         = super.haskell // {
-    packages = mapAttrs (_: haskellOverride) super.haskell.packages;
+  haskellOverride  = hsPkgs: util.haskellOverride { haskellPackages = hsPkgs; };
+  haskellOverrides = {
+    haskellPackages = haskellOverride haskellPackages;
+    haskell         = haskell // {
+      packages = mapAttrs (_: haskellOverride) haskell.packages;
+    };
   };
 };
 with fold mkPkg { pkgs = {}; tests = call ./tests.nix; } fileNames;
 with rec {
-  warbo-packages = pkgs // {
-    inherit haskell haskellPackages warbo-packages;
+  warbo-packages = pkgs // haskellOverrides // {
+    inherit warbo-packages;
     warbo-packages-tests = tests;
   };
 };
