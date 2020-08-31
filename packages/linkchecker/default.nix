@@ -6,8 +6,8 @@ with rec {
 };
 pythonPackages.buildPythonPackage rec {
   inherit name;
-  meta           = { inherit (pristine) description homepage; };
-  doInstallCheck = false;
+  meta    = { inherit (pristine) description homepage; };
+  doCheck = false;
 
   # Works around ridiculous hand-rolled lexicographical version-checking
   # nonsense, as per https://github.com/wummel/linkchecker/issues/649

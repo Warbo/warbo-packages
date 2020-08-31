@@ -4,6 +4,6 @@
   hasBinary = hasBinary linkchecker "linkchecker";
 
   stillNeedsDisabledTests = isBroken (linkchecker.overrideAttrs (old: {
-    doInstallCheck = true;
+    doCheck = true;
   }));
 }
