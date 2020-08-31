@@ -5,4 +5,4 @@
 # TODO: Check for latest version on hackage
 { haskell-nix }:
 
-(import ./components.nix { inherit haskell-nix; })..exes.shellcheck
+(import ./components.nix { inherit haskell-nix; }).exes.shellcheck

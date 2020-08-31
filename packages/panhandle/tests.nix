@@ -1,3 +1,3 @@
 { gitSource }:
 
-(import ./components.nix { inherit getSource; }).tests
+(import ./components.nix { inherit gitSource; }).tests
