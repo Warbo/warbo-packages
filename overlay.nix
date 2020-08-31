@@ -1,5 +1,5 @@
 self: super: import ./packages {
-  inherit super;
+  inherit self super;
   inherit (self) newScope;
   inherit (super) lib;
 }

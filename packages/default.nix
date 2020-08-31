@@ -1,4 +1,4 @@
-{ lib, newScope, super }:
+{ lib, newScope, self, super }:
 
 with rec {
   inherit (builtins) removeAttrs;
@@ -7,14 +7,14 @@ with rec {
 
   nix-helpers = import ./nix-helpers {};
 
-  util = mapAttrs (_: call) (nixFilesIn ../util);
+  util = mapAttrs call (nixFilesIn ../util);
 
   # Like callPackage, but allows args to come from extraArgs
   call = _: f: newScope extraArgs f {};
 
   extraArgs = nix-helpers // util // {
     # Useful for overriding things
-    inherit extraArgs nix-helpers super;
+    inherit extraArgs nix-helpers self super;
   };
 
   load = filename: mapAttrs call (nixDirsIn {
