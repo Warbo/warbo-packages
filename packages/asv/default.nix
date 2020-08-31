@@ -9,6 +9,7 @@ pythonPackages.buildPythonPackage {
     git
     pythonPackages.virtualenv
     pythonPackages.pip
+    pythonPackages.pytest
     pythonPackages.wheel
   ];
 

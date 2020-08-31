@@ -3,7 +3,7 @@
 {
   haveCmd = hasBinary asv "asv";
 
-  stillNeedToDisableTests = isBroken (asv.overrideAttrs (old: {
+  stillNeedToDisableTests = isBroken (asv.overridePythonAttrs (old: {
     doCheck = true;
   }));
 }
