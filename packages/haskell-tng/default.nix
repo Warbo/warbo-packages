@@ -13,10 +13,7 @@ with {
     '';
   };
 };
-{
-  pkg = buildEnv {
-    name  = "haskell-tng";
-    paths = [ code hsinspect ];
-  };
-  tests = {};
+buildEnv {
+  name  = "haskell-tng";
+  paths = [ code hsinspect ];
 }

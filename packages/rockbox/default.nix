@@ -1,5 +1,4 @@
-{ bash, buildEnv, hasBinary, libusb1, patchelf, rockbox_utility, stdenv,
-  writeScript }:
+{ bash, buildEnv, libusb1, patchelf, rockbox_utility, stdenv, writeScript }:
 
 with rec {
   firmware = ./rockbox/bootloader-ipod6g.ipod;
@@ -59,11 +58,7 @@ with rec {
     '';
   };
 };
-rec {
-  pkg = buildEnv {
-    name  = "rockbox-utils";
-    paths = [ flasher rockbox_utility ];
-  };
-
-  tests = hasBinary pkg "mks5lboot";
+buildEnv {
+  name  = "rockbox-utils";
+  paths = [ flasher rockbox_utility ];
 }

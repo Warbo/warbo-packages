@@ -1,4 +1,4 @@
-{ darwin, getSource, hasBinary, pythonPackages, stdenv }:
+{ darwin, getSource, pythonPackages, stdenv }:
 
 with {
   mercurial = pythonPackages.buildPythonPackage rec {
@@ -16,12 +16,8 @@ with {
          else [];
   };
 };
-rec {
-  pkg = pythonPackages.buildPythonPackage rec {
-    name                  = "artemis";
-    src                   = getSource { inherit name; };
-    propagatedBuildInputs = [ mercurial ];
-  };
-
-  tests = hasBinary pkg "git-artemis";
+pythonPackages.buildPythonPackage rec {
+  name                  = "artemis";
+  src                   = getSource { inherit name; };
+  propagatedBuildInputs = [ mercurial ];
 }

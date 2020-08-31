@@ -1,5 +1,5 @@
 { cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4,
-  lib, nixpkgs1709, nixpkgs1909, qt4, stdenv, writeScript }:
+  lib, nixpkgs1709, qt4, stdenv, writeScript }:
 
 with rec {
   inherit (builtins) attrNames getAttr map;
@@ -31,53 +31,47 @@ with rec {
     };
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
-rec {
-  pkg = {
-    skulpture-qt4 = stdenv.mkDerivation {
-      name    = "skulpture-qt4";
-      version = "0.2.4";
-      # TODO: https://github.com/nmattia/niv/issues/274
-      src     = fetchurl {
-        url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
-        sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
-      };
-
-      buildInputs  = [ cmake fail kdelibs4 findutils qt4 ];
-
-      installPhase = ''
-        cd ..
-
-        mkdir -p "$out/share/doc"
-        for DOC in README AUTHORS COPYING NEWS NOTES BUGS
-        do
-          cp -v "$DOC" "$out/share/doc/"
-        done
-
-        mkdir -p "$out/share/kde4/apps/"
-        cp -rv color-schemes "$out/share/kde4/apps/"
-
-        ${installFiles "qt4"}
-      '';
+{
+  skulpture-qt4 = stdenv.mkDerivation {
+    name    = "skulpture-qt4";
+    version = "0.2.4";
+    # TODO: https://github.com/nmattia/niv/issues/274
+    src     = fetchurl {
+      url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
+      sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
     };
 
-    mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }: mkDerivation rec {
-      name         = "skulpture-qt5";
-      src          = getSource { inherit name; };
-      preConfigure = "cd src";
-      buildInputs  = [ qtbase qmake cmake kdelibs4 ];
-      installPhase = ''
-        cd ..
-        ${installFiles "qt5"}
-        echo "Patching libraries to avoid references to build dir" 1>&2
-        while read -r LIB
-        do
-          patchelf --set-rpath "${stdenv.lib.makeLibraryPath buildInputs}" "$LIB"
-        done < <(find "$out" -name "*.so")
-      '';
-    };
+    buildInputs  = [ cmake fail kdelibs4 findutils qt4 ];
+
+    installPhase = ''
+      cd ..
+
+      mkdir -p "$out/share/doc"
+      for DOC in README AUTHORS COPYING NEWS NOTES BUGS
+      do
+        cp -v "$DOC" "$out/share/doc/"
+      done
+
+      mkdir -p "$out/share/kde4/apps/"
+      cp -rv color-schemes "$out/share/kde4/apps/"
+
+      ${installFiles "qt4"}
+    '';
   };
 
-  tests = {
-    qt5Lib = nixpkgs1909.libsForQt5.callPackage pkg.mkSkulptureQt5 {};
+  mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }: mkDerivation rec {
+    name         = "skulpture-qt5";
+    src          = getSource { inherit name; };
+    preConfigure = "cd src";
+    buildInputs  = [ qtbase qmake cmake kdelibs4 ];
+    installPhase = ''
+      cd ..
+      ${installFiles "qt5"}
+      echo "Patching libraries to avoid references to build dir" 1>&2
+      while read -r LIB
+      do
+        patchelf --set-rpath "${stdenv.lib.makeLibraryPath buildInputs}" "$LIB"
+      done < <(find "$out" -name "*.so")
+    '';
   };
 }

@@ -1,20 +1,16 @@
-{ hasBinary, perlPackages, stdenv, writeScript }:
+{ perlPackages, stdenv, writeScript }:
 
-rec {
-  pkg = stdenv.lib.overrideDerivation perlPackages.MHonArc (x: {
+stdenv.lib.overrideDerivation perlPackages.MHonArc (x: {
 
-    # Fixes https://bugzilla.redhat.com/show_bug.cgi?id=1298904
-    postInstall = ''
-      while read -r F
-      do
-        echo "Stripping 'defined (%' from $F" 1>&2
-        perl -i -pe 's/defined ?\(%/\(%/' "$F"
-      done < <(find "$out" -type f -name "*.pl")
-    '';
+  # Fixes https://bugzilla.redhat.com/show_bug.cgi?id=1298904
+  postInstall = ''
+    while read -r F
+    do
+      echo "Stripping 'defined (%' from $F" 1>&2
+      perl -i -pe 's/defined ?\(%/\(%/' "$F"
+    done < <(find "$out" -type f -name "*.pl")
+  '';
 
-    # Don't include a "devdoc" output, since it's never made
-    outputs = [ "out" ];
-  });
-
-  tests = hasBinary pkg "mhonarc";
-}
+  # Don't include a "devdoc" output, since it's never made
+  outputs = [ "out" ];
+})

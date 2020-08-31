@@ -144,7 +144,6 @@ with rec {
     done
   '';
 };
-trace "TODO: Tease out some more packages from the kics2 Makefiles" {
-  pkg   = { inherit curry-base curry-frontend kics2-frontend; };
-  tests = {};
+{
+  inherit curry-base curry-frontend kics2-frontend;
 }

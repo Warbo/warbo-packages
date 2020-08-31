@@ -1,9 +1,5 @@
-{ git2html-real, gitSource, hasBinary, stdenv }:
+{ git2html-real, gitSource, stdenv }:
 
-rec {
-  pkg = stdenv.lib.overrideDerivation git2html-real (old: {
-    src = gitSource { name = "git2html"; };
-  });
-
-  tests = hasBinary pkg "git2html";
-}
+stdenv.lib.overrideDerivation git2html-real (old: {
+  src = gitSource { name = "git2html"; };
+})

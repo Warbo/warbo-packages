@@ -5,21 +5,16 @@
 # TODO: Check for latest version on hackage
 { haskell-nix }:
 
-with rec {
+with {
   pkgs = haskell-nix {};
-
-  inherit (pkgs.haskell-nix.hackage-package {
-    name        = "ShellCheck";
-    version     = "0.7.0";
-    ghc         = pkgs.buildPackages.pkgs.haskell-nix.compiler.ghc865;
-    index-state = "2020-01-11T00:00:00Z";
-
-    # Update these two when the derivation changes
-    plan-sha256  = "183rh6lljf42qg42xxccvbp3kmhmpl4qzlzmx2h3p755f06lxljs";
-    materialized = ../caches/ShellCheck-plan-to-nix-pkgs;
-  }) components;
 };
-{
-  inherit (components) tests;
-  pkg = components.exes.shellcheck;
-}
+(pkgs.haskell-nix.hackage-package {
+  name        = "ShellCheck";
+  version     = "0.7.0";
+  ghc         = pkgs.buildPackages.pkgs.haskell-nix.compiler.ghc865;
+  index-state = "2020-01-11T00:00:00Z";
+
+  # Update these two when the derivation changes
+  plan-sha256  = "183rh6lljf42qg42xxccvbp3kmhmpl4qzlzmx2h3p755f06lxljs";
+  materialized = ../caches/ShellCheck-plan-to-nix-pkgs;
+}).components

@@ -1,4 +1,4 @@
-{ die, hasBinary, nixpkgs1603, withArgs }:
+{ die, nixpkgs1603, withArgs }:
 
 # FIXME: Newer version is out, 0.4 source is gone :(
 assert nixpkgs1603 ? kde4 || die {
@@ -172,7 +172,4 @@ with rec {
       ${replaceExeListWithWrapped [ "kbibtex" ]}
     '');
 };
-rec {
-  pkg   = nixpkgs1603.callPackage makePkg {};
-  tests = hasBinary pkg "kbibtex";
-}
+nixpkgs1603.callPackage makePkg {}

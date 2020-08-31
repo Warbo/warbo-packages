@@ -1,10 +1,6 @@
-{ getSource, pkgHasBinary, stdenv}:
+{ getSource, stdenv}:
 
-{
-  pkg = pkgHasBinary "bibtool"
-    (stdenv.mkDerivation rec {
-      name = "bibtool";
-      src  = getSource { inherit name; };
-    });
-  tests = {};
+stdenv.mkDerivation rec {
+  name = "bibtool";
+  src  = getSource { inherit name; };
 }

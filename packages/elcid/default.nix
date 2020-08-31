@@ -24,10 +24,6 @@ with rec {
   '';
 
   bases = goGet "github.com/whyrusleeping/bases" "";
-
 };
 
-{
-  pkg   = buildEnv { name = "elcid"; paths = [ bases elcid ]; };
-  tests = {};
-}
+buildEnv { name = "elcid"; paths = [ bases elcid ]; }

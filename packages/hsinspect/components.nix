@@ -67,10 +67,5 @@ with rec {
       }
     ];
   };
-
-  inherit (nixed.hsinspect) components;
 };
-{
-  inherit (components) tests;
-  pkg = components.exes.hsinspect;
-}
+nixed.hsinspect.components

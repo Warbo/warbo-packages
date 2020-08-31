@@ -17,7 +17,4 @@ with rec {
   pkg = callPackage "${repoRelease}/${suffix}" {};
 };
 
-{
-  pkg   = if havePath then pkg else nothing;
-  tests = {};
-}
+if havePath then pkg else nothing

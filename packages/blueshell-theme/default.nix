@@ -9,10 +9,7 @@ with rec {
       cp -r "$src" "$out/share/themes/Blueshell"
     '';
 };
-{
-  pkg = buildEnv {
-    name  = "blueshell-theme";
-    paths = [ gtk-engine-bluecurve src ];
-  };
-  tests = {};
+buildEnv {
+  name  = "blueshell-theme";
+  paths = [ gtk-engine-bluecurve src ];
 }
