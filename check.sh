@@ -19,7 +19,7 @@ nix-instantiate --eval --read-write-mode \
     -E '(import ./check.nix) || builtins.abort "Check failed"'
 
 echo "Checking that haskell-nix derivations are cached" 1>&2
-grep -R -l 'haskell-nix' | grep '\.nix$' | while read -r F
+grep -R -l 'haskell-nix {' | grep '\.nix$' | while read -r F
 do
     grep 'plan-sha256' < "$F" > /dev/null || {
         echo "File '$F' uses haskell-nix without caching a plan-sha256" 1>&2
