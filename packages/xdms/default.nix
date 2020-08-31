@@ -5,7 +5,7 @@ stdenv.mkDerivation rec {
   src         = getSource { inherit name; };
   buildInputs = [ lhasa gnumake ];
   unpackPhase = ''
-    lha x /nix/store/hhihia6jr25l4wwrf0g6yhdr743nlywn-xDMS.lha
+    lha x "$src"
   '';
   buildPhase = ''
     cd xdms/src
