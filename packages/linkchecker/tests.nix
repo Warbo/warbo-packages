@@ -3,7 +3,7 @@
 {
   hasBinary = hasBinary linkchecker "linkchecker";
 
-  stillNeedsDisabledTests = isBroken (linkchecker.overrideAttrs (old: {
+  stillNeedsDisabledTests = isBroken (linkchecker.overridePythonAttrs (old: {
     doCheck = true;
   }));
 }
