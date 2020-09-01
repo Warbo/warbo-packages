@@ -1,4 +1,4 @@
-{ bash, openjdk, stdenv, unzip, warbo-packages-sources }:
+{ bash, linkTo, openjdk, stdenv, unzip, warbo-packages-sources }:
 
 with rec {
   name   = "w3c-validator";
@@ -7,7 +7,7 @@ with rec {
 stdenv.mkDerivation {
   inherit name;
   inherit (source) version;
-  src                   = source.outPath;
+  src                   = linkTo { name = name + ".zip"; path = source; };
   buildInputs           = [ unzip ];
   propagatedBuildInputs = [ openjdk bash ];
   installPhase          = ''
