@@ -16,5 +16,5 @@
      then source.outPath
      else fetchgit {
        inherit (source) rev sha256;
-       url = repoSource + "/" + baseNameOf source.url;
+       url = repoSource + "/" + baseNameOf source.repo;
      }
