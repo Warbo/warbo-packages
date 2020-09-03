@@ -14,7 +14,7 @@
   };
   if repoSource == null
      then source
-     else builtins.fetchgit {
+     else builtins.fetchGit {
        inherit (source) rev;
        url = repoSource + "/" + baseNameOf source.repo;
      }
