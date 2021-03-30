@@ -51,52 +51,59 @@ with rec {
 };
 source: buildFHSUserEnv {
   name       = "firefox";
-  targetPkgs = pkgs: [ (raw source) ] ++ (with pkgs; with xorg; [
-    # These are copypasta from the nixpkgs firefox dependencies
-    alsaLib
-    atk
-    cairo
-    cups
-    dbus-glib
-    dbus
-    fontconfig
-    freetype
-    gdk_pixbuf
-    glib
-    glibc
-    gtk2
-    gtk3
-    kerberos
-    libX11
-    libXScrnSaver
-    libXcomposite
-    libXcursor
-    libxcb
-    libXdamage
-    libXext
-    libXfixes
-    libXi
-    libXinerama
-    libXrender
-    libXt
-    libcanberra-gtk2
-    libnotify
-    libGLU_combined
-    nspr
-    nss
-    pango
-    libheimdal
-    libpulseaudio
-    (lib.getDev libpulseaudio)
-    ffmpeg
+  targetPkgs = pkgs:
+    [ (raw source) ] ++
 
-    # Required for glib schemas; without this, file dialogue boxen will crash
-    gnome3.dconf
+    # Nixpkgs versions differ in how they define these libraries
+    (optional (hasAttr "libGL"           pkgs) pkgs.libGL          ) ++
+    (optional (hasAttr "libGLU"          pkgs) pkgs.libGLU         ) ++
+    (optional (hasAttr "libGLU_combined" pkgs) pkgs.libGLU_combined) ++
 
-    # Avoid 'The 'hicolor' theme was not found'
-    hicolor-icon-theme
-    gnome2.gnome_icon_theme
-    gnome3.adwaita-icon-theme
-  ]);
+    (with pkgs; with xorg; [
+      # These are copypasta from the nixpkgs firefox dependencies
+      alsaLib
+      atk
+      cairo
+      cups
+      dbus-glib
+      dbus
+      fontconfig
+      freetype
+      gdk_pixbuf
+      glib
+      glibc
+      gtk2
+      gtk3
+      kerberos
+      libX11
+      libXScrnSaver
+      libXcomposite
+      libXcursor
+      libxcb
+      libXdamage
+      libXext
+      libXfixes
+      libXi
+      libXinerama
+      libXrender
+      libXt
+      libcanberra-gtk2
+      libnotify
+      nspr
+      nss
+      pango
+      libheimdal
+      libpulseaudio
+      (lib.getDev libpulseaudio)
+      ffmpeg
+
+      # Required for glib schemas; without this, file dialogue boxen will crash
+      gnome3.dconf
+
+      # Avoid 'The 'hicolor' theme was not found'
+      hicolor-icon-theme
+      gnome2.gnome_icon_theme
+      gnome3.adwaita-icon-theme
+    ]);
   runScript = "firefoxWrapper-${source.version}";
 }
