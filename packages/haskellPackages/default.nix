@@ -1,3 +1,25 @@
-{ haskellOverride, super }:
+# Like haskellPackages in nixpkgs, but overridden using haskellOverride
+#
+# This is a little awkwards, since we might want to use the same
+# haskellPackages.override API as nixpkgs provides, but that gets wiped out when
+# we use 'callPackage' to load this package. Hence we try to emulate that API.
+{
+  # "Normal" inputs
+  haskellOverride
+, super
 
-haskellOverride { inherit (super) haskellPackages; }
+  # Accepting this argument makes us act like nixpkgs
+, overrides ? (helf: huper: {})
+
+  # We define this as an arg in case it's useful to override
+, haskellOverrideArgs ? {
+    inherit (super) haskellPackages;
+    extra = [ overrides ];
+  }
+
+  # As a final catch-all, this can be used to manipulate the result, before
+  # 'callPackage' gets a chance to add its own override mechanism
+, post ? (x: x)
+}:
+
+post (haskellOverride haskellOverrideArgs)
