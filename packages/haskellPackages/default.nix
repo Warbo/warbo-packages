@@ -11,15 +11,12 @@
   # Accepting this argument makes us act like nixpkgs
 , overrides ? (helf: huper: {})
 
-  # We define this as an arg in case it's useful to override
-, haskellOverrideArgs ? {
-    inherit (super) haskellPackages;
-    extra = [ overrides ];
-  }
-
   # As a final catch-all, this can be used to manipulate the result, before
   # 'callPackage' gets a chance to add its own override mechanism
 , post ? (x: x)
 }:
 
-post (haskellOverride haskellOverrideArgs)
+post (haskellOverride {
+  inherit (super) haskellPackages;
+  extra = [ overrides ];
+})
