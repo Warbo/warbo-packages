@@ -1,6 +1,6 @@
 # Like haskellPackages in nixpkgs, but overridden using haskellOverride
 #
-# This is a little awkwards, since we might want to use the same
+# This is a little awkward, since we might want to use the same
 # haskellPackages.override API as nixpkgs provides, but that gets wiped out when
 # we use 'callPackage' to load this package. Hence we try to emulate that API.
 {
@@ -16,7 +16,10 @@
 , post ? (x: x)
 }:
 
-post (haskellOverride {
-  inherit (super) haskellPackages;
-  extra = [ overrides ];
-})
+if super.stdenv.isDarwin
+   then builtins.trace "Skipping warbo-packages haskellOverride on macOS"
+                       super.haskellPackages
+   else post (haskellOverride {
+     inherit (super) haskellPackages;
+     extra = [ overrides ];
+   })

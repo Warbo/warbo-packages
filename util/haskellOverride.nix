@@ -43,9 +43,4 @@ with rec {
       ]);
     });
 };
-if hasSuffix "-darwin" nixpkgs1803.system
-   then trace "warbo-packages Haskell overrides disabled for macOS" (_: {
-     mlspec = null;
-     nix-tools = null;
-   })
-   else go
+go
