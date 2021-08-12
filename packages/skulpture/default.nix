@@ -1,5 +1,5 @@
 { cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4,
-  lib, nixpkgs1709, qt4, stdenv, writeScript }:
+  lib, nixpkgs1709, qt4, skipMac, stdenv, writeScript }:
 
 with rec {
   inherit (builtins) attrNames getAttr map;
@@ -31,7 +31,7 @@ with rec {
     };
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
-if stdenv.isDarwin then {} else {
+skipMac "skulpture" {
   skulpture-qt4 = stdenv.mkDerivation {
     name    = "skulpture-qt4";
     version = "0.2.4";

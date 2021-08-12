@@ -1,6 +1,6 @@
-{ fetchurl, jre, stdenv, unzip }:
+{ fetchurl, jre, skipMac, stdenv, unzip }:
 
-if stdenv.isDarwin then null else stdenv.mkDerivation rec {
+skipMac "ditaaeps" (stdenv.mkDerivation rec {
   name = "ditaaeps-0.2";
 
   # FIXME: Use https://github.com/madeye/ditaa-eps
@@ -44,4 +44,4 @@ if stdenv.isDarwin then null else stdenv.mkDerivation rec {
     license = licenses.gpl2;
     platforms = platforms.linux;
   };
-}
+})

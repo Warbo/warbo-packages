@@ -1,7 +1,5 @@
-{ getSource, haskell-nix, repo1909, stdenv }:
+{ getSource, haskell-nix, repo1909, skipMac }:
 
-if stdenv.isDarwin
-   then null
-   else (import ./components.nix {
-     inherit getSource haskell-nix repo1909;
-   }).tests
+skipMac "hsinspect tests" (import ./components.nix {
+  inherit getSource haskell-nix repo1909;
+}).tests

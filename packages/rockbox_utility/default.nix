@@ -1,7 +1,5 @@
-{ lib, stdenv, super, zlib }:
+{ lib, skipMac, super, zlib }:
 
-if stdenv.isDarwin
-   then null
-   else lib.overrideDerivation super.rockbox_utility (old: {
-     buildInputs = old.buildInputs ++ [ zlib ];
-   })
+skipMac "rockbox_utility" (lib.overrideDerivation super.rockbox_utility (old: {
+  buildInputs = old.buildInputs ++ [ zlib ];
+}))

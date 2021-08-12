@@ -1,4 +1,5 @@
-{ bash, buildEnv, libusb1, patchelf, rockbox_utility, stdenv, writeScript }:
+{ bash, buildEnv, libusb1, patchelf, rockbox_utility, skipMac, stdenv,
+  writeScript }:
 
 with rec {
   firmware = ./bootloader-ipod6g.ipod;
@@ -58,7 +59,7 @@ with rec {
     '';
   };
 };
-if stdenv.isDarwin then null else buildEnv {
+skipMac "rockbox" (buildEnv {
   name  = "rockbox-utils";
   paths = [ flasher rockbox_utility ];
-}
+})

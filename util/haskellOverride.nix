@@ -6,7 +6,7 @@
 #  - super: nixpkgs without our overrides applied (useful for breaking loops)
 #  - helf : haskell set with our overrides applied (watch out for loops!)
 #  - huper: haskell set without our overrides applied (for breaking loops)
-{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803 }:
+{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803, stdenv }:
 
 with rec {
   inherit (builtins) trace;
@@ -43,4 +43,6 @@ with rec {
       ]);
     });
 };
-go
+if stdenv.isDarwin
+   then trace "Skipping haskellOverride on macOS" (x: x)
+   else go

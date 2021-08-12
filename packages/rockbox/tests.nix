@@ -1,3 +1,3 @@
-{ hasBinary, rockbox, stdenv }:
+{ hasBinary, rockbox, skipMac }:
 
-if stdenv.isDarwin then null else hasBinary rockbox "mks5lboot"
+skipMac "rockbox tests" (hasBinary rockbox "mks5lboot")

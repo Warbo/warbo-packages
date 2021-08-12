@@ -1,3 +1,4 @@
-{ gitSource, stdenv }@args:
+{ gitSource, skipMac }:
 
-(import ./components.nix args).panpipe.components.tests or {}
+skipMac "panpipe tests"
+  (import ./components.nix { inherit gitSource; }).panpipe.components.tests

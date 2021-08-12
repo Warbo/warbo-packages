@@ -1,5 +1,4 @@
-{ haskell-nix, stdenv }:
+{ haskell-nix, skipMac }:
 
-if stdenv.isDarwin
-   then null
-   else (import ./components.nix { inherit haskell-nix; }).exes.nix-diff
+skipMac "nix-diff"
+  (import ./components.nix { inherit haskell-nix; }).exes.nix-diff

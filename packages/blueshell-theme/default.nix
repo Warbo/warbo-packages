@@ -1,4 +1,4 @@
-{ buildEnv, getSource, gtk-engine-bluecurve, runCommand, stdenv }:
+{ buildEnv, getSource, gtk-engine-bluecurve, runCommand, skipMac }:
 
 with rec {
   name = "Blueshell";
@@ -9,9 +9,7 @@ with rec {
       cp -r "$src" "$out/share/themes/Blueshell"
     '';
 };
-if stdenv.isDarwin
-   then null
-   else buildEnv {
-     name  = "blueshell-theme";
-     paths = [ gtk-engine-bluecurve src ];
-   }
+skipMac "blueshell-theme" (buildEnv {
+  name  = "blueshell-theme";
+  paths = [ gtk-engine-bluecurve src ];
+})

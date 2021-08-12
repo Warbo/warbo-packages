@@ -1,4 +1,4 @@
-{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, stdenv,
+{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, skipMac,
   which }:
 
 with rec {
@@ -145,8 +145,6 @@ with rec {
     done
   '';
 };
-if stdenv.isDarwin
-   then {}
-   else {
-     inherit curry-base curry-frontend kics2-frontend;
-   }
+skipMac "kics2" {
+  inherit curry-base curry-frontend kics2-frontend;
+}

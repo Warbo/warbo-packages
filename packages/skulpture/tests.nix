@@ -1,5 +1,5 @@
-{ nixpkgs1909, skulpture, stdenv }:
+{ nixpkgs1909, skulpture, skipMac }:
 
-if stdenv.isDarwin then {} else {
+skipMac "skulpture tests" {
   qt5Lib = nixpkgs1909.libsForQt5.callPackage skulpture.mkSkulptureQt5 {};
 }

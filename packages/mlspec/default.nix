@@ -1,6 +1,6 @@
-{ haskellOverride, nixEvalOverrides, nixpkgs1803 }:
+{ haskellOverride, nixEvalOverrides, nixpkgs1803, skipMac }:
 
-(haskellOverride {
+skipMac "mlspec" (haskellOverride {
   haskellPackages = nixpkgs1803.haskell.packages.ghc7103;
   filepath        = true;
   extra           = nixEvalOverrides;

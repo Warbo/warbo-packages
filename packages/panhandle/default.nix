@@ -1,3 +1,5 @@
-{ gitSource, stdenv }@args:
+{ gitSource, skipMac }:
 
-(import ./components.nix args).exes.panhandle or null
+skipMac "panhandle" (import ./components.nix {
+  inherit gitSource;
+}).exes.panhandle

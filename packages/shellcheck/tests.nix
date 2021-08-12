@@ -1,5 +1,4 @@
-{ haskell-nix, stdenv }:
+{ haskell-nix, skipMac }:
 
-if stdenv.isDarwin
-   then {}
-   else (import ./components.nix { inherit haskell-nix; }).tests
+skipMac "shellcheck tests"
+  (import ./components.nix { inherit haskell-nix; }).tests
