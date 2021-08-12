@@ -1,3 +1,7 @@
-{ gitSource, haskell-nix }:
+{ gitSource, haskell-nix, stdenv }:
 
-(import ./components.nix { inherit gitSource haskell-nix; }).exes.GetDeps
+if stdenv.isDarwin
+   then null
+   else (import ./components.nix {
+     inherit gitSource haskell-nix;
+   }).exes.GetDeps

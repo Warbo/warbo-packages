@@ -1,3 +1,3 @@
-{ gitSource }:
+{ gitSource, stdenv }@args:
 
-(import ./components.nix { inherit gitSource; }).panpipe.components.exes.panpipe
+(import ./components.nix args).panpipe.components.exes.panpipe or null

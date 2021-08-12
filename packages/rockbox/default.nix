@@ -58,7 +58,7 @@ with rec {
     '';
   };
 };
-buildEnv {
+if stdenv.isDarwin then null else buildEnv {
   name  = "rockbox-utils";
   paths = [ flasher rockbox_utility ];
 }

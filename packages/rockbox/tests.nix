@@ -1,3 +1,3 @@
-{ hasBinary, rockbox }:
+{ hasBinary, rockbox, stdenv }:
 
-hasBinary rockbox "mks5lboot"
+if stdenv.isDarwin then null else hasBinary rockbox "mks5lboot"

@@ -1,5 +1,5 @@
 # Fixed versions of pandoc, panpipe, panhandle, pandoc-citeproc
-{ buildEnv, haskell-nix, lib, repo1909, panpipe, panhandle }:
+{ buildEnv, haskell-nix, lib, repo1909, panpipe, panhandle, stdenv }:
 
 with rec {
   getHackage = args:
@@ -54,12 +54,14 @@ with rec {
     materialized = ../../caches/pandoc-citeproc-plan-to-nix-pkgs;
   };
 };
-buildEnv {
-  name  = "pandocPkgs";
-  paths = [
-    pandoc.components.exes.pandoc
-    pandoc-citeproc.components.exes.pandoc-citeproc
-    panpipe
-    panhandle
-  ];
-}
+if stdenv.isDarwin
+   then null
+   else buildEnv {
+     name  = "pandocPkgs";
+     paths = [
+       pandoc.components.exes.pandoc
+       pandoc-citeproc.components.exes.pandoc-citeproc
+       panpipe
+       panhandle
+     ];
+   }

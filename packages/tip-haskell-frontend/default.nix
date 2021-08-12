@@ -2,4 +2,4 @@
 
 (haskellOverride {
   haskellPackages = nixpkgs1709.haskell.packages.ghc784;
-}).tip-haskell-frontend
+}).tip-haskell-frontend or null

@@ -1,3 +1,3 @@
-{ gitSource }:
+{ gitSource, stdenv }@args:
 
-(import ./components.nix { inherit gitSource; }).tests
+(import ./components.nix args).tests or {}

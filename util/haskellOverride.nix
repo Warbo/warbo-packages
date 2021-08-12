@@ -8,8 +8,10 @@
 #  - huper: haskell set without our overrides applied (for breaking loops)
 { extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803 }:
 
-with lib;
-with {
+with rec {
+  inherit (builtins) trace;
+  inherit (lib) concatLists fold hasSuffix mapAttrs;
+
   composeAll = fold nixpkgs1803.lib.composeExtensions (_: _: {});
 
   dummy = _: _: {};
@@ -21,24 +23,29 @@ with {
                              huper)
              (nixFilesIn ../haskell);
 
-  semigroupsOverrides = ghc7SemigroupsFix;
-
   sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" {}; };
+
+  go = {
+    haskellPackages,
+    existing ? true,
+    general  ? true,
+    filepath ? false,
+    syb      ? false,
+    extra    ? []
+  }:
+    haskellPackages.override (old: {
+      overrides = composeAll (concatLists [
+        (if existing then [ (old.overrides or dummy) ] else [])
+        (if general  then [ generalOverrides         ] else [])
+        (if filepath then [ filepathFix              ] else [])
+        (if syb      then [ sybOverrides             ] else [])
+        extra
+      ]);
+    });
 };
-{
-  haskellPackages,
-  existing ? true,
-  general  ? true,
-  filepath ? false,
-  syb      ? false,
-  extra    ? []
-}:
-  haskellPackages.override (old: {
-    overrides = composeAll (concatLists [
-      (if existing then [ (old.overrides or dummy) ] else [])
-      (if general  then [ generalOverrides         ] else [])
-      (if filepath then [ filepathFix              ] else [])
-      (if syb      then [ sybOverrides             ] else [])
-      extra
-    ]);
-  })
+if hasSuffix "-darwin" nixpkgs1803.system
+   then trace "warbo-packages Haskell overrides disabled for macOS" (_: {
+     mlspec = null;
+     nix-tools = null;
+   })
+   else go

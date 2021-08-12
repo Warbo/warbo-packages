@@ -1,4 +1,5 @@
-{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, which }:
+{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, stdenv,
+  which }:
 
 with rec {
   inherit (builtins) getAttr trace;
@@ -144,6 +145,8 @@ with rec {
     done
   '';
 };
-{
-  inherit curry-base curry-frontend kics2-frontend;
-}
+if stdenv.isDarwin
+   then {}
+   else {
+     inherit curry-base curry-frontend kics2-frontend;
+   }

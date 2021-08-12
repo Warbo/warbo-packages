@@ -1,5 +1,7 @@
-{ getSource, haskell-nix, repo1909 }:
+{ getSource, haskell-nix, repo1909, stdenv }:
 
-(import ./components.nix {
-  inherit getSource haskell-nix repo1909;
-}).exes.hsinspect
+if stdenv.isDarwin
+   then null
+   else (import ./components.nix {
+     inherit getSource haskell-nix repo1909;
+   }).exes.hsinspect

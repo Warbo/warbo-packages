@@ -1,4 +1,8 @@
 # Pretty-printer for Nix .drv files
-{ haskell-nix }:
+{ haskell-nix, stdenv }:
 
-(import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation
+if stdenv.isDarwin
+   then null
+   else (import ./components.nix {
+     inherit haskell-nix;
+   }).exes.pretty-derivation

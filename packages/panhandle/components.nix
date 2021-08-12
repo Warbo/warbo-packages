@@ -1,6 +1,8 @@
-{ gitSource }:
+{ gitSource, stdenv }:
 
 with {
   src  = gitSource { name = "panhandle"; };
 };
-import "${src}/release.nix"
+if stdenv.isDarwin
+   then null
+   else import "${src}/release.nix"

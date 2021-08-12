@@ -1,6 +1,6 @@
 { fetchurl, jre, stdenv, unzip }:
 
-stdenv.mkDerivation rec {
+if stdenv.isDarwin then null else stdenv.mkDerivation rec {
   name = "ditaaeps-0.2";
 
   # FIXME: Use https://github.com/madeye/ditaa-eps

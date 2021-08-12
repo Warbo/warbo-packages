@@ -31,7 +31,7 @@ with rec {
     };
     concatStringsSep "\n" (map mkCmd (attrNames toMove));
 };
-{
+if stdenv.isDarwin then {} else {
   skulpture-qt4 = stdenv.mkDerivation {
     name    = "skulpture-qt4";
     version = "0.2.4";

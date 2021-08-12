@@ -1,7 +1,13 @@
-{ hasBinary, lib, pandocPkgs, runCommand }:
+{ hasBinary, lib, pandocPkgs, runCommand, stdenv }:
 
-lib.genAttrs [ "pandoc" "pandoc-citeproc" "panpipe" "panhandle" ]
-             (hasBinary pandocPkgs) // {
+lib.genAttrs
+  (if stdenv.isDarwin then [] else [
+    "pandoc"
+    "pandoc-citeproc"
+    "panpipe"
+    "panhandle"
+  ])
+  (hasBinary pandocPkgs) // {
   canPipe = runCommand "pandocPkgs-can-pipe"
     {
       buildInputs = [ pandocPkgs ];

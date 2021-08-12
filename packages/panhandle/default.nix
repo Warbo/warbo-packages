@@ -1,3 +1,3 @@
-{ gitSource }:
+{ gitSource, stdenv }@args:
 
-(import ./components.nix { inherit gitSource; }).exes.panhandle
+(import ./components.nix args).exes.panhandle or null

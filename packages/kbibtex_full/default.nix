@@ -1,4 +1,4 @@
-{ die, nixpkgs1603, withArgs }:
+{ die, nixpkgs1603, stdenv, withArgs }:
 
 # FIXME: Newer version is out, 0.4 source is gone :(
 assert nixpkgs1603 ? kde4 || die {
@@ -172,4 +172,6 @@ with rec {
       ${replaceExeListWithWrapped [ "kbibtex" ]}
     '');
 };
-nixpkgs1603.callPackage makePkg {}
+if stdenv.isDarwin
+   then null
+   else nixpkgs1603.callPackage makePkg {}

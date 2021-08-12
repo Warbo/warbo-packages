@@ -1,3 +1,5 @@
-{ hasBinary, kbibtex_full }:
+{ hasBinary, kbibtex_full, stdenv }:
 
-hasBinary kbibtex_full "kbibtex"
+if stdenv.isDarwin
+   then {}
+   else hasBinary kbibtex_full "kbibtex"
