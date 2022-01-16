@@ -436,9 +436,8 @@
     },
     "nix-helpers": {
         "branch": "master",
-        "ref": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
-        "rev": "5379ddb9bfe431ca1b4ce35414b47a10711b2cd0",
+        "rev": "12ae13b1bb28d891f2cf54e0a9c34f7f2caf5b88",
         "type": "git"
     },
     "nix-tools": {
