@@ -1,4 +1,4 @@
-{ die, nixpkgs1603, skipMac, stdenv, withArgs }:
+{ die, lib, nixpkgs1603, skipMac, stdenv, withArgs }:
 
 # FIXME: Newer version is out, 0.4 source is gone :(
 assert nixpkgs1603 ? kde4 || die {
@@ -102,7 +102,7 @@ with rec {
       # for a practical example.
       # IMPORTANT: Note that using `XDG_DATA_DIRS` here instead of `KDEDIRS`
       # won't work properly.
-      KDEDIRS = with stdenv.lib;
+      KDEDIRS = with lib;
         concatStrings (intersperse ":" (map (x: "${x}") kdePkgs));
 
       sycocaDirRelPath = "var/lib/kdesycoca";
@@ -136,10 +136,10 @@ with rec {
               --set KDEDIRS "${KDEDIRS}" \
               --set KDESYCOCA "${sycoca}/${sycocaFileRelPath}"
           '';
-        } // stdenv.lib;
+        } // lib;
         exeNameList: concatStrings (intersperse "\n" (map f exeNameList));
     };
-    with stdenv.lib;
+    with lib;
 
     /*
       Final derivation

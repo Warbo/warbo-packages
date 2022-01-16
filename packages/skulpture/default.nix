@@ -70,7 +70,7 @@ skipMac "skulpture" {
       echo "Patching libraries to avoid references to build dir" 1>&2
       while read -r LIB
       do
-        patchelf --set-rpath "${stdenv.lib.makeLibraryPath buildInputs}" "$LIB"
+        patchelf --set-rpath "${lib.makeLibraryPath buildInputs}" "$LIB"
       done < <(find "$out" -name "*.so")
     '';
   };

@@ -1,7 +1,7 @@
-{ getSource, nixpkgs1609, skipMac, stdenv }:
+{ getSource, lib, nixpkgs1609, skipMac }:
 
 skipMac "coq-mtac"
-  (stdenv.lib.overrideDerivation nixpkgs1609.coq (oldAttrs : rec {
+  (lib.overrideDerivation nixpkgs1609.coq (oldAttrs : rec {
     name = "coq-mtac";
     src  = getSource { inherit name; };
   }))

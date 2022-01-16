@@ -1,5 +1,5 @@
-{ git2html-real, gitSource, stdenv }:
+{ git2html-real, gitSource, lib }:
 
-stdenv.lib.overrideDerivation git2html-real (old: {
+lib.overrideDerivation git2html-real (old: {
   src = gitSource { name = "git2html"; };
 })

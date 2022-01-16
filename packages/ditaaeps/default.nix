@@ -1,4 +1,4 @@
-{ fetchurl, jre, skipMac, stdenv, unzip }:
+{ fetchurl, jre, lib, skipMac, stdenv, unzip }:
 
 skipMac "ditaaeps" (stdenv.mkDerivation rec {
   name = "ditaaeps-0.2";
@@ -38,7 +38,7 @@ skipMac "ditaaeps" (stdenv.mkDerivation rec {
     chmod a+x "$out/bin/ditaaeps"
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Convert ascii art diagrams into proper graphics";
     homepage = http://ditaa-addons.sourceforge.net/;
     license = licenses.gpl2;
