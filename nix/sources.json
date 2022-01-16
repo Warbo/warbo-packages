@@ -56,7 +56,7 @@
     "asv-nix": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/asv-nix.git",
-        "rev": "0d7762b8115ac1e71459c061ceba1f3b61becd2b",
+        "rev": "df3edf81ac96bab0bf67d174f478b5a0be3fc2c8",
         "type": "git"
     },
     "awf": {
@@ -438,7 +438,7 @@
         "branch": "master",
         "ref": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
-        "rev": "5379ddb9bfe431ca1b4ce35414b47a10711b2cd0",
+        "rev": "12ae13b1bb28d891f2cf54e0a9c34f7f2caf5b88",
         "type": "git"
     },
     "nix-tools": {
