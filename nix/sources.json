@@ -416,18 +416,6 @@
         "rev": "6e208581d039398de44d48fb9b444e9b22f818bc",
         "type": "git"
     },
-    "nix-delegate": {
-        "branch": "master",
-        "description": "Convenient utility for distributed Nix builds",
-        "homepage": null,
-        "owner": "awakesecurity",
-        "repo": "nix-delegate",
-        "rev": "aeb6c4a908555e64e08c8949a69f59bffbf53dea",
-        "sha256": "0qb83jkb495vgh912sdiqcph7zrppm4rch9j25m5988d9y1ykgja",
-        "type": "tarball",
-        "url": "https://github.com/awakesecurity/nix-delegate/archive/aeb6c4a908555e64e08c8949a69f59bffbf53dea.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nix-eval": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-eval.git",
