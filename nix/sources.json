@@ -440,18 +440,6 @@
         "rev": "12ae13b1bb28d891f2cf54e0a9c34f7f2caf5b88",
         "type": "git"
     },
-    "nix-tools": {
-        "branch": "master",
-        "description": "Translate Cabals Generic Package Description to a Nix expression",
-        "homepage": null,
-        "owner": "input-output-hk",
-        "repo": "nix-tools",
-        "rev": "bb5700d04f0ff2d1a3a7b3278121c1ec67898793",
-        "sha256": "11q34s5hm76vb6r01h3r5ya9k9f4xqz2xdf958frhn6jb3jjihf6",
-        "type": "tarball",
-        "url": "https://github.com/input-output-hk/nix-tools/archive/bb5700d04f0ff2d1a3a7b3278121c1ec67898793.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "panhandle": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/panhandle.git",
