@@ -15,7 +15,7 @@ do
 done
 
 echo "Performing Nix checks" 1>&2
-nix-instantiate --eval --read-write-mode \
+nix-instantiate --show-trace --eval --read-write-mode \
     -E '(import ./check.nix) || builtins.abort "Check failed"'
 
 echo "Checking that haskell-nix derivations are cached" 1>&2
