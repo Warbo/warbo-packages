@@ -1,11 +1,11 @@
 # Each package file should define its own tests. These tests don't fit in any
 # particular package file.
 { lib, nixEvalOverrides, nixpkgs1709, nixpkgs1803, nixpkgs1903,
-  haskellOverride, stdenv }:
+  warboHaskellOverride, stdenv }:
 
 with {
   haskellTest = name: { extra ? {}, haskellPackages }:
-    builtins.getAttr name (haskellOverride ({ inherit haskellPackages; } // extra));
+    builtins.getAttr name (warboHaskellOverride ({ inherit haskellPackages; } // extra));
 
   hs7103  = { haskellPackages = nixpkgs1803.haskell.packages.ghc7103; };
   hs784   = { haskellPackages = nixpkgs1709.haskell.packages.ghc784;  };

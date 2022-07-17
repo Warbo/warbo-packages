@@ -1,4 +1,4 @@
-{ getSource, haskell, haskellOverride, isBroken, nixpkgs1903, skipMac,
+{ getSource, haskell, warboHaskellOverride, isBroken, nixpkgs1903, skipMac,
   withDeps }:
 
 with builtins;
@@ -6,7 +6,7 @@ with rec {
   inherit (haskell.lib) appendConfigureFlag dontCheck;
   testsFail = pkg: withDeps [(isBroken pkg)] (dontCheck pkg);
 };
-skipMac "nix-tools" (haskellOverride {
+skipMac "nix-tools" (warboHaskellOverride {
   inherit (nixpkgs1903) haskellPackages;
   extra = [
     (helf: huper: {

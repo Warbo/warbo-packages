@@ -1,7 +1,7 @@
-{ haskellOverride, lib, super }:
+{ warboHaskellOverride, lib, super }:
 
 super.haskell // {
   packages = lib.mapAttrs
-    (_: haskellPackages: haskellOverride { inherit haskellPackages; })
+    (_: haskellPackages: warboHaskellOverride { inherit haskellPackages; })
     super.haskell.packages;
 }

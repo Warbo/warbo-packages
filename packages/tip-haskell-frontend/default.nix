@@ -1,5 +1,5 @@
-{ haskellOverride, nixpkgs1709 }:
+{ warboHaskellOverride, nixpkgs1709 }:
 
-(haskellOverride {
+(warboHaskellOverride {
   haskellPackages = nixpkgs1709.haskell.packages.ghc784;
 }).tip-haskell-frontend or null

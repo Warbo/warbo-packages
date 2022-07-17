@@ -5,7 +5,7 @@
 # we use 'callPackage' to load this package. Hence we try to emulate that API.
 {
   # "Normal" inputs
-  haskellOverride
+  warboHaskellOverride
 , super
 
   # Accepting this argument makes us act like nixpkgs
@@ -17,9 +17,9 @@
 }:
 
 if super.stdenv.isDarwin
-   then builtins.trace "Skipping warbo-packages haskellOverride on macOS"
+   then builtins.trace "Skipping warbo-packages warboHaskellOverride on macOS"
                        super.haskellPackages
-   else post (haskellOverride {
+   else post (warboHaskellOverride {
      inherit (super) haskellPackages;
      extra = [ overrides ];
    })
