@@ -1,12 +1,11 @@
-{ getSource, pythonPackages, stdenv }:
+{ getSource, python3, stdenv }:
 
 stdenv.mkDerivation rec {
   name = "scholar.py";
   src  = getSource { inherit name; };
 
   propagatedBuildInputs = [
-    pythonPackages.python
-    pythonPackages.beautifulsoup4
+    (python3.withPackages (p: [ p.beautifulsoup4 ]))
   ];
 
   installPhase = ''

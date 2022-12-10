@@ -1,28 +1,30 @@
-{ beautifulsoup-custom, getSource, pythonPackages }:
+{ getSource, python3Packages }:
 
 with rec {
-  mf2util = pythonPackages.buildPythonPackage rec {
+  mf2util = python3Packages.buildPythonPackage rec {
     name    = "mf2util";
     doCheck = false;
     src     = getSource { inherit name; };
   };
 
-  requests = pythonPackages.buildPythonPackage rec {
+  requests = python3Packages.buildPythonPackage rec {
     name    = "requests";
     doCheck = false;
     src     = getSource { inherit name; };
   };
 };
-pythonPackages.buildPythonPackage rec {
-  name                  = "mf2py";
-  src                   = getSource { inherit name; };
-  propagatedBuildInputs = [
-    beautifulsoup-custom
-    mf2util
-    pythonPackages.html5lib
-    pythonPackages.mock
-    pythonPackages.nose
-    pythonPackages.python
-    requests
-  ];
-}
+python3Packages.callPackage
+  ({ beautifulsoup4, buildPythonPackage, html5lib, mock, nose }:
+    buildPythonPackage rec {
+      name                  = "mf2py";
+      src                   = getSource { inherit name; };
+      propagatedBuildInputs = [
+        beautifulsoup4
+        mf2util
+        html5lib
+        mock
+        nose
+        requests
+      ];
+    })
+  {}
