@@ -11,7 +11,10 @@ with rec {
   # Like callPackage, but allows args to come from extraArgs
   call = _: f: nixpkgs.newScope extraArgs f { };
 
-  extraArgs = nix-helpers // util // {
+  # Include warbo-packages, so packages can reference each other. Put it first,
+  # so that later attrsets will be checked first (making circular references
+  # less likely)
+  extraArgs = warbo-packages // nix-helpers // util // {
     # Useful for overriding things
     inherit extraArgs nix-helpers nixpkgs;
   };
