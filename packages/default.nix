@@ -1,34 +1,33 @@
-{ lib, newScope, self, super }:
+{ nix-helpers ? import ./nix-helpers { }, nixpkgs ? nix-helpers.nixpkgs
+, nixpkgs-lib ? nix-helpers.nixpkgs-lib }:
 
 with rec {
   inherit (builtins) removeAttrs;
-  inherit (lib) mapAttrs;
+  inherit (nixpkgs-lib) mapAttrs;
   inherit (nix-helpers) nixDirsIn nixFilesIn;
-
-  nix-helpers = import ./nix-helpers {};
 
   util = mapAttrs call (nixFilesIn ../util);
 
   # Like callPackage, but allows args to come from extraArgs
-  call = _: f: newScope extraArgs f {};
+  call = _: f: nixpkgs.newScope extraArgs f { };
 
   extraArgs = nix-helpers // util // {
     # Useful for overriding things
-    inherit extraArgs nix-helpers self super;
+    inherit extraArgs nix-helpers nixpkgs;
   };
 
-  load = filename: mapAttrs call (nixDirsIn {
-    inherit filename;
-    dir = ./.;
-  });
+  load = filename:
+    mapAttrs call (nixDirsIn {
+      inherit filename;
+      dir = ./.;
+    });
 
   packages = load "default.nix";
-  tests    = load "tests.nix";
-};
-with rec {
+  tests = load "tests.nix";
+
   warbo-packages = packages // {
     inherit warbo-packages;
     warbo-packages-tests = tests;
   };
 };
-removeAttrs warbo-packages [ "nix-helpers" ]
+warbo-packages
