@@ -16,10 +16,7 @@
 , post ? (x: x)
 }:
 
-if super.stdenv.isDarwin
-   then builtins.trace "Skipping warbo-packages warboHaskellOverride on macOS"
-                       super.haskellPackages
-   else post (warboHaskellOverride {
-     inherit (super) haskellPackages;
-     extra = [ overrides ];
-   })
+post (warboHaskellOverride {
+  inherit (super) haskellPackages;
+  extra = [ overrides ];
+})
