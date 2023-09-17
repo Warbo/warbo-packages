@@ -1,7 +1,6 @@
-{ getSource, lib, nixpkgs1609, skipMac }:
+{ getSource, lib, nixpkgs1609, skipARM }:
 
-skipMac "coq-mtac"
-  (lib.overrideDerivation nixpkgs1609.coq (oldAttrs : rec {
-    name = "coq-mtac";
-    src  = getSource { inherit name; };
-  }))
+skipARM "coq-mtac" (lib.overrideDerivation nixpkgs1609.coq (oldAttrs: rec {
+  name = "coq-mtac";
+  src = getSource { inherit name; };
+}))
