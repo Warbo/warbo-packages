@@ -419,7 +419,7 @@
     "nix-helpers": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/nix-helpers.git",
-        "rev": "cbce8223822b1fa16266786f55e9849f9b4697a1",
+        "rev": "fc1bf54801e2196692feb16ded13e9919ba5a963",
         "type": "git"
     },
     "panhandle": {
