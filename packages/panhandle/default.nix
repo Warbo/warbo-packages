@@ -1,7 +1,6 @@
-{ panhandleArgs ? { }, panhandleRev ? "f4447cab557297c5757fbb333eb33a1f8ce87f0d"
-}:
+{ panhandleArgs ? { } }:
 import (fetchGit {
   url = "http://chriswarbo.net/git/panhandle.git";
   ref = "master";
-  rev = panhandleRev;
+  rev = "6b3d4755b1ac4125ea12d07f80cd6d3241904b17";
 }) panhandleArgs
