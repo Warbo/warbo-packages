@@ -258,10 +258,10 @@
         "homepage": null,
         "owner": "kartikprabhu",
         "repo": "hfeed2atom",
-        "rev": "214b4c61879d217e0854e87d2a25e3ca8ee7e91a",
-        "sha256": "1p8srrszaj6dxr4xjl0hp71qh1q0irqgkdahynsmilhpylcdqxsr",
+        "rev": "25e64964491ab61d40efe6ae9bf29556136f18b7",
+        "sha256": "008267bx50w8pjj16v9bxvrx1pp1j9pk9pfprh6kg0fhhbdc2x15",
         "type": "tarball",
-        "url": "https://github.com/kartikprabhu/hfeed2atom/archive/214b4c61879d217e0854e87d2a25e3ca8ee7e91a.tar.gz",
+        "url": "https://github.com/kartikprabhu/hfeed2atom/archive/25e64964491ab61d40efe6ae9bf29556136f18b7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "hnix": {
@@ -361,25 +361,6 @@
         "url_template": "https://www.mercurial-scm.org/release/mercurial-<version>.tar.gz",
         "version": "4.2.1"
     },
-    "mf2py": {
-        "branch": "master",
-        "description": "Microformats2 parser written in Python",
-        "homepage": "http://microformats.org/wiki/mf2py",
-        "owner": "tommorris",
-        "repo": "mf2py",
-        "rev": "c133581c69a357d97da7445a1fc6aeb15459eb57",
-        "sha256": "1agz7fbpplv719l0hfwflzbsahsyhrx904gf8azy6gxwzay3hf2h",
-        "type": "tarball",
-        "url": "https://github.com/tommorris/mf2py/archive/c133581c69a357d97da7445a1fc6aeb15459eb57.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "mf2util": {
-        "sha256": "1jqxhnmqc2ggqmbq3jzdwp14h3kn9w64gwadjafgcwdjq06iryhk",
-        "type": "tarball",
-        "url": "https://pypi.python.org/packages/source/m/mf2util/mf2util-0.4.3.tar.gz",
-        "url_template": "https://pypi.python.org/packages/source/m/mf2util/mf2util-<version>.tar.gz",
-        "version": "0.4.3"
-    },
     "miller": {
         "branch": "master",
         "description": "Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON",
@@ -440,13 +421,6 @@
         "url": "http://fengestad.no/python-lhafile/python-lhafile-0.2.1.tar.gz",
         "url_template": "http://fengestad.no/python-lhafile/python-lhafile-<version>.tar.gz",
         "version": "0.2.1"
-    },
-    "requests": {
-        "sha256": "1pkikn9sqny4rldfami4qzd8nalyaqiifh2y4j92c30yf4al4i9k",
-        "type": "tarball",
-        "url": "https://pypi.python.org/packages/source/r/requests/requests-2.11.1.tar.gz",
-        "url_template": "https://pypi.python.org/packages/source/r/requests/requests-<version>.tar.gz",
-        "version": "2.11.1"
     },
     "runtime-arbitrary": {
         "branch": "master",
