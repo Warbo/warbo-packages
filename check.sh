@@ -14,9 +14,15 @@ do
     nix-instantiate --parse "$F" > /dev/null
 done
 
-echo "Performing Nix checks" 1>&2
-nix-instantiate --show-trace --eval --read-write-mode \
-    -E '(import ./check.nix) || builtins.abort "Check failed"'
+echo "Checking dependencies are up to date" 1>&2
+for DEP in nix-helpers
+do
+    F="packages/$DEP/default.nix"
+    diff "$F" <(update-nix-fetchgit < "$F") || {
+        echo  "Out of date: $F"
+        exit 1
+    } 1>&2
+done
 
 echo "Checking that haskell-nix derivations are cached" 1>&2
 grep -R -l 'haskell-nix {' | grep '\.nix$' | while read -r F
