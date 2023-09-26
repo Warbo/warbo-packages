@@ -397,12 +397,6 @@
         "rev": "ce2c4d039f0f13dc6fddd00881b0ef7cef707b15",
         "type": "git"
     },
-    "nix-helpers": {
-        "branch": "master",
-        "repo": "http://chriswarbo.net/git/nix-helpers.git",
-        "rev": "100a5c9d8194758524b19544b2f69372dbf4a04a",
-        "type": "git"
-    },
     "panhandle": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/panhandle.git",
