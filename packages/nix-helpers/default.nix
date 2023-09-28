@@ -5,6 +5,6 @@
 import (builtins.fetchGit {
   name = "nix-helpers";
   ref = "master";
-  rev = "9bed246bfc3694e42e50f77b487fcb978a7eaaeb";
+  rev = "d222d6d28ca8f2d098bb507f99408f1e2e7c744e";
   url = "http://chriswarbo.net/git/nix-helpers.git";
 }) nix-helpers-args
