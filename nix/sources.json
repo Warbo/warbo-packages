@@ -336,18 +336,6 @@
         "url": "https://github.com/fragglet/lhasa/archive/2a6cc7f93cd97521bc46ca8ee286ce1d83feb185.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "linkchecker": {
-        "branch": "master",
-        "description": "check links in web documents or full websites",
-        "homepage": "http://wummel.github.io/linkchecker/",
-        "owner": "wummel",
-        "repo": "linkchecker",
-        "rev": "c2ce810c3fb00b895a841a7be6b2e78c64e7b042",
-        "sha256": "1mbisgk57jdhshzizyh5izpqb537zjq19m5kym6apiwg0z3a8x9k",
-        "type": "tarball",
-        "url": "https://github.com/wummel/linkchecker/archive/c2ce810c3fb00b895a841a7be6b2e78c64e7b042.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "md2pdf": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/md2pdf.git",
