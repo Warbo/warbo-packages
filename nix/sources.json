@@ -121,12 +121,6 @@
         "url_template": "http://http.debian.net/debian/pool/main/f/fonts-android/fonts-android_<version>.orig.tar.xz",
         "version": "4.4.4r2"
     },
-    "feed2maildir": {
-        "branch": "master",
-        "repo": "http://chriswarbo.net/git/feed2maildir.git",
-        "rev": "7b78e0cc453359250684debc50d0badd803924d4",
-        "type": "git"
-    },
     "font-spacemono": {
         "branch": "master",
         "description": "Original monospace display typeface family",
