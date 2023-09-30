@@ -1,5 +1,5 @@
-{ lib, skipMac, super, zlib }:
+# TODO: Is this fix still needed?
+{ nixpkgs-lib, nixpkgs, zlib }:
 
-skipMac "rockbox_utility" (lib.overrideDerivation super.rockbox_utility (old: {
-  buildInputs = old.buildInputs ++ [ zlib ];
-}))
+nixpkgs-lib.overrideDerivation nixpkgs.rockbox-utility
+(old: { buildInputs = old.buildInputs ++ [ zlib ]; })
