@@ -290,15 +290,6 @@
         "rev": "b4620ba5029c41cd51b996b2d9652d81bd86d501",
         "type": "git"
     },
-    "jsbeautifier": {
-        "description": "Format and de-obfuscate javascript.",
-        "homepage": "http://jsbeautifier.org",
-        "sha256": "0iw55qy17ibqqv3ag2jn2wqp8f5dj7wpaf79z01jiqfv64qy3vqs",
-        "type": "tarball",
-        "url": "https://pypi.python.org/packages/source/j/jsbeautifier/jsbeautifier-1.10.2.tar.gz",
-        "url_template": "https://pypi.python.org/packages/source/j/jsbeautifier/jsbeautifier-<version>.tar.gz",
-        "version": "1.10.2"
-    },
     "kics2": {
         "sha256": "0lr5fic28m1hkxzc2swgqg6is55qnv91wghhnkkrsci0xx04hd7m",
         "type": "tarball",
