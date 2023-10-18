@@ -1,27 +1,6 @@
-# Take pythonPackages from Nixpkgs 20.03 to avoid end-of-life errors in newer
-# releases.
-{ darwin, getSource, nixpkgs2003, stdenv }:
-
-with rec {
-  inherit (nixpkgs2003) pythonPackages;
-
-  mercurial = pythonPackages.buildPythonPackage rec {
-    name = "mercurial";
-    src = getSource { inherit name; };
-
-    # Make sure ApplicationServices/ApplicationServices.h is available
-    propagatedBuildInputs = if stdenv.isDarwin then
-      (with darwin.apple_sdk.frameworks; [
-        CoreGraphics
-        ApplicationServices
-        Carbon
-      ])
-    else
-      [ ];
-  };
-};
-pythonPackages.buildPythonPackage rec {
-  name = "artemis";
-  src = getSource { inherit name; };
-  propagatedBuildInputs = [ mercurial ];
-}
+import (builtins.fetchGit {
+  name = "artemis-src";
+  ref = "master";
+  rev = "c1d7730f3d26bf352dec3471d7b8a17dd443b3e0";
+  url = "http://chriswarbo.net/git/artemis.git";
+})

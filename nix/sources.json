@@ -29,18 +29,6 @@
         "rev": "a7a48600dd23909bb82200bd16130d469083d0bd",
         "type": "git"
     },
-    "artemis": {
-        "branch": "master",
-        "description": "lightweight distributed issue tracker",
-        "homepage": "http://mrzv.org/software/artemis/",
-        "owner": "mrzv",
-        "repo": "artemis",
-        "rev": "6a3d496fc5ffc32c04f45856286f450b7ee52df6",
-        "sha256": "1xdd4ayb6jyk4w5hdq2dxbxzzk90lk21rvkhwcih8ydwwg6zrnqh",
-        "type": "tarball",
-        "url": "https://github.com/mrzv/artemis/archive/6a3d496fc5ffc32c04f45856286f450b7ee52df6.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "asv": {
         "branch": "master",
         "description": "Airspeed Velocity: A simple Python benchmarking tool with web-based reporting",
