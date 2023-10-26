@@ -3,6 +3,6 @@ with {
     nixpkgsLatest pinnedNiv;
 };
 nixpkgsLatest.stdenv.mkDerivation {
-  name        = "warbo-packages-env";
+  name = "warbo-packages-env";
   buildInputs = [ pinnedNiv ];
 }

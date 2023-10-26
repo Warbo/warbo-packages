@@ -3,9 +3,8 @@
 with rec {
   suffix = "pkgs/misc/themes/e17gtk";
 
-  havePath = import (runCommand "have-e17gtk.nix"
-    { inherit repoRelease suffix; }
-    ''
+  havePath = import
+    (runCommand "have-e17gtk.nix" { inherit repoRelease suffix; } ''
       if [[ -e "$repoRelease/$suffix" ]]
       then
         echo true  > "$out"
@@ -14,7 +13,7 @@ with rec {
       fi
     '');
 
-  pkg = callPackage "${repoRelease}/${suffix}" {};
+  pkg = callPackage "${repoRelease}/${suffix}" { };
 };
 
 if havePath then pkg else nothing

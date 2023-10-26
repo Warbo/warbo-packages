@@ -6,10 +6,11 @@ with {
   inherit (builtins) attrNames getAttr hasAttr toJSON trace;
   repo = "repo" + lib.substring 0 4 nixpkgsRelease;
 };
-if hasAttr repo pinnedNixpkgs
-   then getAttr repo pinnedNixpkgs
-   else trace (toJSON {
+if hasAttr repo pinnedNixpkgs then
+  getAttr repo pinnedNixpkgs
+else
+  trace (toJSON {
     inherit repo;
-    warning   = "Repo not found in pinnedNixpkgs, using latest";
+    warning = "Repo not found in pinnedNixpkgs, using latest";
     available = attrNames pinnedNixpkgs;
   }) repoLatest

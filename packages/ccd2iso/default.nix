@@ -2,5 +2,5 @@
 
 stdenv.mkDerivation {
   name = "ccd2iso";
-  src  = ./ccd2iso-0.3.tar.gz;
+  src = ./ccd2iso-0.3.tar.gz;
 }

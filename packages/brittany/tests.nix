@@ -1,3 +1,3 @@
-{ brittany, hasBinary}:
+{ brittany, hasBinary }:
 
 hasBinary brittany "brittany"

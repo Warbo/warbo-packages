@@ -5,8 +5,9 @@ skipMac "ditaaeps" (stdenv.mkDerivation rec {
 
   # FIXME: Use https://github.com/madeye/ditaa-eps
   src = fetchurl {
-    name   = "${name}.zip";
-    url    = "mirror://sourceforge/project/ditaa-addons/DitaaEps/0.2/DitaaEps-0_2.zip";
+    name = "${name}.zip";
+    url =
+      "mirror://sourceforge/project/ditaa-addons/DitaaEps/0.2/DitaaEps-0_2.zip";
     sha256 = "0c64shycl3pqfld14kbkd3bg9d53w35qy1b3mn84qbpf02wvhp66";
   };
 
@@ -40,7 +41,7 @@ skipMac "ditaaeps" (stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "Convert ascii art diagrams into proper graphics";
-    homepage = http://ditaa-addons.sourceforge.net/;
+    homepage = "http://ditaa-addons.sourceforge.net/";
     license = licenses.gpl2;
     platforms = platforms.linux;
   };

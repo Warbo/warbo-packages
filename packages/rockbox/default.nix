@@ -1,5 +1,5 @@
-{ bash, buildEnv, libusb1, patchelf, rockbox_utility, skipMac, stdenv,
-  writeScript }:
+{ bash, buildEnv, libusb1, patchelf, rockbox_utility, skipMac, stdenv
+, writeScript }:
 
 with rec {
   firmware = ./bootloader-ipod6g.ipod;
@@ -10,7 +10,7 @@ with rec {
     mks5lboot --bl-inst ${firmware}
   '';
 
-    scan_script = writeScript "rockbox_6thgen_scan" ''
+  scan_script = writeScript "rockbox_6thgen_scan" ''
     #!${bash}/bin/bash
     set -e
     echo "Scanning for iPod in firmware update mode (Ctrl-C when found)" 1>&2
@@ -20,11 +20,11 @@ with rec {
   flasher = stdenv.mkDerivation {
     inherit firmware_script libusb1 scan_script;
     inherit (stdenv) glibc;
-    name        = "rockbox-6thgen-classic-bootloader-installer";
-    src         = ./mks5lboot.x86;
+    name = "rockbox-6thgen-classic-bootloader-installer";
+    src = ./mks5lboot.x86;
     unpackPhase = "true";
     buildInputs = [ patchelf ];
-    shellHook   = ''
+    shellHook = ''
       echo "$msg"
     '';
     msg = ''
@@ -60,6 +60,6 @@ with rec {
   };
 };
 skipMac "rockbox" (buildEnv {
-  name  = "rockbox-utils";
+  name = "rockbox-utils";
   paths = [ flasher rockbox_utility ];
 })

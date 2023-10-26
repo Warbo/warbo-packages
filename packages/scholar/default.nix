@@ -2,11 +2,9 @@
 
 stdenv.mkDerivation rec {
   name = "scholar.py";
-  src  = getSource { inherit name; };
+  src = getSource { inherit name; };
 
-  propagatedBuildInputs = [
-    (python3.withPackages (p: [ p.beautifulsoup4 ]))
-  ];
+  propagatedBuildInputs = [ (python3.withPackages (p: [ p.beautifulsoup4 ])) ];
 
   installPhase = ''
     mkdir -p "$out/bin"

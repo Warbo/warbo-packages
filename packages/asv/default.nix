@@ -2,7 +2,7 @@
 
 pythonPackages.buildPythonPackage {
   name = "airspeed-velocity";
-  src  = getSource { name = "asv"; };
+  src = getSource { name = "asv"; };
 
   # For tests
   buildInputs = [

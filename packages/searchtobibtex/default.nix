@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   name = "searchtobibtex";
-  src  = getSource { inherit name; };
+  src = getSource { inherit name; };
 
   propagatedBuildInputs = [ which bibtool bibclean curl poppler_utils ];
 

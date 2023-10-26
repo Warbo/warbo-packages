@@ -1,5 +1,5 @@
-{ cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4,
-  lib, nixpkgs1709, qt4, skipMac, stdenv, writeScript }:
+{ cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4
+, lib, nixpkgs1709, qt4, skipMac, stdenv, writeScript }:
 
 with rec {
   inherit (builtins) attrNames getAttr map;
@@ -10,9 +10,9 @@ with rec {
       toMove = {
         "skulpture.themerc" = "share/kde4/apps/kstyle/themes";
         "skulpture.desktop" = "share/kde4/apps/kwin";
-        "skulpture.png"     = "share/kde4/apps/skulpture/pics";
-        "skulptureui.rc"    = "share/kde4/apps/skulpture";
-        "libskulpture.so"   = "lib/${qt}/plugins/styles";
+        "skulpture.png" = "share/kde4/apps/skulpture/pics";
+        "skulptureui.rc" = "share/kde4/apps/skulpture";
+        "libskulpture.so" = "lib/${qt}/plugins/styles";
       };
 
       mkCmd = file: ''
@@ -33,15 +33,15 @@ with rec {
 };
 skipMac "skulpture" {
   skulpture-qt4 = stdenv.mkDerivation {
-    name    = "skulpture-qt4";
+    name = "skulpture-qt4";
     version = "0.2.4";
     # TODO: https://github.com/nmattia/niv/issues/274
-    src     = fetchurl {
-      url    = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
+    src = fetchurl {
+      url = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
       sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
     };
 
-    buildInputs  = [ cmake fail kdelibs4 findutils qt4 ];
+    buildInputs = [ cmake fail kdelibs4 findutils qt4 ];
 
     installPhase = ''
       cd ..
@@ -59,19 +59,20 @@ skipMac "skulpture" {
     '';
   };
 
-  mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }: mkDerivation rec {
-    name         = "skulpture-qt5";
-    src          = getSource { inherit name; };
-    preConfigure = "cd src";
-    buildInputs  = [ qtbase qmake cmake kdelibs4 ];
-    installPhase = ''
-      cd ..
-      ${installFiles "qt5"}
-      echo "Patching libraries to avoid references to build dir" 1>&2
-      while read -r LIB
-      do
-        patchelf --set-rpath "${lib.makeLibraryPath buildInputs}" "$LIB"
-      done < <(find "$out" -name "*.so")
-    '';
-  };
+  mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }:
+    mkDerivation rec {
+      name = "skulpture-qt5";
+      src = getSource { inherit name; };
+      preConfigure = "cd src";
+      buildInputs = [ qtbase qmake cmake kdelibs4 ];
+      installPhase = ''
+        cd ..
+        ${installFiles "qt5"}
+        echo "Patching libraries to avoid references to build dir" 1>&2
+        while read -r LIB
+        do
+          patchelf --set-rpath "${lib.makeLibraryPath buildInputs}" "$LIB"
+        done < <(find "$out" -name "*.so")
+      '';
+    };
 }

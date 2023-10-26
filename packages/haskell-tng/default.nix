@@ -2,9 +2,9 @@
 
 with {
   code = run rec {
-    name   = "haskell-tng.el";
-    vars   = {
-      dir  = "share/emacs/site-lisp/haskell-tng.el";
+    name = "haskell-tng.el";
+    vars = {
+      dir = "share/emacs/site-lisp/haskell-tng.el";
       repo = getSource { inherit name; };
     };
     script = ''
@@ -14,6 +14,6 @@ with {
   };
 };
 buildEnv {
-  name  = "haskell-tng";
+  name = "haskell-tng";
   paths = [ code hsinspect ];
 }

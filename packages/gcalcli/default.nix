@@ -1,12 +1,12 @@
-{ die, lib, google-api-python-client, nixpkgs1803, uritemplate,
-  warbo-packages-sources }:
+{ die, lib, google-api-python-client, nixpkgs1803, uritemplate
+, warbo-packages-sources }:
 
 with rec {
-  name   = "gcalcli";
+  name = "gcalcli";
   source = builtins.getAttr name warbo-packages-sources;
 
   inherit (nixpkgs1803) pythonPackages;
-  got  = pythonPackages.oauth2client.name;
+  got = pythonPackages.oauth2client.name;
   want = "1.4.12";
 };
 assert lib.hasSuffix want got || die {
@@ -16,7 +16,7 @@ assert lib.hasSuffix want got || die {
 pythonPackages.buildPythonPackage {
   inherit name;
   inherit (source) version;
-  src                   = source.outPath;
+  src = source.outPath;
   propagatedBuildInputs = [
     pythonPackages.python
     pythonPackages.gflags
@@ -27,9 +27,7 @@ pythonPackages.buildPythonPackage {
     pythonPackages.oauth2client
     (google-api-python-client.override {
       inherit pythonPackages;
-      uritemplate = uritemplate.override {
-        inherit pythonPackages;
-      };
+      uritemplate = uritemplate.override { inherit pythonPackages; };
     })
   ];
 }

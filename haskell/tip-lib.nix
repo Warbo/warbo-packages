@@ -3,27 +3,25 @@ self: super: helf: huper:
 with self;
 with builtins;
 with rec {
-  mkParser = runCommand "mk-parser"
-    {
-      inherit tipSrc;
-      buildInputs = [ helf.BNFC gcc ];
-    }
-    ''
-      cp -r "$tipSrc" ./tip
-      chmod -R +w ./tip
-        pushd ./tip
-        bash make_parser.sh
+  mkParser = runCommand "mk-parser" {
+    inherit tipSrc;
+    buildInputs = [ helf.BNFC gcc ];
+  } ''
+    cp -r "$tipSrc" ./tip
+    chmod -R +w ./tip
+      pushd ./tip
+      bash make_parser.sh
+      ln -s $(gcc --print-file-name=libstdc++.so)
+      pushd tip-lib
         ln -s $(gcc --print-file-name=libstdc++.so)
-        pushd tip-lib
-          ln -s $(gcc --print-file-name=libstdc++.so)
-        popd
       popd
-      cp -r tip "$out"
-    '';
+    popd
+    cp -r tip "$out"
+  '';
 
   parserSrc = stdenv.mkDerivation {
-    name         = "tip-lib-with-parser";
-    src          = mkParser;
+    name = "tip-lib-with-parser";
+    src = mkParser;
     buildCommand = ''
       source $stdenv/setup
 
@@ -43,6 +41,6 @@ with rec {
   };
 };
 helf.callPackage (haskellSrc2nix {
-                   name = "tip-lib";
-                   src  = parserSrc;
-                 }) {}
+  name = "tip-lib";
+  src = parserSrc;
+}) { }

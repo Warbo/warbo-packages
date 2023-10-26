@@ -1,15 +1,15 @@
 { getSource, haskell-nix, repo1909 }:
 
 with rec {
-  pkgs  = haskell-nix { repo = repo1909; };
+  pkgs = haskell-nix { repo = repo1909; };
 
   nixed = pkgs.haskell-nix.cabalProject {
-    ghc         = pkgs.buildPackages.pkgs.haskell-nix.compiler.ghc865;
+    ghc = pkgs.buildPackages.pkgs.haskell-nix.compiler.ghc865;
     index-state = "2020-01-11T00:00:00Z";
-    src         = getSource { name = "hsinspect"; };
+    src = getSource { name = "hsinspect"; };
 
     # Update these two when the derivation changes
-    plan-sha256  = "00qpq9bmaf8nqzhcyzyj5imm43826v4m8xmzx7q85v48842wjy4q";
+    plan-sha256 = "00qpq9bmaf8nqzhcyzyj5imm43826v4m8xmzx7q85v48842wjy4q";
     materialized = ../../caches/hsinspect-plan-to-nix-pkgs;
 
     # Avoid 'Neither the Haskell package set or the Nixpkgs package set contain

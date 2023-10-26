@@ -1,9 +1,9 @@
-{ getSource, lib, options ? [], stdenv }:
+{ getSource, lib, options ? [ ], stdenv }:
 
 with rec {
   inherit (builtins) elem toJSON;
   inherit (lib) concatStringsSep filter;
-  allowedOptions     = import ./allowedOptions.nix;
+  allowedOptions = import ./allowedOptions.nix;
   whitelistedOptions = filter (o: elem o allowedOptions) options;
   sentinel = "sd_markdown_new(";
   replaced = sentinel + concatStringsSep " | " whitelistedOptions;
@@ -14,14 +14,12 @@ with rec {
   '';
 };
 stdenv.mkDerivation rec {
-  name         = "sundown";
-  src          = getSource { inherit name; };
-  buildFlags   = [ "sundown" ];
+  name = "sundown";
+  src = getSource { inherit name; };
+  buildFlags = [ "sundown" ];
   installPhase = ''
     mkdir -p "$out/bin"
     mv sundown "$out/bin/"
   '';
-  patchPhase = if whitelistedOptions == []
-                  then null
-                  else setOptions;
+  patchPhase = if whitelistedOptions == [ ] then null else setOptions;
 }

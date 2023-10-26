@@ -2,13 +2,12 @@
 
 # FIXME: We should replace 'go get' with niv somehow
 with rec {
-  goGet = name: pre: runCommand "go-get"
-    {
-      __noChroot     = true;
-      buildInputs    = [ go git ];
+  goGet = name: pre:
+    runCommand "go-get" {
+      __noChroot = true;
+      buildInputs = [ go git ];
       GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
-    }
-    ''
+    } ''
       ${pre}
       GOPATH="$PWD" HOME="$PWD" go get ${name}
 
@@ -26,4 +25,7 @@ with rec {
   bases = goGet "github.com/whyrusleeping/bases" "";
 };
 
-buildEnv { name = "elcid"; paths = [ bases elcid ]; }
+buildEnv {
+  name = "elcid";
+  paths = [ bases elcid ];
+}

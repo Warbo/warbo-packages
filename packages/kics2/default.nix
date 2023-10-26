@@ -1,5 +1,5 @@
-{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, skipMac,
-  which }:
+{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, skipMac
+, which }:
 
 with rec {
   inherit (builtins) getAttr trace;
@@ -7,7 +7,7 @@ with rec {
   inherit (nixpkgs1803) haskellPackages;
 
   name = "kics2";
-  src  = getSource { inherit name; };
+  src = getSource { inherit name; };
 
   deps = [
     "cabal-install"
@@ -79,27 +79,24 @@ with rec {
 
   curry-base = haskellSrc2nix {
     name = "curry-base";
-    src  = "${src}/frontend/curry-base";
+    src = "${src}/frontend/curry-base";
   };
 
   curry-frontend = haskellSrc2nix {
     name = "curry-frontend";
-    src  = "${src}/frontend/curry-frontend";
+    src = "${src}/frontend/curry-frontend";
   };
 
-  kics2-frontend = runCommand "kics2-frontend"
-    {
-      cf = hsPkgs.curry-frontend;
-    }
-    ''
+  kics2-frontend =
+    runCommand "kics2-frontend" { cf = hsPkgs.curry-frontend; } ''
       mkdir -p "$out/bin"
       ln -s "$cf/bin/curry-frontend" "$out/bin/kics2-frontend"
     '';
 
   hsPkgs = haskellPackages.override (old: {
     overrides = helf: huper: {
-      curry-base     = helf.callPackage curry-base {};
-      curry-frontend = helf.callPackage curry-frontend {};
+      curry-base = helf.callPackage curry-base { };
+      curry-frontend = helf.callPackage curry-frontend { };
     };
   });
 
@@ -107,19 +104,25 @@ with rec {
     kernel = {
       kernelbins = {
         deps = "$(PKGDB) frontend $(CLEANCURRY) scripts copylibs copytools";
-      }/*''cd src && make
-         cd currytools/optimize && make''*/;
+      }
+      /* ''cd src && make
+         cd currytools/optimize && make''
+      */
+      ;
 
       kernellibs = "make kernellibs";
       # compile code optimization tools:
       optimize = "@cd currytools/optimize && $(MAKE)";
     };
 
-    tools  = "make tools";
+    tools = "make tools";
     manual = "make manual";
   };
 
-  result = runCommand name { inherit patched; buildInputs = [ ghc which ]; } ''
+  result = runCommand name {
+    inherit patched;
+    buildInputs = [ ghc which ];
+  } ''
     mkdir -p "$out/home"
     export HOME="$out/home"
 
@@ -145,6 +148,4 @@ with rec {
     done
   '';
 };
-skipMac "kics2" {
-  inherit curry-base curry-frontend kics2-frontend;
-}
+skipMac "kics2" { inherit curry-base curry-frontend kics2-frontend; }

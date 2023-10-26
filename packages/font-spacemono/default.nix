@@ -1,8 +1,8 @@
 { getSource, stdenv }:
 
 stdenv.mkDerivation rec {
-  name         = "font-spacemono";
-  src          = getSource { inherit name; };
+  name = "font-spacemono";
+  src = getSource { inherit name; };
   buildCommand = ''
     source $stdenv/setup
 

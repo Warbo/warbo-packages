@@ -1,16 +1,21 @@
-{ autoconf, automake, getSource, libXtst, libX11, libXi, libXext, libXinerama,
-  pkgconfig, stdenv, xextproto ? null, xlibsWrapper, xorg }:
+{ autoconf, automake, getSource, libXtst, libX11, libXi, libXext, libXinerama
+, pkgconfig, stdenv, xextproto ? null, xlibsWrapper, xorg }:
 
 stdenv.mkDerivation rec {
   name = "x2x";
-  src  = getSource { inherit name; };
+  src = getSource { inherit name; };
 
   buildInputs = [
-    xlibsWrapper autoconf automake pkgconfig libX11 libXtst libXi libXext
+    xlibsWrapper
+    autoconf
+    automake
+    pkgconfig
+    libX11
+    libXtst
+    libXi
+    libXext
     libXinerama
-    (if xextproto == null
-        then xorg.xorgproto
-        else xextproto)
+    (if xextproto == null then xorg.xorgproto else xextproto)
   ];
 
   configurePhase = ''

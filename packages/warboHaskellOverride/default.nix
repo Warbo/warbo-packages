@@ -14,31 +14,23 @@ with rec {
 
   composeAll = fold composeExtensions (_: _: { });
 
-  dummy = _: _: {};
+  dummy = _: _: { };
 
   generalOverrides = helf: huper:
-    mapAttrs (_: f: import f (extraArgs.self // extraArgs)
-                             extraArgs.super
-                             helf
-                             huper)
-             (nixFilesIn ../haskell);
+    mapAttrs (_: f:
+      import f (extraArgs.nixpkgs // extraArgs) extraArgs.nixpkgs helf huper)
+    (nixFilesIn ../../haskell);
 
-  sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" {}; };
+  sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" { }; };
 
-  go = {
-    haskellPackages,
-    existing ? true,
-    general  ? true,
-    filepath ? false,
-    syb      ? false,
-    extra    ? []
-  }:
+  go = { haskellPackages, existing ? true, general ? true, filepath ? false
+    , syb ? false, extra ? [ ] }:
     haskellPackages.override (old: {
       overrides = composeAll (concatLists [
-        (if existing then [ (old.overrides or dummy) ] else [])
-        (if general  then [ generalOverrides         ] else [])
-        (if filepath then [ filepathFix              ] else [])
-        (if syb      then [ sybOverrides             ] else [])
+        (if existing then [ (old.overrides or dummy) ] else [ ])
+        (if general then [ generalOverrides ] else [ ])
+        (if filepath then [ filepathFix ] else [ ])
+        (if syb then [ sybOverrides ] else [ ])
         extra
       ]);
     });

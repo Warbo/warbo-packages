@@ -1,3 +1,3 @@
 self: super: helf: huper:
 
-helf.callPackage (self.gitHaskell { name = "mlspec-helper"; }) {}
+helf.callPackage (self.gitHaskell { name = "mlspec-helper"; }) { }

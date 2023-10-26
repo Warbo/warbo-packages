@@ -1,3 +1,3 @@
-{ hasBinary, sta}:
+{ hasBinary, sta }:
 
 hasBinary sta "sta"

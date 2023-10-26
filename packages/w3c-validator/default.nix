@@ -1,16 +1,19 @@
 { bash, linkTo, openjdk, stdenv, unzip, warbo-packages-sources }:
 
 with rec {
-  name   = "w3c-validator";
+  name = "w3c-validator";
   source = builtins.getAttr name warbo-packages-sources;
 };
 stdenv.mkDerivation {
   inherit name;
   inherit (source) version;
-  src                   = linkTo { name = name + ".zip"; path = source; };
-  buildInputs           = [ unzip ];
+  src = linkTo {
+    name = name + ".zip";
+    path = source;
+  };
+  buildInputs = [ unzip ];
   propagatedBuildInputs = [ openjdk bash ];
-  installPhase          = ''
+  installPhase = ''
     mkdir -p "$out/lib/";
     cp -v vnu.jar "$out/lib/"
 

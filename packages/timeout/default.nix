@@ -1,9 +1,8 @@
 { attrsToDirs', bash, coreutils, getSource, perl, procps, runCommand, wrap }:
 
 with {
-  patched = runCommand "timeout-patched"
-    { src = getSource { name = "timeout"; }; }
-    ''
+  patched =
+    runCommand "timeout-patched" { src = getSource { name = "timeout"; }; } ''
       cp -r "$src" "$out"
       chmod -R +w "$out"
       sed -e 's@/usr/bin/perl@${perl}/bin/perl@g' -i "$out/timeout"
@@ -12,15 +11,15 @@ with {
 attrsToDirs' "timeout" {
   bin = rec {
     timeout = wrap {
-      name  = "timeout";
-      file  = "${patched}/timeout";
+      name = "timeout";
+      file = "${patched}/timeout";
       paths = [ coreutils perl procps ];
     };
 
     # Wrapper for timeout, which provides sensible defaults
     withTimeout = wrap {
-      name   = "withTimeout";
-      paths  = [ bash ];
+      name = "withTimeout";
+      paths = [ bash ];
       script = ''
         #!${bash}/bin/bash
         TIME_OPT=""

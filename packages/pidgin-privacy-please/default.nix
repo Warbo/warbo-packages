@@ -1,18 +1,5 @@
-{ autoconf
-, automake
-, dummyBuild
-, getSource
-, glib
-, intltool
-, isBroken
-, lib
-, libtool
-, overrideGstreamer ? true
-, pidgin
-, pkgconfig
-, stdenv
-, unfix
-, unpack'
+{ autoconf, automake, dummyBuild, getSource, glib, intltool, isBroken, lib
+, libtool, overrideGstreamer ? true, pidgin, pkgconfig, stdenv, unfix, unpack'
 }:
 
 with rec {
@@ -24,23 +11,19 @@ with rec {
         dev = dummyBuild "gst-plugins-good-dev-dummy";
       };
       gst-plugins-good = dummyBuild "gst-plugins-good-dummy";
-      gstreamer        = dummyBuild "gstreamer";
+      gstreamer = dummyBuild "gstreamer";
     };
   })).overrideAttrs (old: {
-    configureFlags = (old.configureFlags or []) ++ [
-      "--disable-gstreamer"
-      "--disable-vv"
-    ];
+    configureFlags = (old.configureFlags or [ ])
+      ++ [ "--disable-gstreamer" "--disable-vv" ];
   });
 };
 stdenv.mkDerivation {
   name = "pidgin-privacy-please";
-  src  = unpack' "pidgin-privacy-please"
-                 ./pidgin-privacy-please_0.7.1.orig.tar.gz;
-  buildInputs = [ autoconf automake glib intltool libtool pkgconfig ] ++
-    (if overrideGstreamer
-        then [ pidginWithoutGstreamer ]
-        else [ pidgin ]);
+  src =
+    unpack' "pidgin-privacy-please" ./pidgin-privacy-please_0.7.1.orig.tar.gz;
+  buildInputs = [ autoconf automake glib intltool libtool pkgconfig ]
+    ++ (if overrideGstreamer then [ pidginWithoutGstreamer ] else [ pidgin ]);
   installPhase = ''
     mkdir -p "$out/lib/pidgin"
     pushd src

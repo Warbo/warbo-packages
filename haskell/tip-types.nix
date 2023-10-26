@@ -10,6 +10,6 @@ with rec {
 };
 
 helf.callPackage (haskellSrc2nix {
-                   name = "tip-types";
-                   src  = typesSrc;
-                 }) {}
+  name = "tip-types";
+  src = typesSrc;
+}) { }

@@ -1,8 +1,8 @@
 { gitSource, stdenv }:
 
 stdenv.mkDerivation rec {
-  name         = "md2pdf";
-  src          = gitSource { inherit name; };
+  name = "md2pdf";
+  src = gitSource { inherit name; };
   installPhase = ''
     mkdir -p "$out/bin"
     cp md2pdf "$out/bin"
