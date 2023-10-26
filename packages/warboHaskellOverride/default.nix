@@ -1,18 +1,18 @@
 # Defines an function for overriding haskellPackages, appending the contents of
-# the ../haskell directory (among other things)
+# the ../../haskell directory (among other things)
 
 # Naming convention:
 #  - self : nixpkgs with our overrides applied (watch out for infinite loops!)
 #  - super: nixpkgs without our overrides applied (useful for breaking loops)
 #  - helf : haskell set with our overrides applied (watch out for loops!)
 #  - huper: haskell set without our overrides applied (for breaking loops)
-{ extraArgs, filepathFix, lib, nixFilesIn, nixpkgs1803, stdenv }:
+{ extraArgs, filepathFix, nixFilesIn, nixpkgs-lib, stdenv }:
 
 with rec {
   inherit (builtins) trace;
-  inherit (lib) concatLists fold hasSuffix mapAttrs;
+  inherit (nixpkgs-lib) composeExtensions concatLists fold hasSuffix mapAttrs;
 
-  composeAll = fold nixpkgs1803.lib.composeExtensions (_: _: {});
+  composeAll = fold composeExtensions (_: _: { });
 
   dummy = _: _: {};
 
