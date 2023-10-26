@@ -43,9 +43,4 @@ with rec {
       ]);
     });
 };
-if stdenv.isDarwin
-   then trace "Skipping haskellOverride on macOS" ({
-          haskellPackages,
-          ...
-        }: haskellPackages)
-   else go
+go
