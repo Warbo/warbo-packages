@@ -65,10 +65,10 @@ do
         unset POSSIBLE
     fi
 
-       FOUNDNAME=$(grep 'identifier' < "$X"      |
+       FOUNDNAME=$(grep -A2 'identifier' < "$X"      |
                    grep -o 'name *= *"[^"]*"'    |
                    grep -o '"[^"]*"'             ) || fail "No name in '$X'"
-    FOUNDVERSION=$(grep 'identifier' < "$X"      |
+    FOUNDVERSION=$(grep -A2 'identifier' < "$X"      |
                    grep -o 'version *= *"[^"]*"' |
                    grep -o '"[^"]*"'             ) || fail "No version '$X'"
     unset D
