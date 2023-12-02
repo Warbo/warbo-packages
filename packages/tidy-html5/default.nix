@@ -1,7 +1,4 @@
-{ cmake, getSource, libxslt, stdenv }:
+{ html-tidy }:
 
-stdenv.mkDerivation rec {
-  name = "tidy-html5";
-  src = getSource { inherit name; };
-  buildInputs = [ cmake libxslt ];
-}
+builtins.trace
+"WARNING: tidy-html5 is deprecated, as it's now nixpkgs.html-tidy" html-tidy
