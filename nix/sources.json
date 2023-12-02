@@ -461,18 +461,6 @@
         "url": "https://github.com/vmg/sundown/archive/37728fb2d7137ff7c37d0a474cb827a8d6d846d8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "tidy-html5": {
-        "branch": "next",
-        "description": "The granddaddy of HTML tools, with support for modern standards",
-        "homepage": "http://www.html-tidy.org",
-        "owner": "htacg",
-        "repo": "tidy-html5",
-        "rev": "fbde392af3b26c44628b1f4365ee9c662d37f9db",
-        "sha256": "1dkr27hr90kszrnzbsyqmkq25l3vaylvh59f8k7llf2mkmd7sg8s",
-        "type": "tarball",
-        "url": "https://github.com/htacg/tidy-html5/archive/fbde392af3b26c44628b1f4365ee9c662d37f9db.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "timeout": {
         "branch": "master",
         "description": "A script to measure and limit CPU time and memory consumption of black-box processes in Linux",
