@@ -1,7 +1,7 @@
-{ panpipeArgs ? { }, panpipeRev ? "4a7ad10fac3517464b9edc89891c381bd534d90a" }:
+{ panpipeArgs ? { } }:
 
 import (fetchGit {
   url = "http://chriswarbo.net/git/panpipe.git";
   ref = "master";
-  rev = panpipeRev;
+  rev = "19e37791ff36a37117b5715cfd5f1b11471bdfbf";
 }) panpipeArgs

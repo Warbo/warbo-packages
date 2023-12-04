@@ -2,5 +2,5 @@
 import (fetchGit {
   url = "http://chriswarbo.net/git/panhandle.git";
   ref = "master";
-  rev = "6b3d4755b1ac4125ea12d07f80cd6d3241904b17";
+  rev = "e0272b0b9645f09c89589e63002f038e66abfdf4";
 }) panhandleArgs
