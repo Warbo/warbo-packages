@@ -3,36 +3,42 @@ set -e
 
 # Simple, quick sanity check. Useful as a git pre-commit hook.
 
+msg() { [[ -z "$DEBUG" ]] || echo "$*" 1>&2; }
+
+CODE=0
 function fail {
-    echo "$*" 1>&2
-    exit 1
+    DEBUG=1 msg "$@"
+    CODE=1
+    [[ -z "${FAILFAST:-}" ]] || exit 1
 }
 
 find . -name "*.nix" -type f | while read -r F
 do
-    echo "Checking syntax of '$F'" 1>&2
+    msg "Checking syntax of '$F'"
     nix-instantiate --parse "$F" > /dev/null
 done
 
-echo "Checking dependencies are up to date" 1>&2
-for DEP in nix-helpers
-do
-    F="packages/$DEP/default.nix"
-    diff "$F" <(update-nix-fetchgit < "$F") || {
-        echo  "Out of date: $F"
-        exit 1
-    } 1>&2
-done
+msg "Checking shell.nix works" 1>&2
+nix-shell --run true || fail "Error instantiating nix-shell"
 
-echo "Checking that haskell-nix derivations are cached" 1>&2
+command -v update-nix-fetchgit > /dev/null && {
+    for DEP in nix-helpers
+    do
+        msg "Checking dependency $DEP is up to date" 1>&2
+        F="packages/$DEP/default.nix"
+        diff "$F" <(update-nix-fetchgit < "$F") || fail "Out of date: $F"
+    done
+}
+
+msg "Checking that haskell-nix derivations are cached"
 grep -R -l 'haskell-nix {' | grep '\.nix$' | while read -r F
 do
     grep 'plan-sha256' < "$F" > /dev/null || {
-        echo "File '$F' uses haskell-nix without caching a plan-sha256" 1>&2
+        msg "File '$F' uses haskell-nix without caching a plan-sha256" 1>&2
         fail "Build the package and follow the instructions in 'trace'"
     }
     grep 'materialized' < "$F" > /dev/null || {
-        echo "File '$F' uses haskell-nix without a materialised plan"   1>&2
+        msg "File '$F' uses haskell-nix without a materialised plan"   1>&2
         fail "Build the package and follow the instructions in 'trace'"
     }
 
@@ -86,3 +92,5 @@ do
     unset FOUNDNAME
     unset FOUNDVERSION
 done
+
+exit "$CODE"
