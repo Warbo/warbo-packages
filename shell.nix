@@ -4,5 +4,5 @@ with rec {
 };
 nixpkgs.stdenv.mkDerivation {
   name = "warbo-packages-env";
-  buildInputs = [ pinnedNiv ];
+  buildInputs = [ pinnedNiv nixpkgs.update-nix-fetchgit ];
 }
