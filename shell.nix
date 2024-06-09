@@ -1,8 +1,8 @@
-with {
-  inherit (import (import ./nix/sources.nix).nix-helpers)
-    nixpkgsLatest pinnedNiv;
+with rec {
+  inherit (import ./. {}) nix-helpers;
+  inherit (nix-helpers) nixpkgs pinnedNiv;
 };
-nixpkgsLatest.stdenv.mkDerivation {
+nixpkgs.stdenv.mkDerivation {
   name = "warbo-packages-env";
   buildInputs = [ pinnedNiv ];
 }
