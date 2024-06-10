@@ -146,12 +146,6 @@
         "url": "https://github.com/danr/geniplate/archive/961a732bcbfb4b2cb6092284f35b0353a2657210.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "get-deps": {
-        "branch": "master",
-        "repo": "http://chriswarbo.net/git/get-deps.git",
-        "rev": "4ce5787d28a82401cee52d67ac20c10ca0f2d57f",
-        "type": "git"
-    },
     "ghc-dup": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/ghc-dup.git",
