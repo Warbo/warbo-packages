@@ -121,13 +121,6 @@
         "url": "https://github.com/googlefonts/spacemono/archive/f5ebc1e1c0eca03079cb830f167695751d3e0353.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "gcalcli": {
-        "sha256": "03fim2d7m6ml5y29p551wy3hljzm89amm0yvmj7wvlpk4v5ab6cf",
-        "type": "tarball",
-        "url": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-3.3.2.tar.gz",
-        "url_template": "https://pypi.python.org/packages/source/g/gcalcli/gcalcli-<version>.tar.gz",
-        "version": "3.3.2"
-    },
     "genifunctors": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/genifunctors.git",
