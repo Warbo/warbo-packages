@@ -1,19 +1,31 @@
-{ buildEnv, cacert, go, git, runCommand }:
+{
+  buildEnv,
+  cacert,
+  go,
+  git,
+  runCommand,
+}:
 
 # FIXME: We should replace 'go get' with niv somehow
 with rec {
-  goGet = name: pre:
-    runCommand "go-get" {
-      __noChroot = true;
-      buildInputs = [ go git ];
-      GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
-    } ''
-      ${pre}
-      GOPATH="$PWD" HOME="$PWD" go get ${name}
+  goGet =
+    name: pre:
+    runCommand "go-get"
+      {
+        __noChroot = true;
+        buildInputs = [
+          go
+          git
+        ];
+        GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
+      }
+      ''
+        ${pre}
+        GOPATH="$PWD" HOME="$PWD" go get ${name}
 
-      mkdir -p "$out"
-      cp -r ./bin "$out"/
-    '';
+        mkdir -p "$out"
+        cp -r ./bin "$out"/
+      '';
 
   elcid = goGet "github.com/whyrusleeping/elcid" ''
     GOPATH="$PWD" go get github.com/whyrusleeping/elcid || true
@@ -27,5 +39,8 @@ with rec {
 
 buildEnv {
   name = "elcid";
-  paths = [ bases elcid ];
+  paths = [
+    bases
+    elcid
+  ];
 }

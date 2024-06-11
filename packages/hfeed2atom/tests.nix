@@ -1,4 +1,9 @@
-{ hfeed2atom, python3, runCommand, writeScript }:
+{
+  hfeed2atom,
+  python3,
+  runCommand,
+  writeScript,
+}:
 runCommand "hfeed2atom-test" {
   go = writeScript "hfeed2atom-test.py" ''
     #!${python3.withPackages (p: [ hfeed2atom ])}/bin/python3

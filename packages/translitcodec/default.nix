@@ -7,7 +7,9 @@ with rec {
 pythonPackages.buildPythonPackage {
   inherit name;
   inherit (source) version;
-  meta = { inherit (source) description homepage; };
+  meta = {
+    inherit (source) description homepage;
+  };
   src = source.outPath;
   propagatedBuildInputs = [ pythonPackages.python ];
 }

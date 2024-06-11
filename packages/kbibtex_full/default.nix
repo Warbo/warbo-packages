@@ -1,69 +1,102 @@
-{ die, lib, nixpkgs1603, skipMac, stdenv, withArgs }:
+{
+  die,
+  lib,
+  nixpkgs1603,
+  skipMac,
+  stdenv,
+  withArgs,
+}:
 
 # FIXME: Newer version is out, 0.4 source is gone :(
-assert nixpkgs1603 ? kde4
+assert
+  nixpkgs1603 ? kde4
   || die { error = "nixpkgs1603 should contain kde4 attribute, but didn't"; };
-assert nixpkgs1603.callPackage ({ kde4 ? null }: kde4 != null) { }
+assert
+  nixpkgs1603.callPackage (
+    {
+      kde4 ? null,
+    }:
+    kde4 != null
+  ) { }
   || die { error = "nixpkgs1603.callPackage should populate 'kde4' argument"; };
 with rec {
   # Shamelessly taken from https://github.com/NixOS/nixpkgs/pull/10219
   # FIXME: This is using FAR too many dependencies; many are taken verbatim from
   # that digikam patch, and are hence unused by kbibtex
-  setArgs = f:
-    withArgs [
-      "stdenv"
-      "fetchurl"
-      "automoc4"
-      "boost"
-      "shared_desktop_ontologies"
-      "cmake"
-      "eigen"
-      "lcms"
-      "gettext"
-      "jasper"
-      "lensfun"
-      "libgphoto2"
-      "libjpeg"
-      "libpgf"
-      "libtiff"
-      "libusb1"
-      "liblqr1"
-      "mysql"
-      "opencv"
-      "perl"
-      "phonon"
-      "pkgconfig"
-      "qca2"
-      "qimageblitz"
-      "qjson"
-      "qt4"
-      "soprano"
-      "poppler_qt4"
-      "kde4"
+  setArgs =
+    f:
+    withArgs
+      [
+        "stdenv"
+        "fetchurl"
+        "automoc4"
+        "boost"
+        "shared_desktop_ontologies"
+        "cmake"
+        "eigen"
+        "lcms"
+        "gettext"
+        "jasper"
+        "lensfun"
+        "libgphoto2"
+        "libjpeg"
+        "libpgf"
+        "libtiff"
+        "libusb1"
+        "liblqr1"
+        "mysql"
+        "opencv"
+        "perl"
+        "phonon"
+        "pkgconfig"
+        "qca2"
+        "qimageblitz"
+        "qjson"
+        "qt4"
+        "soprano"
+        "poppler_qt4"
+        "kde4"
 
-      # Optional build time dependencies
-      "lcms2"
-      "libxslt"
+        # Optional build time dependencies
+        "lcms2"
+        "libxslt"
 
-      # Plugins optional build time dependencies
-      "gdk_pixbuf"
-      "imagemagick"
-      "libgpod"
+        # Plugins optional build time dependencies
+        "gdk_pixbuf"
+        "imagemagick"
+        "libgpod"
 
-      # Supplementary packages required only by the wrapper.
-      "bash"
-      "makeWrapper"
-      "runCommand"
-      "shared_mime_info"
-      "writeScriptBin"
-    ] (args:
-      f (args // {
-        inherit (args.kde4)
-          kdelibs kdepimlibs libkdcraw libkexiv2 libkipi okular kfilemetadata
-          libkvkontakte kde_runtime kde_baseapps oxygen_icons;
-      }));
+        # Supplementary packages required only by the wrapper.
+        "bash"
+        "makeWrapper"
+        "runCommand"
+        "shared_mime_info"
+        "writeScriptBin"
+      ]
+      (
+        args:
+        f (
+          args
+          // {
+            inherit (args.kde4)
+              kdelibs
+              kdepimlibs
+              libkdcraw
+              libkexiv2
+              libkipi
+              okular
+              kfilemetadata
+              libkvkontakte
+              kde_runtime
+              kde_baseapps
+              oxygen_icons
+              ;
+          }
+        )
+      );
 
-  makeBuilder = args:
+  makeBuilder =
+    args:
     with args;
     stdenv.mkDerivation rec {
       name = "kbibtex-build-${v}";
@@ -71,45 +104,54 @@ with rec {
         url = "http://download.gna.org/kbibtex/${v}/kbibtex-${v}.tar.bz2";
         sha256 = "1hq0az0dp96195z26wjfwj9ynd57pfv13f1xcl5vbsswcjfrczws";
       };
-      nativeBuildInputs = [ automoc4 cmake gettext perl pkgconfig ];
-      buildInputs = [
-        boost
-        eigen
-        jasper
-        kdelibs
-        kdepimlibs
-        lcms
-        lensfun
-        libgphoto2
-        libjpeg
-        libkdcraw
-        libkexiv2
-        libkipi
-        liblqr1
-        libpgf
-        libtiff
-        mysql.lib
-        opencv
-        phonon
-        qca2
-        qimageblitz
-        qjson
-        qt4
-        shared_desktop_ontologies
-        soprano
-        poppler_qt4
-      ] ++ [
-        # Optional build time dependencies
-        kfilemetadata
-        lcms2
-        libxslt
-      ] ++ [
-        # Plugins optional build time dependencies
-        gdk_pixbuf
-        imagemagick
-        libgpod
-        libkvkontakte
+      nativeBuildInputs = [
+        automoc4
+        cmake
+        gettext
+        perl
+        pkgconfig
       ];
+      buildInputs =
+        [
+          boost
+          eigen
+          jasper
+          kdelibs
+          kdepimlibs
+          lcms
+          lensfun
+          libgphoto2
+          libjpeg
+          libkdcraw
+          libkexiv2
+          libkipi
+          liblqr1
+          libpgf
+          libtiff
+          mysql.lib
+          opencv
+          phonon
+          qca2
+          qimageblitz
+          qjson
+          qt4
+          shared_desktop_ontologies
+          soprano
+          poppler_qt4
+        ]
+        ++ [
+          # Optional build time dependencies
+          kfilemetadata
+          lcms2
+          libxslt
+        ]
+        ++ [
+          # Plugins optional build time dependencies
+          gdk_pixbuf
+          imagemagick
+          libgpod
+          libkvkontakte
+        ];
 
       patchPhase = ''
         sed -e '25i#include <QModelIndex>' -i src/gui/preferences/settingsabstractwidget.h
@@ -133,31 +175,35 @@ with rec {
       enableParallelBuilding = true;
     };
 
-  makePkg = setArgs (args:
+  makePkg = setArgs (
+    args:
     with args;
     with rec {
       v = "0.4";
       pName = "kbibtex-${v}";
       build = makeBuilder (args // { inherit v; });
 
-      kdePkgs = [
-        build # kbibtex's own build
-        kdelibs
-        kdepimlibs
-        kde_runtime
-        kde_baseapps
-        libkdcraw
-        oxygen_icons
-        shared_mime_info
-        okular
-      ] ++ [
-        # Optional build time dependencies
-        kfilemetadata
-        libkipi
-      ] ++ [
-        # Plugins optional build time dependencies
-        libkvkontakte
-      ];
+      kdePkgs =
+        [
+          build # kbibtex's own build
+          kdelibs
+          kdepimlibs
+          kde_runtime
+          kde_baseapps
+          libkdcraw
+          oxygen_icons
+          shared_mime_info
+          okular
+        ]
+        ++ [
+          # Optional build time dependencies
+          kfilemetadata
+          libkipi
+        ]
+        ++ [
+          # Plugins optional build time dependencies
+          libkvkontakte
+        ];
 
       # TODO: It should be the responsability of these packages to add
       # themselves to `KDEDIRS`. See
@@ -165,73 +211,79 @@ with rec {
       # for a practical example.
       # IMPORTANT: Note that using `XDG_DATA_DIRS` here instead of `KDEDIRS`
       # won't work properly.
-      KDEDIRS = with lib;
-        concatStrings (intersperse ":" (map (x: "${x}") kdePkgs));
+      KDEDIRS = with lib; concatStrings (intersperse ":" (map (x: "${x}") kdePkgs));
 
       sycocaDirRelPath = "var/lib/kdesycoca";
       sycocaFileRelPath = "${sycocaDirRelPath}/${pName}.sycoca";
 
-      sycoca = runCommand "${pName}" {
+      sycoca =
+        runCommand "${pName}"
+          {
 
-        name = "kbibtex-sycoca-${v}";
+            name = "kbibtex-sycoca-${v}";
 
-        nativeBuildInputs = [ kdelibs ];
+            nativeBuildInputs = [ kdelibs ];
 
-        dontPatchELF = true;
-        dontStrip = true;
+            dontPatchELF = true;
+            dontStrip = true;
+          }
+          ''
+            # Make sure kbuildsycoca4 does not attempt to write to user home directory.
+            export HOME=$PWD
+            export KDESYCOCA="$out/${sycocaFileRelPath}"
+            mkdir -p $out/${sycocaDirRelPath}
+            export XDG_DATA_DIRS=""
+            export KDEDIRS="${KDEDIRS}"
+            kbuildsycoca4 --noincremental --nosignal
+          '';
 
-      } ''
-        # Make sure kbuildsycoca4 does not attempt to write to user home directory.
-        export HOME=$PWD
-        export KDESYCOCA="$out/${sycocaFileRelPath}"
-        mkdir -p $out/${sycocaDirRelPath}
-        export XDG_DATA_DIRS=""
-        export KDEDIRS="${KDEDIRS}"
-        kbuildsycoca4 --noincremental --nosignal
-      '';
-
-      replaceExeListWithWrapped = with {
-        f = exeName: ''
-          rm -f "$out/bin/${exeName}"
-          makeWrapper "${build}/bin/${exeName}" "$out/bin/${exeName}" \
-            --set XDG_DATA_DIRS "" \
-            --set KDEDIRS "${KDEDIRS}" \
-            --set KDESYCOCA "${sycoca}/${sycocaFileRelPath}"
-        '';
-      } // lib;
-        exeNameList:
-        concatStrings (intersperse "\n" (map f exeNameList));
+      replaceExeListWithWrapped =
+        with {
+          f = exeName: ''
+            rm -f "$out/bin/${exeName}"
+            makeWrapper "${build}/bin/${exeName}" "$out/bin/${exeName}" \
+              --set XDG_DATA_DIRS "" \
+              --set KDEDIRS "${KDEDIRS}" \
+              --set KDESYCOCA "${sycoca}/${sycocaFileRelPath}"
+          '';
+        }
+        // lib;
+        exeNameList: concatStrings (intersperse "\n" (map f exeNameList));
     };
     with lib;
 
-    /* Final derivation
-       ----------------
-        -  Create symlinks to our original build derivation items.
-        -  Wrap specific executables so that they know of the appropriate
-           sycoca database, `KDEDIRS` to use and block any interference
-           from `XDG_DATA_DIRS` (only `dnginfo` is not wrapped).
+    /*
+      Final derivation
+      ----------------
+       -  Create symlinks to our original build derivation items.
+       -  Wrap specific executables so that they know of the appropriate
+          sycoca database, `KDEDIRS` to use and block any interference
+          from `XDG_DATA_DIRS` (only `dnginfo` is not wrapped).
     */
-    runCommand "${pName}" {
-      inherit build;
-      inherit sycoca;
+    runCommand "${pName}"
+      {
+        inherit build;
+        inherit sycoca;
 
-      nativeBuildInputs = [ makeWrapper ];
+        nativeBuildInputs = [ makeWrapper ];
 
-      buildInputs = kdePkgs;
+        buildInputs = kdePkgs;
 
-      dontPatchELF = true;
-      dontStrip = true;
-    } ''
-      pushd $build > /dev/null
-      for d in `find . -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
-        mkdir -p $out/$d
-        for f in `find $d -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
-            ln -s "$build/$d/$f" "$out/$d/$f"
+        dontPatchELF = true;
+        dontStrip = true;
+      }
+      ''
+        pushd $build > /dev/null
+        for d in `find . -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
+          mkdir -p $out/$d
+          for f in `find $d -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
+              ln -s "$build/$d/$f" "$out/$d/$f"
+          done
         done
-      done
-      popd > /dev/null
+        popd > /dev/null
 
-      ${replaceExeListWithWrapped [ "kbibtex" ]}
-    '');
+        ${replaceExeListWithWrapped [ "kbibtex" ]}
+      ''
+  );
 };
 skipMac "kbibtex" (nixpkgs1603.callPackage makePkg { })

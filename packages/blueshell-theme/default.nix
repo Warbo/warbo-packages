@@ -1,4 +1,10 @@
-{ buildEnv, getSource, gtk-engine-bluecurve, runCommand, skipMac }:
+{
+  buildEnv,
+  getSource,
+  gtk-engine-bluecurve,
+  runCommand,
+  skipMac,
+}:
 
 with rec {
   name = "Blueshell";
@@ -9,5 +15,8 @@ with rec {
 };
 skipMac "blueshell-theme" (buildEnv {
   name = "blueshell-theme";
-  paths = [ gtk-engine-bluecurve src ];
+  paths = [
+    gtk-engine-bluecurve
+    src
+  ];
 })

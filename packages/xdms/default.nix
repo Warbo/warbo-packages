@@ -1,9 +1,17 @@
-{ getSource, gnumake, lhasa, stdenv }:
+{
+  getSource,
+  gnumake,
+  lhasa,
+  stdenv,
+}:
 
 stdenv.mkDerivation rec {
   name = "xdms";
   src = getSource { inherit name; };
-  buildInputs = [ lhasa gnumake ];
+  buildInputs = [
+    lhasa
+    gnumake
+  ];
   unpackPhase = ''
     lha x "$src"
   '';

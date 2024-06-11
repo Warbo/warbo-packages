@@ -2,4 +2,4 @@
 { haskell-nix, skipMac }:
 
 skipMac "pretty-derivation"
-(import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation
+  (import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation

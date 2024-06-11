@@ -1,33 +1,39 @@
 let
-  buildDepError = pkg:
+  buildDepError =
+    pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (build dependency).
 
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-  sysDepError = pkg:
+  sysDepError =
+    pkg:
     builtins.throw ''
       The Nixpkgs package set does not contain the package: ${pkg} (system dependency).
 
       You may need to augment the system package mapping in haskell.nix so that it can be found.
     '';
-  pkgConfDepError = pkg:
+  pkgConfDepError =
+    pkg:
     builtins.throw ''
       The pkg-conf packages does not contain the package: ${pkg} (pkg-conf dependency).
 
       You may need to augment the pkg-conf package mapping in haskell.nix so that it can be found.
     '';
-  exeDepError = pkg:
+  exeDepError =
+    pkg:
     builtins.throw ''
       The local executable components do not include the component: ${pkg} (executable dependency).
     '';
-  legacyExeDepError = pkg:
+  legacyExeDepError =
+    pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (executable dependency).
 
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-  buildToolDepError = pkg:
+  buildToolDepError =
+    pkg:
     builtins.throw ''
       Neither the Haskell package set or the Nixpkgs package set contain the package: ${pkg} (build tool dependency).
 
@@ -37,7 +43,16 @@ let
       If this is a Haskell dependency:
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
+in
+{
+  system,
+  compiler,
+  flags,
+  pkgs,
+  hsPkgs,
+  pkgconfPkgs,
+  ...
+}:
 {
   flags = {
     static = false;
@@ -395,425 +410,479 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
   };
   components = {
     "library" = {
-      depends = ((([
-        (hsPkgs."base" or (buildDepError "base"))
-        (hsPkgs."syb" or (buildDepError "syb"))
-        (hsPkgs."containers" or (buildDepError "containers"))
-        (hsPkgs."unordered-containers" or (buildDepError
-          "unordered-containers"))
-        (hsPkgs."parsec" or (buildDepError "parsec"))
-        (hsPkgs."mtl" or (buildDepError "mtl"))
-        (hsPkgs."exceptions" or (buildDepError "exceptions"))
-        (hsPkgs."filepath" or (buildDepError "filepath"))
-        (hsPkgs."process" or (buildDepError "process"))
-        (hsPkgs."directory" or (buildDepError "directory"))
-        (hsPkgs."bytestring" or (buildDepError "bytestring"))
-        (hsPkgs."text" or (buildDepError "text"))
-        (hsPkgs."time" or (buildDepError "time"))
-        (hsPkgs."safe" or (buildDepError "safe"))
-        (hsPkgs."zip-archive" or (buildDepError "zip-archive"))
-        (hsPkgs."HTTP" or (buildDepError "HTTP"))
-        (hsPkgs."texmath" or (buildDepError "texmath"))
-        (hsPkgs."xml" or (buildDepError "xml"))
-        (hsPkgs."split" or (buildDepError "split"))
-        (hsPkgs."random" or (buildDepError "random"))
-        (hsPkgs."pandoc-types" or (buildDepError "pandoc-types"))
-        (hsPkgs."aeson" or (buildDepError "aeson"))
-        (hsPkgs."scientific" or (buildDepError "scientific"))
-        (hsPkgs."aeson-pretty" or (buildDepError "aeson-pretty"))
-        (hsPkgs."tagsoup" or (buildDepError "tagsoup"))
-        (hsPkgs."base64-bytestring" or (buildDepError "base64-bytestring"))
-        (hsPkgs."zlib" or (buildDepError "zlib"))
-        (hsPkgs."skylighting" or (buildDepError "skylighting"))
-        (hsPkgs."skylighting-core" or (buildDepError "skylighting-core"))
-        (hsPkgs."data-default" or (buildDepError "data-default"))
-        (hsPkgs."temporary" or (buildDepError "temporary"))
-        (hsPkgs."blaze-html" or (buildDepError "blaze-html"))
-        (hsPkgs."blaze-markup" or (buildDepError "blaze-markup"))
-        (hsPkgs."vector" or (buildDepError "vector"))
-        (hsPkgs."jira-wiki-markup" or (buildDepError "jira-wiki-markup"))
-        (hsPkgs."hslua" or (buildDepError "hslua"))
-        (hsPkgs."hslua-module-system" or (buildDepError "hslua-module-system"))
-        (hsPkgs."hslua-module-text" or (buildDepError "hslua-module-text"))
-        (hsPkgs."binary" or (buildDepError "binary"))
-        (hsPkgs."SHA" or (buildDepError "SHA"))
-        (hsPkgs."haddock-library" or (buildDepError "haddock-library"))
-        (hsPkgs."deepseq" or (buildDepError "deepseq"))
-        (hsPkgs."JuicyPixels" or (buildDepError "JuicyPixels"))
-        (hsPkgs."Glob" or (buildDepError "Glob"))
-        (hsPkgs."cmark-gfm" or (buildDepError "cmark-gfm"))
-        (hsPkgs."doctemplates" or (buildDepError "doctemplates"))
-        (hsPkgs."network-uri" or (buildDepError "network-uri"))
-        (hsPkgs."network" or (buildDepError "network"))
-        (hsPkgs."http-client" or (buildDepError "http-client"))
-        (hsPkgs."http-client-tls" or (buildDepError "http-client-tls"))
-        (hsPkgs."http-types" or (buildDepError "http-types"))
-        (hsPkgs."case-insensitive" or (buildDepError "case-insensitive"))
-        (hsPkgs."unicode-transforms" or (buildDepError "unicode-transforms"))
-        (hsPkgs."HsYAML" or (buildDepError "HsYAML"))
-        (hsPkgs."doclayout" or (buildDepError "doclayout"))
-        (hsPkgs."ipynb" or (buildDepError "ipynb"))
-        (hsPkgs."attoparsec" or (buildDepError "attoparsec"))
-        (hsPkgs."text-conversions" or (buildDepError "text-conversions"))
-        (hsPkgs."emojis" or (buildDepError "emojis"))
-      ] ++ (pkgs.lib).optionals (system.isWindows && system.isI386) [
-        (hsPkgs."basement" or (buildDepError "basement"))
-        (hsPkgs."foundation" or (buildDepError "foundation"))
-      ]) ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-        (hsPkgs."base-compat" or (buildDepError "base-compat")))
-        ++ (pkgs.lib).optional (!system.isWindows)
-        (hsPkgs."unix" or (buildDepError "unix")))
-        ++ (pkgs.lib).optional (flags.embed_data_files)
-        (hsPkgs."file-embed" or (buildDepError "file-embed"));
+      depends =
+        (
+          (
+            (
+              [
+                (hsPkgs."base" or (buildDepError "base"))
+                (hsPkgs."syb" or (buildDepError "syb"))
+                (hsPkgs."containers" or (buildDepError "containers"))
+                (hsPkgs."unordered-containers" or (buildDepError "unordered-containers"))
+                (hsPkgs."parsec" or (buildDepError "parsec"))
+                (hsPkgs."mtl" or (buildDepError "mtl"))
+                (hsPkgs."exceptions" or (buildDepError "exceptions"))
+                (hsPkgs."filepath" or (buildDepError "filepath"))
+                (hsPkgs."process" or (buildDepError "process"))
+                (hsPkgs."directory" or (buildDepError "directory"))
+                (hsPkgs."bytestring" or (buildDepError "bytestring"))
+                (hsPkgs."text" or (buildDepError "text"))
+                (hsPkgs."time" or (buildDepError "time"))
+                (hsPkgs."safe" or (buildDepError "safe"))
+                (hsPkgs."zip-archive" or (buildDepError "zip-archive"))
+                (hsPkgs."HTTP" or (buildDepError "HTTP"))
+                (hsPkgs."texmath" or (buildDepError "texmath"))
+                (hsPkgs."xml" or (buildDepError "xml"))
+                (hsPkgs."split" or (buildDepError "split"))
+                (hsPkgs."random" or (buildDepError "random"))
+                (hsPkgs."pandoc-types" or (buildDepError "pandoc-types"))
+                (hsPkgs."aeson" or (buildDepError "aeson"))
+                (hsPkgs."scientific" or (buildDepError "scientific"))
+                (hsPkgs."aeson-pretty" or (buildDepError "aeson-pretty"))
+                (hsPkgs."tagsoup" or (buildDepError "tagsoup"))
+                (hsPkgs."base64-bytestring" or (buildDepError "base64-bytestring"))
+                (hsPkgs."zlib" or (buildDepError "zlib"))
+                (hsPkgs."skylighting" or (buildDepError "skylighting"))
+                (hsPkgs."skylighting-core" or (buildDepError "skylighting-core"))
+                (hsPkgs."data-default" or (buildDepError "data-default"))
+                (hsPkgs."temporary" or (buildDepError "temporary"))
+                (hsPkgs."blaze-html" or (buildDepError "blaze-html"))
+                (hsPkgs."blaze-markup" or (buildDepError "blaze-markup"))
+                (hsPkgs."vector" or (buildDepError "vector"))
+                (hsPkgs."jira-wiki-markup" or (buildDepError "jira-wiki-markup"))
+                (hsPkgs."hslua" or (buildDepError "hslua"))
+                (hsPkgs."hslua-module-system" or (buildDepError "hslua-module-system"))
+                (hsPkgs."hslua-module-text" or (buildDepError "hslua-module-text"))
+                (hsPkgs."binary" or (buildDepError "binary"))
+                (hsPkgs."SHA" or (buildDepError "SHA"))
+                (hsPkgs."haddock-library" or (buildDepError "haddock-library"))
+                (hsPkgs."deepseq" or (buildDepError "deepseq"))
+                (hsPkgs."JuicyPixels" or (buildDepError "JuicyPixels"))
+                (hsPkgs."Glob" or (buildDepError "Glob"))
+                (hsPkgs."cmark-gfm" or (buildDepError "cmark-gfm"))
+                (hsPkgs."doctemplates" or (buildDepError "doctemplates"))
+                (hsPkgs."network-uri" or (buildDepError "network-uri"))
+                (hsPkgs."network" or (buildDepError "network"))
+                (hsPkgs."http-client" or (buildDepError "http-client"))
+                (hsPkgs."http-client-tls" or (buildDepError "http-client-tls"))
+                (hsPkgs."http-types" or (buildDepError "http-types"))
+                (hsPkgs."case-insensitive" or (buildDepError "case-insensitive"))
+                (hsPkgs."unicode-transforms" or (buildDepError "unicode-transforms"))
+                (hsPkgs."HsYAML" or (buildDepError "HsYAML"))
+                (hsPkgs."doclayout" or (buildDepError "doclayout"))
+                (hsPkgs."ipynb" or (buildDepError "ipynb"))
+                (hsPkgs."attoparsec" or (buildDepError "attoparsec"))
+                (hsPkgs."text-conversions" or (buildDepError "text-conversions"))
+                (hsPkgs."emojis" or (buildDepError "emojis"))
+              ]
+              ++ (pkgs.lib).optionals (system.isWindows && system.isI386) [
+                (hsPkgs."basement" or (buildDepError "basement"))
+                (hsPkgs."foundation" or (buildDepError "foundation"))
+              ]
+            )
+            ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+              hsPkgs."base-compat" or (buildDepError "base-compat")
+            )
+          )
+          ++ (pkgs.lib).optional (!system.isWindows) (
+            hsPkgs."unix" or (buildDepError "unix")
+          )
+        )
+        ++ (pkgs.lib).optional (flags.embed_data_files) (
+          hsPkgs."file-embed" or (buildDepError "file-embed")
+        );
       buildable = true;
-      modules = ([
-        "Text/Pandoc/App/CommandLineOptions"
-        "Text/Pandoc/App/FormatHeuristics"
-        "Text/Pandoc/App/Opt"
-        "Text/Pandoc/App/OutputSettings"
-        "Text/Pandoc/Filter/JSON"
-        "Text/Pandoc/Filter/Lua"
-        "Text/Pandoc/Filter/Path"
-        "Text/Pandoc/Readers/Docx/Lists"
-        "Text/Pandoc/Readers/Docx/Combine"
-        "Text/Pandoc/Readers/Docx/Parse"
-        "Text/Pandoc/Readers/Docx/Parse/Styles"
-        "Text/Pandoc/Readers/Docx/Util"
-        "Text/Pandoc/Readers/Docx/Fields"
-        "Text/Pandoc/Readers/LaTeX/Parsing"
-        "Text/Pandoc/Readers/LaTeX/Lang"
-        "Text/Pandoc/Readers/Odt/Base"
-        "Text/Pandoc/Readers/Odt/Namespaces"
-        "Text/Pandoc/Readers/Odt/StyleReader"
-        "Text/Pandoc/Readers/Odt/ContentReader"
-        "Text/Pandoc/Readers/Odt/Generic/Fallible"
-        "Text/Pandoc/Readers/Odt/Generic/SetMap"
-        "Text/Pandoc/Readers/Odt/Generic/Utils"
-        "Text/Pandoc/Readers/Odt/Generic/Namespaces"
-        "Text/Pandoc/Readers/Odt/Generic/XMLConverter"
-        "Text/Pandoc/Readers/Odt/Arrows/State"
-        "Text/Pandoc/Readers/Odt/Arrows/Utils"
-        "Text/Pandoc/Readers/Org/BlockStarts"
-        "Text/Pandoc/Readers/Org/Blocks"
-        "Text/Pandoc/Readers/Org/DocumentTree"
-        "Text/Pandoc/Readers/Org/ExportSettings"
-        "Text/Pandoc/Readers/Org/Inlines"
-        "Text/Pandoc/Readers/Org/Meta"
-        "Text/Pandoc/Readers/Org/ParserState"
-        "Text/Pandoc/Readers/Org/Parsing"
-        "Text/Pandoc/Readers/Org/Shared"
-        "Text/Pandoc/Readers/Metadata"
-        "Text/Pandoc/Readers/Roff"
-        "Text/Pandoc/Writers/Docx/StyleMap"
-        "Text/Pandoc/Writers/Roff"
-        "Text/Pandoc/Writers/Powerpoint/Presentation"
-        "Text/Pandoc/Writers/Powerpoint/Output"
-        "Text/Pandoc/Lua/Filter"
-        "Text/Pandoc/Lua/Global"
-        "Text/Pandoc/Lua/Init"
-        "Text/Pandoc/Lua/Marshaling"
-        "Text/Pandoc/Lua/Marshaling/AST"
-        "Text/Pandoc/Lua/Marshaling/AnyValue"
-        "Text/Pandoc/Lua/Marshaling/CommonState"
-        "Text/Pandoc/Lua/Marshaling/MediaBag"
-        "Text/Pandoc/Lua/Marshaling/ReaderOptions"
-        "Text/Pandoc/Lua/Marshaling/Context"
-        "Text/Pandoc/Lua/Marshaling/Version"
-        "Text/Pandoc/Lua/Module/MediaBag"
-        "Text/Pandoc/Lua/Module/Pandoc"
-        "Text/Pandoc/Lua/Module/System"
-        "Text/Pandoc/Lua/Module/Types"
-        "Text/Pandoc/Lua/Module/Utils"
-        "Text/Pandoc/Lua/Packages"
-        "Text/Pandoc/Lua/Util"
-        "Text/Pandoc/Lua/Walk"
-        "Text/Pandoc/CSS"
-        "Text/Pandoc/CSV"
-        "Text/Pandoc/RoffChar"
-        "Text/Pandoc/UUID"
-        "Text/Pandoc/Translations"
-        "Text/Pandoc/Slides"
-        "Paths_pandoc"
-        "Text/Pandoc"
-        "Text/Pandoc/App"
-        "Text/Pandoc/Options"
-        "Text/Pandoc/Extensions"
-        "Text/Pandoc/Shared"
-        "Text/Pandoc/MediaBag"
-        "Text/Pandoc/Error"
-        "Text/Pandoc/Filter"
-        "Text/Pandoc/Readers"
-        "Text/Pandoc/Readers/HTML"
-        "Text/Pandoc/Readers/LaTeX"
-        "Text/Pandoc/Readers/LaTeX/Types"
-        "Text/Pandoc/Readers/Markdown"
-        "Text/Pandoc/Readers/CommonMark"
-        "Text/Pandoc/Readers/Creole"
-        "Text/Pandoc/Readers/MediaWiki"
-        "Text/Pandoc/Readers/Vimwiki"
-        "Text/Pandoc/Readers/RST"
-        "Text/Pandoc/Readers/Org"
-        "Text/Pandoc/Readers/DocBook"
-        "Text/Pandoc/Readers/JATS"
-        "Text/Pandoc/Readers/Jira"
-        "Text/Pandoc/Readers/OPML"
-        "Text/Pandoc/Readers/Textile"
-        "Text/Pandoc/Readers/Native"
-        "Text/Pandoc/Readers/Haddock"
-        "Text/Pandoc/Readers/TWiki"
-        "Text/Pandoc/Readers/TikiWiki"
-        "Text/Pandoc/Readers/Txt2Tags"
-        "Text/Pandoc/Readers/Docx"
-        "Text/Pandoc/Readers/Odt"
-        "Text/Pandoc/Readers/EPUB"
-        "Text/Pandoc/Readers/Muse"
-        "Text/Pandoc/Readers/Man"
-        "Text/Pandoc/Readers/FB2"
-        "Text/Pandoc/Readers/DokuWiki"
-        "Text/Pandoc/Readers/Ipynb"
-        "Text/Pandoc/Writers"
-        "Text/Pandoc/Writers/Native"
-        "Text/Pandoc/Writers/Docbook"
-        "Text/Pandoc/Writers/JATS"
-        "Text/Pandoc/Writers/OPML"
-        "Text/Pandoc/Writers/HTML"
-        "Text/Pandoc/Writers/Ipynb"
-        "Text/Pandoc/Writers/ICML"
-        "Text/Pandoc/Writers/Jira"
-        "Text/Pandoc/Writers/LaTeX"
-        "Text/Pandoc/Writers/ConTeXt"
-        "Text/Pandoc/Writers/OpenDocument"
-        "Text/Pandoc/Writers/Texinfo"
-        "Text/Pandoc/Writers/Man"
-        "Text/Pandoc/Writers/Ms"
-        "Text/Pandoc/Writers/Markdown"
-        "Text/Pandoc/Writers/CommonMark"
-        "Text/Pandoc/Writers/Haddock"
-        "Text/Pandoc/Writers/RST"
-        "Text/Pandoc/Writers/Org"
-        "Text/Pandoc/Writers/AsciiDoc"
-        "Text/Pandoc/Writers/Custom"
-        "Text/Pandoc/Writers/Textile"
-        "Text/Pandoc/Writers/MediaWiki"
-        "Text/Pandoc/Writers/DokuWiki"
-        "Text/Pandoc/Writers/XWiki"
-        "Text/Pandoc/Writers/ZimWiki"
-        "Text/Pandoc/Writers/RTF"
-        "Text/Pandoc/Writers/ODT"
-        "Text/Pandoc/Writers/Docx"
-        "Text/Pandoc/Writers/Powerpoint"
-        "Text/Pandoc/Writers/EPUB"
-        "Text/Pandoc/Writers/FB2"
-        "Text/Pandoc/Writers/TEI"
-        "Text/Pandoc/Writers/Muse"
-        "Text/Pandoc/Writers/Math"
-        "Text/Pandoc/Writers/Shared"
-        "Text/Pandoc/Writers/OOXML"
-        "Text/Pandoc/Lua"
-        "Text/Pandoc/PDF"
-        "Text/Pandoc/UTF8"
-        "Text/Pandoc/Templates"
-        "Text/Pandoc/XML"
-        "Text/Pandoc/SelfContained"
-        "Text/Pandoc/Highlighting"
-        "Text/Pandoc/Logging"
-        "Text/Pandoc/Process"
-        "Text/Pandoc/MIME"
-        "Text/Pandoc/Parsing"
-        "Text/Pandoc/Asciify"
-        "Text/Pandoc/Emoji"
-        "Text/Pandoc/ImageSize"
-        "Text/Pandoc/BCP47"
-        "Text/Pandoc/Class"
-      ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-        "Prelude")
+      modules =
+        (
+          [
+            "Text/Pandoc/App/CommandLineOptions"
+            "Text/Pandoc/App/FormatHeuristics"
+            "Text/Pandoc/App/Opt"
+            "Text/Pandoc/App/OutputSettings"
+            "Text/Pandoc/Filter/JSON"
+            "Text/Pandoc/Filter/Lua"
+            "Text/Pandoc/Filter/Path"
+            "Text/Pandoc/Readers/Docx/Lists"
+            "Text/Pandoc/Readers/Docx/Combine"
+            "Text/Pandoc/Readers/Docx/Parse"
+            "Text/Pandoc/Readers/Docx/Parse/Styles"
+            "Text/Pandoc/Readers/Docx/Util"
+            "Text/Pandoc/Readers/Docx/Fields"
+            "Text/Pandoc/Readers/LaTeX/Parsing"
+            "Text/Pandoc/Readers/LaTeX/Lang"
+            "Text/Pandoc/Readers/Odt/Base"
+            "Text/Pandoc/Readers/Odt/Namespaces"
+            "Text/Pandoc/Readers/Odt/StyleReader"
+            "Text/Pandoc/Readers/Odt/ContentReader"
+            "Text/Pandoc/Readers/Odt/Generic/Fallible"
+            "Text/Pandoc/Readers/Odt/Generic/SetMap"
+            "Text/Pandoc/Readers/Odt/Generic/Utils"
+            "Text/Pandoc/Readers/Odt/Generic/Namespaces"
+            "Text/Pandoc/Readers/Odt/Generic/XMLConverter"
+            "Text/Pandoc/Readers/Odt/Arrows/State"
+            "Text/Pandoc/Readers/Odt/Arrows/Utils"
+            "Text/Pandoc/Readers/Org/BlockStarts"
+            "Text/Pandoc/Readers/Org/Blocks"
+            "Text/Pandoc/Readers/Org/DocumentTree"
+            "Text/Pandoc/Readers/Org/ExportSettings"
+            "Text/Pandoc/Readers/Org/Inlines"
+            "Text/Pandoc/Readers/Org/Meta"
+            "Text/Pandoc/Readers/Org/ParserState"
+            "Text/Pandoc/Readers/Org/Parsing"
+            "Text/Pandoc/Readers/Org/Shared"
+            "Text/Pandoc/Readers/Metadata"
+            "Text/Pandoc/Readers/Roff"
+            "Text/Pandoc/Writers/Docx/StyleMap"
+            "Text/Pandoc/Writers/Roff"
+            "Text/Pandoc/Writers/Powerpoint/Presentation"
+            "Text/Pandoc/Writers/Powerpoint/Output"
+            "Text/Pandoc/Lua/Filter"
+            "Text/Pandoc/Lua/Global"
+            "Text/Pandoc/Lua/Init"
+            "Text/Pandoc/Lua/Marshaling"
+            "Text/Pandoc/Lua/Marshaling/AST"
+            "Text/Pandoc/Lua/Marshaling/AnyValue"
+            "Text/Pandoc/Lua/Marshaling/CommonState"
+            "Text/Pandoc/Lua/Marshaling/MediaBag"
+            "Text/Pandoc/Lua/Marshaling/ReaderOptions"
+            "Text/Pandoc/Lua/Marshaling/Context"
+            "Text/Pandoc/Lua/Marshaling/Version"
+            "Text/Pandoc/Lua/Module/MediaBag"
+            "Text/Pandoc/Lua/Module/Pandoc"
+            "Text/Pandoc/Lua/Module/System"
+            "Text/Pandoc/Lua/Module/Types"
+            "Text/Pandoc/Lua/Module/Utils"
+            "Text/Pandoc/Lua/Packages"
+            "Text/Pandoc/Lua/Util"
+            "Text/Pandoc/Lua/Walk"
+            "Text/Pandoc/CSS"
+            "Text/Pandoc/CSV"
+            "Text/Pandoc/RoffChar"
+            "Text/Pandoc/UUID"
+            "Text/Pandoc/Translations"
+            "Text/Pandoc/Slides"
+            "Paths_pandoc"
+            "Text/Pandoc"
+            "Text/Pandoc/App"
+            "Text/Pandoc/Options"
+            "Text/Pandoc/Extensions"
+            "Text/Pandoc/Shared"
+            "Text/Pandoc/MediaBag"
+            "Text/Pandoc/Error"
+            "Text/Pandoc/Filter"
+            "Text/Pandoc/Readers"
+            "Text/Pandoc/Readers/HTML"
+            "Text/Pandoc/Readers/LaTeX"
+            "Text/Pandoc/Readers/LaTeX/Types"
+            "Text/Pandoc/Readers/Markdown"
+            "Text/Pandoc/Readers/CommonMark"
+            "Text/Pandoc/Readers/Creole"
+            "Text/Pandoc/Readers/MediaWiki"
+            "Text/Pandoc/Readers/Vimwiki"
+            "Text/Pandoc/Readers/RST"
+            "Text/Pandoc/Readers/Org"
+            "Text/Pandoc/Readers/DocBook"
+            "Text/Pandoc/Readers/JATS"
+            "Text/Pandoc/Readers/Jira"
+            "Text/Pandoc/Readers/OPML"
+            "Text/Pandoc/Readers/Textile"
+            "Text/Pandoc/Readers/Native"
+            "Text/Pandoc/Readers/Haddock"
+            "Text/Pandoc/Readers/TWiki"
+            "Text/Pandoc/Readers/TikiWiki"
+            "Text/Pandoc/Readers/Txt2Tags"
+            "Text/Pandoc/Readers/Docx"
+            "Text/Pandoc/Readers/Odt"
+            "Text/Pandoc/Readers/EPUB"
+            "Text/Pandoc/Readers/Muse"
+            "Text/Pandoc/Readers/Man"
+            "Text/Pandoc/Readers/FB2"
+            "Text/Pandoc/Readers/DokuWiki"
+            "Text/Pandoc/Readers/Ipynb"
+            "Text/Pandoc/Writers"
+            "Text/Pandoc/Writers/Native"
+            "Text/Pandoc/Writers/Docbook"
+            "Text/Pandoc/Writers/JATS"
+            "Text/Pandoc/Writers/OPML"
+            "Text/Pandoc/Writers/HTML"
+            "Text/Pandoc/Writers/Ipynb"
+            "Text/Pandoc/Writers/ICML"
+            "Text/Pandoc/Writers/Jira"
+            "Text/Pandoc/Writers/LaTeX"
+            "Text/Pandoc/Writers/ConTeXt"
+            "Text/Pandoc/Writers/OpenDocument"
+            "Text/Pandoc/Writers/Texinfo"
+            "Text/Pandoc/Writers/Man"
+            "Text/Pandoc/Writers/Ms"
+            "Text/Pandoc/Writers/Markdown"
+            "Text/Pandoc/Writers/CommonMark"
+            "Text/Pandoc/Writers/Haddock"
+            "Text/Pandoc/Writers/RST"
+            "Text/Pandoc/Writers/Org"
+            "Text/Pandoc/Writers/AsciiDoc"
+            "Text/Pandoc/Writers/Custom"
+            "Text/Pandoc/Writers/Textile"
+            "Text/Pandoc/Writers/MediaWiki"
+            "Text/Pandoc/Writers/DokuWiki"
+            "Text/Pandoc/Writers/XWiki"
+            "Text/Pandoc/Writers/ZimWiki"
+            "Text/Pandoc/Writers/RTF"
+            "Text/Pandoc/Writers/ODT"
+            "Text/Pandoc/Writers/Docx"
+            "Text/Pandoc/Writers/Powerpoint"
+            "Text/Pandoc/Writers/EPUB"
+            "Text/Pandoc/Writers/FB2"
+            "Text/Pandoc/Writers/TEI"
+            "Text/Pandoc/Writers/Muse"
+            "Text/Pandoc/Writers/Math"
+            "Text/Pandoc/Writers/Shared"
+            "Text/Pandoc/Writers/OOXML"
+            "Text/Pandoc/Lua"
+            "Text/Pandoc/PDF"
+            "Text/Pandoc/UTF8"
+            "Text/Pandoc/Templates"
+            "Text/Pandoc/XML"
+            "Text/Pandoc/SelfContained"
+            "Text/Pandoc/Highlighting"
+            "Text/Pandoc/Logging"
+            "Text/Pandoc/Process"
+            "Text/Pandoc/MIME"
+            "Text/Pandoc/Parsing"
+            "Text/Pandoc/Asciify"
+            "Text/Pandoc/Emoji"
+            "Text/Pandoc/ImageSize"
+            "Text/Pandoc/BCP47"
+            "Text/Pandoc/Class"
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") "Prelude"
+        )
         ++ (pkgs.lib).optional (flags.embed_data_files) "Text/Pandoc/Data";
-      hsSourceDirs = [ "src" ]
-        ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-        "prelude";
+      hsSourceDirs =
+        [ "src" ]
+        ++ (pkgs.lib).optional (
+          compiler.isGhc && (compiler.version).lt "8.4"
+        ) "prelude";
     };
     exes = {
       "pandoc" = {
-        depends = [
-          (hsPkgs."pandoc" or (buildDepError "pandoc"))
-          (hsPkgs."base" or (buildDepError "base"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          (hsPkgs."base-compat" or (buildDepError "base-compat"));
+        depends =
+          [
+            (hsPkgs."pandoc" or (buildDepError "pandoc"))
+            (hsPkgs."base" or (buildDepError "base"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+            hsPkgs."base-compat" or (buildDepError "base-compat")
+          );
         buildable = true;
-        modules = [ "Paths_pandoc" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "Prelude";
-        hsSourceDirs = [ "." ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "prelude";
-        mainPath = ((([ "pandoc.hs" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "") ++ (pkgs.lib).optional (flags.static) "")
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.2")
-          "")
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.4")
-          "";
+        modules =
+          [ "Paths_pandoc" ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "Prelude";
+        hsSourceDirs =
+          [ "." ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "prelude";
+        mainPath =
+          (
+            (
+              (
+                [ "pandoc.hs" ]
+                ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") ""
+              )
+              ++ (pkgs.lib).optional (flags.static) ""
+            )
+            ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.2") ""
+          )
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.4") "";
       };
       "trypandoc" = {
-        depends = (pkgs.lib).optionals (flags.trypandoc) [
-          (hsPkgs."base" or (buildDepError "base"))
-          (hsPkgs."aeson" or (buildDepError "aeson"))
-          (hsPkgs."pandoc" or (buildDepError "pandoc"))
-          (hsPkgs."text" or (buildDepError "text"))
-          (hsPkgs."wai-extra" or (buildDepError "wai-extra"))
-          (hsPkgs."wai" or (buildDepError "wai"))
-          (hsPkgs."http-types" or (buildDepError "http-types"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          (hsPkgs."base-compat" or (buildDepError "base-compat"));
+        depends =
+          (pkgs.lib).optionals (flags.trypandoc) [
+            (hsPkgs."base" or (buildDepError "base"))
+            (hsPkgs."aeson" or (buildDepError "aeson"))
+            (hsPkgs."pandoc" or (buildDepError "pandoc"))
+            (hsPkgs."text" or (buildDepError "text"))
+            (hsPkgs."wai-extra" or (buildDepError "wai-extra"))
+            (hsPkgs."wai" or (buildDepError "wai"))
+            (hsPkgs."http-types" or (buildDepError "http-types"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+            hsPkgs."base-compat" or (buildDepError "base-compat")
+          );
         buildable = if flags.trypandoc then true else false;
-        modules =
-          (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "Prelude";
-        hsSourceDirs = [ "trypandoc" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "prelude";
-        mainPath = ((([ "trypandoc.hs" ] ++ [ "" ])
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "")
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.2")
-          "")
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.4")
-          "";
+        modules = (pkgs.lib).optional (
+          compiler.isGhc && (compiler.version).lt "8.4"
+        ) "Prelude";
+        hsSourceDirs =
+          [ "trypandoc" ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "prelude";
+        mainPath =
+          (
+            (
+              ([ "trypandoc.hs" ] ++ [ "" ])
+              ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") ""
+            )
+            ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.2") ""
+          )
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).ge "8.4") "";
       };
     };
     tests = {
       "test-pandoc" = {
-        depends = [
-          (hsPkgs."base" or (buildDepError "base"))
-          (hsPkgs."pandoc" or (buildDepError "pandoc"))
-          (hsPkgs."pandoc-types" or (buildDepError "pandoc-types"))
-          (hsPkgs."mtl" or (buildDepError "mtl"))
-          (hsPkgs."bytestring" or (buildDepError "bytestring"))
-          (hsPkgs."base64-bytestring" or (buildDepError "base64-bytestring"))
-          (hsPkgs."text" or (buildDepError "text"))
-          (hsPkgs."time" or (buildDepError "time"))
-          (hsPkgs."directory" or (buildDepError "directory"))
-          (hsPkgs."filepath" or (buildDepError "filepath"))
-          (hsPkgs."hslua" or (buildDepError "hslua"))
-          (hsPkgs."process" or (buildDepError "process"))
-          (hsPkgs."temporary" or (buildDepError "temporary"))
-          (hsPkgs."Diff" or (buildDepError "Diff"))
-          (hsPkgs."tasty" or (buildDepError "tasty"))
-          (hsPkgs."tasty-hunit" or (buildDepError "tasty-hunit"))
-          (hsPkgs."tasty-lua" or (buildDepError "tasty-lua"))
-          (hsPkgs."tasty-quickcheck" or (buildDepError "tasty-quickcheck"))
-          (hsPkgs."tasty-golden" or (buildDepError "tasty-golden"))
-          (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
-          (hsPkgs."containers" or (buildDepError "containers"))
-          (hsPkgs."executable-path" or (buildDepError "executable-path"))
-          (hsPkgs."zip-archive" or (buildDepError "zip-archive"))
-          (hsPkgs."xml" or (buildDepError "xml"))
-          (hsPkgs."doctemplates" or (buildDepError "doctemplates"))
-          (hsPkgs."Glob" or (buildDepError "Glob"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          (hsPkgs."base-compat" or (buildDepError "base-compat"));
+        depends =
+          [
+            (hsPkgs."base" or (buildDepError "base"))
+            (hsPkgs."pandoc" or (buildDepError "pandoc"))
+            (hsPkgs."pandoc-types" or (buildDepError "pandoc-types"))
+            (hsPkgs."mtl" or (buildDepError "mtl"))
+            (hsPkgs."bytestring" or (buildDepError "bytestring"))
+            (hsPkgs."base64-bytestring" or (buildDepError "base64-bytestring"))
+            (hsPkgs."text" or (buildDepError "text"))
+            (hsPkgs."time" or (buildDepError "time"))
+            (hsPkgs."directory" or (buildDepError "directory"))
+            (hsPkgs."filepath" or (buildDepError "filepath"))
+            (hsPkgs."hslua" or (buildDepError "hslua"))
+            (hsPkgs."process" or (buildDepError "process"))
+            (hsPkgs."temporary" or (buildDepError "temporary"))
+            (hsPkgs."Diff" or (buildDepError "Diff"))
+            (hsPkgs."tasty" or (buildDepError "tasty"))
+            (hsPkgs."tasty-hunit" or (buildDepError "tasty-hunit"))
+            (hsPkgs."tasty-lua" or (buildDepError "tasty-lua"))
+            (hsPkgs."tasty-quickcheck" or (buildDepError "tasty-quickcheck"))
+            (hsPkgs."tasty-golden" or (buildDepError "tasty-golden"))
+            (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
+            (hsPkgs."containers" or (buildDepError "containers"))
+            (hsPkgs."executable-path" or (buildDepError "executable-path"))
+            (hsPkgs."zip-archive" or (buildDepError "zip-archive"))
+            (hsPkgs."xml" or (buildDepError "xml"))
+            (hsPkgs."doctemplates" or (buildDepError "doctemplates"))
+            (hsPkgs."Glob" or (buildDepError "Glob"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+            hsPkgs."base-compat" or (buildDepError "base-compat")
+          );
         buildable = true;
-        modules = [
-          "Tests/Old"
-          "Tests/Command"
-          "Tests/Helpers"
-          "Tests/Lua"
-          "Tests/Lua/Module"
-          "Tests/Shared"
-          "Tests/Readers/LaTeX"
-          "Tests/Readers/HTML"
-          "Tests/Readers/JATS"
-          "Tests/Readers/Jira"
-          "Tests/Readers/Markdown"
-          "Tests/Readers/Org"
-          "Tests/Readers/Org/Block"
-          "Tests/Readers/Org/Block/CodeBlock"
-          "Tests/Readers/Org/Block/Figure"
-          "Tests/Readers/Org/Block/Header"
-          "Tests/Readers/Org/Block/List"
-          "Tests/Readers/Org/Block/Table"
-          "Tests/Readers/Org/Directive"
-          "Tests/Readers/Org/Inline"
-          "Tests/Readers/Org/Inline/Citation"
-          "Tests/Readers/Org/Inline/Note"
-          "Tests/Readers/Org/Inline/Smart"
-          "Tests/Readers/Org/Meta"
-          "Tests/Readers/Org/Shared"
-          "Tests/Readers/RST"
-          "Tests/Readers/Docx"
-          "Tests/Readers/Odt"
-          "Tests/Readers/Txt2Tags"
-          "Tests/Readers/EPUB"
-          "Tests/Readers/Muse"
-          "Tests/Readers/Creole"
-          "Tests/Readers/Man"
-          "Tests/Readers/FB2"
-          "Tests/Readers/DokuWiki"
-          "Tests/Writers/Native"
-          "Tests/Writers/ConTeXt"
-          "Tests/Writers/Docbook"
-          "Tests/Writers/HTML"
-          "Tests/Writers/JATS"
-          "Tests/Writers/Markdown"
-          "Tests/Writers/Org"
-          "Tests/Writers/Plain"
-          "Tests/Writers/AsciiDoc"
-          "Tests/Writers/LaTeX"
-          "Tests/Writers/Docx"
-          "Tests/Writers/RST"
-          "Tests/Writers/TEI"
-          "Tests/Writers/Muse"
-          "Tests/Writers/FB2"
-          "Tests/Writers/Powerpoint"
-          "Tests/Writers/OOXML"
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "Prelude";
-        hsSourceDirs = [ "test" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "prelude";
+        modules =
+          [
+            "Tests/Old"
+            "Tests/Command"
+            "Tests/Helpers"
+            "Tests/Lua"
+            "Tests/Lua/Module"
+            "Tests/Shared"
+            "Tests/Readers/LaTeX"
+            "Tests/Readers/HTML"
+            "Tests/Readers/JATS"
+            "Tests/Readers/Jira"
+            "Tests/Readers/Markdown"
+            "Tests/Readers/Org"
+            "Tests/Readers/Org/Block"
+            "Tests/Readers/Org/Block/CodeBlock"
+            "Tests/Readers/Org/Block/Figure"
+            "Tests/Readers/Org/Block/Header"
+            "Tests/Readers/Org/Block/List"
+            "Tests/Readers/Org/Block/Table"
+            "Tests/Readers/Org/Directive"
+            "Tests/Readers/Org/Inline"
+            "Tests/Readers/Org/Inline/Citation"
+            "Tests/Readers/Org/Inline/Note"
+            "Tests/Readers/Org/Inline/Smart"
+            "Tests/Readers/Org/Meta"
+            "Tests/Readers/Org/Shared"
+            "Tests/Readers/RST"
+            "Tests/Readers/Docx"
+            "Tests/Readers/Odt"
+            "Tests/Readers/Txt2Tags"
+            "Tests/Readers/EPUB"
+            "Tests/Readers/Muse"
+            "Tests/Readers/Creole"
+            "Tests/Readers/Man"
+            "Tests/Readers/FB2"
+            "Tests/Readers/DokuWiki"
+            "Tests/Writers/Native"
+            "Tests/Writers/ConTeXt"
+            "Tests/Writers/Docbook"
+            "Tests/Writers/HTML"
+            "Tests/Writers/JATS"
+            "Tests/Writers/Markdown"
+            "Tests/Writers/Org"
+            "Tests/Writers/Plain"
+            "Tests/Writers/AsciiDoc"
+            "Tests/Writers/LaTeX"
+            "Tests/Writers/Docx"
+            "Tests/Writers/RST"
+            "Tests/Writers/TEI"
+            "Tests/Writers/Muse"
+            "Tests/Writers/FB2"
+            "Tests/Writers/Powerpoint"
+            "Tests/Writers/OOXML"
+          ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "Prelude";
+        hsSourceDirs =
+          [ "test" ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "prelude";
         mainPath = [ "test-pandoc.hs" ];
       };
     };
     benchmarks = {
       "weigh-pandoc" = {
-        depends = [
-          (hsPkgs."pandoc" or (buildDepError "pandoc"))
-          (hsPkgs."base" or (buildDepError "base"))
-          (hsPkgs."text" or (buildDepError "text"))
-          (hsPkgs."weigh" or (buildDepError "weigh"))
-          (hsPkgs."mtl" or (buildDepError "mtl"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          (hsPkgs."base-compat" or (buildDepError "base-compat"));
+        depends =
+          [
+            (hsPkgs."pandoc" or (buildDepError "pandoc"))
+            (hsPkgs."base" or (buildDepError "base"))
+            (hsPkgs."text" or (buildDepError "text"))
+            (hsPkgs."weigh" or (buildDepError "weigh"))
+            (hsPkgs."mtl" or (buildDepError "mtl"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+            hsPkgs."base-compat" or (buildDepError "base-compat")
+          );
         buildable = true;
-        modules =
-          (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "Prelude";
-        hsSourceDirs = [ "benchmark" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "prelude";
+        modules = (pkgs.lib).optional (
+          compiler.isGhc && (compiler.version).lt "8.4"
+        ) "Prelude";
+        hsSourceDirs =
+          [ "benchmark" ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "prelude";
       };
       "benchmark-pandoc" = {
-        depends = [
-          (hsPkgs."pandoc" or (buildDepError "pandoc"))
-          (hsPkgs."time" or (buildDepError "time"))
-          (hsPkgs."bytestring" or (buildDepError "bytestring"))
-          (hsPkgs."containers" or (buildDepError "containers"))
-          (hsPkgs."base" or (buildDepError "base"))
-          (hsPkgs."text" or (buildDepError "text"))
-          (hsPkgs."mtl" or (buildDepError "mtl"))
-          (hsPkgs."criterion" or (buildDepError "criterion"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          (hsPkgs."base-compat" or (buildDepError "base-compat"));
+        depends =
+          [
+            (hsPkgs."pandoc" or (buildDepError "pandoc"))
+            (hsPkgs."time" or (buildDepError "time"))
+            (hsPkgs."bytestring" or (buildDepError "bytestring"))
+            (hsPkgs."containers" or (buildDepError "containers"))
+            (hsPkgs."base" or (buildDepError "base"))
+            (hsPkgs."text" or (buildDepError "text"))
+            (hsPkgs."mtl" or (buildDepError "mtl"))
+            (hsPkgs."criterion" or (buildDepError "criterion"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4") (
+            hsPkgs."base-compat" or (buildDepError "base-compat")
+          );
         buildable = true;
-        modules =
-          (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "Prelude";
-        hsSourceDirs = [ "benchmark" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.4")
-          "prelude";
+        modules = (pkgs.lib).optional (
+          compiler.isGhc && (compiler.version).lt "8.4"
+        ) "Prelude";
+        hsSourceDirs =
+          [ "benchmark" ]
+          ++ (pkgs.lib).optional (
+            compiler.isGhc && (compiler.version).lt "8.4"
+          ) "prelude";
       };
     };
   };
-} // rec {
+}
+// rec {
   src = (pkgs.lib).mkDefault ../.;
 }

@@ -1,4 +1,6 @@
-{ panhandleArgs ? { } }:
+{
+  panhandleArgs ? { },
+}:
 import (fetchGit {
   url = "http://chriswarbo.net/git/panhandle.git";
   ref = "master";

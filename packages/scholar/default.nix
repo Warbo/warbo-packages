@@ -1,4 +1,8 @@
-{ getSource, python3, stdenv }:
+{
+  getSource,
+  python3,
+  stdenv,
+}:
 
 stdenv.mkDerivation rec {
   name = "scholar.py";

@@ -1,5 +1,11 @@
-{ die, lib, google-api-python-client, nixpkgs1803, uritemplate
-, warbo-packages-sources }:
+{
+  die,
+  lib,
+  google-api-python-client,
+  nixpkgs1803,
+  uritemplate,
+  warbo-packages-sources,
+}:
 
 with rec {
   name = "gcalcli";
@@ -9,10 +15,12 @@ with rec {
   got = pythonPackages.oauth2client.name;
   want = "1.4.12";
 };
-assert lib.hasSuffix want got || die {
-  inherit got want;
-  error = "oauth2client version should be <= ${want}";
-};
+assert
+  lib.hasSuffix want got
+  || die {
+    inherit got want;
+    error = "oauth2client version should be <= ${want}";
+  };
 pythonPackages.buildPythonPackage {
   inherit name;
   inherit (source) version;

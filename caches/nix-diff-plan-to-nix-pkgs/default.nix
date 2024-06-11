@@ -1,13 +1,11 @@
 {
   pkgs = hackage: {
     packages = {
-      "containers".revision =
-        (((hackage."containers")."0.6.0.1").revisions).default;
+      "containers".revision = (((hackage."containers")."0.6.0.1").revisions).default;
       "ansi-terminal".revision =
         (((hackage."ansi-terminal")."0.10.2").revisions).default;
       "ansi-terminal".flags.example = false;
-      "bytestring".revision =
-        (((hackage."bytestring")."0.10.8.2").revisions).default;
+      "bytestring".revision = (((hackage."bytestring")."0.10.8.2").revisions).default;
       "integer-logarithms".revision =
         (((hackage."integer-logarithms")."1.0.3").revisions).default;
       "integer-logarithms".flags.check-bounds = false;
@@ -23,23 +21,19 @@
       "Cabal".revision = (((hackage."Cabal")."2.4.0.1").revisions).default;
       "time".revision = (((hackage."time")."1.8.0.2").revisions).default;
       "colour".revision = (((hackage."colour")."2.3.5").revisions).default;
-      "attoparsec".revision =
-        (((hackage."attoparsec")."0.13.2.3").revisions).default;
+      "attoparsec".revision = (((hackage."attoparsec")."0.13.2.3").revisions).default;
       "attoparsec".flags.developer = false;
       "happy".revision = (((hackage."happy")."1.19.12").revisions).default;
       "happy".flags.small_base = true;
       "transformers".revision =
         (((hackage."transformers")."0.5.6.2").revisions).default;
-      "hashable".revision =
-        (((hackage."hashable")."1.3.0.0").revisions).default;
+      "hashable".revision = (((hackage."hashable")."1.3.0.0").revisions).default;
       "hashable".flags.sse41 = false;
       "hashable".flags.examples = false;
       "hashable".flags.sse2 = true;
       "hashable".flags.integer-gmp = true;
-      "pretty-show".revision =
-        (((hackage."pretty-show")."1.9.5").revisions).default;
-      "filepath".revision =
-        (((hackage."filepath")."1.4.2.1").revisions).default;
+      "pretty-show".revision = (((hackage."pretty-show")."1.9.5").revisions).default;
+      "filepath".revision = (((hackage."filepath")."1.4.2.1").revisions).default;
       "nix-derivation".revision =
         (((hackage."nix-derivation")."1.0.2").revisions).default;
       "process".revision = (((hackage."process")."1.6.5.0").revisions).default;
@@ -52,8 +46,7 @@
       "unix".revision = (((hackage."unix")."2.7.2.2").revisions).default;
       "rts".revision = (((hackage."rts")."1.0").revisions).default;
       "mtl".revision = (((hackage."mtl")."2.2.2").revisions).default;
-      "scientific".revision =
-        (((hackage."scientific")."0.3.6.2").revisions).default;
+      "scientific".revision = (((hackage."scientific")."0.3.6.2").revisions).default;
       "scientific".flags.integer-simple = false;
       "scientific".flags.bytestring-builder = false;
       "deepseq".revision = (((hackage."deepseq")."1.4.4.0").revisions).default;
@@ -67,8 +60,7 @@
       "vector".flags.unsafechecks = false;
       "vector".flags.internalchecks = false;
       "vector".flags.wall = false;
-      "directory".revision =
-        (((hackage."directory")."1.3.3.0").revisions).default;
+      "directory".revision = (((hackage."directory")."1.3.3.0").revisions).default;
       "transformers-compat".revision =
         (((hackage."transformers-compat")."0.6.5").revisions).default;
       "transformers-compat".flags.two = false;
@@ -78,8 +70,7 @@
       "transformers-compat".flags.four = false;
       "transformers-compat".flags.five = false;
       "transformers-compat".flags.generic-deriving = true;
-      "primitive".revision =
-        (((hackage."primitive")."0.7.0.0").revisions).default;
+      "primitive".revision = (((hackage."primitive")."0.7.0.0").revisions).default;
     };
     compiler = {
       version = "8.6.5";
@@ -108,7 +99,21 @@
       };
     };
   };
-  extras = hackage: { packages = { nix-diff = ./.plan.nix/nix-diff.nix; }; };
-  modules =
-    [ ({ lib, ... }: { packages = { "nix-diff" = { flags = { }; }; }; }) ];
+  extras = hackage: {
+    packages = {
+      nix-diff = ./.plan.nix/nix-diff.nix;
+    };
+  };
+  modules = [
+    (
+      { lib, ... }:
+      {
+        packages = {
+          "nix-diff" = {
+            flags = { };
+          };
+        };
+      }
+    )
+  ];
 }

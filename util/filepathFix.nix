@@ -3,6 +3,5 @@
 { haskell }:
 
 helf: huper: {
-  system-filepath =
-    haskell.lib.addBuildDepend huper.system-filepath helf.semigroups;
+  system-filepath = haskell.lib.addBuildDepend huper.system-filepath helf.semigroups;
 }

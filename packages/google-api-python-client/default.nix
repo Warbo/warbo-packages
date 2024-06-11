@@ -1,4 +1,8 @@
-{ pythonPackages, uritemplate, warbo-packages-sources }:
+{
+  pythonPackages,
+  uritemplate,
+  warbo-packages-sources,
+}:
 
 with rec {
   name = "google-api-python-client";

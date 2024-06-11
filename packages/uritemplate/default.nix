@@ -8,5 +8,8 @@ pythonPackages.buildPythonPackage {
   inherit name;
   inherit (source) version;
   src = source.outPath;
-  propagatedBuildInputs = [ pythonPackages.python pythonPackages.simplejson ];
+  propagatedBuildInputs = [
+    pythonPackages.python
+    pythonPackages.simplejson
+  ];
 }

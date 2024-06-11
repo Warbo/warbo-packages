@@ -1,4 +1,8 @@
-{ getSource, hasBinary, stdenv }:
+{
+  getSource,
+  hasBinary,
+  stdenv,
+}:
 
 # FIXME: This packages shouldn't have to exist
 stdenv.mkDerivation {

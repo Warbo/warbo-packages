@@ -1,6 +1,8 @@
 # TODO: Propagate nixpkgs-lib and nixpkgs, to allow overriding. We'll need to
 # bootstrap them, to prevent infinite recursion!
-{ nix-helpers-args ? { } }:
+{
+  nix-helpers-args ? { },
+}:
 
 import (builtins.fetchGit {
   name = "nix-helpers";

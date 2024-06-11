@@ -1,4 +1,9 @@
-{ getSource, replace, stdenv, xorg }:
+{
+  getSource,
+  replace,
+  stdenv,
+  xorg,
+}:
 
 stdenv.mkDerivation rec {
   name = "space2ctrl";

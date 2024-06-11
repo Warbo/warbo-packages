@@ -1,5 +1,18 @@
-{ autoconf, automake, getSource, libXtst, libX11, libXi, libXext, libXinerama
-, pkgconfig, stdenv, xextproto ? null, xlibsWrapper, xorg }:
+{
+  autoconf,
+  automake,
+  getSource,
+  libXtst,
+  libX11,
+  libXi,
+  libXext,
+  libXinerama,
+  pkgconfig,
+  stdenv,
+  xextproto ? null,
+  xlibsWrapper,
+  xorg,
+}:
 
 stdenv.mkDerivation rec {
   name = "x2x";

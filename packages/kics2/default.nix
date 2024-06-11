@@ -1,5 +1,13 @@
-{ getSource, haskell, haskellSrc2nix, lib, nixpkgs1803, runCommand, skipMac
-, which }:
+{
+  getSource,
+  haskell,
+  haskellSrc2nix,
+  lib,
+  nixpkgs1803,
+  runCommand,
+  skipMac,
+  which,
+}:
 
 with rec {
   inherit (builtins) getAttr trace;
@@ -54,11 +62,14 @@ with rec {
     "transformers"
   ];
 
-  ghc = haskellPackages.ghcWithPackages (h:
-    map (p: getAttr p h) deps ++ [
+  ghc = haskellPackages.ghcWithPackages (
+    h:
+    map (p: getAttr p h) deps
+    ++ [
       # Requires a Cabal flag to be set
       (haskell.lib.enableCabalFlag h.transformers-compat "transformers3")
-    ]);
+    ]
+  );
 
   patched = runCommand "kics2-patched" { d = src; } ''
     cp -r "$d" "$out"
@@ -87,11 +98,10 @@ with rec {
     src = "${src}/frontend/curry-frontend";
   };
 
-  kics2-frontend =
-    runCommand "kics2-frontend" { cf = hsPkgs.curry-frontend; } ''
-      mkdir -p "$out/bin"
-      ln -s "$cf/bin/curry-frontend" "$out/bin/kics2-frontend"
-    '';
+  kics2-frontend = runCommand "kics2-frontend" { cf = hsPkgs.curry-frontend; } ''
+    mkdir -p "$out/bin"
+    ln -s "$cf/bin/curry-frontend" "$out/bin/kics2-frontend"
+  '';
 
   hsPkgs = haskellPackages.override (old: {
     overrides = helf: huper: {
@@ -105,8 +115,9 @@ with rec {
       kernelbins = {
         deps = "$(PKGDB) frontend $(CLEANCURRY) scripts copylibs copytools";
       }
-      /* ''cd src && make
-         cd currytools/optimize && make''
+      /*
+        ''cd src && make
+        cd currytools/optimize && make''
       */
       ;
 
@@ -119,33 +130,39 @@ with rec {
     manual = "make manual";
   };
 
-  result = runCommand name {
-    inherit patched;
-    buildInputs = [ ghc which ];
-  } ''
-    mkdir -p "$out/home"
-    export HOME="$out/home"
+  result =
+    runCommand name
+      {
+        inherit patched;
+        buildInputs = [
+          ghc
+          which
+        ];
+      }
+      ''
+        mkdir -p "$out/home"
+        export HOME="$out/home"
 
-    cp -r "$patched" ./src
-    chmod -R +w ./src
-    cd ./src
+        cp -r "$patched" ./src
+        chmod -R +w ./src
+        cd ./src
 
-    echo "Starting build" 1>&2
-    make "KICS2INSTALLDIR=$out/kics2"
+        echo "Starting build" 1>&2
+        make "KICS2INSTALLDIR=$out/kics2"
 
-    echo "Installing binaries" 1>&2
-    mkdir -p "$out/kics2"
-    for D in bin pkg
-    do
-      cp -r "$D" "$out/kics2"
-    done
+        echo "Installing binaries" 1>&2
+        mkdir -p "$out/kics2"
+        for D in bin pkg
+        do
+          cp -r "$D" "$out/kics2"
+        done
 
-    mkdir "$out/bin"
-    for F in "$out/kics2/bin"/*
-    do
-      NAME=$(basename "$F")
-      makeWrapper "$F" "$out/bin/$NAME" --prefix PATH : "${ghc}/bin"
-    done
-  '';
+        mkdir "$out/bin"
+        for F in "$out/kics2/bin"/*
+        do
+          NAME=$(basename "$F")
+          makeWrapper "$F" "$out/bin/$NAME" --prefix PATH : "${ghc}/bin"
+        done
+      '';
 };
 skipMac "kics2" { inherit curry-base curry-frontend kics2-frontend; }

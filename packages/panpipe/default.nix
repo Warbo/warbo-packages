@@ -1,4 +1,6 @@
-{ panpipeArgs ? { } }:
+{
+  panpipeArgs ? { },
+}:
 
 import (fetchGit {
   url = "http://chriswarbo.net/git/panpipe.git";

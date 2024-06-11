@@ -1,4 +1,9 @@
-{ getSource, lib, options ? [ ], stdenv }:
+{
+  getSource,
+  lib,
+  options ? [ ],
+  stdenv,
+}:
 
 with rec {
   inherit (builtins) elem toJSON;

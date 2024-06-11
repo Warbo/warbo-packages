@@ -1,4 +1,8 @@
-{ getSource, haskell-nix, repo1909 }:
+{
+  getSource,
+  haskell-nix,
+  repo1909,
+}:
 
 with rec {
   pkgs = haskell-nix { repo = repo1909; };

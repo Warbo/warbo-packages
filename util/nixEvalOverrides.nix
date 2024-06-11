@@ -1,7 +1,9 @@
 { haskell, lib }:
 
-with lib; [
-  (self: super:
+with lib;
+[
+  (
+    self: super:
     mapAttrs (n: v: self.callHackage n v { }) {
       # Required by mlspec
       haskell-src-exts = "1.17.1";
@@ -27,7 +29,8 @@ with lib; [
 
       # Nixpkgs version is missing semigroups dependency
       transformers-compat = "0.5.1.4";
-    })
+    }
+  )
   (self: super: {
     # Missing Arbitrary instances
     aeson = haskell.lib.dontCheck super.aeson;

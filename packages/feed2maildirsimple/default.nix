@@ -1,4 +1,6 @@
-{ feed2maildirsimple-args ? { } }:
+{
+  feed2maildirsimple-args ? { },
+}:
 
 import (fetchGit {
   name = "feed2maildirsimple";

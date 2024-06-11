@@ -1,4 +1,8 @@
-{ fetchFromGitHub, python3Packages, stdenv }:
+{
+  fetchFromGitHub,
+  python3Packages,
+  stdenv,
+}:
 
 python3Packages.buildPythonPackage {
   name = "bibcheck";
@@ -10,5 +14,8 @@ python3Packages.buildPythonPackage {
     rev = "792afe0";
     sha256 = "1gajxdz9j64qixiib8wyyfgm2kyjyv9ix3mmcdkrab9nnbxkwzfz";
   };
-  propagatedBuildInputs = [ python3Packages.python python3Packages.six ];
+  propagatedBuildInputs = [
+    python3Packages.python
+    python3Packages.six
+  ];
 }

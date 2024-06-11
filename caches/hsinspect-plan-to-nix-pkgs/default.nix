@@ -1,10 +1,8 @@
 {
   pkgs = hackage: {
     packages = {
-      "containers".revision =
-        (((hackage."containers")."0.6.0.1").revisions).default;
-      "bytestring".revision =
-        (((hackage."bytestring")."0.10.8.2").revisions).default;
+      "containers".revision = (((hackage."containers")."0.6.0.1").revisions).default;
+      "bytestring".revision = (((hackage."bytestring")."0.10.8.2").revisions).default;
       "contravariant".revision =
         (((hackage."contravariant")."1.5.2").revisions).default;
       "contravariant".flags.tagged = false;
@@ -14,15 +12,12 @@
       "time".revision = (((hackage."time")."1.8.0.2").revisions).default;
       "transformers".revision =
         (((hackage."transformers")."0.5.6.2").revisions).default;
-      "terminfo".revision =
-        (((hackage."terminfo")."0.4.1.2").revisions).default;
-      "filepath".revision =
-        (((hackage."filepath")."1.4.2.1").revisions).default;
+      "terminfo".revision = (((hackage."terminfo")."0.4.1.2").revisions).default;
+      "filepath".revision = (((hackage."filepath")."1.4.2.1").revisions).default;
       "hpc".revision = (((hackage."hpc")."0.6.0.3").revisions).default;
       "process".revision = (((hackage."process")."1.6.5.0").revisions).default;
       "pretty".revision = (((hackage."pretty")."1.1.3.6").revisions).default;
-      "ghc-boot-th".revision =
-        (((hackage."ghc-boot-th")."8.6.5").revisions).default;
+      "ghc-boot-th".revision = (((hackage."ghc-boot-th")."8.6.5").revisions).default;
       "array".revision = (((hackage."array")."0.5.3.0").revisions).default;
       "integer-gmp".revision =
         (((hackage."integer-gmp")."1.0.2.0").revisions).default;
@@ -37,8 +32,7 @@
       "deepseq".revision = (((hackage."deepseq")."1.4.4.0").revisions).default;
       "template-haskell".revision =
         (((hackage."template-haskell")."2.14.0.0").revisions).default;
-      "directory".revision =
-        (((hackage."directory")."1.3.3.0").revisions).default;
+      "directory".revision = (((hackage."directory")."1.3.3.0").revisions).default;
     };
     compiler = {
       version = "8.6.5";
@@ -79,17 +73,26 @@
     };
   };
   modules = [
-    ({ lib, ... }: {
-      packages = {
-        "medley" = {
-          flags = {
-            "uncompilable" = lib.mkOverride 900 true;
-            "ghcflags" = lib.mkOverride 900 true;
+    (
+      { lib, ... }:
+      {
+        packages = {
+          "medley" = {
+            flags = {
+              "uncompilable" = lib.mkOverride 900 true;
+              "ghcflags" = lib.mkOverride 900 true;
+            };
+          };
+          "hsinspect" = {
+            flags = {
+              "ghcflags" = lib.mkOverride 900 true;
+            };
+          };
+          "ghcflags" = {
+            flags = { };
           };
         };
-        "hsinspect" = { flags = { "ghcflags" = lib.mkOverride 900 true; }; };
-        "ghcflags" = { flags = { }; };
-      };
-    })
+      }
+    )
   ];
 }

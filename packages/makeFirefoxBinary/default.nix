@@ -1,15 +1,32 @@
 # Firefox binary downloaded from Mozilla and installed into an FHS environment
-{ bash, buildFHSUserEnv, fail, gnome2, gnome3, gsettings-desktop-schemas, gtk3
-, hicolor-icon-theme, lib, makeFontsConf, mkBin, onlineCheck, runCommand
-, unpack' }:
+{
+  bash,
+  buildFHSUserEnv,
+  fail,
+  gnome2,
+  gnome3,
+  gsettings-desktop-schemas,
+  gtk3,
+  hicolor-icon-theme,
+  lib,
+  makeFontsConf,
+  mkBin,
+  onlineCheck,
+  runCommand,
+  unpack',
+}:
 
 with builtins;
 with lib;
 with rec {
-  raw = source:
+  raw =
+    source:
     mkBin {
       name = "firefoxWrapper-${source.version}";
-      paths = [ bash fail ];
+      paths = [
+        bash
+        fail
+      ];
       vars = {
         contents = unpack' "firefox-source-${source.version}" source.outPath;
 
@@ -54,60 +71,66 @@ with rec {
 source:
 buildFHSUserEnv {
   name = "firefox";
-  targetPkgs = pkgs:
-    [ (raw source) ] ++
+  targetPkgs =
+    pkgs:
+    [ (raw source) ]
+    ++
 
-    # Nixpkgs versions differ in how they define these libraries
-    (optional (hasAttr "libGL" pkgs) pkgs.libGL)
+      # Nixpkgs versions differ in how they define these libraries
+      (optional (hasAttr "libGL" pkgs) pkgs.libGL)
     ++ (optional (hasAttr "libGLU" pkgs) pkgs.libGLU)
-    ++ (optional (hasAttr "libGLU_combined" pkgs) pkgs.libGLU_combined) ++
+    ++ (optional (hasAttr "libGLU_combined" pkgs) pkgs.libGLU_combined)
+    ++
 
-    (with pkgs;
-      with xorg; [
-        # These are copypasta from the nixpkgs firefox dependencies
-        alsaLib
-        atk
-        cairo
-        cups
-        dbus-glib
-        dbus
-        fontconfig
-        freetype
-        gdk_pixbuf
-        glib
-        glibc
-        gtk2
-        gtk3
-        kerberos
-        libX11
-        libXScrnSaver
-        libXcomposite
-        libXcursor
-        libxcb
-        libXdamage
-        libXext
-        libXfixes
-        libXi
-        libXinerama
-        libXrender
-        libXt
-        libcanberra-gtk2
-        libnotify
-        nspr
-        nss
-        pango
-        libheimdal
-        libpulseaudio
-        (lib.getDev libpulseaudio)
-        ffmpeg
+      (
+        with pkgs;
+        with xorg;
+        [
+          # These are copypasta from the nixpkgs firefox dependencies
+          alsaLib
+          atk
+          cairo
+          cups
+          dbus-glib
+          dbus
+          fontconfig
+          freetype
+          gdk_pixbuf
+          glib
+          glibc
+          gtk2
+          gtk3
+          kerberos
+          libX11
+          libXScrnSaver
+          libXcomposite
+          libXcursor
+          libxcb
+          libXdamage
+          libXext
+          libXfixes
+          libXi
+          libXinerama
+          libXrender
+          libXt
+          libcanberra-gtk2
+          libnotify
+          nspr
+          nss
+          pango
+          libheimdal
+          libpulseaudio
+          (lib.getDev libpulseaudio)
+          ffmpeg
 
-        # Required for glib schemas; without this, file dialogue boxen will crash
-        gnome3.dconf
+          # Required for glib schemas; without this, file dialogue boxen will crash
+          gnome3.dconf
 
-        # Avoid 'The 'hicolor' theme was not found'
-        hicolor-icon-theme
-        gnome2.gnome_icon_theme
-        gnome3.adwaita-icon-theme
-      ]);
+          # Avoid 'The 'hicolor' theme was not found'
+          hicolor-icon-theme
+          gnome2.gnome_icon_theme
+          gnome3.adwaita-icon-theme
+        ]
+      );
   runScript = "firefoxWrapper-${source.version}";
 }

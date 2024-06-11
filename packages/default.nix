@@ -1,5 +1,8 @@
-{ nix-helpers ? import ./nix-helpers { }, nixpkgs ? nix-helpers.nixpkgs
-, nixpkgs-lib ? nix-helpers.nixpkgs-lib }:
+{
+  nix-helpers ? import ./nix-helpers { },
+  nixpkgs ? nix-helpers.nixpkgs,
+  nixpkgs-lib ? nix-helpers.nixpkgs-lib,
+}:
 
 with rec {
   inherit (builtins) removeAttrs;
@@ -14,12 +17,17 @@ with rec {
   # Include warbo-packages, so packages can reference each other. Put it first,
   # so that later attrsets will be checked first (making circular references
   # less likely)
-  extraArgs = warbo-packages // nix-helpers // util // {
-    # Useful for overriding things
-    inherit extraArgs nix-helpers nixpkgs;
-  };
+  extraArgs =
+    warbo-packages
+    // nix-helpers
+    // util
+    // {
+      # Useful for overriding things
+      inherit extraArgs nix-helpers nixpkgs;
+    };
 
-  load = filename:
+  load =
+    filename:
     mapAttrs call (nixDirsIn {
       inherit filename;
       dir = ./.;

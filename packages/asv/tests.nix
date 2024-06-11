@@ -1,8 +1,15 @@
-{ asv, hasBinary, isBroken }:
+{
+  asv,
+  hasBinary,
+  isBroken,
+}:
 
 {
   haveCmd = hasBinary asv "asv";
 
-  stillNeedToDisableTests =
-    isBroken (asv.overridePythonAttrs (old: { doCheck = true; }));
+  stillNeedToDisableTests = isBroken (
+    asv.overridePythonAttrs (old: {
+      doCheck = true;
+    })
+  );
 }

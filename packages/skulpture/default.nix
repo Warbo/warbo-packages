@@ -1,11 +1,24 @@
-{ cmake, fail, fetchurl, findutils, getSource, kdelibs4 ? nixpkgs1709.kdelibs4
-, lib, nixpkgs1709, qt4, skipMac, stdenv, writeScript }:
+{
+  cmake,
+  fail,
+  fetchurl,
+  findutils,
+  getSource,
+  kdelibs4 ? nixpkgs1709.kdelibs4,
+  lib,
+  nixpkgs1709,
+  qt4,
+  skipMac,
+  stdenv,
+  writeScript,
+}:
 
 with rec {
   inherit (builtins) attrNames getAttr map;
   inherit (lib) concatStringsSep;
 
-  installFiles = qt:
+  installFiles =
+    qt:
     with rec {
       toMove = {
         "skulpture.themerc" = "share/kde4/apps/kstyle/themes";
@@ -41,7 +54,13 @@ skipMac "skulpture" {
       sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
     };
 
-    buildInputs = [ cmake fail kdelibs4 findutils qt4 ];
+    buildInputs = [
+      cmake
+      fail
+      kdelibs4
+      findutils
+      qt4
+    ];
 
     installPhase = ''
       cd ..
@@ -59,12 +78,23 @@ skipMac "skulpture" {
     '';
   };
 
-  mkSkulptureQt5 = { cmake, mkDerivation, qmake, qtbase }:
+  mkSkulptureQt5 =
+    {
+      cmake,
+      mkDerivation,
+      qmake,
+      qtbase,
+    }:
     mkDerivation rec {
       name = "skulpture-qt5";
       src = getSource { inherit name; };
       preConfigure = "cd src";
-      buildInputs = [ qtbase qmake cmake kdelibs4 ];
+      buildInputs = [
+        qtbase
+        qmake
+        cmake
+        kdelibs4
+      ];
       installPhase = ''
         cd ..
         ${installFiles "qt5"}

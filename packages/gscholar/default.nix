@@ -1,4 +1,8 @@
-{ pythonPackages, poppler_utils, warbo-packages-sources }:
+{
+  pythonPackages,
+  poppler_utils,
+  warbo-packages-sources,
+}:
 
 with rec {
   name = "gscholar";
@@ -7,10 +11,15 @@ with rec {
 pythonPackages.buildPythonPackage rec {
   inherit name;
   inherit (source) version;
-  meta = { inherit (source) description homepage; };
+  meta = {
+    inherit (source) description homepage;
+  };
   src = source.outPath;
   preInstallPhases = [ "bins" ];
-  propagatedBuildInputs = [ pythonPackages.python poppler_utils ];
+  propagatedBuildInputs = [
+    pythonPackages.python
+    poppler_utils
+  ];
   bins = ''
     mkdir -p "$out/bin"
     cp ./gscholar/gscholar.py "$out/bin"

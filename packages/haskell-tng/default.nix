@@ -1,4 +1,9 @@
-{ buildEnv, getSource, hsinspect, run }:
+{
+  buildEnv,
+  getSource,
+  hsinspect,
+  run,
+}:
 
 with {
   code = run rec {
@@ -15,5 +20,8 @@ with {
 };
 buildEnv {
   name = "haskell-tng";
-  paths = [ code hsinspect ];
+  paths = [
+    code
+    hsinspect
+  ];
 }

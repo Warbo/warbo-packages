@@ -1,33 +1,39 @@
 let
-  buildDepError = pkg:
+  buildDepError =
+    pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (build dependency).
 
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-  sysDepError = pkg:
+  sysDepError =
+    pkg:
     builtins.throw ''
       The Nixpkgs package set does not contain the package: ${pkg} (system dependency).
 
       You may need to augment the system package mapping in haskell.nix so that it can be found.
     '';
-  pkgConfDepError = pkg:
+  pkgConfDepError =
+    pkg:
     builtins.throw ''
       The pkg-conf packages does not contain the package: ${pkg} (pkg-conf dependency).
 
       You may need to augment the pkg-conf package mapping in haskell.nix so that it can be found.
     '';
-  exeDepError = pkg:
+  exeDepError =
+    pkg:
     builtins.throw ''
       The local executable components do not include the component: ${pkg} (executable dependency).
     '';
-  legacyExeDepError = pkg:
+  legacyExeDepError =
+    pkg:
     builtins.throw ''
       The Haskell package set does not contain the package: ${pkg} (executable dependency).
 
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-  buildToolDepError = pkg:
+  buildToolDepError =
+    pkg:
     builtins.throw ''
       Neither the Haskell package set or the Nixpkgs package set contain the package: ${pkg} (build tool dependency).
 
@@ -37,7 +43,16 @@ let
       If this is a Haskell dependency:
       If you are using Stackage, make sure that you are using a snapshot that contains the package. Otherwise you may need to update the Hackage snapshot you are using, usually by updating haskell.nix.
     '';
-in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
+in
+{
+  system,
+  compiler,
+  flags,
+  pkgs,
+  hsPkgs,
+  pkgconfPkgs,
+  ...
+}:
 {
   flags = { };
   package = {
@@ -67,12 +82,15 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
     buildType = "Custom";
     isLocal = true;
     setup-depends = [
-      (hsPkgs.buildPackages.base or (pkgs.buildPackages.base or (buildToolDepError
-        "base")))
-      (hsPkgs.buildPackages.process or (pkgs.buildPackages.process or (buildToolDepError
-        "process")))
-      (hsPkgs.buildPackages.Cabal or (pkgs.buildPackages.Cabal or (buildToolDepError
-        "Cabal")))
+      (hsPkgs.buildPackages.base
+        or (pkgs.buildPackages.base or (buildToolDepError "base"))
+      )
+      (hsPkgs.buildPackages.process
+        or (pkgs.buildPackages.process or (buildToolDepError "process"))
+      )
+      (hsPkgs.buildPackages.Cabal
+        or (pkgs.buildPackages.Cabal or (buildToolDepError "Cabal"))
+      )
     ];
     detailLevel = "FullDetails";
     licenseFiles = [ "LICENSE" ];
@@ -90,23 +108,26 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
   };
   components = {
     "library" = {
-      depends = [
-        (hsPkgs."aeson" or (buildDepError "aeson"))
-        (hsPkgs."array" or (buildDepError "array"))
-        (hsPkgs."base" or (buildDepError "base"))
-        (hsPkgs."bytestring" or (buildDepError "bytestring"))
-        (hsPkgs."containers" or (buildDepError "containers"))
-        (hsPkgs."deepseq" or (buildDepError "deepseq"))
-        (hsPkgs."Diff" or (buildDepError "Diff"))
-        (hsPkgs."directory" or (buildDepError "directory"))
-        (hsPkgs."mtl" or (buildDepError "mtl"))
-        (hsPkgs."filepath" or (buildDepError "filepath"))
-        (hsPkgs."parsec" or (buildDepError "parsec"))
-        (hsPkgs."regex-tdfa" or (buildDepError "regex-tdfa"))
-        (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
-        (hsPkgs."process" or (buildDepError "process"))
-      ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0")
-        (hsPkgs."semigroups" or (buildDepError "semigroups"));
+      depends =
+        [
+          (hsPkgs."aeson" or (buildDepError "aeson"))
+          (hsPkgs."array" or (buildDepError "array"))
+          (hsPkgs."base" or (buildDepError "base"))
+          (hsPkgs."bytestring" or (buildDepError "bytestring"))
+          (hsPkgs."containers" or (buildDepError "containers"))
+          (hsPkgs."deepseq" or (buildDepError "deepseq"))
+          (hsPkgs."Diff" or (buildDepError "Diff"))
+          (hsPkgs."directory" or (buildDepError "directory"))
+          (hsPkgs."mtl" or (buildDepError "mtl"))
+          (hsPkgs."filepath" or (buildDepError "filepath"))
+          (hsPkgs."parsec" or (buildDepError "parsec"))
+          (hsPkgs."regex-tdfa" or (buildDepError "regex-tdfa"))
+          (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
+          (hsPkgs."process" or (buildDepError "process"))
+        ]
+        ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0") (
+          hsPkgs."semigroups" or (buildDepError "semigroups")
+        );
       buildable = true;
       modules = [
         "Paths_ShellCheck"
@@ -137,27 +158,30 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
     };
     exes = {
       "shellcheck" = {
-        depends = [
-          (hsPkgs."aeson" or (buildDepError "aeson"))
-          (hsPkgs."array" or (buildDepError "array"))
-          (hsPkgs."base" or (buildDepError "base"))
-          (hsPkgs."bytestring" or (buildDepError "bytestring"))
-          (hsPkgs."containers" or (buildDepError "containers"))
-          (hsPkgs."deepseq" or (buildDepError "deepseq"))
-          (hsPkgs."Diff" or (buildDepError "Diff"))
-          (hsPkgs."directory" or (buildDepError "directory"))
-          (hsPkgs."mtl" or (buildDepError "mtl"))
-          (hsPkgs."filepath" or (buildDepError "filepath"))
-          (hsPkgs."parsec" or (buildDepError "parsec"))
-          (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
-          (hsPkgs."regex-tdfa" or (buildDepError "regex-tdfa"))
-          (hsPkgs."ShellCheck" or (buildDepError "ShellCheck"))
-        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0")
-          (hsPkgs."semigroups" or (buildDepError "semigroups"));
+        depends =
+          [
+            (hsPkgs."aeson" or (buildDepError "aeson"))
+            (hsPkgs."array" or (buildDepError "array"))
+            (hsPkgs."base" or (buildDepError "base"))
+            (hsPkgs."bytestring" or (buildDepError "bytestring"))
+            (hsPkgs."containers" or (buildDepError "containers"))
+            (hsPkgs."deepseq" or (buildDepError "deepseq"))
+            (hsPkgs."Diff" or (buildDepError "Diff"))
+            (hsPkgs."directory" or (buildDepError "directory"))
+            (hsPkgs."mtl" or (buildDepError "mtl"))
+            (hsPkgs."filepath" or (buildDepError "filepath"))
+            (hsPkgs."parsec" or (buildDepError "parsec"))
+            (hsPkgs."QuickCheck" or (buildDepError "QuickCheck"))
+            (hsPkgs."regex-tdfa" or (buildDepError "regex-tdfa"))
+            (hsPkgs."ShellCheck" or (buildDepError "ShellCheck"))
+          ]
+          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0") (
+            hsPkgs."semigroups" or (buildDepError "semigroups")
+          );
         buildable = true;
-        mainPath = [ "shellcheck.hs" ]
-          ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0")
-          "";
+        mainPath = [
+          "shellcheck.hs"
+        ] ++ (pkgs.lib).optional (compiler.isGhc && (compiler.version).lt "8.0") "";
       };
     };
     tests = {
@@ -183,6 +207,7 @@ in { system, compiler, flags, pkgs, hsPkgs, pkgconfPkgs, ... }:
       };
     };
   };
-} // rec {
+}
+// rec {
   src = (pkgs.lib).mkDefault ../.;
 }
