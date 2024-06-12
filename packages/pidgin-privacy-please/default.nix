@@ -12,7 +12,6 @@
   pidgin,
   pkgconfig,
   stdenv,
-  unfix,
   unpack',
 }:
 
