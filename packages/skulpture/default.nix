@@ -1,80 +1,18 @@
 {
   cmake,
-  fail,
-  fetchurl,
-  findutils,
-  getSource,
-  kdelibs4 ? nixpkgs1709.kdelibs4,
-  lib,
-  nixpkgs1709,
-  qt4,
-  skipMac,
+  extra-cmake-modules,
+  libsForQt5,
+  qt5,
   stdenv,
-  writeScript,
 }:
-
-with rec {
-  inherit (builtins) attrNames getAttr map;
-  inherit (lib) concatStringsSep;
-
-  installFiles =
-    qt:
-    with rec {
-      toMove = {
-        "skulpture.themerc" = "share/kde4/apps/kstyle/themes";
-        "skulpture.desktop" = "share/kde4/apps/kwin";
-        "skulpture.png" = "share/kde4/apps/skulpture/pics";
-        "skulptureui.rc" = "share/kde4/apps/skulpture";
-        "libskulpture.so" = "lib/${qt}/plugins/styles";
-      };
-
-      mkCmd = file: ''
-        F="${file}"
-        D="${getAttr file toMove}"
-        mkdir -p "$out/$D"
-        FOUND=0
-        while read -r GOT;
-        do
-        cp -rv "$GOT" "$out/$D/"
-        FOUND=1
-        done < <(find . -name "$F")
-        [[ "$FOUND" -eq 1 ]] ||
-        fail "Didn't find '$F', aborting"
-      '';
-    };
-    concatStringsSep "\n" (map mkCmd (attrNames toMove));
-};
-skipMac "skulpture" {
-  skulpture-qt4 = stdenv.mkDerivation {
-    name = "skulpture-qt4";
-    version = "0.2.4";
-    # TODO: https://github.com/nmattia/niv/issues/274
-    src = fetchurl {
-      url = "http://skulpture.maxiom.de/releases/skulpture-0.2.4.tar.gz";
-      sha256 = "1s27xqd32ck09r1nnjp1pyxwi0js7a7rg2ppkvq2mk78nfcl6sk0";
-    };
-
-    buildInputs = [
+{
+  qt5 = import ./qt5.nix {
+    inherit
       cmake
-      fail
-      kdelibs4
-      findutils
-      qt4
-    ];
-
-    installPhase = ''
-      cd ..
-
-      mkdir -p "$out/share/doc"
-      for DOC in README AUTHORS COPYING NEWS NOTES BUGS
-      do
-        cp -v "$DOC" "$out/share/doc/"
-      done
-
-      mkdir -p "$out/share/kde4/apps/"
-      cp -rv color-schemes "$out/share/kde4/apps/"
-
-      ${installFiles "qt4"}
-    '';
+      extra-cmake-modules
+      libsForQt5
+      qt5
+      ;
+  };
   };
 }
