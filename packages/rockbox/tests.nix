@@ -1,7 +1,1 @@
-{
-  hasBinary,
-  rockbox,
-  skipMac,
-}:
-
-skipMac "rockbox tests" (hasBinary rockbox "mks5lboot")
+{ hasBinary, rockbox }: hasBinary rockbox "mks5lboot"

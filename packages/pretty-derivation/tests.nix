@@ -1,4 +1,3 @@
-{ haskell-nix, skipMac }:
+{ haskell-nix }:
 
-skipMac "pretty-derivation tests"
-  (import ./components.nix { inherit haskell-nix; }).tests
+(import ./components.nix { inherit haskell-nix; }).tests

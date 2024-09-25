@@ -1,5 +1,4 @@
 # Pretty-printer for Nix .drv files
-{ haskell-nix, skipMac }:
+{ haskell-nix }:
 
-skipMac "pretty-derivation"
-  (import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation
+(import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation

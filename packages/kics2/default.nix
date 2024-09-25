@@ -5,7 +5,6 @@
   lib,
   nixpkgs1803,
   runCommand,
-  skipMac,
   which,
 }:
 
@@ -165,4 +164,6 @@ with rec {
         done
       '';
 };
-skipMac "kics2" { inherit curry-base curry-frontend kics2-frontend; }
+{
+  inherit curry-base curry-frontend kics2-frontend;
+}

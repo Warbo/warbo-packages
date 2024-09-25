@@ -4,7 +4,6 @@
   libusb1,
   patchelf,
   rockbox_utility,
-  skipMac,
   stdenv,
   writeScript,
 }:
@@ -67,10 +66,10 @@ with rec {
     '';
   };
 };
-skipMac "rockbox" (buildEnv {
+buildEnv {
   name = "rockbox-utils";
   paths = [
     flasher
     rockbox_utility
   ];
-})
+}

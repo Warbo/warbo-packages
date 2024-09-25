@@ -3,9 +3,7 @@
   getSource,
   gtk-engine-bluecurve,
   runCommand,
-  skipMac,
 }:
-
 with rec {
   name = "Blueshell";
   src = runCommand name { src = getSource { inherit name; }; } ''
@@ -13,10 +11,10 @@ with rec {
     cp -r "$src" "$out/share/themes/Blueshell"
   '';
 };
-skipMac "blueshell-theme" (buildEnv {
+buildEnv {
   name = "blueshell-theme";
   paths = [
     gtk-engine-bluecurve
     src
   ];
-})
+}

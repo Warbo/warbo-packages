@@ -1,7 +1,3 @@
-{
-  hasBinary,
-  kbibtex_full,
-  skipMac,
-}:
+{ hasBinary, kbibtex_full }:
 
-skipMac "kbibtex tests" (hasBinary kbibtex_full "kbibtex")
+hasBinary kbibtex_full "kbibtex"

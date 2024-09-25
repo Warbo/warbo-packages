@@ -1,4 +1,3 @@
-{ haskell-nix, skipMac }:
+{ haskell-nix }:
 
-skipMac "nix-diff"
-  (import ./components.nix { inherit haskell-nix; }).exes.nix-diff
+(import ./components.nix { inherit haskell-nix; }).exes.nix-diff
