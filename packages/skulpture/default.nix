@@ -77,32 +77,4 @@ skipMac "skulpture" {
       ${installFiles "qt4"}
     '';
   };
-
-  mkSkulptureQt5 =
-    {
-      cmake,
-      mkDerivation,
-      qmake,
-      qtbase,
-    }:
-    mkDerivation rec {
-      name = "skulpture-qt5";
-      src = getSource { inherit name; };
-      preConfigure = "cd src";
-      buildInputs = [
-        qtbase
-        qmake
-        cmake
-        kdelibs4
-      ];
-      installPhase = ''
-        cd ..
-        ${installFiles "qt5"}
-        echo "Patching libraries to avoid references to build dir" 1>&2
-        while read -r LIB
-        do
-          patchelf --set-rpath "${lib.makeLibraryPath buildInputs}" "$LIB"
-        done < <(find "$out" -name "*.so")
-      '';
-    };
 }
