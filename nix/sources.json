@@ -482,13 +482,6 @@
         "url_template": "https://pypi.python.org/packages/source/u/uritemplate/uritemplate-<version>.tar.gz",
         "version": "0.6"
     },
-    "w3c-validator": {
-        "sha256": "01gyrp5fic4n95f8fvlk0b4npx762nj49w42nz3qacl11rq29r57",
-        "type": "file",
-        "url": "https://github.com/validator/validator/releases/download/16.1.1/vnu.jar_16.1.1.zip",
-        "url_template": "https://github.com/validator/validator/releases/download/<version>/vnu.jar_<version>.zip",
-        "version": "16.1.1"
-    },
     "x2x": {
         "branch": "master",
         "description": "x2x allows the keyboard, mouse on one X display to be used to control another X display.",
