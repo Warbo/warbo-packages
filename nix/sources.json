@@ -466,15 +466,6 @@
         "url": "https://github.com/tip-org/tools/archive/51a8ddbcdfa505fe0d75d3e5d33afb1ea918879d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "translitcodec": {
-        "description": "Unicode to 8-bit charset transliteration codec",
-        "homepage": "https://pypi.python.org/pypi/translitcodec",
-        "sha256": "1my5azq1vqakrnrjgvvghx8434kmv455y76cmznmlbgx08d7f82l",
-        "type": "tarball",
-        "url": "https://pypi.python.org/packages/source/t/translitcodec/translitcodec-0.4.0.tar.gz",
-        "url_template": "https://pypi.python.org/packages/source/t/translitcodec/translitcodec-<version>.tar.gz",
-        "version": "0.4.0"
-    },
     "uritemplate": {
         "sha256": "01rbhf2xx5xsnv16wriwanv7ybzypy9km27xqsx2lfxqsaxfqvc6",
         "type": "tarball",

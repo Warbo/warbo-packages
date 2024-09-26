@@ -1,15 +1,15 @@
-{ pythonPackages, warbo-packages-sources }:
+{ python3Packages }:
 
-with rec {
-  name = "translitcodec";
-  source = builtins.getAttr name warbo-packages-sources;
-};
-pythonPackages.buildPythonPackage {
-  inherit name;
-  inherit (source) version;
+python3Packages.buildPythonPackage rec {
+  pname = "translitcodec";
+  version = "0.4.0";
   meta = {
-    inherit (source) description homepage;
+    description = "Unicode to 8-bit charset transliteration codec";
+    homepage = "https://pypi.python.org/pypi/translitcodec";
   };
-  src = source.outPath;
-  propagatedBuildInputs = [ pythonPackages.python ];
+  src = python3Packages.fetchPypi {
+    inherit pname version;
+    sha256 = "1my5azq1vqakrnrjgvvghx8434kmv455y76cmznmlbgx08d7f82l";
+  };
+  propagatedBuildInputs = [ python3Packages.python ];
 }
