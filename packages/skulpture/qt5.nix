@@ -1,20 +1,24 @@
 {
   cmake,
   extra-cmake-modules,
+  qtbase,
+  qmake,
+  wrapQtAppsHook,
+  mkDerivation,
   libsForQt5,
-  qt5,
 }:
 
-qt5.mkDerivation {
-  inherit (qt5.qtbase) qtPluginPrefix;
+mkDerivation {
+  inherit (qtbase) qtPluginPrefix;
   name = "skulpture-qt5";
   src = import ./source.nix;
   buildInputs = [
     cmake
     extra-cmake-modules
-    qt5.qmake
-    qt5.qtbase
+    qmake
+    qtbase
     libsForQt5.kdelibs4support
+    wrapQtAppsHook
   ];
   preConfigure = ''
     cmakeFlagsArray+=(
