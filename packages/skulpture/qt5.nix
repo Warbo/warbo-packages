@@ -16,11 +16,11 @@ qt5.mkDerivation {
     qt5.qtbase
     libsForQt5.kdelibs4support
   ];
-  postInstall = ''
-    mkdir -p "$out/$qtPluginPrefix/styles"
-    mv /build/source/build/src/skulpture.so \
-      "$out/$qtPluginPrefix/kstyle_skulpture_config.so"
-    mv /build/source/build/src/config/kstyle_skulpture_config.so \
-      "$out/$qtPluginPrefix/styles/skulpture.so"
+  preConfigure = ''
+    cmakeFlagsArray+=(
+      "-DUSE_QT6=OFF"
+      "-DUSE_GUI_CONFIG=OFF"
+      "-DQT_PLUGINS_DIR=$out/$qtPluginPrefix"
+    )
   '';
 }
