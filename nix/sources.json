@@ -303,18 +303,6 @@
         "url_template": "https://www.mercurial-scm.org/release/mercurial-<version>.tar.gz",
         "version": "4.2.1"
     },
-    "miller": {
-        "branch": "master",
-        "description": "Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON",
-        "homepage": "http://johnkerl.org/miller/doc",
-        "owner": "johnkerl",
-        "repo": "miller",
-        "rev": "a3a24583bae983c450e29edfbbce9e19362ce6d8",
-        "sha256": "106bzyd564km923y26llxwzgmkys5h47mjp8dwvzc53phksns0wb",
-        "type": "tarball",
-        "url": "https://github.com/johnkerl/miller/archive/a3a24583bae983c450e29edfbbce9e19362ce6d8.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "ml4pg": {
         "branch": "master",
         "repo": "http://chriswarbo.net/git/ml4pg.git",
