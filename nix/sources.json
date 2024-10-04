@@ -215,12 +215,6 @@
         "url": "https://github.com/ElvishJerricco/hackage-db/archive/84ca9fc75ad45a71880e938e0d93ea4bde05f5bd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "haskell-tng.el": {
-        "branch": "tng",
-        "repo": "https://gitlab.com/tseenshe/haskell-tng.el.git",
-        "rev": "13102763804687b843eb76316f28752837cb72b5",
-        "type": "git"
-    },
     "hfeed2atom": {
         "branch": "master",
         "description": "Python functions to convert a h-feed to Atom 1.0",
