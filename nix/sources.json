@@ -5,12 +5,6 @@
         "rev": "52c7fa9a7e738b70c1a63fc448fe5636deea78e5",
         "type": "git"
     },
-    "Blueshell": {
-        "branch": "master",
-        "repo": "https://gitlab.com/KlipKyle/Blueshell.git",
-        "rev": "d1700b7b043e81edd8d9294dd48e3116b8413252",
-        "type": "git"
-    },
     "PyPdf2": {
         "branch": "master",
         "description": "A utility to read and write PDFs with Python",
