@@ -4,7 +4,7 @@ stdenv.mkDerivation rec {
   name = "scholar.py";
   src = builtins.fetchGit {
     url = "https://github.com/ckreibich/scholar.py.git";
-    rev = "3f889d9c31cda4bd041963c7dd689009f8ae2d42";
+    rev = "7e6efb47e8c9d4babd613f5baca7c2a5dc424678";
   };
 
   propagatedBuildInputs = [ (python3.withPackages (p: [ p.beautifulsoup4 ])) ];
