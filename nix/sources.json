@@ -478,11 +478,5 @@
         "type": "tarball",
         "url": "https://github.com/dottedmag/x2x/archive/89deb1d7c97121da9b688c2295472271859c2ee1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "xdms": {
-        "sha256": "0f1fs9nlcqggix5iziadk5qc2pqxx6wsm0ixd9hdncvrygs67ffq",
-        "type": "file",
-        "url": "http://aminet.net/util/arc/xDMS.lha",
-        "url_template": "http://aminet.net/util/arc/xDMS.lha"
     }
 }

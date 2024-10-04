@@ -1,5 +1,4 @@
 {
-  getSource,
   gnumake,
   lhasa,
   stdenv,
@@ -7,7 +6,10 @@
 
 stdenv.mkDerivation rec {
   name = "xdms";
-  src = getSource { inherit name; };
+  src = builtins.fetchurl {
+    url = "http://aminet.net/util/arc/xDMS.lha";
+    sha256 = "0f1fs9nlcqggix5iziadk5qc2pqxx6wsm0ixd9hdncvrygs67ffq";
+  };
   buildInputs = [
     lhasa
     gnumake
