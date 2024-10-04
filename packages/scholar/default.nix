@@ -1,12 +1,11 @@
-{
-  getSource,
-  python3,
-  stdenv,
-}:
+{ python3, stdenv }:
 
 stdenv.mkDerivation rec {
   name = "scholar.py";
-  src = getSource { inherit name; };
+  src = builtins.fetchGit {
+    url = "https://github.com/ckreibich/scholar.py.git";
+    rev = "3f889d9c31cda4bd041963c7dd689009f8ae2d42";
+  };
 
   propagatedBuildInputs = [ (python3.withPackages (p: [ p.beautifulsoup4 ])) ];
 

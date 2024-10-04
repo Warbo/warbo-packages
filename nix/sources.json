@@ -340,18 +340,6 @@
         "rev": "e0738c57380c6f4c2f1a08a82ac027dc59c6acdd",
         "type": "git"
     },
-    "scholar.py": {
-        "branch": "master",
-        "description": "A parser for Google Scholar, written in Python",
-        "homepage": null,
-        "owner": "ckreibich",
-        "repo": "scholar.py",
-        "rev": "3f889d9c31cda4bd041963c7dd689009f8ae2d42",
-        "sha256": "0haamzjjrz65wzv34lfccwl0vxpwk303q0gz9xif0qmljvp5a716",
-        "type": "tarball",
-        "url": "https://github.com/ckreibich/scholar.py/archive/3f889d9c31cda4bd041963c7dd689009f8ae2d42.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "searchtobibtex": {
         "branch": "master",
         "description": "Performs a search and uses the resulting DOI to create a new bibtex entry. Uses the crossref API.",
