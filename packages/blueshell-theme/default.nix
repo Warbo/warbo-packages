@@ -5,7 +5,7 @@
 }:
 with rec {
   name = "Blueshell";
-  src =  builtins.fetchGit {
+  src = builtins.fetchGit {
     url = "https://gitlab.com/KlipKyle/Blueshell.git";
     rev = "d1700b7b043e81edd8d9294dd48e3116b8413252";
   };
