@@ -1,5 +1,5 @@
 {
-  fetchFromGitHub,
+  fetchTreeFromGitHub,
   python3Packages,
   stdenv,
 }:
@@ -7,12 +7,10 @@
 python3Packages.buildPythonPackage {
   name = "bibcheck";
   version = "2015-10-22";
-  # FIXME: Use niv
-  src = fetchFromGitHub {
+  src = fetchTreeFromGitHub {
     owner = "rmcgibbo";
     repo = "bibcheck";
-    rev = "792afe0";
-    sha256 = "1gajxdz9j64qixiib8wyyfgm2kyjyv9ix3mmcdkrab9nnbxkwzfz";
+    tree = "6064afa77028e37c7e3128627f37db02351fbd58";
   };
   propagatedBuildInputs = [
     python3Packages.python

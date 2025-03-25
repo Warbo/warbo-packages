@@ -1,13 +1,12 @@
-{ buildGoModule, fetchFromGitHub }:
+{ buildGoModule, fetchTreeFromGitHub }:
 buildGoModule {
   pname = "git-remote-ipfs";
   version = "0.0.0";
   vendorHash = "sha256-hkenInaS6PFnu/Z0oz32Y4B4BmM5+l5AB2/K1f/LxqA=";
-  src = fetchFromGitHub {
+  src = fetchTreeFromGitHub {
     owner = "dhappy";
     repo = "git-remote-ipfs";
-    rev = "53f6ecd2e57b074e784c60c5d4b9100757e65b00";
-    hash = "sha256-Vzn5QQegAVR4Rmx8bc/fuXZJeNCM1ndRgtmkiEffJ1g=";
+    tree = "c66e697de5055c2fd21b995b8f237781b7110c48";
   };
   /*
   Skip tests, as they fail with:

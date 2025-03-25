@@ -1,10 +1,9 @@
-{ fetchFromGitHub, pkgs }:
+{ fetchTreeFromGitHub, pkgs }:
 with {
-  src = fetchFromGitHub {
+  src = fetchTreeFromGitHub {
     owner = "Warbo";
     repo = "nixos-shell";
-    rev = "ba539391095a31eb31d27aed6fb27d0ea3a89e72";
-    hash = "sha256-y59zNfqrEM8q59t6mzFeyVfaUfHRkbcdsI1Kk2AGPRU=";
+    tree = "dc684c8e9f8d10e43196c0eeb1e9ada156d6792b";
   };
 };
 import src { inherit pkgs; }

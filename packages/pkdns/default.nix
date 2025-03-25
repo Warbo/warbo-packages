@@ -1,16 +1,15 @@
 {
   lib,
-  fetchFromGitHub,
+  fetchTreeFromGitHub,
   rustPlatform,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "pkdns-server";
   version = "0.7.0-rc.3";
-  src = fetchFromGitHub {
+  src = fetchTreeFromGitHub {
     owner = "pubky";
     repo = "pkdns";
-    rev = "80f3277dfc25e5523be91d13909f716ca8af22fb";
-    hash = "sha256-/N7QOt0YM7e5Wr76dxBIU+K0F1syMGyRg9vfmKVfmpg=";
+    tree = "cd5de619b980fde1df6ebad0339ca3f0d1535939";
   };
   cargoLock.lockFile = "${src}/Cargo.lock";
   doCheck = false; # Tests attempt to use network

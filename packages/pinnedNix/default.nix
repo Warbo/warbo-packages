@@ -1,10 +1,9 @@
 {
-  fetchFromGitHub,
+  fetchTreeFromGitHub,
   system ? builtins.currentSystem,
-  rev ? "2da46530d0bb4faf8ca0605f8fdffca7bd5baa73",
-  hash ? "sha256-fstL4alQM8QpsunEtaErpURwQ0yoTh19YdjobsN2ids=",
-  nix-source ? fetchFromGitHub {
-    inherit hash rev;
+  tree ? "d98be1c493843ab5ab00d8e4bb37e56a10bdbc77",
+  nix-source ? fetchTreeFromGitHub {
+    inherit tree;
     owner = "NixOS";
     repo = "nix";
   },

@@ -1,13 +1,12 @@
-{ buildGoModule, fetchFromGitHub }:
+{ buildGoModule, fetchTreeFromGitHub }:
 buildGoModule rec {
   pname = "git-remote-ipld";
   version = "0.0.0";
   vendorHash = "sha256-hsfeTfCcnpyJY+TxCIm1SKhEPu9U7bfUxyR7nS2pYMA=";
-  src = fetchFromGitHub {
+  src = fetchTreeFromGitHub {
     owner = "ipfs-shipyard";
     repo = pname;
-    rev = "7d3eccfe2d1fb8828ba5599bda4f613747add4cc";
-    hash = "sha256-QlAmc6UMrpooXkDFlOBmuWuJF/E7ZCtKOrniz4DxDUc=";
+    tree = "184e3bc364ab302c83a051406f550406fe19a3a9";
   };
 
   # --- FAIL: TestCapabilities (0.13s)
