@@ -1,10 +1,4 @@
-{
-  feed2maildirsimple-args ? { },
-}:
-
-import (fetchGit {
-  name = "feed2maildirsimple";
-  url = "http://chriswarbo.net/git/feed2maildir.git";
-  ref = "master";
-  rev = "0e452fad641119b58390813288687ffc5401463f";
-}) feed2maildirsimple-args
+{ fetchGitIPFS, nixpkgs }:
+import (fetchGitIPFS { sha1 = "99ef713450d5f32b8eb6a5964ed3430906e9a776"; }) {
+  inherit nixpkgs;
+}
