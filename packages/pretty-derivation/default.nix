@@ -1,4 +1,4 @@
-# Pretty-printer for Nix .drv files
-{ haskell-nix }:
+{ nix-derivation }:
 
-(import ./components.nix { inherit haskell-nix; }).exes.pretty-derivation
+builtins.trace "WARNING: pretty-derivation is now provided by nix-derivation"
+  nix-derivation

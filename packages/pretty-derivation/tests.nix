@@ -1,3 +1,3 @@
-{ haskell-nix }:
+{ hasBinary, pretty-derivation }:
 
-(import ./components.nix { inherit haskell-nix; }).tests
+hasBinary pretty-derivation "pretty-derivation"
