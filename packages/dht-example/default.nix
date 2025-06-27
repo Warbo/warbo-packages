@@ -1,8 +1,13 @@
-{ dht, fetchTreeFromGitHub, libxcrypt }:
+{
+  dht,
+  fetchTreeFromGitHub,
+  libxcrypt,
+}:
 
 dht.overrideAttrs (old: {
   nativeBuildInputs =
-    builtins.filter (p: p.pname != "cmake") old.nativeBuildInputs ++ [
+    builtins.filter (p: p.pname != "cmake") old.nativeBuildInputs
+    ++ [
       libxcrypt
     ];
 

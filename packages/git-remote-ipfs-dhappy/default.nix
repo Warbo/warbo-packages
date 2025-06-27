@@ -9,19 +9,19 @@ buildGoModule {
     tree = "c66e697de5055c2fd21b995b8f237781b7110c48";
   };
   /*
-  Skip tests, as they fail with:
+    Skip tests, as they fail with:
 
-    --- FAIL: TestCapabilities (0.35s)
-    panic: runtime error: invalid memory address or nil pointer dereference [recovered]
-    panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x8 pc=0x8505d6]
+      --- FAIL: TestCapabilities (0.35s)
+      panic: runtime error: invalid memory address or nil pointer dereference [recovered]
+      panic: runtime error: invalid memory address or nil pointer dereference
+      [signal SIGSEGV: segmentation violation code=0x1 addr=0x8 pc=0x8505d6]
 
-  That error is referenced in the project README:
+    That error is referenced in the project README:
 
-  > This dramatic message likely means the IPFS server isn't running.
+    > This dramatic message likely means the IPFS server isn't running.
 
-  Fair enough, but we don't want our Nix build to require an IPFS implementation
-  to be running and accessible. Hence we skip the tests.
+    Fair enough, but we don't want our Nix build to require an IPFS implementation
+    to be running and accessible. Hence we skip the tests.
   */
   doCheck = false;
 }

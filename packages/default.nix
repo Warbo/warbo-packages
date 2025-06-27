@@ -1,35 +1,43 @@
-{ fetchGitIPFS ? null
-, nix-helpers ? null
-, nix-helpers-tree ? { sha1 = "872c2fed47a6e4d80606064908a104a8230ad8db"; }
-, nixpkgs ? null
-, nixpkgs-lib ? null
+{
+  fetchGitIPFS ? null,
+  nix-helpers ? null,
+  nix-helpers-tree ? {
+    sha1 = "872c2fed47a6e4d80606064908a104a8230ad8db";
+  },
+  nixpkgs ? null,
+  nixpkgs-lib ? null,
 }:
 with rec {
   inherit (builtins)
-    currentSystem derivation fetchTree getEnv pathExists removeAttrs;
+    currentSystem
+    derivation
+    fetchTree
+    getEnv
+    pathExists
+    removeAttrs
+    ;
   inherit (resolved.nixpkgs-lib) mapAttrs;
   inherit (resolved.nix-helpers) nixDirsIn nixFilesIn;
 
   fetch =
-    if fetchGitIPFS == null
-    then (f: if nixpkgs == null
-             then f
-             else (f { pkgs = nixpkgs; }).fetchGitIPFS)
-      (import ../util/fetchGitIPFS.nix)
-    else fetchGitIPFS;
+    if fetchGitIPFS == null then
+      (f: if nixpkgs == null then f else (f { pkgs = nixpkgs; }).fetchGitIPFS)
+        (import ../util/fetchGitIPFS.nix)
+    else
+      fetchGitIPFS;
 
   resolved = {
     nixpkgs = if nixpkgs == null then resolved.nix-helpers.nixpkgs else nixpkgs;
-    nixpkgs-lib = if nixpkgs-lib == null
-                  then resolved.nix-helpers.nixpkgs-lib
-                  else nixpkgs-lib;
+    nixpkgs-lib =
+      if nixpkgs-lib == null then resolved.nix-helpers.nixpkgs-lib else nixpkgs-lib;
     nix-helpers =
-      if nix-helpers == null
-      then import
-        (fetch nix-helpers-tree)
-        ((if nixpkgs == null then {} else { inherit nixpkgs; }) //
-         (if nixpkgs-lib == null then {} else { inherit nixpkgs-lib; }))
-      else nix-helpers;
+      if nix-helpers == null then
+        import (fetch nix-helpers-tree) (
+          (if nixpkgs == null then { } else { inherit nixpkgs; })
+          // (if nixpkgs-lib == null then { } else { inherit nixpkgs-lib; })
+        )
+      else
+        nix-helpers;
   };
 
   util = mapAttrs call (nixFilesIn ../util);
@@ -46,7 +54,9 @@ with rec {
     // util
     // resolved
     # Useful for overriding things
-    // { inherit extraArgs; };
+    // {
+      inherit extraArgs;
+    };
 
   load =
     filename:
