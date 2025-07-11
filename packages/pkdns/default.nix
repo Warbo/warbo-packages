@@ -9,7 +9,7 @@ rustPlatform.buildRustPackage rec {
   src = fetchTreeFromGitHub {
     owner = "pubky";
     repo = "pkdns";
-    tree = "cd5de619b980fde1df6ebad0339ca3f0d1535939";
+    tree = "2d3e533e8616716606fd227b74aa9cdd535e3dfb";
   };
   cargoLock.lockFile = "${src}/Cargo.lock";
   doCheck = false; # Tests attempt to use network
