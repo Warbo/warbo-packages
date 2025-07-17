@@ -1,0 +1,7 @@
+From: Chris Warburton
+Date: Thu, 17 Jul 2025 17:27:56 +0100
+State: new
+Subject: skulpture-config doesn't exit when close button pressed
+Message-Id: <91a38b3202749cb7-0-artemis@nixos-amd64>
+
+Hopefully a small fix, but I don't know Qt or C++. Maybe good for an LLM.

@@ -1,0 +1,11 @@
+From: Chris Warburton
+Date: Thu, 17 Jul 2025 12:26:42 +0100
+Subject: Re: Use niv to fetch helpers
+resolved: fixed
+Message-Id: <fe3c9d7edff4be73-d8a79b73840ededc-artemis@nixos-amd64>
+References: <fe3c9d7edff4be73-0-artemis@nixos>
+In-Reply-To: <fe3c9d7edff4be73-0-artemis@nixos>
+
+I tried this, but have since been moving away from niv, as I don't like the
+restrictions it imposes; and I don't like having a big blob of auto-generated
+Nix code in my repos.
