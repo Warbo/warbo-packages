@@ -4,29 +4,162 @@
 #include <QDebug>
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QStandardPaths>
 #include <QProcessEnvironment>
+#include <QMetaObject>
+#include <QMetaMethod>
+#include <QTimer>
 #include <dlfcn.h>
 
+class ConfigPersistenceWrapper : public QWidget {
+    Q_OBJECT
+
+public:
+    ConfigPersistenceWrapper(QWidget* configWidget, QWidget* parent = nullptr)
+        : QWidget(parent), m_configWidget(configWidget) {
+
+        setWindowTitle("Skulpture Configuration");
+
+        QVBoxLayout* layout = new QVBoxLayout(this);
+        layout->addWidget(configWidget);
+
+        // Control buttons
+        QHBoxLayout* buttonLayout = new QHBoxLayout;
+
+        QPushButton* applyBtn = new QPushButton("Apply");
+        QPushButton* saveBtn = new QPushButton("Save");
+        QPushButton* resetBtn = new QPushButton("Reset");
+        QPushButton* closeBtn = new QPushButton("Close");
+
+        buttonLayout->addWidget(applyBtn);
+        buttonLayout->addWidget(saveBtn);
+        buttonLayout->addWidget(resetBtn);
+        buttonLayout->addStretch();
+        buttonLayout->addWidget(closeBtn);
+
+        layout->addLayout(buttonLayout);
+
+        // Connect persistence operations
+        connect(applyBtn, &QPushButton::clicked, this, &ConfigPersistenceWrapper::applyConfig);
+        connect(saveBtn, &QPushButton::clicked, this, &ConfigPersistenceWrapper::saveConfig);
+        connect(resetBtn, &QPushButton::clicked, this, &ConfigPersistenceWrapper::resetConfig);
+        connect(closeBtn, &QPushButton::clicked, this, &QWidget::close);
+
+        // Monitor config widget for changes
+        if (m_configWidget) {
+            m_configWidget->installEventFilter(this);
+            findAndConnectSignals();
+        }
+    }
+
+private slots:
+    void applyConfig() {
+        if (!m_configWidget) return;
+
+        // Invoke standard KConfigModule methods
+        const QMetaObject* metaObj = m_configWidget->metaObject();
+
+        // Try load() method
+        for (int i = 0; i < metaObj->methodCount(); ++i) {
+            QMetaMethod method = metaObj->method(i);
+            if (method.name() == "load") {
+                method.invoke(m_configWidget);
+                break;
+            }
+        }
+
+        // Try save() method
+        for (int i = 0; i < metaObj->methodCount(); ++i) {
+            QMetaMethod method = metaObj->method(i);
+            if (method.name() == "save") {
+                method.invoke(m_configWidget);
+                break;
+            }
+        }
+
+        qDebug() << "Applied configuration";
+    }
+
+    void saveConfig() {
+        applyConfig();
+
+        // Force KConfig sync
+        if (m_configWidget) {
+            const QMetaObject* metaObj = m_configWidget->metaObject();
+            for (int i = 0; i < metaObj->methodCount(); ++i) {
+                QMetaMethod method = metaObj->method(i);
+                if (method.name() == "defaults") {
+                    // Skip defaults, look for sync-related methods
+                    continue;
+                }
+                if (method.name().contains("sync") || method.name().contains("write")) {
+                    method.invoke(m_configWidget);
+                }
+            }
+        }
+
+        qDebug() << "Saved configuration";
+    }
+
+    void resetConfig() {
+        if (!m_configWidget) return;
+
+        const QMetaObject* metaObj = m_configWidget->metaObject();
+        for (int i = 0; i < metaObj->methodCount(); ++i) {
+            QMetaMethod method = metaObj->method(i);
+            if (method.name() == "defaults") {
+                method.invoke(m_configWidget);
+                break;
+            }
+        }
+
+        qDebug() << "Reset to defaults";
+    }
+
+private:
+    void findAndConnectSignals() {
+        if (!m_configWidget) return;
+
+        const QMetaObject* metaObj = m_configWidget->metaObject();
+
+        // Look for changed() signal
+        for (int i = 0; i < metaObj->methodCount(); ++i) {
+            QMetaMethod method = metaObj->method(i);
+            if (method.methodType() == QMetaMethod::Signal &&
+                method.name() == "changed") {
+                // Connect to our change handler
+                connect(m_configWidget, SIGNAL(changed(bool)),
+                        this, SLOT(configChanged(bool)));
+                break;
+            }
+        }
+    }
+
+private slots:
+    void configChanged(bool changed) {
+        qDebug() << "Configuration changed:" << changed;
+        // Could enable/disable apply button based on changed state
+    }
+
+private:
+    QWidget* m_configWidget;
+};
+
 int main(int argc, char *argv[]) {
-    // Set up KDE environment before QApplication
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 
-    // Configure XDG data directories for KDE resource resolution
     QString skulptureDataPath = "${skulpture-package}/share";
     QString existingDataDirs = env.value("XDG_DATA_DIRS", "/usr/share:/usr/local/share");
     QString newDataDirs = skulptureDataPath + ":" + existingDataDirs;
     qputenv("XDG_DATA_DIRS", newDataDirs.toLocal8Bit());
 
-    // Set KDE-specific paths
     qputenv("KDEDIRS", "${skulpture-package}");
     qputenv("KDE_SESSION_VERSION", "5");
 
     QApplication app(argc, argv);
-
-    // Set application domain for i18n
     app.setApplicationName("skulpture");
     app.setOrganizationName("skulpture");
 
@@ -38,7 +171,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Resolve factory function
     typedef QWidget* (*ConfigWidgetFactory)();
     ConfigWidgetFactory factory = (ConfigWidgetFactory)dlsym(handle, "allocate_kstyle_config");
 
@@ -48,7 +180,6 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Create widget with exception handling
     QWidget* configWidget = nullptr;
     try {
         configWidget = factory();
@@ -68,22 +199,15 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // Basic widget validation
-    if (!configWidget->isVisible() && configWidget->size().isEmpty()) {
-        qDebug() << "Widget appears invalid (empty size)";
-        delete configWidget;
-        dlclose(handle);
-        return 1;
-    }
-
-    configWidget->setWindowTitle("Skulpture Configuration");
-    configWidget->show();
+    ConfigPersistenceWrapper* wrapper = new ConfigPersistenceWrapper(configWidget);
+    wrapper->show();
 
     int result = app.exec();
 
-    // Clean shutdown
-    delete configWidget;
+    delete wrapper;
     dlclose(handle);
 
     return result;
 }
+
+#include "main.moc"
