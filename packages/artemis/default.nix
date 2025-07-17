@@ -1,5 +1,5 @@
 import (
   import ../../util/fetchGitIPFS.nix {
-    sha1 = "58f0391585a6ad884edfcc2d09e36061393b6173";
+    sha1 = "7eff368d06ff22b3890a66997f52bb661fa98086";
   }
 )
