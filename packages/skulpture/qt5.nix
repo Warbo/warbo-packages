@@ -6,6 +6,7 @@
   wrapQtAppsHook,
   mkDerivation,
   libsForQt5,
+  enableSkulptureGui ? false
 }:
 
 mkDerivation {
@@ -23,8 +24,9 @@ mkDerivation {
   preConfigure = ''
     cmakeFlagsArray+=(
       "-DUSE_QT6=OFF"
-      "-DUSE_GUI_CONFIG=OFF"
+      "-DUSE_GUI_CONFIG=${if enableSkulptureGui then "ON" else "OFF"}"
       "-DQT_PLUGINS_DIR=$out/$qtPluginPrefix"
+      "-DDATA_INSTALL_DIR=$out/usr/share"
     )
   '';
 }
