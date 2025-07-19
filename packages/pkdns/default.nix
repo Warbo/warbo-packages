@@ -8,9 +8,9 @@ rustPlatform.buildRustPackage rec {
   pname = "pkdns-server";
   version = "0.7.0-rc.3";
   src = fetchTreeFromGitHub {
-    owner = "pubky";
+    owner = "Warbo";
     repo = "pkdns";
-    tree = "2d3e533e8616716606fd227b74aa9cdd535e3dfb";
+    tree = "23901cacfdd80ebe97ee6234a79593fae7f3bdcf";
   };
   cargoLock.lockFile = "${src}/Cargo.lock";
   cargoPatches = [
