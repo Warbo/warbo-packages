@@ -1,4 +1,11 @@
-{ cmake, libsForQt5, runCommand, skulpture, stdenv, writeText }:
+{
+  cmake,
+  libsForQt5,
+  runCommand,
+  skulpture,
+  stdenv,
+  writeText,
+}:
 
 with rec {
   inherit (libsForQt5.qt5) qtbase qttools wrapQtAppsHook;
@@ -8,7 +15,7 @@ stdenv.mkDerivation {
   pname = "kstyle-skulpture-config";
   version = "1.0";
 
-  src = runCommand "skulpture-config-src" {} ''
+  src = runCommand "skulpture-config-src" { } ''
     mkdir "$out"
     sed -e 's@$'"{skulpture-package}"'@${skulpture-package}@g' \
       < ${./main.cpp} > "$out/main.cpp"

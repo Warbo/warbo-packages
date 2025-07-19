@@ -6,7 +6,7 @@
   wrapQtAppsHook,
   mkDerivation,
   libsForQt5,
-  enableSkulptureGui ? false
+  enableSkulptureGui ? false,
 }:
 
 mkDerivation {
