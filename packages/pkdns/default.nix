@@ -8,9 +8,9 @@ rustPlatform.buildRustPackage rec {
   pname = "pkdns-server";
   version = "0.7.0-rc.3";
   src = fetchTreeFromGitHub {
-    owner = "pubky";
+    owner = "Warbo";
     repo = "pkdns";
-    tree = "7e261baf04fc48c4773adff87455f5cbb27a7ab6";
+    tree = "ca807daa0d557f6d3e7f2b29198cab07db3d4d00";
   };
   cargoLock.lockFile = "${src}/Cargo.lock";
   doCheck = false; # Tests attempt to use network
