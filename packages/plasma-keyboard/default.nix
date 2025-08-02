@@ -2,22 +2,30 @@
   lib,
   stdenv,
   fetchTreeFromGitHub,
-  cmake,
   extra-cmake-modules,
-  qtbase,
-  qtdeclarative,
-  qtsvg,
-  qtwayland,
-  kwayland,
-  kcoreaddons,
-  ki18n,
-  kservice,
-  kglobalaccel,
-  kirigami2,
-  plasma-framework,
+  kdePackages,
+  qt6,
 }:
 
-stdenv.mkDerivation rec {
+with {
+  inherit (kdePackages)
+    mkKdeDerivation
+    kwayland
+    kservice
+    kglobalaccel
+    kirigami
+    kcmutils
+    ;
+  inherit (qt6)
+    qtbase
+    qtdeclarative
+    qtsvg
+    qtwayland
+    qtvirtualkeyboard
+    ;
+};
+
+mkKdeDerivation rec {
   pname = "plasma-keyboard";
   version = "ef139d0ea7c89af022382353c38a966cbcfd83df";
 
@@ -27,22 +35,26 @@ stdenv.mkDerivation rec {
     tree = version;
   };
 
-  nativeBuildInputs = [
-    cmake
+  extraNativeBuildInputs = [
     extra-cmake-modules
+    qtwayland
+    kdePackages.kcmutils # Moved kcmutils to native build inputs
   ];
 
-  buildInputs = [
+  extraBuildInputs = [
     qtbase
     qtdeclarative
     qtsvg
-    qtwayland
+    qtvirtualkeyboard
     kwayland
-    kcoreaddons
-    ki18n
     kservice
     kglobalaccel
-    kirigami2
-    plasma-framework
+    kirigami
   ];
+
+  meta = with lib; {
+    description = "Plasma Keyboard";
+    homepage = "https://invent.kde.org/plasma/plasma-keyboard";
+    license = licenses.lgpl21Plus;
+  };
 }
