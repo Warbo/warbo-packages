@@ -7,6 +7,6 @@ rustPlatform.buildRustPackage rec {
   src = fetchTreeFromGitHub {
     owner = "Warbo";
     repo = "rust-multibase";
-    tree = "269638580b024dd8a580ee495a391ff374b34c4e";
+    tree = "b19a5df258b5ef84b6a2e095fba888f6d326d424";
   };
 }
