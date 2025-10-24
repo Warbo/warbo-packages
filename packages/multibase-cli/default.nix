@@ -5,8 +5,8 @@ rustPlatform.buildRustPackage rec {
   buildAndTestSubdir = "cli";
   cargoLock.lockFile = "${src}/Cargo.lock";
   src = fetchTreeFromGitHub {
-    owner = "Warbo";
+    owner = "multiformats";
     repo = "rust-multibase";
-    tree = "b19a5df258b5ef84b6a2e095fba888f6d326d424";
+    tree = "94b390943bb89af8b1b268688472ba2bba539b7d";
   };
 }
