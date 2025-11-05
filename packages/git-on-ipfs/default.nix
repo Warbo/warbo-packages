@@ -1,7 +1,7 @@
 {
   fetchGitIPFS,
   git-on-ipfs-tree ? {
-    sha1 = "9a062066f80299e7f42b6948ad716e5f64c1440c";
+    sha1 = "033b520f6871784e0a25e3890559aa18132725c3";
   },
   pkgs,
   warbo-packages,
