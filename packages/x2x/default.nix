@@ -10,7 +10,6 @@
   pkg-config,
   stdenv,
   xextproto ? null,
-  xlibsWrapper,
   xorg,
 }:
 
@@ -18,8 +17,7 @@ stdenv.mkDerivation rec {
   name = "x2x";
   src = getSource { inherit name; };
 
-  buildInputs = [
-    xlibsWrapper
+  nativeBuildInputs = [
     autoconf
     automake
     pkg-config
