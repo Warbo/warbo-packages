@@ -7,7 +7,7 @@
   libXi,
   libXext,
   libXinerama,
-  pkgconfig,
+  pkg-config,
   stdenv,
   xextproto ? null,
   xlibsWrapper,
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
     xlibsWrapper
     autoconf
     automake
-    pkgconfig
+    pkg-config
     libX11
     libXtst
     libXi

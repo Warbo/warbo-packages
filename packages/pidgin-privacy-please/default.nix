@@ -10,7 +10,7 @@
   libtool,
   overrideGstreamer ? true,
   pidgin,
-  pkgconfig,
+  pkg-config,
   stdenv,
   unpack',
 }:
@@ -44,7 +44,7 @@ stdenv.mkDerivation {
     glib
     intltool
     libtool
-    pkgconfig
+    pkg-config
   ] ++ (if overrideGstreamer then [ pidginWithoutGstreamer ] else [ pidgin ]);
   installPhase = ''
     mkdir -p "$out/lib/pidgin"

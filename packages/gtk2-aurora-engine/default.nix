@@ -1,7 +1,7 @@
 {
   getSource,
   gtk2,
-  pkgconfig,
+  pkg-config,
   runCommand,
   stdenv,
 }:
@@ -17,7 +17,7 @@ runCommand "aurora-engine"
       src = "${repo}/aurora-1.5";
       buildInputs = [
         gtk2
-        pkgconfig
+        pkg-config
       ];
     };
 

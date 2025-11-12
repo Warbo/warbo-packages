@@ -6,7 +6,7 @@
   getSource,
   gtk2,
   gtk3,
-  pkgconfig,
+  pkg-config,
   runCommand,
   stdenv,
   stripOverrides,
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
     gcc
     gtk2
     gtk3
-    pkgconfig
+    pkg-config
   ] ++ builtins.attrValues (stripOverrides widgetThemes);
   preConfigure = "bash autogen.sh";
 
