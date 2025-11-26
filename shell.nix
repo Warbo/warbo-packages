@@ -2,8 +2,9 @@ with rec {
   inherit (import ./. { }) nix-helpers;
   inherit (nix-helpers) nixpkgs pinnedNiv;
 };
-nixpkgs.stdenv.mkDerivation {
-  name = "warbo-packages-env";
+nix-helpers.shellWithHooks {
+  name = "warbo-packages";
+  src = ./.;
   buildInputs = [
     pinnedNiv
     nixpkgs.update-nix-fetchgit
