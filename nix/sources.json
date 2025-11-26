@@ -229,12 +229,6 @@
         "rev": "a680742d96d2d19220360448af5e2bffc6790259",
         "type": "git"
     },
-    "hsinspect": {
-        "branch": "develop",
-        "repo": "https://gitlab.com/tseenshe/hsinspect.git",
-        "rev": "406cabe67a14751ef27953e7df02888e9b0dbe8e",
-        "type": "git"
-    },
     "ifcxt": {
         "branch": "constraints",
         "repo": "http://chriswarbo.net/git/ifcxt.git",
