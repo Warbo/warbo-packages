@@ -94,13 +94,13 @@ with rec {
     (
       (haskellPackages.extend (
         lib.composeManyExtensions [
-          (self: super: {
+          (_: _: {
             # Some of our dependencies need the glib and graphene system packages,
             # but are receiving the Haskell packages. Since we don't care about the
             # latter, just replace them.
             inherit glib graphene;
           })
-          (self: super: {
+          (_: super: {
             # System dependencies which can't just be replaced.
             cairo = super.cairo.override { inherit cairo; };
             gi-pango = super.gi-pango.override { inherit cairo pango; };

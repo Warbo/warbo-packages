@@ -11,8 +11,6 @@
   lib,
   makeFontsConf,
   mkBin,
-  onlineCheck,
-  runCommand,
   unpack',
 }:
 

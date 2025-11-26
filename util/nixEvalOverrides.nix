@@ -3,7 +3,7 @@
 with lib;
 [
   (
-    self: super:
+    self: _:
     mapAttrs (n: v: self.callHackage n v { }) {
       # Required by mlspec
       haskell-src-exts = "1.17.1";

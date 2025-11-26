@@ -1,6 +1,5 @@
 {
   lib,
-  stdenv,
   fetchTreeFromGitHub,
   extra-cmake-modules,
   kdePackages,

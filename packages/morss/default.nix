@@ -1,7 +1,6 @@
 {
   fetchPypi,
   python3Packages,
-  writeShellApplication,
 }:
 python3Packages.buildPythonApplication rec {
   pname = "morss";

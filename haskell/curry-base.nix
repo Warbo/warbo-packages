@@ -1,3 +1,3 @@
-self: super: helf: huper:
+self: _: helf: _:
 
 helf.callPackage self.kics2.curry-base { }

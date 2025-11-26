@@ -8,4 +8,4 @@
   pkgs,
   ...
 }@args:
-newScope args (fetchGitIPFS git-on-ipfs-tree) { }
+newScope (args // { inherit nixpkgs pkgs; }) (fetchGitIPFS git-on-ipfs-tree) { }

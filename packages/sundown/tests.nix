@@ -2,7 +2,7 @@
 
 lib.genAttrs (import ./allowedOptions.nix) (
   o:
-  sundown.override (old: {
+  sundown.override (_: {
     options = [ o ];
   })
 )

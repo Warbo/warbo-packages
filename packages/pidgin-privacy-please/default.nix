@@ -2,11 +2,8 @@
   autoconf,
   automake,
   dummyBuild,
-  getSource,
   glib,
   intltool,
-  isBroken,
-  lib,
   libtool,
   overrideGstreamer ? true,
   pidgin,
@@ -18,7 +15,7 @@
 with rec {
   # v4l-util is broken on Nixpkgs 19.09, but we don't need it for this build
   pidginWithoutGstreamer =
-    (pidgin.override (old: {
+    (pidgin.override (_: {
       farstream = dummyBuild "farstream-dummy";
       gst_all_1 = {
         gst-plugins-base = dummyBuild "gst-plugins-base-dummy" // {

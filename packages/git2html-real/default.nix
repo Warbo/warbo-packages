@@ -1,6 +1,5 @@
 {
   getSource,
-  hasBinary,
   stdenv,
 }:
 

@@ -1,4 +1,4 @@
-self: super: helf: huper:
+self: _: helf: _:
 
 with rec {
   thfSrc =

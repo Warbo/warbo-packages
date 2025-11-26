@@ -1,7 +1,6 @@
 {
   fetchTreeFromGitHub,
   python3Packages,
-  stdenv,
 }:
 
 python3Packages.buildPythonPackage {

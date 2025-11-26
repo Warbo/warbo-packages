@@ -1,3 +1,3 @@
-self: super: helf: huper:
+_: _: helf: _:
 
 helf.callHackage "structural-induction" "0.3" { }

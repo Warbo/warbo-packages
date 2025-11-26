@@ -11,7 +11,6 @@
   filepathFix,
   nixFilesIn,
   nixpkgs-lib,
-  stdenv,
 }:
 
 with rec {
@@ -34,7 +33,7 @@ with rec {
       _: f: import f (extraArgs.nixpkgs // extraArgs) extraArgs.nixpkgs helf huper
     ) (nixFilesIn ../../haskell);
 
-  sybOverrides = self: super: { syb = self.callHackage "syb" "0.6" { }; };
+  sybOverrides = self: _: { syb = self.callHackage "syb" "0.6" { }; };
 
   go =
     {

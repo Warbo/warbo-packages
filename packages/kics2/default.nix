@@ -102,8 +102,8 @@ with rec {
     ln -s "$cf/bin/curry-frontend" "$out/bin/kics2-frontend"
   '';
 
-  hsPkgs = haskellPackages.override (old: {
-    overrides = helf: huper: {
+  hsPkgs = haskellPackages.override (_: {
+    overrides = helf: _: {
       curry-base = helf.callPackage curry-base { };
       curry-frontend = helf.callPackage curry-frontend { };
     };

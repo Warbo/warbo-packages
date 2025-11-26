@@ -1,13 +1,11 @@
 {
   autoconf,
   automake,
-  fail,
   gcc,
   getSource,
   gtk2,
   gtk3,
   pkg-config,
-  runCommand,
   stdenv,
   stripOverrides,
   widgetThemes ? { },

@@ -4,6 +4,6 @@
   lib,
 }:
 
-lib.overrideDerivation git2html-real (old: {
+lib.overrideDerivation git2html-real (_: {
   src = gitSource { name = "git2html"; };
 })

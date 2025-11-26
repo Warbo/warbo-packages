@@ -6,7 +6,7 @@
 }:
 
 skipARM "coq-mtac" (
-  lib.overrideDerivation nixpkgs1609.coq (oldAttrs: rec {
+  lib.overrideDerivation nixpkgs1609.coq (_: rec {
     name = "coq-mtac";
     src = getSource { inherit name; };
   })

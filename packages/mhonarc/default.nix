@@ -1,10 +1,9 @@
 {
   lib,
   perlPackages,
-  writeScript,
 }:
 
-lib.overrideDerivation perlPackages.MHonArc (x: {
+lib.overrideDerivation perlPackages.MHonArc (_: {
 
   # Fixes https://bugzilla.redhat.com/show_bug.cgi?id=1298904
   postInstall = ''

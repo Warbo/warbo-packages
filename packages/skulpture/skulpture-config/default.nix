@@ -4,7 +4,6 @@
   runCommand,
   skulpture,
   stdenv,
-  writeText,
 }:
 
 with rec {

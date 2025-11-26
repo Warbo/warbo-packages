@@ -1,6 +1,5 @@
 {
   cmake,
-  extra-cmake-modules,
   qt6,
   stdenv,
   enableSkulptureGui ? false,

@@ -9,7 +9,7 @@
   super,
 
   # Accepting this argument makes us act like nixpkgs
-  overrides ? (helf: huper: { }),
+  overrides ? (_: _: { }),
 
   # As a final catch-all, this can be used to manipulate the result, before
   # 'callPackage' gets a chance to add its own override mechanism
