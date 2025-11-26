@@ -2,7 +2,7 @@
   fetchGitIPFS ? null,
   nix-helpers ? null,
   nix-helpers-tree ? {
-    sha1 = "9aa8c857641ea5a98da0cc7c5880474c82c9d57d";
+    sha1 = "fada5fee1b65fc161f80036a43e8db60cfeca2ce";
   },
   nixpkgs ? null,
   nixpkgs-lib ? null,
