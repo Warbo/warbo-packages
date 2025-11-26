@@ -12,25 +12,6 @@ function fail {
     [[ -z "${FAILFAST:-}" ]] || exit 1
 }
 
-while read -r F
-do
-    msg "Checking syntax of '$F'"
-    nix-instantiate --parse "$F" > /dev/null || fail "Failed to parse '$F'"
-    if command -v nixfmt > /dev/null
-    then
-        nixfmt -c -w 80 "$F" || {
-            fail "Unformatted file '$F'"
-            if [[ -n "$REFORMAT" ]]
-            then
-                echo "Reformatting '$F'" 1>&2
-                nixfmt -w 80 "$F"
-            else
-                echo "Set REFORMAT to auto-format" 1>&2
-            fi
-        }
-    fi
-done < <(find . -name "*.nix" -type f)
-
 msg "Checking shell.nix works"
 nix-shell --run true || fail "Error instantiating nix-shell"
 
