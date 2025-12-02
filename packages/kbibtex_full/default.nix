@@ -110,50 +110,50 @@ with rec {
         perl
         pkgconfig
       ];
-      buildInputs =
-        [
-          boost
-          eigen
-          jasper
-          kdelibs
-          kdepimlibs
-          lcms
-          lensfun
-          libgphoto2
-          libjpeg
-          libkdcraw
-          libkexiv2
-          libkipi
-          liblqr1
-          libpgf
-          libtiff
-          mysql.lib
-          opencv
-          phonon
-          qca2
-          qimageblitz
-          qjson
-          qt4
-          shared_desktop_ontologies
-          soprano
-          poppler_qt4
-        ]
-        ++ [
-          # Optional build time dependencies
-          kfilemetadata
-          lcms2
-          libxslt
-        ]
-        ++ [
-          # Plugins optional build time dependencies
-          gdk_pixbuf
-          imagemagick
-          libgpod
-          libkvkontakte
-        ];
+      buildInputs = [
+        boost
+        eigen
+        jasper
+        kdelibs
+        kdepimlibs
+        lcms
+        lensfun
+        libgphoto2
+        libjpeg
+        libkdcraw
+        libkexiv2
+        libkipi
+        liblqr1
+        libpgf
+        libtiff
+        mysql.lib
+        opencv
+        phonon
+        qca2
+        qimageblitz
+        qjson
+        qt4
+        shared_desktop_ontologies
+        soprano
+        poppler_qt4
+      ]
+      ++ [
+        # Optional build time dependencies
+        kfilemetadata
+        lcms2
+        libxslt
+      ]
+      ++ [
+        # Plugins optional build time dependencies
+        gdk_pixbuf
+        imagemagick
+        libgpod
+        libkvkontakte
+      ];
 
       patchPhase = ''
-        sed -e '25i#include <QModelIndex>' -i src/gui/preferences/settingsabstractwidget.h
+        sed -e '25i#include <QModelIndex>' \
+            -i src/gui/preferences/settingsabstractwidget.h
       '';
 
       # Makes digikam find some FindXXXX.cmake
@@ -182,27 +182,26 @@ with rec {
       pName = "kbibtex-${v}";
       build = makeBuilder (args // { inherit v; });
 
-      kdePkgs =
-        [
-          build # kbibtex's own build
-          kdelibs
-          kdepimlibs
-          kde_runtime
-          kde_baseapps
-          libkdcraw
-          oxygen_icons
-          shared_mime_info
-          okular
-        ]
-        ++ [
-          # Optional build time dependencies
-          kfilemetadata
-          libkipi
-        ]
-        ++ [
-          # Plugins optional build time dependencies
-          libkvkontakte
-        ];
+      kdePkgs = [
+        build # kbibtex's own build
+        kdelibs
+        kdepimlibs
+        kde_runtime
+        kde_baseapps
+        libkdcraw
+        oxygen_icons
+        shared_mime_info
+        okular
+      ]
+      ++ [
+        # Optional build time dependencies
+        kfilemetadata
+        libkipi
+      ]
+      ++ [
+        # Plugins optional build time dependencies
+        libkvkontakte
+      ];
 
       # TODO: It should be the responsability of these packages to add
       # themselves to `KDEDIRS`. See
@@ -210,7 +209,7 @@ with rec {
       # for a practical example.
       # IMPORTANT: Note that using `XDG_DATA_DIRS` here instead of `KDEDIRS`
       # won't work properly.
-      KDEDIRS = with lib; concatStrings (intersperse ":" (map (x: "${x}") kdePkgs));
+      KDEDIRS = lib.concatMapStringsSep ":" (x: "${x}") kdePkgs;
 
       sycocaDirRelPath = "var/lib/kdesycoca";
       sycocaFileRelPath = "${sycocaDirRelPath}/${pName}.sycoca";
@@ -227,7 +226,8 @@ with rec {
             dontStrip = true;
           }
           ''
-            # Make sure kbuildsycoca4 does not attempt to write to user home directory.
+            # Make sure kbuildsycoca4 does not attempt to write to user
+            # home directory.
             export HOME=$PWD
             export KDESYCOCA="$out/${sycocaFileRelPath}"
             mkdir -p $out/${sycocaDirRelPath}
@@ -273,10 +273,12 @@ with rec {
       }
       ''
         pushd $build > /dev/null
-        for d in `find . -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
+        for d in `find . -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`
+        do
           mkdir -p $out/$d
-          for f in `find $d -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`; do
-              ln -s "$build/$d/$f" "$out/$d/$f"
+          for f in `find $d -maxdepth 1 -name "*" -printf "%f\n" | tail -n+2`
+          do
+            ln -s "$build/$d/$f" "$out/$d/$f"
           done
         done
         popd > /dev/null

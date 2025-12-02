@@ -21,7 +21,8 @@ stdenv.mkDerivation rec {
     gtk2
     gtk3
     pkg-config
-  ] ++ builtins.attrValues (stripOverrides widgetThemes);
+  ]
+  ++ builtins.attrValues (stripOverrides widgetThemes);
   preConfigure = "bash autogen.sh";
 
   meta = {

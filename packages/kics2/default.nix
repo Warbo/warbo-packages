@@ -2,15 +2,13 @@
   getSource,
   haskell,
   haskellSrc2nix,
-  lib,
   nixpkgs1803,
   runCommand,
   which,
 }:
 
 with rec {
-  inherit (builtins) getAttr trace;
-  #inherit (lib) ;
+  inherit (builtins) getAttr;
   inherit (nixpkgs1803) haskellPackages;
 
   name = "kics2";
