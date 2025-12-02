@@ -7,10 +7,13 @@ with {
       fetchPypi,
       mf2py,
       pytest,
+      setuptools,
     }:
     buildPythonPackage rec {
       pname = "mf2util";
       version = "0.5.2";
+      pyproject = true;
+      build-system = [ setuptools ];
       nativeCheckInputs = [
         mf2py
         pytest
@@ -29,10 +32,13 @@ python3Packages.callPackage (
     buildPythonPackage,
     callPackage,
     mf2py,
+    setuptools,
   }:
   buildPythonPackage rec {
     name = "hfeed2atom";
     src = getSource { inherit name; };
+    pyproject = true;
+    build-system = [ setuptools ];
     propagatedBuildInputs = [
       beautifulsoup4
       mf2py
