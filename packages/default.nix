@@ -21,15 +21,18 @@ with rec {
 
   fetch =
     if fetchGitIPFS == null then
-      (f: if nixpkgs == null then f else (f { pkgs = nixpkgs; }).fetchGitIPFS)
-        (import ../util/fetchGitIPFS.nix)
+      (f: if nixpkgs == null then f else (f { pkgs = nixpkgs; }).fetchGitIPFS) (
+        import ../util/fetchGitIPFS.nix
+      )
     else
       fetchGitIPFS;
 
+  resolve =
+    name: given: if given == null then resolved.nix-helpers.${name} else given;
+
   resolved = {
-    nixpkgs = if nixpkgs == null then resolved.nix-helpers.nixpkgs else nixpkgs;
-    nixpkgs-lib =
-      if nixpkgs-lib == null then resolved.nix-helpers.nixpkgs-lib else nixpkgs-lib;
+    nixpkgs = resolve "nixpkgs" nixpkgs;
+    nixpkgs-lib = resolve "nixpkgs-lib" nixpkgs-lib;
     nix-helpers =
       if nix-helpers == null then
         import (fetch nix-helpers-tree) (
