@@ -5,7 +5,7 @@ with rec {
     ;
 
   # The version of fetchGitIPFS.nix. Shouldn't need updating often.
-  hash = "sha256-5WvPSxtXR19f6TeWbO6AKxOz3pHSFreaEcysszC/Dpw=";
+  hash = "sha256-otICYs6b6VGtAVUhC/j+oHq7QboWxasJqUjZDTO3m6M=";
   cid = "f01551220${
     convertHash {
       inherit hash;
