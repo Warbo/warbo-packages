@@ -9,7 +9,8 @@
 with rec {
   inherit (builtins) toString;
   inherit (lib) concatImapStringsSep escapeShellArg;
-  floppyArg = n: sha256: "-${toString n} ${fetchRawIPFS { inherit sha256; }}";
+  floppyArg =
+    n: sha256: "-${toString (n - 1)} ${fetchRawIPFS { inherit sha256; }}";
 };
 {
   name,
