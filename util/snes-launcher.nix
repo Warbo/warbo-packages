@@ -8,26 +8,29 @@
   writeShellApplication,
 }:
 { name, sha256 }:
+with rec {
+  inherit (builtins) replaceStrings;
+  suffixed = "${replaceStrings [ " " ] [ "" ] name}_snes";
+};
 buildEnv {
-  inherit name;
+  name = suffixed;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      name = "${name}_snes";
+      name = suffixed;
       runtimeInputs = [ mesen ];
       text = ''exec Mesen "$@" ${
         # Annoyingly, Mesen seems to rely on "file name extensions"
         builtins.path {
-          #inherit sha256;
-          name = "${name}.sfc";
+          name = "${suffixed}.sfc";
           path = fetchRawIPFS { inherit sha256; };
         }
       }'';
     };
     desktop = makeDesktopItem {
-      inherit name;
+      name = suffixed;
       desktopName = "${name} (SNES)";
       comment = "${name} in a SNES emulator";
-      exec = "${script}/bin/${name}_snes";
+      exec = "${script}/bin/${suffixed}";
       terminal = false;
       categories = [ "Game" ];
     };

@@ -20,11 +20,15 @@ with rec {
   },
   model ? "A1200",
 }:
+with rec {
+  inherit (builtins) replaceStrings;
+  suffixed = "${replaceStrings [ " " ] [ "" ] name}_amiga";
+};
 buildEnv {
-  inherit name;
+  name = suffixed;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      name = "${name}_amiga";
+      name = suffixed;
       runtimeInputs = [ amiberry ];
       text = ''
         exec amiberry --model ${escapeShellArg model} \
@@ -34,10 +38,10 @@ buildEnv {
     };
 
     desktop = makeDesktopItem {
-      inherit name;
+      name = suffixed;
       desktopName = "${name} (Amiga)";
       comment = "${name} in an Amiga emulator";
-      exec = "${script}/bin/${name}_amiga";
+      exec = "${script}/bin/${suffixed}";
       terminal = false;
       categories = [ "Game" ];
     };

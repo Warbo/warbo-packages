@@ -9,20 +9,24 @@
   writeShellApplication,
 }:
 { name, sha256 }:
+with rec {
+  inherit (builtins) replaceStrings;
+  suffixed = "${replaceStrings [ " " ] [ "" ] name}_megadrive";
+};
 buildEnv {
-  inherit name;
+  name = suffixed;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      name = "${name}_megadrive";
+      name = suffixed;
       runtimeInputs = [ dgen-sdl ];
       text = ''exec dgen "$@" ${fetchRawIPFS { inherit sha256; }}'';
     };
 
     desktop = makeDesktopItem {
-      inherit name;
+      name = suffixed;
       desktopName = "${name} (MegaDrive)";
       comment = "${name} in a MegaDrive emulator";
-      exec = "${script}/bin/${name}_megadrive";
+      exec = "${script}/bin/${suffixed}";
       terminal = false;
       categories = [ "Game" ];
     };
