@@ -12,7 +12,7 @@ buildEnv {
   inherit name;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      inherit name;
+      name = "${name}_snes";
       runtimeInputs = [ mesen ];
       text = ''exec Mesen "$@" ${
         # Annoyingly, Mesen seems to rely on "file name extensions"
@@ -27,7 +27,7 @@ buildEnv {
       inherit name;
       desktopName = "${name} (SNES)";
       comment = "${name} in a SNES emulator";
-      exec = "${script}/bin/${name}";
+      exec = "${script}/bin/${name}_snes";
       terminal = false;
       categories = [ "Game" ];
     };

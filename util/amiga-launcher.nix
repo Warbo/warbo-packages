@@ -24,7 +24,7 @@ buildEnv {
   inherit name;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      inherit name;
+      name = "${name}_amiga";
       runtimeInputs = [ amiberry ];
       text = ''
         exec amiberry --model ${escapeShellArg model} \
@@ -37,7 +37,7 @@ buildEnv {
       inherit name;
       desktopName = "${name} (Amiga)";
       comment = "${name} in an Amiga emulator";
-      exec = "${script}/bin/${name}";
+      exec = "${script}/bin/${name}_amiga";
       terminal = false;
       categories = [ "Game" ];
     };

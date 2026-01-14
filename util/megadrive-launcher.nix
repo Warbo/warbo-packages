@@ -13,7 +13,7 @@ buildEnv {
   inherit name;
   paths = builtins.attrValues rec {
     script = writeShellApplication {
-      inherit name;
+      name = "${name}_megadrive";
       runtimeInputs = [ dgen-sdl ];
       text = ''exec dgen "$@" ${fetchRawIPFS { inherit sha256; }}'';
     };
@@ -22,7 +22,7 @@ buildEnv {
       inherit name;
       desktopName = "${name} (MegaDrive)";
       comment = "${name} in a MegaDrive emulator";
-      exec = "${script}/bin/${name}";
+      exec = "${script}/bin/${name}_megadrive";
       terminal = false;
       categories = [ "Game" ];
     };
