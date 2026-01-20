@@ -156,7 +156,7 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Deluxe Pacman".floppies = [
     "sha256-zSld55TSoPx97lm0w1SpcLhc21UeQOrcKmqdmqzDIP4="
   ];
-  "Dithell's Wonderland".floppies = [
+  "Dithells Wonderland".floppies = [
     "sha256-vBVRr9qirYrv4BPSk4C/b5C0GPDivTiFkGGf0VWyHfU="
   ];
   "Dizzy Collection 1".floppies = [
@@ -357,10 +357,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Wacky Wabbits".floppies = [
     "sha256-kPJNJQxHR/0Ha2QlS27nQMqs5/5W+vXRCfIgcJPHX3Y="
   ];
-  "Willy's Weirdy Nightmare".floppies = [
+  "Willys Weirdy Nightmare".floppies = [
     "sha256-gWKzsqS2myQkXhy6yrxIK5MLwEXJmkIhyQDpl1TMb14="
   ];
-  "Wizzy's Quest".floppies = [
+  "Wizzys Quest".floppies = [
     "sha256-CRVBIOcreJMfiOePSD93+dlK+TqmZ0WNVzImTq5Kbyw="
   ];
   Zerg.floppies = [ "sha256-ton+OF+Z85P06EnsUTopTDRvifdKNixWQ8E8O7Hfl28=" ];
