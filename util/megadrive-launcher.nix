@@ -10,12 +10,12 @@
 }:
 { name, sha256 }:
 with rec {
-  inherit (builtins) replaceStrings;
+  inherit (builtins) attrValues replaceStrings;
   suffixed = "${replaceStrings [ " " ] [ "" ] name}_megadrive";
 };
 buildEnv {
   name = suffixed;
-  paths = builtins.attrValues rec {
+  paths = attrValues rec {
     script = writeShellApplication {
       name = suffixed;
       runtimeInputs = [ dgen-sdl ];

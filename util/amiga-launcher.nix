@@ -21,12 +21,12 @@ with rec {
   model ? "A1200",
 }:
 with rec {
-  inherit (builtins) replaceStrings;
+  inherit (builtins) attrValues replaceStrings;
   suffixed = "${replaceStrings [ " " ] [ "" ] name}_amiga";
 };
 buildEnv {
   name = suffixed;
-  paths = builtins.attrValues rec {
+  paths = attrValues rec {
     script = writeShellApplication {
       name = suffixed;
       runtimeInputs = [ amiberry ];
