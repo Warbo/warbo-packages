@@ -131,6 +131,14 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-8PXB2B15d/6lm6bXrkapvZ4Y8yIuphxXJujgOxlqHEc="
     "sha256-PpJdAGVBI+YqDLApd81+Yx7K2Jf6/hPpjg5xKGy1na0="
   ];
+  "Chuck Rock".floppies = [
+    "sha256-JSgXUf1+GFIxN0VxqICk0KxF7IVgs/45JjrG3jSLcNA="
+    "sha256-RfWJlQt6hDnQRTWXCNxBSE/NddIp3dEYAWGfhj35Y1g="
+  ];
+  "Chuck Rock 2".floppies = [
+    "sha256-DOQSXgEywHtFXeACkitiZIyMYGWyOxO5hUbjsOK8h2Y="
+    "sha256-UVqKJZyNiXQG7nSrTx0KnXFsgBP1WJnR+MWkVRkOx8Q="
+  ];
   Clockwiser.floppies = [
     "sha256-PUyTNXY7j0zECANsBPiNOL343OR4pvWdRnkOmLRbHYc="
     "sha256-jxLmnWhCdWwGJASNUe7cfTvngZxgFiUFJn8rY5I7i/8="
@@ -147,6 +155,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Crazy Sue".floppies = [
     "sha256-q6qt58wj04n9JsHwl20usCqGDKFdIAaSMZtoBYnKvsg="
   ];
+  Damage.floppies = [
+    "sha256-8MKzGni7UnO0TzIExFNSmuTMbbuLoINOoihNTWGweSY="
+    "sha256-KGOg2OIuEtEtptg7XhiqqSHRJJNZgUjVXjTByPMhg7U="
+  ];
   "Deathbringers from Space".floppies = [
     "sha256-rcd09m9VA8jJgDmbxW9EzZmRCLj972z+rO2y8+8xJWc="
   ];
@@ -155,6 +167,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   ];
   "Deluxe Pacman".floppies = [
     "sha256-zSld55TSoPx97lm0w1SpcLhc21UeQOrcKmqdmqzDIP4="
+  ];
+  "Dennis The Menace".floppies = [
+    "sha256-mPSRlnYImd27829dx81FPAIgR0iesWfxsAk9hZFVhTo="
+    "sha256-2HbinNC6Ejb/6clKaeMEPdtsUZuVlFKk0dn/mOU39/U="
   ];
   "Dithell's Wonderland".floppies = [
     "sha256-vBVRr9qirYrv4BPSk4C/b5C0GPDivTiFkGGf0VWyHfU="
@@ -172,6 +188,7 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-OtL637SuBac4gXEKZCsi7OY88P//Ppd0fD7nO7+HO5E="
     "sha256-zu8QejCJi5BAJAYChglcwidGTylyIO5CG46RaIb1jUY="
   ];
+  Dozer.floppies = [ "sha256-n9ekR5xMHW1vw9Tr4TOWpoju1ynxnnZgHbfIC8f0+98=" ];
   E-Motion.floppies = [
     "sha256-JKKtGfzbHe8uab6yrdl9DoDwG4QiHuhocfdeZG+YSbU="
   ];
@@ -226,6 +243,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-VsWFwLWhcxzZ6Tvsbe+Fe6kW1yeBNiaurEYUTRdWd2M="
     "sha256-9OPsSXX4TJgg1mnu69AXzj1DfNDnk83unVom4OEaKhQ="
   ];
+  "Mr Men Olympics".floppies = [
+    "sha256-p6MFfRWm0pCUsU/2E3khBDFff7HUglMaWCqPm7067f0="
+    "sha256-ITJ5c46oYCNH7Gitf5H04QyC0jUE29n+302qLosF3c4="
+  ];
   "Mr Wobbly Leg".floppies = [
     "sha256-kQZNKiACQTk56Z8NBOG0zJphYIFjT5upwph5yuvLkhs="
   ];
@@ -247,6 +268,12 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-HldzjCWqW6Ijean+EBWpsdUz+FKpvHfyY4fd1k3eRbA="
     "sha256-YqvcDGAxobFt9LA0R63KRp4SI3HjYCrEZhWC5yiPAFo="
     "sha256-itey7OT6dhLCINiFLkOzx3/iisiopttO4b9my3X1qlI="
+  ];
+  "Pinball Hazard".floppies = [
+    "sha256-2WBk6WeXlMSnBpHiAmuhhy3scPFUTKJ86XnL54QtrBo="
+    "sha256-V5TN/KMgwCV6SqPoPbUgof5mGexOKL187sFjH/+m2y4="
+    "sha256-yTCrIbN9OgEu5WTJELlbtF1GJsRofRKaq5bKwwGSQGw="
+    "sha256-6u6nl4L+acJQjhL1euhSRp7zxCjql48ZmskB7/4OqKg="
   ];
   "Pinball Illusions".floppies = [
     "sha256-eavCnoo7vSZq3PodDJFI0Bm0AnLZN2BeMN4AnYhetA0="
@@ -279,6 +306,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-U8/xG31VSGDMJgXOVFdrABXx+x7Bs4aO30itY087zfg="
   ];
   Renegades.floppies = [ "sha256-xd50r09miXcI/BOCoiR29cMnTobVk/aJlavZ+50yqr4=" ];
+  "Revenge Of Defender".floppies = [
+    "sha256-Y9bYy2cy4vQXFJ++UEeEsNzUQbOGjnF7Mgp1BFs2DFY="
+    "sha256-zDt1Gbo4LJ63H4I6je3v/VBQVxAjnjxaR0I/JJsznkg="
+  ];
   "Ruff And Reddy".floppies = [
     "sha256-tRjExExK5z8PT/PhwPhxGyscHX3fL7QRkY2qewu69hs="
   ];
@@ -331,17 +362,34 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Super Obliteration".floppies = [
     "sha256-5PN9RhyelyBRHwDJP91XMUPrjr5+KL6ctIT1kTxrr9c="
   ];
+  "Super Skidmarks".floppies = [
+    "sha256-F3N8ex1H+TnFlH/y/Upzp4/rUYTdjhWkO+aeV2lFoIM="
+    "sha256-8U/djJnElyC2V9Ln8LrfJ0maopYlO0k5JwhVKenTaLI="
+    "sha256-xfcy3RHmIQiQSJbZw139AvFzQDjrYodgsWvp8SjlkAs="
+    "sha256-mwp3E/khdU4oCDxy4FHcqJz8b05d1mYeHlvG1Jyk0Kc="
+    "sha256-tFg+dSLQX6JWOL8uj9svUIzHTGNRq2pZ/bj+XloBRHI="
+    "sha256-feQZvI4a13lU5KqoChXaF52lgpuV1sd4qPJwMpjIGLk="
+  ];
   Superfrog.floppies = [
     "sha256-xWhU1CkW2Kl5C73YOItbmqaEhKp+6WwHy2K/C/fnqyk="
     "sha256-do3u4xZaawfDd6yjxjWYKoJKbexKpr2TveyHjGACchQ="
     "sha256-KwQEdtQSfYpuP4H0ebl1bcij8w2dCwRl/nj9nAqIahA="
     "sha256-XpzjiGJafVOAkUovYbjC5MmDRIEDYNz+X+Dj7ebFew8="
   ];
+  Sword.floppies = [
+    "sha256-fFOzzQKvX5Fywod0jizCkGGkMOjOdxgxpwH/bHnVVjQ="
+    "sha256-HJ3AlQqlcgtW+f1jMWj1txX7gvw9PTbJFHAaVuzS6LQ="
+    "sha256-0/Oef3Z6crVVosYEYV/1MGlLXmrjZ/X22R6deaUVOPM="
+    "sha256-wWHToAkXbSlvTKC+V+FeVbzeM9iRzaK7YqzME0XXaUw="
+  ];
   Syndicate.floppies = [
     "sha256-thzl0achcMGGHkGG7ZYj28Kph/OD/SsrhbPJyJGivxE="
     "sha256-nC6EDh2YQiVLMD2lVBdqPP80laa3+yRoQZSg4S9di2w="
     "sha256-rNJWpvxrncxIfyMCFrnJit/m1z596l33Jw67TlZEsyw="
     "sha256-JjWXNYLraiDH1b2AZyPwJLh0J9Q0fiusDYKXU15/Knw="
+  ];
+  "The Addams Family".floppies = [
+    "sha256-zQoD5MPRo/B9/aD9kmLyfWyE9VOcqjl0ihs1vNSVoSs="
   ];
   "The Simpsons Bart Vs The Space Mutants".floppies = [
     "sha256-OHexPt9Wzxd3o+17aia2GHM//A4x6AEhjIP4YtWl/rE="
@@ -350,10 +398,32 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "The Simpsons Bart Vs The World".floppies = [
     "sha256-mUxftexoLAqIclIBYbnQRmnwL/zA8x2LH8o5sfYCuac="
   ];
+  "Tiny Troops".floppies = [
+    "sha256-AnPjJKUSYl6PA6NcOQDjcsCVSuGX/GBr6XsYri/JN7U="
+    "sha256-If7PJlu3+evid/jhgwgmgc1sNaEDNYlDkKg1+pgcOP8="
+    "sha256-A3mAu0pzojhRErUcmf2gVv2KqZz7d1qjEuURlICIMuc="
+    "sha256-tHf6Qg4m+4N/N6p7h/UN98dc9CiwGJifl65k0emNBqA="
+    "sha256-Y+1CgGU/2l31iVecaQ+/sTvEKxJNXV/GEnHaV8T/Ra0="
+  ];
   "Top Hat Willy".floppies = [
     "sha256-NrT/sYpn/B4xflwItqnasiL39QgeXyOHJLbN4Ar/BjA="
   ];
   Tracers.floppies = [ "sha256-KipNwsibx79tYr3LPXkqvev1MQ8AAlhl0EN8mbBk87E=" ];
+  Trolls.floppies = [
+    # Disk 2, boots straight into the game
+    "sha256-Qis8rAB7dmNeCaGXIFr7thJpOi7lB8ECj7Nz6WECyJM="
+
+    # Disk 1, but it just has an intro animation
+    "sha256-0Pm2Y5Mhnx/erFu1CNTOdEHSJQmsx+Ip8YNjeJD3g5M="
+  ];
+  "Valhalla 3".floppies = [
+    "sha256-NQGKEHaIUv6iF6uvcKHpRvOOt58IJZ264qA8EPkVkW4="
+    "sha256-bItgj25FoDW1Z5/PI2JibDWzw2VymgkDvh4xcEQDpg8="
+    "sha256-DXeQWP63XlnynoscVBDADsI5QoSiEW8neIu9fcHxPhY="
+    "sha256-8pk2V5UOXW6TZ53KsbS+qRr89XZ10pmQGX668sa3d0U="
+    "sha256-nLLcfxDqafxNePtV5z3x8kcfYjvkDzYFkvReEEFlPGE="
+    "sha256-s4ds1WZ8q/D3OOEXAOoP/N9b7co4TqDxowflpMdGxIg="
+  ];
   "Wacky Wabbits".floppies = [
     "sha256-kPJNJQxHR/0Ha2QlS27nQMqs5/5W+vXRCfIgcJPHX3Y="
   ];
@@ -362,6 +432,17 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   ];
   "Wizzy's Quest".floppies = [
     "sha256-CRVBIOcreJMfiOePSD93+dlK+TqmZ0WNVzImTq5Kbyw="
+  ];
+  Wonderdog.floppies = [
+    "sha256-Fz+InO7qsHL7llxqFafrSjVV7tgGIAYAz8VF6Hj/m2A="
+    "sha256-fVwuw49kg8WuW8fbd7fjIHPP4ast3foj7fEAZAcG3Ns="
+  ];
+  "Xmas Lemmings".floppies = [
+    "sha256-TMbdwdyL5ZltaTm5O23BjS2Cellb+5+UYM0s1w5L6rY="
+  ];
+  "Yo Joe".floppies = [
+    "sha256-ytfpRY42ZuKo6u7Wvua1l5KEKXD2zoqkS8rUFF/jS+0="
+    "sha256-juNKSjNa8mALsT9xP1SpwK2YsAMMWoAg+O6XNcpGGhM="
   ];
   Zerg.floppies = [ "sha256-ton+OF+Z85P06EnsUTopTDRvifdKNixWQ8E8O7Hfl28=" ];
   Zool.floppies = [
@@ -375,9 +456,6 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
 
   # TODO
   # SimonTheSorcerer
-  # ChuckRock
-  # ChuckRock2
-  # DennisTheMenace
   # DisposableHero
   # Donk
   # FireAndIce
@@ -390,7 +468,6 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   # Roadkill
   # Speedball2
   # SuperStardust
-  # Damage
   # TotalCarnage
   # Copper
   # Thunderbirds
