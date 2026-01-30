@@ -427,10 +427,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Wacky Wabbits".floppies = [
     "sha256-kPJNJQxHR/0Ha2QlS27nQMqs5/5W+vXRCfIgcJPHX3Y="
   ];
-  "Willy's Weirdy Nightmare".floppies = [
+  "Willys Weirdy Nightmare".floppies = [
     "sha256-gWKzsqS2myQkXhy6yrxIK5MLwEXJmkIhyQDpl1TMb14="
   ];
-  "Wizzy's Quest".floppies = [
+  "Wizzys Quest".floppies = [
     "sha256-CRVBIOcreJMfiOePSD93+dlK+TqmZ0WNVzImTq5Kbyw="
   ];
   Wonderdog.floppies = [
