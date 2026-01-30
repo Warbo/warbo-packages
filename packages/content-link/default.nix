@@ -1,5 +1,9 @@
-{ callPackage, fetchGitIPFS, multibase-cli }:
+{
+  callPackage,
+  fetchGitIPFS,
+  multibase-cli,
+}:
 with {
-  src = fetchGitIPFS { sha1 = "11d7565b62d384f254e06cb30ba18ad62ebe4722"; };
+  src = fetchGitIPFS { sha1 = "95a250b6693b4440cb11db11dbbb11be857549c9"; };
 };
 callPackage src { inherit multibase-cli; }
