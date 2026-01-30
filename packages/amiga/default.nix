@@ -319,9 +319,9 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Sensible Massacre 2".floppies = [
     "sha256-dECf8SvcCO/deqsbI8U3gDEMOt2mTaoiwP8N5ZJVQlg="
   ];
-  "Sex Puzzle".floppies = [
-    "sha256-nHmk9qrwJjM81/E8EnYKeJN5iuNSYhKlx2t/0W0m2a0="
-  ];
+  # "Sex Puzzle".floppies = [
+  #   "sha256-nHmk9qrwJjM81/E8EnYKeJN5iuNSYhKlx2t/0W0m2a0="
+  # ];
   "Seymour Goes To Hollywood".floppies = [
     "sha256-xpPobP77M0DlyzQtt8F9i6Qu6E/VG0CA+/J2VA2kHMI="
   ];
