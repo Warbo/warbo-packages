@@ -304,6 +304,15 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Monty the Wolf".floppies = [
     "sha256-GP/0+eUHs4Xl5h1Y1iFJrINWzyfjQLWFyLTw8TH7AyA="
   ];
+  "Marvins Marvellous Adventure".floppies = [
+    "sha256-rEsVkhv3U6e/C+pdBwvtDGzY55GvR/K9JllCLgn0OxM="
+    "sha256-jOsMZCkiknNSI4D7nfVxtKs7w7KmRdq/anZMYp1WTvQ="
+    "sha256-Y6//MVglxWiLdjuPdyZvzptsljMA+Zid5Qj99ieR7xo="
+    "sha256-viTeH8N2wyMCa9pkJ/h4figAzvwatejkyqWpOLS17R8="
+  ];
+  "Mega Motion".floppies = [
+    "sha256-6hgHo+WaBOuVjk9uUvkth9XSsZCQ6gHgOD9R7PKXQS4="
+  ];
   "Mortal Kombat".floppies = [
     #Disk3 boot?
     "sha256-ICcxJjCntqIeoD97CA3KQYi2acZ/Gkv2A9W0I5mU2mM="
@@ -376,6 +385,11 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Revenge Of Defender".floppies = [
     "sha256-Y9bYy2cy4vQXFJ++UEeEsNzUQbOGjnF7Mgp1BFs2DFY="
     "sha256-zDt1Gbo4LJ63H4I6je3v/VBQVxAjnjxaR0I/JJsznkg="
+  ];
+  Roadkill.floppies = [
+    "sha256-akSY8bNM53xP3WAQ350wrP6R9Kh8Kd2PZhjLy2UJvgY="
+    "sha256-JtSuCMAOndE5JLNdXo1BoyGnq514+PzkEZc93Xf/cq8="
+    "sha256-adia9Ywb6cTKL+RNtYqpQrA7dMti2+xPGD+ueNeZWh0="
   ];
   "Ruff And Reddy".floppies = [
     "sha256-tRjExExK5z8PT/PhwPhxGyscHX3fL7QRkY2qewu69hs="
