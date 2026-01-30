@@ -76,6 +76,10 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   "Blob Kombat".floppies = [
     "sha256-qYvWgPSoZGYUjF5qjBvn43iUqe0S1ePij1abGhrE1Sg="
   ];
+  Blobz.floppies = [
+    "sha256-uF8CU9qYR2dbRPF6k04oc/mNbYINuoyTyum7q5vhS3A="
+    "sha256-cGZ0zhryhiPhouF0lYPyjPHcLVh2D3uzF8ieRyR83qI="
+  ];
   "Bobs Bad Day".floppies = [
     "sha256-tbMQMbKuLWm6C87xCXF5LHde1pUgSeI3uQXWFJKY0YI="
     "sha256-4DrH4NT/dqju2y07irRvDHFSe7fs+h16HdLwSStWk0M="
@@ -124,6 +128,9 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-WecXepCEK7mMZKuexpj11LImVuwaFrhSW43/0Rqwm7w="
     "sha256-RdQYFP6W+Q5PiW9/BM/Mjh+5dW+VYRS89IR0BAf9g7A="
   ];
+  "Captain Planet".floppies = [
+    "sha256-XeKnVDJih8keJ3tK1pa5yMNg9MS2nebqfh51/j+tCfQ="
+  ];
   "Cartoon Collection".floppies = [
     "sha256-tRe1xg/Y4dwMxAf8jJ39CYUAvLGTBdVqjZctI55x8MU="
   ];
@@ -143,6 +150,11 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-PUyTNXY7j0zECANsBPiNOL343OR4pvWdRnkOmLRbHYc="
     "sha256-jxLmnWhCdWwGJASNUe7cfTvngZxgFiUFJn8rY5I7i/8="
   ];
+  "Cool Spot".floppies = [
+    "sha256-TR+xlvr2s5UioPdl+mVA/4oOJTip15CxCE+HEnYrQdA="
+    "sha256-S8HABY8WNXaUt2kxV+8T6iIGKl+td4cNHv4voMql5Z8="
+    "sha256-4cECB73XarozJIjmJXLwn9gSHVHH2MmbzooJPzuzoS8="
+  ];
   "Crack Out".floppies = [
     "sha256-4gPwC6eV0LxwB28VT0+bTPoleYIpbFquNz9sEzvEG3A="
   ];
@@ -154,6 +166,28 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
   ];
   "Crazy Sue".floppies = [
     "sha256-q6qt58wj04n9JsHwl20usCqGDKFdIAaSMZtoBYnKvsg="
+  ];
+  "Crystal Kingdom Dizzy".floppies = [
+    "sha256-ehm0zvSlB+SHBVbw6vdaynGl8V7KwvixOfd5SJNKrSc="
+    "sha256-/V88olaSMD/X+W8vwyMS6nwoMLicdR79ACCAWcT3pjA="
+  ];
+  Cyberpunks.floppies = [
+    "sha256-WwOz3hjtoowKBSZM288DRHtM0YwDPj3hbMSzO8ccy6M="
+  ];
+  "Dalek Attack".floppies = [
+    "sha256-bPkXMLQSVLVK6T7raiWTG8h2XgIgh8ponQX+F+b+Y24="
+    "sha256-YRugQehLy4foqlGs/jPuaV/WvVqEI9WX/dZ3AODEj/s="
+  ];
+  Diggers.floppies = [
+    "sha256-AIFq1sYQVsK3Wn22wtBjlVIRnUh+8Aer3Q5sXb8E8eI="
+    "sha256-PI+uEtkGYRkrDCAow/eJ/7BBIersfPSQ79YdI1ORiJs="
+    "sha256-cRbEhxjNCuFGSbhxa1tNfVTiAfGsEUp0SY87rIzUu5U="
+    "sha256-fAgepZ3PEOExR7qBoozVFHnyoIVuPOrrrRwlXeYkkcg="
+  ];
+  "Disposable Hero".floppies = [
+    "sha256-NfhVNNLOQBHqVuPJYo0KMmrCys9uDJC+vVZdhL1t0vU="
+    "sha256-63modkD0VQ0myx+ZP6QnCS6CayM3w/U7XJcbOCN2gPw="
+    "sha256-YekAlDAF5MlQ6d0xGrODFAVbRBnD0CpmoxDuxxvFlWQ="
   ];
   Damage.floppies = [
     "sha256-8MKzGni7UnO0TzIExFNSmuTMbbuLoINOoihNTWGweSY="
@@ -188,15 +222,48 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-OtL637SuBac4gXEKZCsi7OY88P//Ppd0fD7nO7+HO5E="
     "sha256-zu8QejCJi5BAJAYChglcwidGTylyIO5CG46RaIb1jUY="
   ];
+  "Donk The Samurai Duck".floppies = [
+    "sha256-jtEkz74JZ5lOmF9q4za9vkj0wcnyirPmQVKx2y5LkJ8="
+    "sha256-H5Z84U9AzB0MNk8/MVzkDLwwF4qWbsRfXlDyAJkeu28="
+    "sha256-kA4RVIFts90iC/tFEZ7V8lhkv41QG53AL812iLj8ONA="
+  ];
   Dozer.floppies = [ "sha256-n9ekR5xMHW1vw9Tr4TOWpoju1ynxnnZgHbfIC8f0+98=" ];
+  "Dr Plummets House Of Flux".floppies = [
+    "sha256-yqMnb1axW9/PfsJpwHjjB/PAQRgg8jcb+M1enNe6eus="
+  ];
+  Dune.floppies = [
+    "sha256-NtGWOAaoxMJPLaPliMKPXIz1VSL6HqIVlbAMtL6YV2k="
+    "sha256-LMm8pJTnrkuqU3155MDUIr1cmP5LpEXjWEcNx9Vqmmk="
+    "sha256-EXNzPAZvUXR5/f0zH/ea3yThwCkTm2pjSXJCL0Ek6Ac="
+  ];
   E-Motion.floppies = [
     "sha256-JKKtGfzbHe8uab6yrdl9DoDwG4QiHuhocfdeZG+YSbU="
   ];
   "Egyptian Run".floppies = [
     "sha256-9MF+21/JEiNxWQJEXmB/o+bYAbscJPr8x3Srhzd2hYo="
   ];
+  Elite.floppies = [
+    "sha256-GogMBxt+v/gY06ZTJvqjUR6w/iCmuXrzeQRnJqGPWlY="
+  ];
   "Fantasy World Dizzy".floppies = [
     "sha256-tNHQ2wANm0UiHUUnCGNWpZzH/9P0VKGJrQVDWMax+rs="
+  ];
+  "Fast Food".floppies = [
+    "sha256-j5meUM5ui9SSIdF5YQqN+ckwJCfWEPJRyLVZQzQGHb4="
+  ];
+  Fatman.floppies = [
+    "sha256-N9B5/k1+Dc2ZCCNPtqU33d0R0/zBT6ocjKoVUlF1aZM="
+    "sha256-3r1zBcybI+QZSGlU/cfUWkKIZe/DYv6i1VgNr/EUtlI="
+    "sha256-PGbwCBqSD/CJu01vT6xz5nLQFe1ZFRLqLVDZ6t74rz4="
+    "sha256-/veqeVOVlD7BBfElpoJqISeWFjkKkvyY7v2fpx2lHkI="
+  ];
+  Fears.floppies = [
+    "sha256-pY/SwbfKLBGAS2RW9Fyk0LOPtFvi19st8slnfTebeB0="
+    "sha256-DXI6d5n91iR3HvbB5Nkj/vP7kbUZsJO4AKwCU6GD9A8="
+  ];
+  "Fire And Ice".floppies = [
+    "sha256-j5WG5MnuF9mXKnWZM9evwaYeMapxxqRlAn6LGNccpdI="
+    "sha256-ZbtPw6gmhxWC9nJ8Q1KtKgQfehk8SdyJsf84Z6V+oIs="
   ];
   Frontier.floppies = [
     "sha256-3b3jjYE3ixjiMSe88MIxBB+dROoebXllMZcPsX2V5LM="
@@ -448,6 +515,12 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
     "sha256-juNKSjNa8mALsT9xP1SpwK2YsAMMWoAg+O6XNcpGGhM="
   ];
   Zerg.floppies = [ "sha256-ton+OF+Z85P06EnsUTopTDRvifdKNixWQ8E8O7Hfl28=" ];
+  "Zombie Apocalypse".floppies = [
+    "sha256-N8/tUE4H2I+iPZiqngh6y/B2sgrdxUOBx5FbijvEeYY="
+  ];
+  "Zombie Apocalypse 2".floppies = [
+    "sha256-/NnvCC+klFPWs4Up1+F6zEZ5F7Dc8HTTzDmNCyy2fYQ="
+  ];
   Zool.floppies = [
     "sha256-xDJts5583xxGR+l6moRjucbs0gx5CZ04vfVzRPAeeM4="
     "sha256-UJ1794fi+zC8Plau1a3IE6mZ00fqcgjqKJGBxwMYCPY="
@@ -459,9 +532,6 @@ builtins.mapAttrs (name: args: amiga-launcher ({ inherit name; } // args)) {
 
   # TODO
   # SimonTheSorcerer
-  # DisposableHero
-  # Donk
-  # FireAndIce
   # Gloom
   # Zeewolf2
   # CannonFodder
