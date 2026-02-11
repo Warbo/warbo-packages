@@ -1,7 +1,7 @@
 {
-  amiberry,
   buildEnv,
   fetchRawIPFS,
+  fsuae,
   lib,
   makeDesktopItem,
   writeShellApplication,
@@ -10,7 +10,8 @@ with rec {
   inherit (builtins) toString;
   inherit (lib) concatImapStringsSep escapeShellArg;
   floppyArg =
-    n: sha256: "-${toString (n - 1)} ${fetchRawIPFS { inherit sha256; }}";
+    n: sha256:
+    "--floppy_drive_${toString (n - 1)}=${fetchRawIPFS { inherit sha256; }}";
 };
 {
   name,
@@ -29,11 +30,13 @@ buildEnv {
   paths = attrValues rec {
     script = writeShellApplication {
       name = suffixed;
-      runtimeInputs = [ amiberry ];
+      runtimeInputs = [ fsuae ];
       text = ''
-        exec amiberry --model ${escapeShellArg model} \
-          -r ${escapeShellArg "${kickstart}"} \
-          -G ${concatImapStringsSep " " floppyArg floppies}
+        exec fs-uae \
+          --amiga-model=${model} \
+          --kickstart_file=${escapeShellArg "${kickstart}"} ${
+            concatImapStringsSep " " floppyArg floppies
+          }
       '';
     };
 
