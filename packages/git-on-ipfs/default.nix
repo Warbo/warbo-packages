@@ -1,7 +1,8 @@
 {
   fetchGitIPFS,
   git-on-ipfs-tree ? {
-    sha1 = "3c09a6a28891d1f28ba8a210cbba36a7304042c3";
+    # git-ref: pkipfs::y5a9inx61aski4miz4sgmg55qgbazxhfwab3i6ee1ypa6rnumi8o master^{tree}
+    sha1 = "40a61e14a9f8660cccf1603c9dc5c744ebdb12fc";
   },
   newScope,
   nixpkgs ? pkgs.path,
