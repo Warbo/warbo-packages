@@ -1,5 +1,9 @@
 { ps1-launcher }:
 builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
+
+  "007 The World Is Not Enough"."TheWorldIsNotEnough.chd" =
+    "f122015ec8bfc64e25713125330c68d18c64babdb859dc91bbdf8d3d5d6fb656a1b7f";
+
   "Alone In The Dark The New Nightmare" = [
     {
       "Disc1.chd" =
@@ -20,6 +24,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Bloody Roar 2"."BloodyRoarII.chd" =
     "f1220dbfd58d0d3a0508297258e398b130ce53af223d9325390186b8411dbe6927893";
 
+  Carmageddon."Carmageddon.chd" =
+    "f12202b945ed8255ab776eafb68b923bda510adf4b3f5f3bd30f427b7271fb51c594a";
+
   "Chaos Break"."ChaosBreak.chd" =
     "f1220bb0a86764789e9cfeaa35c58373dd38c5dcc5792e2aa6598b0bbcda81290eaee";
 
@@ -35,6 +42,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Colin McRae Rally 2"."ColinMcRaeRally2.0Rev2.chd" =
     "f122049749632a21eaade622a328be95fabd2969b19e52ed5518c9364ea04abe7b148";
 
+  Constructor."Constructor.chd" =
+    "f1220530fcf9aef8a4aef3da0af8c028b075d356c026016c5d0190cfab7e7a2f3d9e4";
+
   "Crash Bandicoot"."CrashBandicoot.bin" =
     "f122035d4b837108adc4c5313a45c0f203aa76bc0911873204e908512187379eb98ec";
 
@@ -44,19 +54,34 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Crash Team Racing"."CrashTeamRacing.chd" =
     "f12203ad2efbf964ef06274f5c00830a199d99cdf80902c7d9e979b9959a431153534";
 
+  "Croc 2"."Croc2.chd" =
+    "f12205ea60df398feafc1694f9432e872f0d2e39c3c31aeac712034f9aec83d904e52";
+
+  "Croc Legend Of The Gobbos"."CrocLegendOfTheGobbos.chd" =
+    "f12205af099f7e8e5f0ef44d63a6df6fc5883c1ec51fd2c006aeea2244c0e4cd7fc11";
+
   "Dino Crisis"."DinoCrisis.chd" =
     "f1220b7fa24909b085237f694bb4f6a0cd7efff572d12951df4859dee75c1d1e3dde4";
 
   "Dino Crisis 2"."DinoCrisis2.chd" =
     "f1220cebc060a6d8153b5363510eb7426be33827edf40ebe27e95b0e58ed08bfe6ad4";
 
+  Discworld."Discworld.chd" =
+    "f1220e497e9354df8bd80f3407a47c88a4679aa3db470bcf23c58a59a793e56d2cf38";
+
+  "Discworld Missing Presumed"."DiscworldIIMissingPresumed.chd" =
+    "f12201df6830a2919f5c56d03160b1f00293aba44b048a9ba600d1a5bb9264af071ad";
+
   "Discworld Mortality Bytes"."DiscworldMortalityBytes.chd" =
     "f1220a4336a1247edacf7c8363c2d200a5edefaba37eff0bf79acd8b4b0e4640f254c";
+
+  Driver."Driver.chd" =
+    "f122003aac7dbe7273c718194774715fdec58c060d32a304276c0c1179c6b4b7da3fe";
 
   "Echo Night"."EchoNight.chd" =
     "f12200dff94f89e02e63a2cbe68a3a4154121dc1349c988b1ae873823bbed2fba1942";
 
-  "Evil Dead Hail to the King" = [
+  "Evil Dead Hail To The King" = [
     {
       "Disc1.chd" =
         "f12203551f2a6b2abc472080655c99531ffa8f56b10e30b32f9173b4d18b94274316c";
@@ -66,6 +91,12 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
         "f122020e3918c7ce787a68f469ae30b1a443148809a3903849fa9b013ddffb3c889bd";
     }
   ];
+
+  Exhumed."Exhumed.chd" =
+    "f122055ca6ae65ee5448d81dd5dcb1ea645e92e8b16caf78e9b163c29ea463854d4aa";
+
+  "Fade To Black"."FadeToBlack.chd" =
+    "f12208aef463809cc6d05a4d01e3194a051b1c2a12723a22fad1ed194e0a3a655c6da";
 
   "Final Fantasy 7" = [
     {
@@ -144,6 +175,18 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Gex 3D Enter The Gecko"."EnterTheGecko.chd" =
     "f12207fbdfa6efe06f792ba0d3e6a6e851e8a4122fdf4eac0ac8104fa84dacaef68e8";
 
+  "Grand Theft Auto"."GrandTheftAuto.chd" =
+    "f1220995b2ccab006550832e084b853495c920a9f13a3021c61a63c8d7bdd0e044db2";
+
+  "Grand Theft Auto 2"."GrandTheftAuto2.chd" =
+    "f122058c339bc96bc5659220d8c443d6aa25adf9ac6caf965c58057f311406020ba34";
+
+  Hercules."Hercules.chd" =
+    "f12207c8627516dd27537e7b4a2ab7f275e6f7520435f27da5e2474b5e91824fcb6f4";
+
+  "Hogs Of War"."HogsOfWar.chd" =
+    "f1220eadf8bcbcfd47c87180541434cec23b1b925289802a67fe97054590f7d711b86";
+
   "In Cold Blood" = [
     {
       "Disc1.chd" =
@@ -189,8 +232,14 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Legacy Of Kain Soul Reaver"."SoulReaver.chd" =
     "f122053e6bfabf23711553568224fbca7a5f3e8f1494bb84e08ce3b2b7112249d504d";
 
+  "Marvel Vs Capcom"."MarvelVsCapcomClashOfSuperHeroes.chd" =
+    "f12202a48f3f6790fdbc9f7997aba437f71b9332fce02accbed0cffe22799ff70fe09";
+
   "MediEvil"."MediEvil.chd" =
     "f12206bad8988dea30d71e9e2d37d48c6fd162a93fe431d046dd125ef6a6829865d9e";
+
+  "MediEvil 2"."MediEvil 2.chd" =
+    "f1220c10e1b2e3f43c6170d310a3c00ed87945570c2814d027931161302118e56adb5";
 
   "Metal Gear Solid" = [
     {
@@ -203,6 +252,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
     }
   ];
 
+  "Mickeys Wild Adventure"."MickeysWildAdventure.chd" =
+    "f12206353e5dab031fcd99710cb9f91d4b7e60da02493aae618f4578f23ab1cca3913";
+
   "Micro Machines 3"."MicroMachinesV3.bin" =
     "f1220b165c844493a4ef10e491e24dfe195324e46c68b6b60d793e372476450e519cd";
 
@@ -211,6 +263,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
 
   "Muppet Monster Adventure"."MuppetMonsterAdventure.chd" =
     "f122020ebe536755e2c18d0ed63024a66e91f52ab2b03f26ea0a1ba54010d9736c2f2";
+
+  "Music Creation For The PlayStation"."Music.chd" =
+    "f1220c38b2fcb445b7b95f24c284b0a5b97ee813ccf65ff1d14b9636b075701b8d4da";
 
   "Nightmare Creatures"."NightmareCreatures.chd" =
     "f12204d50e10f9926a882d99efd9690faad54269cb746c5c8f3631c689de03c891b8e";
@@ -234,6 +289,15 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
 
   "ODT"."ODT.chd" =
     "f1220f32575aa110c6b59ffbcb43dd30f1ff95dcd47577beb8cc90d47d7a3eb7f6e0e";
+
+  OverBlood."OverBlood.chd" =
+    "f1220ca31d33e1f7baa20b7a158b3c91fb1308505717b2e3fa206ac35b2b4b04e78bb";
+
+  Overboard."Overboard.chd" =
+    "f1220248773543c3783969209f59f04c40dd33ae768934ddad7906c69cfdcfc7881cb";
+
+  "PaRappa The Rapper"."PaRappaTheRapper.chd" =
+    "f12202163a5d562a9547c3498a45b15ecb0ef7fb94b95088e917dd7142c89c8e6779c";
 
   "Parasite Eve" = [
     {
@@ -260,8 +324,20 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "PlayStation Demo Disc"."PlayStationDemoDisc.chd" =
     "f12205530261dcb56dc60c446534ebd4979156a0f6bb974ba3ca4a959de4b90f08ed1";
 
-  "Point Blank"."PointBlank.bin" =
-    "f12207fc946de9e5fd0252f0424b8c959a3028fbfc906bf0daabac5826f9bc6ad2c10";
+  "Point Blank"."PointBlank.chd" =
+    "f1220a7a037032989f314d4f4520460e399747eff26f835dda9214ffc1ac7b735c9c0";
+
+  "Point Blank 2"."PointBlank2.chd" =
+    "f12209b9cb4c9e0b226c5492873356006143bfd7a41a054a4a29e3747e33214ec688c";
+
+  "Point Blank 3"."PointBlank3.chd" =
+    "f12201262b5e4e37617632e0f44e6e8b307cc9a5b4cd9f89bac348d81f132d506a7f5";
+
+  Rayman."Rayman.chd" =
+    "f12208c5d4bbe5bd0cb4b80f9eabdc196450533fc1ba5c320ed51aab3330d0f1fa517";
+
+  "Rayman 2"."Rayman2.chd" =
+    "f1220eea72f9d6b3f5fc2bd3791d7761a99d11c18af5b865c3b907c122092927612ca";
 
   "Resident Evil 2 Claire" = [
     {
@@ -285,11 +361,23 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
     }
   ];
 
-  "Resident Evil 3"."ResidentEvil3Nemesis.bin" =
-    "f1220dc3f29d7f7046fbdc85e8c376721a8880567f0cda309a52ee5da875ae9e40157";
+  # Europe
+  "Resident Evil 3" = {
+    # Seems to hang
+    # "ResidentEvil3US.bin" =
+    #   "f1220dc3f29d7f7046fbdc85e8c376721a8880567f0cda309a52ee5da875ae9e40157";
+    "ResidentEvil3Europe.chd" =
+      "f12207281a03e57b858edcc9bb8df04416e7dba2137da4d35fde66fc2175bb53c3811";
+  };
+
+  "Resident Evil"."Resident Evil.chd" =
+    "f122045d583f1c2bf89108dafeda6b4a2ae90bb415f1768d261306494899be920c513";
 
   "Resident Evil Directors Cut"."ResidentEvilDirectorsCut.chd" =
     "f12209618b6cc0034449200f66e6f999da38c13e6ef7f744eeb5fb3e7218003f8ea9e";
+
+  "Resident Evil Survivor"."ResidentEvilSurvivor.chd" =
+    "f1220f3c08401eae99be96fcc400b27240f4bdc1d893912d523143289f28058f07d5d";
 
   "Silent Hill"."SilentHill.chd" =
     "f12206ded16c3a1f56b591975f3a9dbc810a4b2d2ad247b39d548cf28837930be0c51";
@@ -300,6 +388,18 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "South Park Chefs Luv Shack"."SouthParkChefsLuvShack.chd" =
     "f1220d89980b6b2171dfa1a81bb99753df0df70ff815d71236ce5d3b4b76b452f1c19";
 
+  "South Park Rally"."SouthParkRally.chd" =
+    "f12202e8ba7d0d46d15f8e33f59c1c95f104a8fa29b28c67d8cf8e43e01e618d67f1a";
+
+  "Spyro 2"."Spyro2.chd" =
+    "f1220e2e35b92ea8dbe13265567d2fef48b169cb78b03210d7557b262feaed50f8efd";
+
+  "Spyro The Dragon"."Spyro.chd" =
+    "f12207ae4c76cdfd003a1604bd68f75624be092c906df934d5f30879c578c9c7e551c";
+
+  "Spyro Year Of The Dragon"."SpyroYearOfTheDragon.chd" =
+    "f1220422f2cac3a3c31d77e25b749ad9e15e2d84d239d82480c7bf93efac7be7f7b4b";
+
   "Tekken 2"."Tekken2.chd" =
     "f1220e9527bdb0fcefaf70784d4c8e35d072407e6fe435b954df016195b895095b6a3";
 
@@ -309,8 +409,20 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Terry Pratchetts Discworld"."TerryPratchettsDiscworld.chd" =
     "f1220cd4dd422cc4c890dad5e58284ce97c7f934b4174aa2a9226e03a04ee5e5b0d2d";
 
+  "Time Crisis"."TimeCrisis.chd" =
+    "f12200611a1171c32b0ae3ba3cd7213e305e6c7af8a2c2783988f64c0e096af1a6416";
+
   "Tomb Raider"."TombRaider_v1.4.chd" =
     "f12200d8f3807699d23190701e09efe93ca7b08fa4fbc79421b9e125c51cbb25bdf62";
+
+  "Tomb Raider 2"."TombRaider2.chd" =
+    "f1220f40343fb7bc3668e4f8bd45fce1ae6c902f134a08e5e3cbb7255a3671157647b";
+
+  "Tomb Raider 3"."TombRaider3.chd" =
+    "f1220e08e09d3c73ec75545b24f4597fde6d8d9101f7313f1dca1f9431ae1fd98a99a";
+
+  "Tomb Raider The Last Revelation"."TombRaiderTheLastRevelation.chd" =
+    "f1220e591f7304c6c4f5246819540c5585cd424a6b438000c3658edbb046a7c5d1e40";
 
   "Tony Hawks Pro Skater"."TonyHawksProSkater.chd" =
     "f122050f09367028360480874d241c4c31a9daec4116389a1a3cde9d9665e00773cc8";
@@ -318,9 +430,18 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Twisted Metal 2"."TwistedMetal2.chd" =
     "f122053ec58e94b002bf99e43170cce93c86ceafcb043f1d9530041f32a469084b256";
 
+  "Um Jammer Lammy"."UmJammerLammy.chd" =
+    "f1220b29ab87be8de8141c3e96ce7db391b3c2b993b050025a0ea88e7ea3e604bbffd";
+
   "Vagrant Story"."VagrantStory.chd" =
     "f1220c68afdae494386bc2d08155f98af51a337aa40ff12e46874fd3b40571fef38b0";
 
   "VibRibbon Japan"."VibRibbonJapan.chd" =
     "f1220b8cdbb4d55048b5c3d49f55e4e6012d11dd25ae39071c3be0f68d236191d7aa2";
+
+  Wip3out."Wip3out.chd" =
+    "f1220f4ff6094ec9a9693430c5fc3a6ce84d6e024c7ef1f0ce8573ed2c4fa77403723";
+
+  WipEout."WipEout.chd" =
+    "f12204c9a4c7955602dc44a6856012bb18e24144a2011bc851d3244e2b4e355b2f5fe";
 }
