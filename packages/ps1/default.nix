@@ -10,7 +10,7 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
         "f12208edf8a2207c27f51dbbb3d4bfedbb9c40d7f5a0cee3c02e745d06264cfabd5b9";
     }
     {
-      "Disc 2.chd" =
+      "Disc2.chd" =
         "f12208e1a231fba9a41a84eacf5d7b017b7e0d189efe474ae49544b014b1f4fcf0612";
     }
   ];
@@ -238,7 +238,7 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "MediEvil"."MediEvil.chd" =
     "f12206bad8988dea30d71e9e2d37d48c6fd162a93fe431d046dd125ef6a6829865d9e";
 
-  "MediEvil 2"."MediEvil 2.chd" =
+  "MediEvil 2"."MediEvil2.chd" =
     "f1220c10e1b2e3f43c6170d310a3c00ed87945570c2814d027931161302118e56adb5";
 
   "Metal Gear Solid" = [
