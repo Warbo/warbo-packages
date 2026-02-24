@@ -400,6 +400,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Spyro Year Of The Dragon"."SpyroYearOfTheDragon.chd" =
     "f1220422f2cac3a3c31d77e25b749ad9e15e2d84d239d82480c7bf93efac7be7f7b4b";
 
+  Tekken."Tekken.chd" =
+    "f1220ffb107a695d7299ad21990f2b383aabe18ad1a2675fccce4087fc9a27a2d2afa";
+
   "Tekken 2"."Tekken2.chd" =
     "f1220e9527bdb0fcefaf70784d4c8e35d072407e6fe435b954df016195b895095b6a3";
 
