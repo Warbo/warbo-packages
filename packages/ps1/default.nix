@@ -48,6 +48,12 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Crash Bandicoot"."CrashBandicoot.bin" =
     "f122035d4b837108adc4c5313a45c0f203aa76bc0911873204e908512187379eb98ec";
 
+  "Crash Bandicoot 2"."Crash2.chd" =
+    "f1220871f8d88f12dc2be3fb5da84474fdf9b49bfc7f4dade8d29b4af8c24d12c1144";
+
+  "Crash Bandicoot 3"."Crash3.chd" =
+    "f12204ecd145b76a925ec2cc04cb771ac38fc7c2c0b36cf5677fd42e8a429501d7dc0";
+
   "Crash Bash"."CrashBash.chd" =
     "f1220e29074b394b8dc7184b03d95ff032cb26ec132e2ad329b558b98349037869e36";
 
@@ -339,6 +345,9 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
   "Rayman 2"."Rayman2.chd" =
     "f1220eea72f9d6b3f5fc2bd3791d7761a99d11c18af5b865c3b907c122092927612ca";
 
+  "Resident Evil"."Resident Evil.chd" =
+    "f122045d583f1c2bf89108dafeda6b4a2ae90bb415f1768d261306494899be920c513";
+
   "Resident Evil 2 Claire" = [
     {
       "Claire.chd" =
@@ -361,7 +370,6 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
     }
   ];
 
-  # Europe
   "Resident Evil 3" = {
     # Seems to hang
     # "ResidentEvil3US.bin" =
@@ -369,9 +377,6 @@ builtins.mapAttrs (name: discs: ps1-launcher { inherit name discs; }) {
     "ResidentEvil3Europe.chd" =
       "f12207281a03e57b858edcc9bb8df04416e7dba2137da4d35fde66fc2175bb53c3811";
   };
-
-  "Resident Evil"."Resident Evil.chd" =
-    "f122045d583f1c2bf89108dafeda6b4a2ae90bb415f1768d261306494899be920c513";
 
   "Resident Evil Directors Cut"."ResidentEvilDirectorsCut.chd" =
     "f12209618b6cc0034449200f66e6f999da38c13e6ef7f744eeb5fb3e7218003f8ea9e";
