@@ -3,7 +3,7 @@
   nix-helpers ? null,
   nix-helpers-tree ? {
     # git-ref: pkipfs::yhqn1j1d7i5xb7456639i4uw1e5deeuddjsnyrow46zuxipwgijo master^{tree}
-    sha1 = "7ebeb58c22b741df1cd353c0239022b64c68558f";
+    sha1 = "3d5b5a6a3b7745bfa5dfaf5b92bdfb7c9bbba154";
   },
   nixpkgs ? null,
   nixpkgs-lib ? null,
