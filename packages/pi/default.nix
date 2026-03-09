@@ -7,7 +7,7 @@ with rec {
   numtide-llms = fetchTreeFromGitHub {
     owner = "numtide";
     repo = "llm-agents.nix";
-    tree = "b80f8ecf734b82cb9ebd7253d0d05be30ad70e50";
+    tree = "59ec50a7257c2dd9858ec5c30b543b47c8718547";
   };
 
   pi = callPackage "${numtide-llms}/packages/pi/package.nix" {
