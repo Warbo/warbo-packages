@@ -2,7 +2,7 @@
   fetchGitIPFS,
   git-on-ipfs-tree ? {
     # multiaddr: /ipns/master.y5a9inx61aski4miz4sgmg55qgbazxhfwab3i6ee1ypa6rnumi8o/tree
-    sha1 = "sha1-p0GCy1KxEYJekScqPDr/pI+2xMA=";
+    sha1 = "sha1-x4jIb5WXN2JP1HBxNxzSOzi+KII=";
   },
   newScope,
   nixpkgs ? pkgs.path,
