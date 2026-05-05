@@ -1,30 +1,21 @@
-# Creates a launcher for a PlayStation 1 game. Uses retroarch under the hood,
-# and looks up discs using content-link. Some games need multiple discs, so we
-# can accept a list of them, and create a temporary .m3u "playlist" containing
-# all of them in order. We actually make temporary symlinks to each, in case the
+# Creates a launcher for a Dreamcast game. Uses retroarch under the hood, and
+# looks up discs using content-link. Some games need multiple discs, so we can
+# accept a list of them, and create a temporary .m3u "playlist" containing all
+# of them in order. We actually make temporary symlinks to each, in case the
 # filename registered by content-link isn't very informative.
-{
-  addDisc,
-  buildEnv,
-  content-link,
-  lib,
-  libretro,
-  makeDesktopItem,
-  writeShellApplication,
-}:
+{ addDisc, buildEnv, content-link, lib, libretro, makeDesktopItem, writeShellApplication }:
 { name, discs }:
 with rec {
   inherit (builtins)
-    attrNames
     attrValues
-    head
     isAttrs
     isList
-    length
     replaceStrings
     ;
-  inherit (lib) concatMapStringsSep escapeShellArg;
-  suffixed = "${replaceStrings [ " " ] [ "" ] name}_ps1";
+
+  inherit (lib) concatMapStringsSep;
+
+  suffixed = "${replaceStrings [ " " ] [ "" ] name}_dreamcast";
 
   discList = assert isList discs; concatMapStringsSep "\n" addDisc discs;
 
@@ -37,10 +28,11 @@ buildEnv {
       name = suffixed;
       runtimeInputs = [
         content-link
-        libretro.pcsx-rearmed
+        libretro.flycast
       ];
       text = ''
         set -e
+
         temp_dir=$(mktemp -d)
         trap 'rm -rf "$temp_dir"' EXIT
 
@@ -50,14 +42,14 @@ buildEnv {
         ${if isList discs then discList else singleDisc}
 
         # Can't exec, since we need the cleanup handler
-        retroarch-pcsx-rearmed "$@" "$m3u_file"
+        retroarch-flycast "$@" "$m3u_file"
       '';
     };
 
     desktop = makeDesktopItem {
       name = suffixed;
-      desktopName = "${name} (PS1)";
-      comment = "${name} in a PlayStation emulator";
+      desktopName = "${name} (Dreamcast)";
+      comment = "${name} in a Dreamcast emulator";
       exec = "${script}/bin/${suffixed}";
       terminal = false;
       categories = [ "Game" ];
